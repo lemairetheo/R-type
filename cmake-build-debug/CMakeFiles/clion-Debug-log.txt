@@ -1,0 +1,13 @@
+/Users/jean-baptisteazan/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Users/jean-baptisteazan/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/jean-baptisteazan/Documents/R-typed -B /Users/jean-baptisteazan/Documents/R-typed/cmake-build-debug
+-- Configuring done (0.1s)
+CMake Error at server/CMakeLists.txt:1 (add_executable):
+  Cannot find source file:
+
+    network/UDPServer.cpp
+
+
+CMake Error at server/CMakeLists.txt:1 (add_executable):
+  No SOURCES given to target: r-type_server
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
