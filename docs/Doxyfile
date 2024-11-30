@@ -1,65 +1,33 @@
 # Nom du projet
-PROJECT_NAME           = "R-Type Network Game"
+PROJECT_NAME           = "R-Type"
 PROJECT_NUMBER         = 1.0
 PROJECT_BRIEF         = "A networked implementation of the classic R-Type game"
 
-# Configuration de sortie
-OUTPUT_DIRECTORY       = docs/
-GENERATE_HTML         = YES
-GENERATE_LATEX        = NO
+# Configuration des répertoires
+OUTPUT_DIRECTORY       = output/
+INPUT                  = server/ client/ shared/
+RECURSIVE              = YES
+
+# Configuration de la sortie
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
 HTML_OUTPUT           = html
 
-# Configuration des sources
-INPUT                 = src/ \
-                       server/ \
-                       client/ \
-                       shared/
-FILE_PATTERNS         = *.cpp \
-                       *.hpp \
-                       *.h \
-                       *.md
-RECURSIVE             = YES
-
-# Style de documentation
-EXTRACT_ALL           = YES
-EXTRACT_PRIVATE       = YES
+# Options d'extraction
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC        = YES
-EXTRACT_LOCAL_CLASSES = YES
 
-# Options de génération
-GENERATE_TREEVIEW     = YES
-DISABLE_INDEX         = NO
-FULL_SIDEBAR         = NO
-HTML_DYNAMIC_SECTIONS = YES
-GENERATE_TODOLIST     = YES
+# Configuration du style
+JAVADOC_AUTOBRIEF     = YES
+MARKDOWN_SUPPORT      = YES
+AUTOLINK_SUPPORT      = YES
 
-# Options de diagrammes
-HAVE_DOT             = YES
-UML_LOOK             = YES
-CALL_GRAPH           = YES
-CALLER_GRAPH         = YES
+# Options des diagrammes
+HAVE_DOT              = YES
+UML_LOOK              = YES
+CALL_GRAPH            = YES
+CALLER_GRAPH          = YES
 
-# Documentation additionnelle
-USE_MDFILE_AS_MAINPAGE = README.md
-MARKDOWN_SUPPORT       = YES
-
-# Exclusions
-EXCLUDE_PATTERNS      = */build/* \
-                       */cmake-build-debug/* \
-                       */Testing/*
-
-# Configuration de la langue
-OUTPUT_LANGUAGE       = English
-
-# Warn about undocumented members
-WARN_IF_UNDOCUMENTED = YES
-WARN_IF_DOC_ERROR    = YES
-
-# Grouping
-DISTRIBUTE_GROUP_DOC = YES
-GROUP_NESTED_COMPOUNDS = YES
-
-# Source browsing
-SOURCE_BROWSER = YES
-INLINE_SOURCES = YES
-REFERENCES_LINK_SOURCE = YES
+# Types de fichiers à documenter
+FILE_PATTERNS         = *.cpp *.hpp *.h *.md
