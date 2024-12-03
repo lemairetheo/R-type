@@ -1,5 +1,4 @@
 import socket
-import time
 
 def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -12,7 +11,6 @@ def main():
         print(f'Sent {sent} bytes')
         sock.settimeout(2.0)
 
-        # Try to receive response
         try:
             print('Waiting for response...')
             data, server = sock.recvfrom(4096)
