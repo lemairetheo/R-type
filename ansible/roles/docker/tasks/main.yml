@@ -1,0 +1,39 @@
+---
+- name: Create build directory
+  file:
+    path: "/tmp/rtype_build"
+    state: directory
+
+- name: Copy project files to build directory
+  copy:
+    src: "{{ playbook_dir }}/../"
+    dest: "/tmp/rtype_build/"
+    remote_src: no
+
+- name: Build Docker image
+  docker_image:
+    name: rtype
+    build:
+      path: "/tmp/rtype_build"
+      pull: yes
+    source: build
+    force_source: yes
+
+- name: Remove existing container
+  docker_container:
+    name: rtype
+    state: absent
+
+- name: Run Docker container
+  docker_container:
+    name: rtype
+    image: rtype:latest
+    state: started
+    restart_policy: unless-stopped
+    ports:
+      - "8080:8080"
+
+- name: Clean build directory
+  file:
+    path: "/tmp/rtype_build"
+    state: absent

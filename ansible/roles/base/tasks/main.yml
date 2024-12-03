@@ -1,0 +1,27 @@
+- name: Update package cache
+  apt:
+    update_cache: yes
+    upgrade: yes
+
+- name: Install essential packages
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - git
+      - nano
+      - curl
+      - unzip
+      - zsh
+      - virtualenv
+      - python3-setuptools
+      - python3-pip
+      - python3
+      - software-properties-common
+    state: latest
+    update_cache: true
+
+- name: Change shell
+  user:
+    name: root
+    shell: /bin/zsh
