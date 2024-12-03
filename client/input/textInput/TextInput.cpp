@@ -4,8 +4,8 @@ namespace ui {
 
     TextInput::TextInput(const sf::Vector2f& position, const sf::Vector2f& size,
                          const sf::Color& textColor, const sf::Color& boxColor, const sf::Color& placeholderColor,
-                         const std::string& placeholder)
-        : isActive(false), onTextChanged(nullptr) {
+                         const std::string& placeholder, InputMode mode)
+        : isActive(false), inputMode(mode), onTextChanged(nullptr) {
         if (!font.loadFromFile("../client/asset/fonts/Arial.ttf")) {
             throw std::runtime_error("Failed to load font!");
         }
@@ -37,7 +37,10 @@ namespace ui {
             if (event.text.unicode == 8 && !inputString.empty()) {
                 inputString.pop_back();
             } else if (event.text.unicode < 128 && event.text.unicode > 31) {
-                inputString += static_cast<char>(event.text.unicode);
+                char c = static_cast<char>(event.text.unicode);
+                if (isCharacterValid(c)) {
+                    inputString += c;
+                }
             }
             inputText.setString(inputString);
             updateTextPosition();
@@ -51,6 +54,7 @@ namespace ui {
     void TextInput::render(sf::RenderWindow& window) {
         window.draw(inputBox);
 
+        // Render input text or placeholder
         if (inputString.empty() && !isActive) {
             window.draw(placeholderText);
         } else {
@@ -82,6 +86,15 @@ namespace ui {
 
     void TextInput::setOnTextChanged(std::function<void(const std::string&)> callback) {
         onTextChanged = callback;
+    }
+
+    bool TextInput::isCharacterValid(char c) const {
+        if (inputMode == InputMode::Text) {
+            return std::isalnum(c) || std::isspace(c) || c == ';' || c == ':' || c == '.' || c == '/' || c == '\\';
+        } else if (inputMode == InputMode::Numbers) {
+            return std::isdigit(c);
+        }
+        return true;
     }
 
     void TextInput::updateTextPosition() {

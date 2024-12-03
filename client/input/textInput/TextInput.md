@@ -1,14 +1,15 @@
 # Documentation: `TextInput` Class
 
-The `TextInput` class is an implementation of a text input field using the SFML library. It supports user input, placeholder text, real-time text change callbacks, and customizable colors for various elements. Placeholder text is specified directly in the constructor for easier initialization.
+The `TextInput` class is an implementation of a text input field using the SFML library. It supports user input, placeholder text, real-time text change callbacks, customizable colors, and input modes (text, numbers, or both). Placeholder text and input mode are specified directly in the constructor for easier initialization.
 
 ---
 
 ## Features
 
+- **Input Modes**: Accept text, numbers, or any alphanumeric characters with specific symbols (`;`, `:`, `.`, `/`, `\\`).
 - **Real-time Text Updates**: Retrieve the current input text via a callback when it changes.
 - **Mouse Click Activation**: Activates the input field when clicked.
-- **Placeholder Support**: Displays placeholder text when the input is empty and not focused, specified directly in the constructor.
+- **Placeholder Support**: Displays placeholder text when the input is empty and not focused.
 - **Customizable Appearance**:
   - Text color.
   - Box color.
@@ -26,7 +27,8 @@ TextInput(const sf::Vector2f& position, const sf::Vector2f& size,
           const sf::Color& textColor = sf::Color::Black,
           const sf::Color& boxColor = sf::Color::White,
           const sf::Color& placeholderColor = sf::Color(150, 150, 150),
-          const std::string& placeholder = "Enter text...");
+          const std::string& placeholder = "Enter text...",
+          InputMode mode = InputMode::Any);
 ```
 
 ### Parameters
@@ -39,6 +41,7 @@ TextInput(const sf::Vector2f& position, const sf::Vector2f& size,
 | `boxColor`          | `sf::Color`    | Background color of the input box. Default: `sf::Color::White`.  |
 | `placeholderColor`  | `sf::Color`    | Color of the placeholder text. Default: `sf::Color(150, 150, 150)`.|
 | `placeholder`       | `std::string`  | Placeholder text displayed when the input is empty. Default: `"Enter text..."`. |
+| `mode`              | `InputMode`    | Mode of input. Default: `InputMode::Any`.                        |
 
 ---
 
@@ -92,32 +95,6 @@ textInput.setOnTextChanged([](const std::string& text) {
 
 ---
 
-### `setPosition`
-
-```cpp
-void setPosition(const sf::Vector2f& position);
-```
-
-Moves the input box to a new position.
-
-- **Parameters**:
-  - `position`: The new position of the input box.
-
----
-
-### `setSize`
-
-```cpp
-void setSize(const sf::Vector2f& size);
-```
-
-Resizes the input box.
-
-- **Parameters**:
-  - `size`: New dimensions of the input box (width x height).
-
----
-
 ### `getValue`
 
 ```cpp
@@ -133,22 +110,33 @@ Returns the current input text.
 ```cpp
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "input/TextInput/TextInput.hpp"
+#include "inputs/TextInput.hpp"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "TextInput Example");
     window.setFramerateLimit(60);
 
-    // Create a TextInput field with a placeholder
+    // Input field for text
     ui::TextInput textInput(
         {200, 200}, {400, 50}, 
         sf::Color::Black, sf::Color::White, sf::Color(150, 150, 150), 
-        "Type something..."
+        "Enter text...", ui::TextInput::InputMode::Text
     );
 
-    // Define a callback for real-time text updates
+    // Input field for numbers
+    ui::TextInput numberInput(
+        {200, 300}, {400, 50}, 
+        sf::Color::Black, sf::Color::White, sf::Color(150, 150, 150), 
+        "Enter numbers...", ui::TextInput::InputMode::Numbers
+    );
+
+    // Define callbacks for real-time updates
     textInput.setOnTextChanged([](const std::string& text) {
-        std::cout << "Current text: " << text << std::endl;
+        std::cout << "Text Input: " << text << std::endl;
+    });
+
+    numberInput.setOnTextChanged([](const std::string& text) {
+        std::cout << "Number Input: " << text << std::endl;
     });
 
     while (window.isOpen()) {
@@ -159,10 +147,12 @@ int main() {
             }
 
             textInput.handleEvent(event, window);
+            numberInput.handleEvent(event, window);
         }
 
         window.clear(sf::Color::Black);
         textInput.render(window);
+        numberInput.render(window);
         window.display();
     }
 
@@ -174,10 +164,12 @@ int main() {
 
 ## Expected Output
 
-1. A white input box appears at the specified position in the window.
-2. The placeholder text "Type something..." is visible when the input is empty.
-3. Clicking on the input box activates it, allowing you to type.
-4. The console prints the current text in real-time whenever it changes.
+1. Two white input boxes appear at the specified positions in the window.
+2. The placeholder text "Enter text..." and "Enter numbers..." are visible when the inputs are empty.
+3. Clicking on an input box activates it, allowing you to type.
+4. The first input accepts alphanumeric characters and symbols (`;`, `:`, `.`, `/`, `\`).
+5. The second input accepts only numeric values.
+6. The console prints the current input text in real-time for both fields.
 
 ---
 
@@ -185,3 +177,7 @@ int main() {
 
 - **Font Requirements**: Ensure that the file `Arial.ttf` is available at `../client/asset/fonts/Arial.ttf`. You can replace it with any other font by modifying the source code.
 - **Real-Time Updates**: Use the `setOnTextChanged` method to process input dynamically.
+- **Input Modes**:
+  - `InputMode::Text`: Accepts letters, numbers, and some symbols (`;`, `:`, `.`, `/`, `\`).
+  - `InputMode::Numbers`: Accepts only digits.
+  - `InputMode::Any`: Accepts any characters.
