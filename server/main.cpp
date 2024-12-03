@@ -1,10 +1,17 @@
 #include "ServerManager.hpp"
 #include <iostream>
 #include <csignal>
+#include <atomic>
 
+static std::atomic<bool> running(true);
+static rtype::ServerManager* globalServer = nullptr;
 
 void signalHandler(int signum) {
     std::cout << "\nSignal (" << signum << ") received. Cleaning up...\n";
+    running = false;
+    if (globalServer) {
+        globalServer->stop();
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -20,11 +27,18 @@ int main(int argc, char* argv[]) {
         std::cout << "Starting R-Type server on port " << port << std::endl;
 
         rtype::ServerManager server(port);
+        globalServer = &server;
         server.start();
 
-        while (true)
+        while (running) {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+
         server.stop();
+        globalServer = nullptr;
+
+        std::cout << "Server shutdown completed." << std::endl;
+
     } catch (const std::exception& e) {
         std::cerr << "Fatal error: " << e.what() << std::endl;
         return 1;
