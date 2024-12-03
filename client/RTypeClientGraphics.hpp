@@ -1,0 +1,8 @@
+//
+// Created by Romain Collignon on 03/12/2024.
+//
+
+#ifndef RTYPECLIENTGRAPHICS_HPP
+#define RTYPECLIENTGRAPHICS_HPP
+
+#endif //RTYPECLIENTGRAPHICS_HPP
