@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-namespace ui {
+namespace rtype::client::ui {
 
     class Inputs {
         public:

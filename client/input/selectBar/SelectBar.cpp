@@ -1,6 +1,6 @@
 #include "SelectBar.hpp"
 
-namespace ui {
+namespace rtype::client::ui {
 
     SelectBar::SelectBar(const sf::Vector2f& position, const sf::Vector2f& size,
                          const sf::Color& barColor, const sf::Color& knobColor,

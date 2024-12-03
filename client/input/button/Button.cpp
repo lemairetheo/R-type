@@ -1,12 +1,12 @@
 #include "Button.hpp"
 
-namespace ui {
+namespace rtype::client::ui {
 
     Button::Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text,
                    const sf::Color& textColor, const sf::Color& normalColor, const sf::Color& hoverColor)
         : normalColor(normalColor), hoverColor(hoverColor), activeColor(sf::Color::Green),
           isActive(false), isHovered(false), currentScale(1.0f), targetScale(1.0f), onClick(nullptr) {
-        if (!font.loadFromFile("../client/asset/fonts/Arial.ttf")) {
+        if (!font.loadFromFile("../../client/asset/fonts/Arial.ttf")) {
             throw std::runtime_error("Failed to load font!");
         }
 

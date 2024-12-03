@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include <functional>
 
-namespace ui {
+namespace rtype::client::ui {
 
     class Button : public Inputs {
         public:
