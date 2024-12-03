@@ -10,6 +10,8 @@
 #include <vector>
 #include <memory>
 #include <iostream>
+#include <SFML/Network.hpp>
+#include "../shared/network/packetType.hpp"
 
 class RTypeClientGraphics {
 public:
@@ -17,8 +19,16 @@ public:
 
     void run();
 
+    sf::TcpSocket& getSocket();
+
+    sf::Socket::Status& getStatus();
+
+    void setStatus(sf::Socket::Status status);
+
 private:
     sf::RenderWindow window;
+    sf::TcpSocket _socket;
+    sf::Socket::Status _status;
 };
 
 #endif //RTYPECLIENTGRAPHICS_HPP

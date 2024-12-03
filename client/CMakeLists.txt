@@ -15,6 +15,7 @@ target_link_libraries(r-type_client
         sfml-graphics
         sfml-window
         sfml-system
+        sfml-network
 )
 
 # Platform specific configurations
