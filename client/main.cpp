@@ -3,11 +3,9 @@
 void sendConnectRequest(sf::UdpSocket& socket) {
     uint8_t packet = static_cast<uint8_t>(rtype::network::PacketType::CONNECT_REQUEST);
 
-    // Adresse et port du serveur
-    sf::IpAddress serverAddress = "127.0.0.1"; // Changez cela si nécessaire
+    sf::IpAddress serverAddress = "127.0.0.1";
     unsigned short port = 4242;
 
-    // Envoi du paquet UDP
     if (socket.send(&packet, sizeof(packet), serverAddress, port) == sf::Socket::Done) {
         std::cout << "CONNECT_REQUEST sent to server." << std::endl;
     } else {
@@ -36,13 +34,12 @@ int main(void)
 {
     RTypeClientGraphics graphics(800, 600, "R-Type Client");
 
-    // On lie l'UDP socket à un port local
-    if (graphics.getSocket().bind(0) != sf::Socket::Done) {  // Le port est automatiquement attribué
+    if (graphics.getSocket().bind(0) != sf::Socket::Done) {
         std::cerr << "Failed to bind UDP socket" << std::endl;
         return 1;
     }
     sendConnectRequest(graphics.getSocket());
-    receiveConnectResponse(graphics.getSocket());
+    // receiveConnectResponse(graphics.getSocket());
 
     graphics.run();
     return 0;
