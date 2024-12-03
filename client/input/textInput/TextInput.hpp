@@ -15,19 +15,16 @@ namespace ui {
                   const sf::Color& placeholderColor = sf::Color(150, 150, 150),
                   const std::string& placeholder = "Enter text...");
 
-        // Implémentation des méthodes virtuelles
         void handleEvent(const sf::Event& event, const sf::RenderWindow& window) override;
         void render(sf::RenderWindow& window) override;
 
-        std::string getValue() const override; // Retourne le texte saisi
+        std::string getValue() const override;
         void setPosition(const sf::Vector2f& position) override;
         void setSize(const sf::Vector2f& size) override;
 
-        // Personnalisation
         void setBoxColor(const sf::Color& color);
         void setTextColor(const sf::Color& color);
 
-        // Callback
         void setOnTextChanged(std::function<void(const std::string&)> callback);
 
     private:
@@ -39,7 +36,7 @@ namespace ui {
         std::string inputString;
         bool isActive;
 
-        std::function<void(const std::string&)> onTextChanged; // Callback pour les modifications de texte
+        std::function<void(const std::string&)> onTextChanged;
 
         void updateTextPosition();
         bool isMouseOver(const sf::RenderWindow& window) const;

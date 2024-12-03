@@ -23,7 +23,7 @@ namespace ui {
             void setColors(const sf::Color& normal, const sf::Color& hover, const sf::Color& active);
             void setText(const std::string& text);
             void setTextColor(const sf::Color& color);
-            void setOnClick(std::function<void()> callback); // Définir une fonction callback pour le clic
+            void setOnClick(std::function<void()> callback);
 
         private:
             sf::RectangleShape buttonShape;
@@ -39,7 +39,7 @@ namespace ui {
             float currentScale; // Anim
             float targetScale; // Anim
 
-            std::function<void()> onClick; // Callback pour le clic
+            std::function<void()> onClick;
 
             void updateTextPosition();
             bool isMouseOver(const sf::RenderWindow& window) const;
