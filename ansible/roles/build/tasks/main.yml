@@ -1,0 +1,74 @@
+---
+- name: Install docker dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - python3-pip
+    - docker.io
+  become: true
+
+- name: Install Docker Python module
+  pip:
+    name: docker
+    state: present
+  become: true
+
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  become: true
+
+- name: Create build directory
+  file:
+    path: "/tmp/rtype_build"
+    state: directory
+  become: true
+
+- name: Copy Dockerfile and context
+  copy:
+    src: "{{ item }}"
+    dest: "/tmp/rtype_build/"
+  with_items:
+    - "{{ playbook_dir }}/../Dockerfile"
+    - "{{ playbook_dir }}/../."
+  become: true
+
+- name: Build Docker image
+  docker_image:
+    name: rtype
+    build:
+      path: "/tmp/rtype_build"
+      pull: yes
+    source: build
+    force_source: yes
+  become: true
+
+- name: Remove old container if exists
+  docker_container:
+    name: rtype
+    state: absent
+  become: true
+
+- name: Run Docker container
+  docker_container:
+    name: rtype
+    image: rtype:latest
+    state: started
+    restart_policy: unless-stopped
+    ports:
+      - "8080:8080"
+  become: true
+
+- name: Clean build directory
+  file:
+    path: "/tmp/rtype_build"
+    state: absent
+  become: true
