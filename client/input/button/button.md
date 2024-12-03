@@ -1,23 +1,23 @@
-# Documentation : Classe `Button`
+# Documentation: `Button` Class
 
-La classe `Button` est une implémentation d’un bouton interactif utilisant la bibliothèque SFML. Elle inclut un effet de survol (hover), une animation fluide, et la possibilité de définir des actions personnalisées via des callbacks.
+The `Button` class is an implementation of an interactive button using the SFML library. It includes a hover effect, smooth animation, and the ability to define custom actions via callbacks.
 
-## Fonctionnalités
+## Features
 
-- **Effet de hover** : Le bouton s'agrandit légèrement lorsqu'il est survolé.
-- **Animation fluide** : Transition douce entre les états `normal` et `hover`.
-- **Callback clic** : Possibilité de définir une fonction appelée lors d'un clic.
-- **Personnalisation** :
-    - Texte du bouton.
-    - Couleurs pour les états `normal`, `hover` et `active`.
-    - Position et taille.
-- **Texte centré automatiquement**.
+- **Hover effect**: The button slightly enlarges when hovered over.
+- **Smooth animation**: A smooth transition between the `normal` and `hover` states.
+- **Click callback**: Ability to define a function to be called on click.
+- **Customization**:
+  - Button text.
+  - Colors for `normal`, `hover`, and `active` states.
+  - Position and size.
+- **Automatically centered text**.
 
 ---
 
-## Initialisation
+## Initialization
 
-### Constructeur
+### Constructor
 
 ```cpp
 Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text,
@@ -26,20 +26,20 @@ Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string
        const sf::Color& hoverColor = sf::Color::Yellow);
 ```
 
-### Paramètres
+### Parameters
 
-| Paramètre       | Type               | Description                                                    |
+| Parameter        | Type               | Description                                                    |
 |------------------|--------------------|----------------------------------------------------------------|
-| `position`       | `sf::Vector2f`    | Position du centre du bouton.                                 |
-| `size`           | `sf::Vector2f`    | Taille du bouton (largeur x hauteur).                         |
-| `text`           | `std::string`     | Texte affiché sur le bouton.                                  |
-| `textColor`      | `sf::Color`       | Couleur du texte. Par défaut : `sf::Color::Black`.            |
-| `normalColor`    | `sf::Color`       | Couleur de fond à l'état normal. Par défaut : `sf::Color::White`. |
-| `hoverColor`     | `sf::Color`       | Couleur de fond lorsqu'il est survolé. Par défaut : `sf::Color::Yellow`. |
+| `position`       | `sf::Vector2f`     | Position of the center of the button.                         |
+| `size`           | `sf::Vector2f`     | Size of the button (width x height).                          |
+| `text`           | `std::string`      | Text displayed on the button.                                 |
+| `textColor`      | `sf::Color`        | Text color. Default: `sf::Color::Black`.                      |
+| `normalColor`    | `sf::Color`        | Background color for the normal state. Default: `sf::Color::White`. |
+| `hoverColor`     | `sf::Color`        | Background color when hovered over. Default: `sf::Color::Yellow`. |
 
 ---
 
-## Méthodes principales
+## Main Methods
 
 ### `handleEvent`
 
@@ -47,11 +47,11 @@ Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string
 void handleEvent(const sf::Event& event, const sf::RenderWindow& window);
 ```
 
-Traite les événements SFML pour détecter les clics ou le survol de la souris.
+Handles SFML events to detect clicks or mouse hover.
 
-- **Paramètres** :
-    - `event` : Un événement SFML (par ex., clic ou mouvement de la souris).
-    - `window` : La fenêtre SFML où le bouton est rendu.
+- **Parameters**:
+  - `event`: An SFML event (e.g., click or mouse movement).
+  - `window`: The SFML window where the button is rendered.
 
 ---
 
@@ -61,10 +61,10 @@ Traite les événements SFML pour détecter les clics ou le survol de la souris.
 void render(sf::RenderWindow& window);
 ```
 
-Dessine le bouton et son texte dans la fenêtre.
+Draws the button and its text in the window.
 
-- **Paramètres** :
-    - `window` : La fenêtre SFML où le bouton est affiché.
+- **Parameters**:
+  - `window`: The SFML window where the button is displayed.
 
 ---
 
@@ -74,16 +74,16 @@ Dessine le bouton et son texte dans la fenêtre.
 void setOnClick(std::function<void()> callback);
 ```
 
-Définit une fonction callback à exécuter lors d’un clic sur le bouton.
+Sets a callback function to be executed when the button is clicked.
 
-- **Paramètres** :
-    - `callback` : Une fonction sans paramètres ni valeur de retour (`std::function<void()>`).
+- **Parameters**:
+  - `callback`: A function with no parameters and no return value (`std::function<void()>`).
 
-Exemple :
+Example:
 
 ```cpp
 button.setOnClick([]() {
-    std::cout << "Bouton cliqué !" << std::endl;
+    std::cout << "Button clicked!" << std::endl;
 });
 ```
 
@@ -95,12 +95,12 @@ button.setOnClick([]() {
 void setColors(const sf::Color& normal, const sf::Color& hover, const sf::Color& active);
 ```
 
-Définit les couleurs pour les différents états du bouton.
+Sets the colors for the different button states.
 
-- **Paramètres** :
-    - `normal` : Couleur pour l'état normal.
-    - `hover` : Couleur pour l'état survolé.
-    - `active` : Couleur pour l'état activé.
+- **Parameters**:
+  - `normal`: Color for the normal state.
+  - `hover`: Color for the hover state.
+  - `active`: Color for the active state.
 
 ---
 
@@ -110,10 +110,10 @@ Définit les couleurs pour les différents états du bouton.
 void setText(const std::string& text);
 ```
 
-Change le texte affiché sur le bouton.
+Changes the text displayed on the button.
 
-- **Paramètres** :
-    - `text` : Le texte à afficher.
+- **Parameters**:
+  - `text`: The text to display.
 
 ---
 
@@ -123,10 +123,10 @@ Change le texte affiché sur le bouton.
 void setPosition(const sf::Vector2f& position);
 ```
 
-Déplace le bouton à une nouvelle position.
+Moves the button to a new position.
 
-- **Paramètres** :
-    - `position` : Position du centre du bouton.
+- **Parameters**:
+  - `position`: Position of the center of the button.
 
 ---
 
@@ -136,32 +136,32 @@ Déplace le bouton à une nouvelle position.
 void setSize(const sf::Vector2f& size);
 ```
 
-Modifie la taille du bouton.
+Changes the size of the button.
 
-- **Paramètres** :
-    - `size` : Nouvelle taille (largeur x hauteur).
+- **Parameters**:
+  - `size`: New size (width x height).
 
 ---
 
-## Exemple d’utilisation
+## Example Usage
 
 ```cpp
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "inputs/Button.hpp"
+#include "input/button/Button.hpp"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Button Example");
     window.setFramerateLimit(60);
 
-    // Création du bouton
+    // Creating the button
     ui::Button button(
         {400, 300}, {200, 50}, "Click Me", sf::Color::Black, sf::Color::White, sf::Color::Yellow
     );
 
-    // Définir une action sur clic
+    // Set an action on click
     button.setOnClick([]() {
-        std::cout << "Bouton cliqué !" << std::endl;
+        std::cout << "Button clicked!" << std::endl;
     });
 
     while (window.isOpen()) {
@@ -171,11 +171,11 @@ int main() {
                 window.close();
             }
 
-            // Gestion des événements du bouton
+            // Handle button events
             button.handleEvent(event, window);
         }
 
-        // Rendu
+        // Rendering
         window.clear(sf::Color::Black);
         button.render(window);
         window.display();
@@ -187,15 +187,15 @@ int main() {
 
 ---
 
-## Résultat attendu
+## Expected Result
 
-1. Une fenêtre SFML avec un bouton centré.
-2. Le bouton change de taille et de couleur lorsqu'il est survolé.
-3. Lors d’un clic sur le bouton, la console affiche **"Bouton cliqué !"**.
+1. An SFML window with a centered button.
+2. The button changes size and color when hovered over.
+3. When the button is clicked, the console displays **"Button clicked!"**.
 
 ---
 
-## Remarques
+## Notes
 
-- **Polices personnalisées** : Assurez-vous que le fichier `Arial.ttf` est disponible dans le chemin `../client/asset/fonts/Arial.ttf`. Vous pouvez utiliser n'importe quelle autre police en modifiant le fichier source.
-- **Extensibilité** : La classe peut être étendue pour inclure d'autres types d'animations ou d'interactions.
+- **Custom Fonts**: Make sure the file `Arial.ttf` is available in the path `../client/asset/fonts/Arial.ttf`. You can use any other font by modifying the source file.
+- **Extensibility**: The class can be extended to include other types of animations or interactions.
