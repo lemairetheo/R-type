@@ -19,7 +19,7 @@ public:
 
     void run();
 
-    sf::TcpSocket& getSocket();
+    sf::UdpSocket& getSocket();
 
     sf::Socket::Status& getStatus();
 
@@ -27,7 +27,7 @@ public:
 
 private:
     sf::RenderWindow window;
-    sf::TcpSocket _socket;
+    sf::UdpSocket _socket;
     sf::Socket::Status _status;
 };
 

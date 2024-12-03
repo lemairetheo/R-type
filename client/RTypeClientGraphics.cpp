@@ -21,7 +21,7 @@ void RTypeClientGraphics::run() {
     }
 }
 
-sf::TcpSocket& RTypeClientGraphics::getSocket() {
+sf::UdpSocket& RTypeClientGraphics::getSocket() {
     return _socket;
 }
 
