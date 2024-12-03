@@ -3,7 +3,7 @@
 
 #include "../Inputs.hpp"
 #include <SFML/Graphics.hpp>
-#include <functional> // Pour std::function
+#include <functional>
 
 namespace ui {
 
