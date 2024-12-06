@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "shared/ecs/EntityManager.hpp"
 #include "shared/systems/System.hpp"
-#include "systems/NetworkSystem.hpp"
+#include "network/NetworkManager.hpp"
 #include "systems/RenderSystem.hpp"
 
 namespace rtype {
@@ -16,9 +16,9 @@ class Game {
         sf::RenderWindow window;
         EntityManager entities;
         std::vector<std::unique_ptr<ISystem>> systems;
-        NetworkClient network;
+        network::NetworkClient network;
         std::chrono::steady_clock::time_point lastUpdate = std::chrono::steady_clock::now();
-
+        void handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender);
         void handleEvents();
         void update();
         void render();

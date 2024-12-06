@@ -1,5 +1,5 @@
 #include <iostream>
-#include "GameEngine/Game.hpp"
+#include "game/Game.hpp"
 
 int main() {
     try {

@@ -1,5 +1,5 @@
 add_library(r-type-shared
-        ecs/EntityManager.cpp  # Fichier source
+        ecs/EntityManager.cpp
 )
 
 target_sources(r-type-shared
@@ -9,6 +9,8 @@ target_sources(r-type-shared
         ecs/EntityManager.hpp
         systems/System.hpp
         network/packetType.hpp
+        abstracts/ANetwork.hpp
+        abstracts/AEngine.hpp
 )
 
 target_include_directories(r-type-shared

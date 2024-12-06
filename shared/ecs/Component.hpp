@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 
 struct Position {
@@ -8,6 +9,13 @@ struct Position {
 struct Velocity {
     float dx;
     float dy;
+};
+
+struct InputComponent {
+    bool up = false;
+    bool down = false;
+    bool left = false;
+    bool right = false;
 };
 
 struct NetworkComponent {

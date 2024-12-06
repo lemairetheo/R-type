@@ -3,9 +3,9 @@ find_package(SFML 2.6.2 COMPONENTS graphics window system REQUIRED)
 # Sources du client
 set(CLIENT_SOURCES
         main.cpp
-        systems/NetworkSystem.cpp
+        network/NetworkManager.cpp
         systems/RenderSystem.cpp
-        GameEngine/Game.cpp
+        game/Game.cpp
 )
 
 # Exécutable

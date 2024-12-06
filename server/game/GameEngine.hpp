@@ -1,30 +1,25 @@
-// server/GameEngine.hpp
 #pragma once
 #include "../shared/ecs/EntityManager.hpp"
 #include "../shared/systems/System.hpp"
-#include <memory>
-#include <vector>
-#include <chrono>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <cstdint>
-#include <iostream>
-
+#include "../shared/abstracts/AEngine.hpp"
+#include "../shared/network/packetType.hpp"
+#include "../network/NetworkManager.hpp"
+#include "MovementSystem.hpp"
 
 namespace rtype::game {
-
-    class GameEngine {
+    class GameEngine : public engine::AEngine {
     public:
-        GameEngine();
+        GameEngine(network::NetworkManager& networkManager);
 
-        void update();
-        void handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender);
+        void broadcastWorldState();
 
+        void update() override;
+        void handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) override;
     private:
         EntityManager entities;
+        void handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender);
         std::vector<std::unique_ptr<ISystem>> systems;
-        std::chrono::steady_clock::time_point lastUpdate = std::chrono::steady_clock::now();
+        network::NetworkManager& network;
+        float speed = 300.0f;
     };
-
-} // namespace rtype::game
+}
