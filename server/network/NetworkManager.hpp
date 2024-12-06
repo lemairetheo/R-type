@@ -31,14 +31,12 @@ namespace rtype::network {
         void setMessageCallback(std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> callback) {
             messageCallback = callback;
         }
-
-        void broadcast(const std::vector<uint8_t>& data);
-        void sendTo(const std::vector<uint8_t>& data, const sockaddr_in& client);
+        void sendTo(const std::vector<uint8_t>& data, const sockaddr_in& client) const;
 
     private:
         void receiveLoop();
 
-        socket_t sock;
+        socket_t sock{};
         uint16_t port;
         std::atomic<bool> running;
         std::thread receiveThread;

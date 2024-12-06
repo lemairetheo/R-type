@@ -2,6 +2,10 @@ add_executable(r-type_server
         main.cpp
         network/NetworkManager.cpp
         network/NetworkManager.hpp
+        game/GameEngine.hpp
+        game/GameEngine.cpp
+        manager/Manager.cpp
+        manager/Manager.hpp
 )
 
 target_include_directories(r-type_server
