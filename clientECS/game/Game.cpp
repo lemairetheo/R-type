@@ -37,8 +37,8 @@ namespace rtype {
                 entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
                 RenderComponent renderComp;
                 renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
-                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17)); // Ajuster selon votre sprite
-                renderComp.sprite.setOrigin(16.5f, 8.5f);  // Centre du sprite
+                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
+                renderComp.sprite.setOrigin(16.5f, 8.5f);
                 entities.addComponent(entity, renderComp);
             } else {
                 auto& pos = entities.getComponent<Position>(entity);
@@ -89,7 +89,6 @@ namespace rtype {
             inputPacket->down = input.down;
             inputPacket->left = input.left;
             inputPacket->right = input.right;
-
             network.sendTo(packet);
         }
     }

@@ -43,6 +43,7 @@ target_link_libraries(r-type_client
         sfml-window
         sfml-system
         r-type-shared
+
 )
 
 # Options de compilation
