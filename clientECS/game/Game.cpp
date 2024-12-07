@@ -4,16 +4,21 @@
 
 #include "Game.hpp"
 
-#include "network/packetType.hpp"
-
 namespace rtype {
     Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
         std::cout << "Game: Initializing..." << std::endl;
+
+        auto& resources = ResourceManager::getInstance();
+        resources.loadTexture("player", "assets/sprites/ship.gif");
+
         systems.push_back(std::make_unique<MovementSystem>());
+        systems.push_back(std::make_unique<AnimationSystem>());
         systems.push_back(std::make_unique<RenderSystem>(window));
+
         network.setMessageCallback([this](const std::vector<uint8_t>& data, const sockaddr_in& sender) {
             handleNetworkMessage(data, sender);
         });
+
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
@@ -25,14 +30,16 @@ namespace rtype {
         if (header->type == static_cast<uint8_t>(network::PacketType::ENTITY_UPDATE)) {
             const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(
                 data.data() + sizeof(network::PacketHeader));
-
             EntityID entity = entityUpdate->entityId;
             if (!entities.hasComponent<Position>(entity)) {
                 entities.createEntity();
                 entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
                 entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
-                std::cout << "New entity created: " << entity << " at position: "
-                          << entityUpdate->x << "," << entityUpdate->y << std::endl;
+                RenderComponent renderComp;
+                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17)); // Ajuster selon votre sprite
+                renderComp.sprite.setOrigin(16.5f, 8.5f);  // Centre du sprite
+                entities.addComponent(entity, renderComp);
             } else {
                 auto& pos = entities.getComponent<Position>(entity);
                 auto& vel = entities.getComponent<Velocity>(entity);

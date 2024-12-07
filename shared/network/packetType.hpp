@@ -38,7 +38,7 @@ namespace rtype::network {
 
         PLAYER_INPUT = 0x10,      ///< Entrées du joueur
         GAME_STATE = 0x11,         ///< État du jeu
-        ENTITY_UPDATE = 0x20,
+        ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
     };
 
     struct EntityUpdatePacket {
@@ -56,5 +56,6 @@ namespace rtype::network {
         bool left;
         bool right;
     };
+
 #pragma pack(pop)
 } // namespace rtype::network

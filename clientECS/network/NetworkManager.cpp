@@ -7,7 +7,6 @@
  * \brief Implementation of the network management for the client.
  */
 
-
 #include "NetworkManager.hpp"
 
 namespace rtype::network {
@@ -62,16 +61,14 @@ namespace rtype::network {
         socklen_t senderLen = sizeof(senderAddr);
 
         while (running) {
-            ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0,
-                (struct sockaddr*)&senderAddr, &senderLen);
-            if (received < 0) {
+            ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0, (struct sockaddr*)&senderAddr, &senderLen);
+            if (received < 0)
                 std::cout << "Client: Error receiving: " << strerror(errno) << std::endl;
-            } else if (received > 0) {
+            else if (received > 0) {
                 std::cout << "Client: Received " << received << " bytes" << std::endl;
                 std::cout << "Client: Message: " << std::string(buffer.begin(), buffer.begin() + received) << std::endl;
-                if (messageCallback) {
+                if (messageCallback)
                     messageCallback(std::vector<uint8_t>(buffer.begin(),buffer.begin() + received), senderAddr);
-                }
             }
         }
         std::cout << "Client: Receive loop ended" << std::endl;

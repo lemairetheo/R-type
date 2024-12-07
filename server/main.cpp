@@ -10,8 +10,8 @@ int main(int argc, char** argv) {
 
         std::cout << "Starting R-Type server on port " << port << std::endl;
 
-        rtype::Manager server(port);
-        server.start();
+        rtype::Manager manager(port);
+        manager.start();
 
         while (true)
             std::this_thread::sleep_for(std::chrono::milliseconds(100));

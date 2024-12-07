@@ -9,7 +9,7 @@ rtype::Manager::Manager(uint16_t port) : network(port), game(network), running(f
 
 void rtype::Manager::updateLoop() {
     while (running) {
-        game.update();  // Met à jour la logique du jeu et envoie les entités
+        game.update();
         std::this_thread::sleep_for(std::chrono::milliseconds(16));  // ~60 FPS
     }
 }

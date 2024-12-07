@@ -14,7 +14,6 @@
 
 
 namespace rtype {
-    // Manager.hpp
     class Manager {
     public:
         Manager(uint16_t port);
@@ -22,7 +21,7 @@ namespace rtype {
         void stop();
     private:
         network::NetworkManager network;
-        game::GameEngine game;  // Le constructeur devra prendre un NetworkManager
+        game::GameEngine game;
         std::atomic<bool> running;
         std::thread updateThread;
         void updateLoop();

@@ -1,4 +1,3 @@
-// shared/ecs/EntityManager.hpp
 #pragma once
 #include "Entity.hpp"
 #include "Component.hpp"

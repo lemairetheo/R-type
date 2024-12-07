@@ -12,24 +12,6 @@ namespace rtype::game {
         systems.push_back(std::make_unique<MovementSystem>());
     }
 
-    void GameEngine::update() {
-        // Calculer le delta time
-        auto currentTime = std::chrono::steady_clock::now();
-        float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
-        lastUpdate = currentTime;
-
-        for (auto& system : systems) {
-            system->update(entities, dt);
-        }
-
-        for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
-            if (entities.hasComponent<Position>(entity)) {
-                const auto& pos = entities.getComponent<Position>(entity);
-            }
-        }
-        broadcastWorldState();
-    }
-
     void GameEngine::broadcastWorldState() {
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
             if (entities.hasComponent<Position>(entity) && entities.hasComponent<Velocity>(entity)) {
@@ -54,6 +36,24 @@ namespace rtype::game {
                 network.broadcast(packet);
             }
         }
+    }
+
+
+    void GameEngine::update() {
+        auto currentTime = std::chrono::steady_clock::now();
+        float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
+        lastUpdate = currentTime;
+
+        for (auto& system : systems) {
+            system->update(entities, dt);
+        }
+
+        for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+            if (entities.hasComponent<Position>(entity)) {
+                const auto& pos = entities.getComponent<Position>(entity);
+            }
+        }
+        broadcastWorldState();
     }
 
     void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
