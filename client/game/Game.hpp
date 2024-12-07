@@ -1,3 +1,8 @@
+/**
+* \file Game.hpp
+* \brief Defines the Game class for the R-type project.
+**/
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "shared/ecs/EntityManager.hpp"
@@ -7,8 +12,14 @@
 #include <systems/RenderSystem.hpp>
 #include "network/packetType.hpp"
 #include "systems/AnimationSystem.hpp"
+#include "gameComponents/backgroundComponent.hpp"
+#include "systems/BackgroundSystem.hpp"
 
 namespace rtype {
+    /**
+     * \class Game
+     * \brief Class representing the game itself in the client side of the projet.
+     */
     class Game {
     public:
         Game();

@@ -1,9 +1,0 @@
-<map id="rtype::AnimationSystem::update" name="rtype::AnimationSystem::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,167,79"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="215,5,357,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="167,43,199,37,200,43,167,48"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="215,71,357,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="167,69,200,75,199,80,167,75"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="405,5,547,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="358,23,390,23,390,28,358,28"/>
-</map>

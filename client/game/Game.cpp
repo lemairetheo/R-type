@@ -10,7 +10,27 @@ namespace rtype {
 
         auto& resources = ResourceManager::getInstance();
         resources.loadTexture("player", "assets/sprites/ship.gif");
-
+        resources.loadTexture("background", "assets/sprites/r-typesheet1.gif");
+        EntityID bg1 = entities.createEntity();
+        {
+            BackgroundComponent bgComp;
+            bgComp.scrollSpeed = 30.0f;
+            bgComp.layer = 0;
+            bgComp.sprite.setTexture(*resources.getTexture("background"));
+            bgComp.sprite.setTextureRect(sf::IntRect(0, 0, 800, 600));  // Ajustez selon vos besoins
+            bgComp.sprite.setColor(sf::Color(20, 20, 50));  // Bleu très foncé
+            entities.addComponent(bg1, bgComp);
+        }
+        EntityID bg2 = entities.createEntity();
+        {
+            BackgroundComponent bgComp;
+            bgComp.scrollSpeed = 50.0f;
+            bgComp.layer = 1;
+            bgComp.sprite.setTexture(*resources.getTexture("background"));
+            bgComp.sprite.setTextureRect(sf::IntRect(0, 100, 800, 50));  // Ligne des cercles
+            entities.addComponent(bg2, bgComp);
+        }
+        systems.push_back(std::make_unique<BackgroundSystem>(window));
         systems.push_back(std::make_unique<MovementSystem>());
         systems.push_back(std::make_unique<AnimationSystem>());
         systems.push_back(std::make_unique<RenderSystem>(window));

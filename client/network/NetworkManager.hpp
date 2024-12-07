@@ -1,3 +1,8 @@
+/**
+* \file NetworkManager.hpp
+ * \brief Declaration of the network management for the client.
+ */
+
 #pragma once
 #include "../shared/abstracts/ANetwork.hpp"
 #include <sys/socket.h>
@@ -8,6 +13,10 @@
 #include <atomic>
 
 namespace rtype::network {
+    /**
+     * \class NetworkClient
+     * \brief Class that manages the network for the client side
+     */
     class NetworkClient : public ANetwork {
     public:
         explicit NetworkClient(uint16_t port) : ANetwork(port), running(false), sock(-1) {}

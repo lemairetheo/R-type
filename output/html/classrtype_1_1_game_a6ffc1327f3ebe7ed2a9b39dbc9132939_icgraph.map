@@ -1,7 +1,0 @@
-<map id="rtype::Game::render" name="rtype::Game::render">
-<area shape="rect" id="Node000001" title=" " alt="" coords="270,5,407,31"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
-<area shape="rect" id="Node000003" href="$client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
-</map>

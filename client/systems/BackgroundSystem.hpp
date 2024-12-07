@@ -13,7 +13,10 @@
 namespace rtype {
     class BackgroundSystem : public ISystem {
     public:
+        explicit BackgroundSystem(sf::RenderWindow& window) : window(window) {}
         void update(EntityManager& manager, float dt) override;
+    private:
+        sf::RenderWindow& window;
     };
 }
 

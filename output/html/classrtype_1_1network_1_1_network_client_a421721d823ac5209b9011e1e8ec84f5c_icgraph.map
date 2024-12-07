@@ -1,9 +1,0 @@
-<map id="rtype::network::NetworkClient::receiveLoop" name="rtype::network::NetworkClient::receiveLoop">
-<area shape="rect" id="Node000001" title=" " alt="" coords="513,5,709,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_client.html#a1e529ea82cb757527e3e110689635d76" title=" " alt="" coords="270,5,465,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="498,28,466,28,466,23,498,23"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,13,222,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="255,28,223,28,223,23,255,23"/>
-<area shape="rect" id="Node000004" href="$client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,55,38"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="87,28,55,28,55,23,87,23"/>
-</map>

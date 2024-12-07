@@ -1,9 +1,0 @@
-<map id="rtype::EntityManager::createEntity" name="rtype::EntityManager::createEntity">
-<area shape="rect" id="Node000001" title=" " alt="" coords="426,39,568,79"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a8fc65ea9c7557d8647d5f29a08739422" title=" " alt="" coords="197,5,370,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="410,48,371,42,372,37,411,43"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a075b3431446746571cc4af17a25f2a16" title=" " alt="" coords="190,71,378,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="411,75,379,79,378,74,410,69"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_game.html#a6027026389f41d188620b99bbeb0d34f" title=" " alt="" coords="5,78,142,104"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="175,94,142,94,142,88,175,88"/>
-</map>

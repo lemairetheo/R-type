@@ -1,9 +1,0 @@
-<map id="rtype::game::GameEngine::GameEngine" name="rtype::game::GameEngine::GameEngine">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,179,79"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="227,5,369,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,42,211,37,212,42,179,48"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="227,71,369,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,70,212,75,211,80,178,75"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="417,5,559,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="370,23,402,23,402,28,370,28"/>
-</map>
