@@ -6,8 +6,6 @@ add_executable(r-type_server
         game/GameEngine.cpp
         manager/Manager.cpp
         manager/Manager.hpp
-        game/MovementSystem.cpp
-        game/MovementSystem.hpp
 )
 
 target_include_directories(r-type_server

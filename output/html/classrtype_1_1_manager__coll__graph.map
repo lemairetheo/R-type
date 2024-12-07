@@ -1,0 +1,14 @@
+<map id="rtype::Manager" name="rtype::Manager">
+<area shape="rect" id="Node000001" title=" " alt="" coords="300,786,403,934"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html" title=" " alt="" coords="328,202,529,492"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="410,493,367,770,362,769,404,492"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html" title=" " alt="" coords="176,555,348,723"/>
+<area shape="poly" id="edge6_Node000004_Node000002" title=" " alt="" coords="348,493,320,542,316,539,344,491"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_a_network.html" title=" " alt="" coords="352,5,506,153"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="431,168,431,203,426,203,426,168"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="298,722,318,770,313,772,293,724"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1engine_1_1_a_engine.html" title=" " alt="" coords="5,294,148,401"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="116,412,163,491,205,554,201,557,158,494,111,415"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html" title=" " alt="" coords="172,223,304,472"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="251,472,256,538,251,539,246,472"/>
+</map>

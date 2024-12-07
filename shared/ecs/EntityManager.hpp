@@ -1,70 +1,59 @@
+// shared/ecs/EntityManager.hpp
 #pragma once
 #include "Entity.hpp"
+#include "SparseArray.hpp"
 #include "Component.hpp"
-#include <vector>
-#include <array>
-#include <bitset>
-#include <any>
+#include "IComponent.hpp"
+#include <unordered_map>
+#include <typeindex>
+#include <memory>
 
 namespace rtype {
+    constexpr size_t MAX_ENTITIES = 1000;
 
-const size_t MAX_ENTITIES = 1000;
-const size_t MAX_COMPONENTS = 32;
-
-class EntityManager {
+    class EntityManager {
     public:
-        using ComponentMask = std::bitset<MAX_COMPONENTS>;
         EntityManager();
+        ~EntityManager() = default;
+
         EntityID createEntity();
         void destroyEntity(EntityID entity);
-        template<typename T>
 
-
-        void addComponent(EntityID entity, T component) {
-            const size_t componentId = getComponentId<T>();
-            ensureComponentVectorExists<T>();
-
-            std::vector<T>& components = std::any_cast<std::vector<T>&>(componentArrays[componentId]);
-            components[entity] = component;
-            componentMasks[entity].set(componentId);
+        template<typename Component>
+        SparseArray<Component>& getComponents() {
+            auto typeIndex = std::type_index(typeid(Component));
+            auto it = _components.find(typeIndex);
+            if (it == _components.end()) {
+                auto sparseArray = std::make_unique<SparseArray<Component>>();
+                auto ptr = sparseArray.get();
+                _components[typeIndex] = std::move(sparseArray);
+                return *ptr;
+            }
+            return *static_cast<SparseArray<Component>*>(_components[typeIndex].get());
         }
 
-
-        template<typename T>
-        T& getComponent(EntityID entity) {
-            const size_t componentId = getComponentId<T>();
-            auto& components = std::any_cast<std::vector<T>&>(componentArrays[componentId]);
-            return components[entity];
+        template<typename Component>
+        void addComponent(EntityID entity, Component component) {
+            getComponents<Component>().insert_at(entity, component);
         }
 
-        template<typename T>
+        template<typename Component>
+        Component& getComponent(EntityID entity) {
+            return *getComponents<Component>()[entity];
+        }
+
+        template<typename Component>
         bool hasComponent(EntityID entity) const {
-            return componentMasks[entity].test(getComponentId<T>());
-        }
-
-        ComponentMask getComponentMask(EntityID entity) const {
-            return componentMasks[entity];
+            auto typeIndex = std::type_index(typeid(Component));
+            auto it = _components.find(typeIndex);
+            if (it == _components.end())
+                return false;
+            return static_cast<const SparseArray<Component>*>(it->second.get())->operator[](entity).has_value();
         }
 
     private:
+        std::unordered_map<std::type_index, std::unique_ptr<IComponent>> _components;
         std::vector<EntityID> availableEntities;
-        std::array<ComponentMask, MAX_ENTITIES> componentMasks;
-        std::array<std::any, MAX_COMPONENTS> componentArrays;
-
-        template<typename T>
-        size_t getComponentId() const {
-            static size_t id = nextComponentId++;
-            return id;
-        }
-
-        template<typename T>
-        void ensureComponentVectorExists() {
-            size_t id = getComponentId<T>();
-            if (!componentArrays[id].has_value()) {
-                componentArrays[id] = std::vector<T>(MAX_ENTITIES);
-            }
-        }
-
-        static size_t nextComponentId;
+        EntityID nextEntity = 0;
     };
-}  // namespace rtype
+}

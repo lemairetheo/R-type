@@ -1,0 +1,19 @@
+<map id="client/network/NetworkManager.cpp" name="client/network/NetworkManager.cpp">
+<area shape="rect" id="Node000001" title="Implementation of the network management for the client." alt="" coords="316,5,545,31"/>
+<area shape="rect" id="Node000002" href="$client_2network_2_network_manager_8hpp.html" title=" " alt="" coords="358,79,503,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="433,31,433,63,428,63,428,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,136,193"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="371,108,152,155,151,149,370,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="160,160,256,186"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="397,108,257,157,255,152,395,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="280,160,365,186"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="416,107,353,153,350,149,413,103"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="389,160,472,186"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="433,105,433,144,428,144,428,105"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="495,160,552,186"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="446,103,500,148,496,152,443,107"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="577,160,644,186"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="459,103,570,151,568,156,457,108"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="668,160,729,186"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="487,103,568,123,657,150,660,151,658,156,655,155,566,128,486,108"/>
+</map>

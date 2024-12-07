@@ -1,0 +1,13 @@
+<map id="client/manager/ResourceManager.cpp" name="client/manager/ResourceManager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="154,5,394,31"/>
+<area shape="rect" id="Node000002" href="$_resource_manager_8hpp.html" title=" " alt="" coords="198,79,350,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="277,31,277,63,271,63,271,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,153,143,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="241,108,123,150,121,144,239,103"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="167,153,277,178"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="268,106,242,142,238,138,263,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="301,153,354,178"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="285,103,311,138,307,142,281,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="378,153,447,178"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="299,103,377,143,374,147,296,108"/>
+</map>

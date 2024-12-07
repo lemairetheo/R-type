@@ -7,7 +7,10 @@ target_sources(r-type-shared
         ecs/Component.hpp
         ecs/Entity.hpp
         ecs/EntityManager.hpp
+        ecs/IComponent.hpp
+        ecs/SparseArray.hpp
         systems/System.hpp
+        systems/MouvementSystem.hpp
         network/packetType.hpp
         abstracts/ANetwork.hpp
         abstracts/AEngine.hpp

@@ -1,23 +1,29 @@
+/*
+** EPITECH PROJECT, 2024
+** R_typed
+** File description:
+** EntityManager
+*/
 #include "EntityManager.hpp"
 
-rtype::EntityManager::EntityManager() {
-    // Initialiser le vecteur des entités disponibles
-    for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+namespace rtype {
+    EntityManager::EntityManager() {
+        availableEntities.reserve(MAX_ENTITIES);
+        for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+            availableEntities.push_back(entity);
+        }
+    }
+
+    EntityID EntityManager::createEntity() {
+        if (availableEntities.empty()) {
+            throw std::runtime_error("Maximum number of entities reached");
+        }
+        EntityID id = availableEntities.back();
+        availableEntities.pop_back();
+        return id;
+    }
+
+    void EntityManager::destroyEntity(EntityID entity) {
         availableEntities.push_back(entity);
     }
-}
-
-EntityID rtype::EntityManager::createEntity() {
-    EntityID id = availableEntities.back();
-    availableEntities.pop_back();
-    return id;
-}
-
-void rtype::EntityManager::destroyEntity(EntityID entity) {
-    componentMasks[entity].reset();
-    availableEntities.push_back(entity);
-}
-
-namespace rtype {
-    size_t EntityManager::nextComponentId = 0;
 }

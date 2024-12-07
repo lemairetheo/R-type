@@ -1,0 +1,7 @@
+<map id="client/gameComponents/backgroundComponent.hpp" name="client/gameComponents/backgroundComponent.hpp">
+<area shape="rect" id="Node000001" title="Defines the BackgroundComponent structure for the R_typed project." alt="" coords="5,5,190,46"/>
+<area shape="rect" id="Node000002" href="$_background_system_8hpp.html" title=" " alt="" coords="8,94,187,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,62,100,94,95,94,95,62"/>
+<area shape="rect" id="Node000003" href="$_background_system_8cpp.html" title=" " alt="" coords="8,183,187,223"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,150,100,182,95,182,95,150"/>
+</map>

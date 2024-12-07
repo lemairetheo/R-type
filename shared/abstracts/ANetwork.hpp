@@ -1,5 +1,3 @@
-// shared/abstracts/ANetwork.hpp
-
 #pragma once
 
 #include <cstdint>

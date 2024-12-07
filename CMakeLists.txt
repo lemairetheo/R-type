@@ -24,4 +24,4 @@ add_subdirectory(shared)
 
 # Add server and client
 add_subdirectory(server)
-add_subdirectory(clientECS)
+add_subdirectory(client)

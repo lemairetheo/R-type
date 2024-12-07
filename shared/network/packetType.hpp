@@ -11,10 +11,8 @@
 namespace rtype::network {
 
     /**
-     * @brief En-tête commun pour tous les paquets réseau
-     *
-     * Cette structure est utilisée comme en-tête pour chaque paquet envoyé
-     * entre le client et le serveur.
+     * @brief packet header
+     * This structure defines the header of a packet in the R-Type protocol.
      */
 #pragma pack(push, 1)
     struct PacketHeader {
