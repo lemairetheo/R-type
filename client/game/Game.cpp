@@ -5,55 +5,44 @@
 #include "Game.hpp"
 
 namespace rtype {
-Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
-    std::cout << "Game: Initializing..." << std::endl;
+    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
+        std::cout << "Game: Initializing..." << std::endl;
 
-    auto& resources = ResourceManager::getInstance();
-
-    // Load textures
-    resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
-    resources.loadTexture("bg-stars", "assets/background/bg-stars.png");   // couche d'étoiles
-    resources.loadTexture("player", "assets/sprites/ship.gif");
-    {
-        EntityID bgDeep = entities.createEntity();
-        BackgroundComponent bgComp;
-        bgComp.scrollSpeed = 20.0f;
-        bgComp.layer = 0;
-        bgComp.sprite.setTexture(*resources.getTexture("bg-blue"));
-        // Ajuster l'échelle pour couvrir l'écran
-        auto textureSize = bgComp.sprite.getTexture()->getSize();
-        bgComp.sprite.setScale(
-            800.0f / textureSize.x,
-            600.0f / textureSize.y
-        );
-        entities.addComponent(bgDeep, bgComp);
+        auto& resources = ResourceManager::getInstance();
+        resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
+        resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
+        resources.loadTexture("player", "assets/sprites/ship.gif");
+        {
+            EntityID bgDeep = entities.createEntity();
+            BackgroundComponent bgComp;
+            bgComp.scrollSpeed = 20.0f;
+            bgComp.layer = 0;
+            bgComp.sprite.setTexture(*resources.getTexture("bg-blue"));
+            auto textureSize = bgComp.sprite.getTexture()->getSize();
+            bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
+            entities.addComponent(bgDeep, bgComp);
+        }
+        {
+            EntityID bgStars = entities.createEntity();
+            BackgroundComponent bgComp;
+            bgComp.scrollSpeed = 40.0f;
+            bgComp.layer = 1;
+            bgComp.sprite.setTexture(*resources.getTexture("bg-stars"));
+            auto textureSize = bgComp.sprite.getTexture()->getSize();
+            bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
+            bgComp.sprite.setColor(sf::Color(255, 255, 255, 180));
+            entities.addComponent(bgStars, bgComp);
+        }
+        systems.push_back(std::make_unique<BackgroundSystem>(window));
+        systems.push_back(std::make_unique<MovementSystem>());
+        systems.push_back(std::make_unique<AnimationSystem>());
+        systems.push_back(std::make_unique<RenderSystem>(window));
+        network.setMessageCallback([this](const std::vector<uint8_t>& data, const sockaddr_in& sender) {
+            handleNetworkMessage(data, sender);
+        });
+        std::cout << "Game: Initialization complete" << std::endl;
     }
-    {
-        EntityID bgStars = entities.createEntity();
-        BackgroundComponent bgComp;
-        bgComp.scrollSpeed = 40.0f;  // Défile plus vite que le fond
-        bgComp.layer = 1;
-        bgComp.sprite.setTexture(*resources.getTexture("bg-stars"));
-        // Ajuster l'échelle et la transparence
-        auto textureSize = bgComp.sprite.getTexture()->getSize();
-        bgComp.sprite.setScale(
-            800.0f / textureSize.x,
-            600.0f / textureSize.y
-        );
-        bgComp.sprite.setColor(sf::Color(255, 255, 255, 180)); // Semi-transparent
-        entities.addComponent(bgStars, bgComp);
-    }
-    systems.push_back(std::make_unique<BackgroundSystem>(window));
-    systems.push_back(std::make_unique<MovementSystem>());
-    systems.push_back(std::make_unique<AnimationSystem>());
-    systems.push_back(std::make_unique<RenderSystem>(window));
 
-    network.setMessageCallback([this](const std::vector<uint8_t>& data, const sockaddr_in& sender) {
-        handleNetworkMessage(data, sender);
-    });
-
-    std::cout << "Game: Initialization complete" << std::endl;
-}
     void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
         if (data.size() < sizeof(network::PacketHeader)) {
             return;
