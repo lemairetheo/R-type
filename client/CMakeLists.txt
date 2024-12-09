@@ -4,10 +4,10 @@ add_executable(r-type_client
         RTypeClientGraphics.cpp
         menu/Menu.hpp
         menu/Menu.cpp
-        input/button/Button.hpp
-        input/button/Button.cpp
-        input/selectBar/SelectBar.cpp
-        input/selectBar/SelectBar.hpp
+        graphicUtils/input/button/Button.hpp
+        graphicUtils/input/button/Button.cpp
+        graphicUtils/input/selectBar/SelectBar.cpp
+        graphicUtils/input/selectBar/SelectBar.hpp
 )
 
 target_include_directories(r-type_client
