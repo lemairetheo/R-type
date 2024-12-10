@@ -11,6 +11,11 @@ namespace rtype {
 
                     pos.x += vel.dx * dt;
                     pos.y += vel.dy * dt;
+
+                    if (pos.x < 0.0f) pos.x = 0.0f;
+                    if (pos.x > 795) pos.x = 795;
+                    if (pos.y < 0.0f) pos.y = 0.0f;
+                    if (pos.y > 590) pos.y = 590;
                 }
             }
         }

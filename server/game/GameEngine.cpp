@@ -18,7 +18,6 @@ namespace rtype::game {
                 const auto& pos = entities.getComponent<Position>(entity);
                 const auto& vel = entities.getComponent<Velocity>(entity);
 
-                // Créer le paquet
                 std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));
                 auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
                 auto* update = reinterpret_cast<network::EntityUpdatePacket*>(packet.data() + sizeof(network::PacketHeader));

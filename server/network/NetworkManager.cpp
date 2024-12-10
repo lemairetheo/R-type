@@ -75,6 +75,7 @@ namespace rtype::network {
             ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0, (struct sockaddr*)&clientAddr, &clientAddrLen);
             if (received > 0) {
                 std::string clientId = std::string(inet_ntoa(clientAddr.sin_addr)) + ":" + std::to_string(ntohs(clientAddr.sin_port));
+                std::cout << "message receive from : " << clientId << std::endl;
                 clients[clientId] = clientAddr;
                 if (messageCallback) {
                     messageCallback(std::vector(buffer.begin(), buffer.begin() + received), clientAddr);
