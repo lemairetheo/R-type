@@ -36,6 +36,7 @@ namespace rtype::network {
         running = true;
         receiveThread = std::thread(&NetworkClient::receiveLoop, this);
         std::cout << "Client: Network initialized and running" << std::endl;
+        sendConnectRequest(1, 0.0f, 0.0f);
     }
 
     void NetworkClient::stop() {
@@ -73,5 +74,32 @@ namespace rtype::network {
         }
         std::cout << "Client: Receive loop ended" << std::endl;
     }
+
+    void NetworkClient::sendConnectRequest(uint32_t playerId, float x, float y) {
+        rtype::network::PacketHeader header{};
+        header.magic[0] = 'R';
+        header.magic[1] = 'T';
+        header.version = 1;
+        header.type = static_cast<uint8_t>(rtype::network::PacketType::CONNECT_REQUEST);
+
+        rtype::network::EntityUpdatePacket body{};
+        body.entityId = playerId;
+        body.x = x;
+        body.y = y;
+        body.dx = 0.0f;
+        body.dy = 0.0f;
+
+        header.length = sizeof(header) + sizeof(body);
+
+        std::vector<uint8_t> packetData;
+        packetData.resize(header.length);
+        std::memcpy(packetData.data(), &header, sizeof(header));
+        std::memcpy(packetData.data() + sizeof(header), &body, sizeof(body));
+
+        sendTo(packetData);
+
+        std::cout << "Client: Connect request sent for player " << playerId << std::endl;
+    }
+
 }
 

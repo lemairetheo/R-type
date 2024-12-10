@@ -13,6 +13,7 @@
 #include <atomic>
 #include <cstring>
 #include <cerrno>
+#include "../../shared/network/packetType.hpp"
 
 namespace rtype::network {
     /**
@@ -26,6 +27,7 @@ namespace rtype::network {
         void stop() override;
         void sendTo(const std::vector<uint8_t>& data);
         void setMessageCallback(std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> callback) override;
+        void sendConnectRequest(uint32_t playerId, float x, float y);
 
     private:
         void receiveLoop();
