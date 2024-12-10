@@ -11,6 +11,8 @@
 #include <thread>
 #include <unistd.h>
 #include <atomic>
+#include <cstring>
+#include <cerrno>
 
 namespace rtype::network {
     /**

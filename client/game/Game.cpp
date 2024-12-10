@@ -3,15 +3,23 @@
 //
 
 #include "Game.hpp"
+#include <filesystem>
 
 namespace rtype {
     Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
         std::cout << "Game: Initializing..." << std::endl;
 
         auto& resources = ResourceManager::getInstance();
-        resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
-        resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
-        resources.loadTexture("player", "assets/sprites/ship.gif");
+
+        std::cout << "Current path: " << std::filesystem::current_path() << std::endl;
+
+
+        resources.loadTexture("bg-blue", "./client/assets/background/bg-blue.png");
+        resources.loadTexture("bg-stars", "./client/assets/background/bg-stars.png");
+        resources.loadTexture("player", "./client/assets/sprites/ship.gif");
+
+        std::cout << "Game: Initialization Done!" << std::endl;
+
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -23,10 +31,22 @@ namespace rtype {
             entities.addComponent(bgDeep, bgComp);
         }
         {
+            EntityID bgDeep2 = entities.createEntity();
+            BackgroundComponent bgComp;
+            bgComp.scrollSpeed = 20.0f;
+            bgComp.layer = 1;
+            bgComp.offsetX = 4100.0f;
+            bgComp.sprite.setTexture(*resources.getTexture("bg-blue"));
+            auto textureSize = bgComp.sprite.getTexture()->getSize();
+            bgComp.sprite.setPosition(4100.0f, 0.0f);
+            bgComp.sprite.setScale(800.0f / textureSize.x ,600.0f / textureSize.y);
+            entities.addComponent(bgDeep2, bgComp);
+        }
+        {
             EntityID bgStars = entities.createEntity();
             BackgroundComponent bgComp;
             bgComp.scrollSpeed = 40.0f;
-            bgComp.layer = 1;
+            bgComp.layer = 2;
             bgComp.sprite.setTexture(*resources.getTexture("bg-stars"));
             auto textureSize = bgComp.sprite.getTexture()->getSize();
             bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
