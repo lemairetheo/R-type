@@ -12,6 +12,7 @@ namespace rtype {
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
         resources.loadTexture("player", "assets/sprites/ship.gif");
+        resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -53,13 +54,22 @@ namespace rtype {
                 data.data() + sizeof(network::PacketHeader));
             EntityID entity = entityUpdate->entityId;
             if (!entities.hasComponent<Position>(entity)) {
+                std::cout << "Game: Entity doesn't exist : " << entityUpdate->type << std::endl;
                 entities.createEntity();
                 entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
                 entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
                 RenderComponent renderComp;
-                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
-                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
-                renderComp.sprite.setOrigin(16.5f, 8.5f);
+                if (entityUpdate->type == 0) {
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                    renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
+                    renderComp.sprite.setOrigin(16.5f, 8.5f);
+                }
+                if (entityUpdate->type == 1) {
+                    entities.addComponent(entity, Projectile{10.0f, true});
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                    renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16)); // Adjust these coordinates as needed
+                    renderComp.sprite.setOrigin(8.0f, 8.0f);
+                }
                 entities.addComponent(entity, renderComp);
             } else {
                 auto& pos = entities.getComponent<Position>(entity);
@@ -95,8 +105,9 @@ namespace rtype {
         input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
         input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Q);
         input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+        input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 
-        if (input.up || input.down || input.left || input.right) {
+        if (input.up || input.down || input.left || input.right || input.space) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));
             auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
             auto* inputPacket = reinterpret_cast<network::PlayerInputPacket*>(packet.data() + sizeof(network::PacketHeader));
@@ -110,7 +121,13 @@ namespace rtype {
             inputPacket->down = input.down;
             inputPacket->left = input.left;
             inputPacket->right = input.right;
+            inputPacket->space = input.space;
             network.sendTo(packet);
+
+            if (input.space) {
+                inputPacket->space = false;
+            }
+
         }
     }
 

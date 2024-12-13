@@ -7,7 +7,7 @@
 namespace rtype {
     void AnimationSystem::update(EntityManager& manager, float dt) {
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
-            if (manager.hasComponent<RenderComponent>(entity)) {
+            if (manager.hasComponent<RenderComponent>(entity) && !manager.hasComponent<Projectile>(entity)) {
                 auto& render = manager.getComponent<RenderComponent>(entity);
 
                 render.animationTimer += dt;
