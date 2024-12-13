@@ -24,6 +24,7 @@ namespace rtype {
     }
 
     void EntityManager::destroyEntity(EntityID entity) {
+        //resetEntityComponents(entity);
         availableEntities.push_back(entity);
     }
 }

@@ -17,9 +17,15 @@ namespace rtype {
         bool down = false;
         bool left = false;
         bool right = false;
+        bool space = false;
     };
 
     struct NetworkComponent {
         uint32_t networkId;
+    };
+
+    struct Projectile {
+        float damage;
+        bool isActive;
     };
 }

@@ -1,6 +1,5 @@
 // server/game/GameEngine.cpp
 #include "GameEngine.hpp"
-#include <iostream>
 
 namespace rtype::game {
 
@@ -32,6 +31,10 @@ namespace rtype::game {
                 update->y = pos.y;
                 update->dx = vel.dx;
                 update->dy = vel.dy;
+                if (entities.hasComponent<Projectile>(entity))
+                    update->type = 1;
+                else
+                    update->type = 0;
                 network.broadcast(packet);
             }
         }
@@ -47,15 +50,12 @@ namespace rtype::game {
             system->update(entities, dt);
         }
 
-        for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
-            if (entities.hasComponent<Position>(entity)) {
-                const auto& pos = entities.getComponent<Position>(entity);
-            }
-        }
         broadcastWorldState();
     }
 
     void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
+        std::string clientId = std::string(inet_ntoa(sender.sin_addr)) + ":" + std::to_string(ntohs(sender.sin_port));
+
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
@@ -64,14 +64,24 @@ namespace rtype::game {
             for (EntityID entity = 0; entity < MAX_ENTITIES; entity++) {
                 if (entities.hasComponent<Position>(entity) && entities.hasComponent<Velocity>(entity)) {
                     auto& vel = entities.getComponent<Velocity>(entity);
+                    auto& input = entities.getComponent<InputComponent>(entity);
                     const auto* inputPacket = reinterpret_cast<const network::PlayerInputPacket*>(data.data() + sizeof(network::PacketHeader));
-                    vel.dx = 0.0f;
-                    vel.dy = 0.0f;
-                    if (inputPacket->left) vel.dx = -speed;
-                    if (inputPacket->right) vel.dx = speed;
-                    if (inputPacket->up) vel.dy = -speed;
-                    if (inputPacket->down) vel.dy = speed;
-                    break;
+
+                    if (inputPacket->space && !entities.hasComponent<Projectile>(entity)) input.space = true;
+
+                    if (input.space) {
+                        shoot_system_.update(entities ,entity);
+                        input.space = false;
+                    }
+
+                    if (!entities.hasComponent<Projectile>(entity) && !inputPacket->space) {
+                        vel.dx = 0.0f;
+                        vel.dy = 0.0f;
+                        if (inputPacket->left) vel.dx = -speed;
+                        if (inputPacket->right) vel.dx = speed;
+                        if (inputPacket->up) vel.dy = -speed;
+                        if (inputPacket->down) vel.dy = speed;
+                    }
                 }
             }
         }

@@ -35,12 +35,14 @@ namespace rtype::network {
         HEARTBEAT = 0x04,         ///< Paquet de maintien de connexion
 
         PLAYER_INPUT = 0x10,      ///< Entrées du joueur
+        PLAYER_SHOOT = 0x12,      ///< Missile du joueur
         GAME_STATE = 0x11,         ///< État du jeu
         ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
     };
 
     struct EntityUpdatePacket {
         uint32_t entityId;   ///< ID de l'entité
+        int type;            ///< le nombre signifie le type de l'entité
         float x;             ///< Position X
         float y;             ///< Position Y
         float dx;            ///< Vélocité X
@@ -53,6 +55,7 @@ namespace rtype::network {
         bool down;
         bool left;
         bool right;
+        bool space;
     };
 
 #pragma pack(pop)

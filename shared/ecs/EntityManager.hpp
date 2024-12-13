@@ -51,6 +51,19 @@ namespace rtype {
             return static_cast<const SparseArray<Component>*>(it->second.get())->operator[](entity).has_value();
         }
 
+        void resetEntityComponents(EntityID entity) {
+            for (auto& [typeIndex, componentArray] : _components) {
+                // Accéder au tableau en tant que SparseArray générique
+                auto* sparseArray = static_cast<SparseArray<std::optional<IComponent>>*>(componentArray.get());
+                if (sparseArray && entity < sparseArray->getData().size()) {
+                    sparseArray->erase(entity);
+                }
+            }
+        }
+
+
+
+
     private:
         std::unordered_map<std::type_index, std::unique_ptr<IComponent>> _components;
         std::vector<EntityID> availableEntities;
