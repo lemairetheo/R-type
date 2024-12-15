@@ -47,7 +47,6 @@ namespace rtype::network {
             close(sock);
             sock = -1;
         }
-
         std::cout << "Network Manager stopped" << std::endl;
     }
 
@@ -65,6 +64,11 @@ namespace rtype::network {
         sendto(sock, data.data(), data.size(), 0, (struct sockaddr*)&client, sizeof(client));
     }
 
+
+    void NetworkManager::update() {
+        checkTimeouts();
+    }
+
     void NetworkManager::receiveLoop() {
         std::vector<uint8_t> buffer(1024);
         sockaddr_in clientAddr{};
@@ -72,10 +76,18 @@ namespace rtype::network {
 
         while (running) {
             std::memset(&clientAddr, 0, sizeof(clientAddr));
-            ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0, (struct sockaddr*)&clientAddr, &clientAddrLen);
+            ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0,
+                                      (struct sockaddr*)&clientAddr, &clientAddrLen);
+
             if (received > 0) {
+                const auto* header = reinterpret_cast<const PacketHeader*>(buffer.data());
                 std::string clientId = std::string(inet_ntoa(clientAddr.sin_addr)) + ":" + std::to_string(ntohs(clientAddr.sin_port));
-                clients[clientId] = clientAddr;
+                if (header->type == static_cast<uint8_t>(PacketType::CONNECT_REQUEST)) {
+                    if (clients.find(clientId) == clients.end()) {
+                        clients[clientId] = clientAddr;
+                        std::cout << "New client connected: " << clientId << std::endl;
+                    }
+                }
                 if (messageCallback) {
                     messageCallback(std::vector(buffer.begin(), buffer.begin() + received), clientAddr);
                 }
@@ -83,4 +95,40 @@ namespace rtype::network {
         }
     }
 
+    void NetworkManager::updateClientActivity(const std::string& clientId) {
+        clientLastSeen[clientId] = std::chrono::steady_clock::now();
+    }
+
+    void NetworkManager::checkTimeouts() {
+        auto now = std::chrono::steady_clock::now();
+        std::vector<std::string> disconnectedClients;
+
+        for (const auto& [clientId, lastSeen] : clientLastSeen) {
+            if (std::chrono::duration_cast<std::chrono::seconds>(now - lastSeen).count() > 5) {
+                disconnectedClients.push_back(clientId);
+            }
+        }
+
+        for (const auto& clientId : disconnectedClients) {
+            handleClientDisconnection(clientId);
+        }
+    }
+
+    void NetworkManager::handleClientDisconnection(const std::string& clientId) {
+        if (auto it = clients.find(clientId); it != clients.end()) {
+            clients.erase(it);
+            clientLastSeen.erase(clientId);
+
+            // Notifier les autres clients
+            std::vector<uint8_t> packet(sizeof(PacketHeader));
+            auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+            header->magic[0] = 'R';
+            header->magic[1] = 'T';
+            header->version = 1;
+            header->type = static_cast<uint8_t>(PacketType::DISCONNECT);
+            header->length = packet.size();
+
+            broadcast(packet);
+        }
+    }
 } // namespace rtype::network

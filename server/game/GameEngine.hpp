@@ -13,7 +13,7 @@ namespace rtype::game {
         GameEngine(network::NetworkManager& networkManager);
 
         void broadcastWorldState();
-
+        EntityID createNewPlayer(const sockaddr_in& sender);
         void update() override;
         void handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) override;
     private:
@@ -23,5 +23,7 @@ namespace rtype::game {
         std::vector<std::unique_ptr<ISystem>> systems;
         network::NetworkManager& network;
         float speed = 300.0f;
+        void handlePlayerDisconnection(const std::string& clientId);
+        std::unordered_map<std::string, EntityID> playerEntities;
     };
 }

@@ -8,6 +8,8 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include "network/packetType.hpp"
+
 
 namespace rtype::network {
 
@@ -15,7 +17,7 @@ namespace rtype::network {
     public:
         explicit NetworkManager(uint16_t port);
         ~NetworkManager() override;
-
+        void update();
         void start() override;
         void stop() override;
         void setMessageCallback(std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> callback) override;
@@ -30,6 +32,10 @@ namespace rtype::network {
         std::thread receiveThread;
         std::unordered_map<std::string, sockaddr_in> clients;
         std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> messageCallback;
+        void checkTimeouts();
+        void updateClientActivity(const std::string& client);
+        void handleClientDisconnection(const std::string& clientId);
+        std::unordered_map<std::string, std::chrono::steady_clock::time_point> clientLastSeen;
     };
 
 } // namespace rtype::network
