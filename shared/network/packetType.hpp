@@ -10,18 +10,26 @@
 
 namespace rtype::network {
 
+    struct ConnectRequestPacket {
+        char playerName[32];
+    };
+    struct ConnectResponsePacket {
+        uint32_t playerId;    // ID unique du joueur
+        bool success;         // Si la connexion est acceptée
+        uint32_t entityId;    // ID de l'entité associée au joueur
+    };
     /**
      * @brief packet header
      * This structure defines the header of a packet in the R-Type protocol.
      */
-#pragma pack(push, 1)
-    struct PacketHeader {
-        uint8_t magic[2];      ///< Magic number pour identifier les paquets R-Type (RT)
-        uint8_t version;       ///< Version du protocole
-        uint8_t type;         ///< Type de paquet (@see PacketType)
-        uint16_t length;      ///< Longueur totale du paquet incluant l'en-tête
-        uint16_t sequence;    ///< Numéro de séquence pour le suivi des paquets
-    };
+    #pragma pack(push, 1)
+        struct PacketHeader {
+            uint8_t magic[2];      ///< Magic number pour identifier les paquets R-Type (RT)
+            uint8_t version;       ///< Version du protocole
+            uint8_t type;         ///< Type de paquet (@see PacketType)
+            uint16_t length;      ///< Longueur totale du paquet incluant l'en-tête
+            uint16_t sequence;    ///< Numéro de séquence pour le suivi des paquets
+        };
 
     /**
      * @brief Types de paquets supportés
