@@ -34,5 +34,6 @@ namespace rtype {
         void handleEvents();
         void update();
         void render();
+        EntityID myPlayerId = 0;
     };
 }

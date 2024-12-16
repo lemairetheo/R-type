@@ -45,53 +45,94 @@ namespace rtype {
     }
 
     void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
-        if (data.size() < sizeof(network::PacketHeader)) {
-            return;
-        }
+        if (data.size() < sizeof(network::PacketHeader)) return;
+
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
-        if (header->type == static_cast<uint8_t>(network::PacketType::ENTITY_UPDATE)) {
-            const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(
-                data.data() + sizeof(network::PacketHeader));
-            EntityID entity = entityUpdate->entityId;
-            if (!entities.hasComponent<Position>(entity)) {
-                std::cout << "Game: Entity doesn't exist : " << entityUpdate->type << std::endl;
-                entities.createEntity();
-                entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
-                entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
-                RenderComponent renderComp;
-                if (entityUpdate->type == 0) {
-                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
-                    renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
-                    renderComp.sprite.setOrigin(16.5f, 8.5f);
+
+        switch(static_cast<network::PacketType>(header->type)) {
+            case network::PacketType::CONNECT_RESPONSE: {
+                const auto* response = reinterpret_cast<const network::ConnectResponsePacket*>(data.data() + sizeof(network::PacketHeader));
+                if (response->success) {
+                    myPlayerId = response->playerId;
+                    std::cout << "Game: Connected with ID " << myPlayerId << std::endl;
                 }
-                if (entityUpdate->type == 1) {
-                    entities.addComponent(entity, Projectile{10.0f, true});
-                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                    renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16)); // Adjust these coordinates as needed
-                    renderComp.sprite.setOrigin(8.0f, 8.0f);
-                }
-                entities.addComponent(entity, renderComp);
-            } else {
-                auto& pos = entities.getComponent<Position>(entity);
-                auto& vel = entities.getComponent<Velocity>(entity);
-                pos.x = entityUpdate->x;
-                pos.y = entityUpdate->y;
-                vel.dx = entityUpdate->dx;
-                vel.dy = entityUpdate->dy;
+                break;
             }
+            case network::PacketType::ENTITY_UPDATE: {
+                const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
+                EntityID entity = entityUpdate->entityId;
+                if (!entities.hasComponent<Position>(entity)) {
+                    std::cout << "Game: Entity doesn't exist : " << entityUpdate->type << std::endl;
+                    entities.createEntity();
+                    entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
+                    entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
+                    RenderComponent renderComp;
+                    if (entityUpdate->type == 0) {
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
+                        renderComp.sprite.setOrigin(16.5f, 8.5f);
+                    }
+                    if (entityUpdate->type == 1) {
+                        entities.addComponent(entity, Projectile{10.0f, true});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16)); // Adjust these coordinates as needed
+                        renderComp.sprite.setOrigin(8.0f, 8.0f);
+                    }
+                    entities.addComponent(entity, renderComp);
+                } else {
+                    auto& pos = entities.getComponent<Position>(entity);
+                    auto& vel = entities.getComponent<Velocity>(entity);
+                    pos.x = entityUpdate->x;
+                    pos.y = entityUpdate->y;
+                    vel.dx = entityUpdate->dx;
+                    vel.dy = entityUpdate->dy;
+                }
+            }
+            default:
+                break;
         }
     }
 
     void Game::run() {
-        this->network.start();
-        while (this->window.isOpen()) {
+        network.start();
+        std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
+        auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(network::PacketType::CONNECT_REQUEST);
+        header->length = connectPacket.size();
+        header->sequence = 0;
+        network.sendTo(connectPacket);
+        std::cout << "Game: Sending connection request..." << std::endl;
+        auto startTime = std::chrono::steady_clock::now();
+        while (!myPlayerId) {
+            auto currentTime = std::chrono::steady_clock::now();
+            if (std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count() > 5) {
+                std::cout << "Game: Connection timeout" << std::endl;
+                return;
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
+
+        std::cout << "Game: Successfully connected with ID: " << myPlayerId << std::endl;
+        while (window.isOpen()) {
             handleEvents();
             update();
             render();
         }
-        this->network.stop();
-    }
+        std::vector<uint8_t> disconnectPacket(sizeof(network::PacketHeader));
+        header = reinterpret_cast<network::PacketHeader*>(disconnectPacket.data());
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(network::PacketType::DISCONNECT);
+        header->length = disconnectPacket.size();
+        header->sequence = 0;
 
+        network.sendTo(disconnectPacket);
+        network.stop();
+    }
 
     void Game::handleEvents() {
         sf::Event event;
