@@ -4,11 +4,19 @@
 namespace rtype::game {
 
     GameEngine::GameEngine(network::NetworkManager& networkManager)
-        : network(networkManager) {
+        : network(networkManager),
+    lastUpdate(std::chrono::steady_clock::now())
+    {
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         systems.push_back(std::make_unique<MovementSystem>());
+        for (size_t i = 0; i < NB_ENEMIES; i++) {
+            float delay = static_cast<float>(i) * 2.0f;
+            float x = static_cast<float>(800);
+            float y = static_cast<float>(rand() % 600);
+            enemySpawnQueue.push_back(PendingSpawn{delay, x, y});
+        }
     }
 
     void GameEngine::broadcastWorldState() {
@@ -31,8 +39,10 @@ namespace rtype::game {
                 update->y = pos.y;
                 update->dx = vel.dx;
                 update->dy = vel.dy;
-                if (entities.hasComponent<Projectile>(entity))
+                if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
                     update->type = 1;
+                else if (entities.hasComponent<Enemy>(entity))
+                    update->type = 2;
                 else
                     update->type = 0;
                 network.broadcast(packet);
@@ -51,10 +61,57 @@ namespace rtype::game {
         return playerEntity;
     }
 
+    bool checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
+        float dx = pos1.x - pos2.x;
+        float dy = pos1.y - pos2.y;
+        float distanceSquared = dx * dx + dy * dy;
+        float radiusSum = radius1 + radius2;
+        return distanceSquared <= (radiusSum * radiusSum);
+    }
+
+
     void GameEngine::update() {
         auto currentTime = std::chrono::steady_clock::now();
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
         lastUpdate = currentTime;
+
+        for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end(); ) {
+            it->delay -= dt;
+            if (it->delay <= 0) {
+                EntityID enemyEntity = entities.createEntity();
+                entities.addComponent(enemyEntity, Position{it->x, it->y});
+                entities.addComponent(enemyEntity, Velocity{-50.0f, 0.0f});
+                entities.addComponent(enemyEntity, Enemy{1, 1});
+
+                it = enemySpawnQueue.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+        for (EntityID missile : entities.getEntitiesWithComponents<Projectile>()) {
+            if (!entities.hasComponent<Position>(missile)) continue;
+
+            const auto& missilePos = entities.getComponent<Position>(missile);
+
+            for (EntityID enemy : entities.getEntitiesWithComponents<Enemy>()) {
+                if (!entities.hasComponent<Position>(enemy)) continue;
+
+                const auto& enemyPos = entities.getComponent<Position>(enemy);
+                float missileRadius = 5.0f;
+                float enemyRadius = 20.0f;
+
+                if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius)) {
+
+                    entities.resetEntityComponents(enemy);
+                    entities.destroyEntity(enemy);
+                    entities.resetEntityComponents(missile);
+                    entities.destroyEntity(missile);
+                    std::cout << "Collision: Missile touche un ennemi !" << std::endl;
+                    break; // Passe au prochain missile
+                }
+            }
+        }
 
         for (auto& system : systems) {
             system->update(entities, dt);

@@ -13,6 +13,7 @@ namespace rtype {
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
         resources.loadTexture("player", "assets/sprites/ship.gif");
         resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
+        resources.loadTexture("enemy", "assets/sprites/r-typesheet7.gif");
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -71,11 +72,15 @@ namespace rtype {
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
-                    }
-                    if (entityUpdate->type == 1) {
+                    } else if (entityUpdate->type == 1) {
                         entities.addComponent(entity, Projectile{10.0f, true});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16)); // Adjust these coordinates as needed
+                        renderComp.sprite.setOrigin(8.0f, 8.0f);
+                    } else if (entityUpdate->type == 2) {
+                        entities.addComponent(entity, Enemy{1, true});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("enemy"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 34, 35));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     }
                     entities.addComponent(entity, renderComp);
@@ -177,8 +182,17 @@ namespace rtype {
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
         lastUpdate = currentTime;
 
-        for (auto& system : systems) {
-            system->update(entities, dt);
+        std::cout << "Number of systems: " << systems.size() << std::endl;
+
+        for (size_t i = 0; i < systems.size(); ++i) {
+            try {
+                std::cout << "Updating system " << i << std::endl;
+                systems[i]->update(entities, dt);
+            } catch (const std::exception& e) {
+                std::cerr << "Exception in system " << i << ": " << e.what() << std::endl;
+            } catch (...) {
+                std::cerr << "Unknown exception in system " << i << std::endl;
+            }
         }
     }
 
