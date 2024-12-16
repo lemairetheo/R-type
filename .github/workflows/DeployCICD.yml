@@ -7,6 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: rtype
     steps:
       - uses: actions/checkout@v2
 

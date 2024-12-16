@@ -5,6 +5,7 @@ on: [ push ]
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: rtype
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python

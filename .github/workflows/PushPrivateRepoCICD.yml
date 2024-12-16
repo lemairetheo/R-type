@@ -10,6 +10,7 @@ jobs:
     name: Push to mirror
     if: ${{ github.ref_name == 'main' && github.event_name == 'push' }}
     runs-on: ubuntu-latest
+    environment: rtype
 
     steps:
       - name: cleanup old checkout
