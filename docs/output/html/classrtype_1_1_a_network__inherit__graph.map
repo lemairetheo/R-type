@@ -1,0 +1,7 @@
+<map id="rtype::ANetwork" name="rtype::ANetwork">
+<area shape="rect" id="Node000001" title=" " alt="" coords="129,5,283,153"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_client.html" title="Class that manages the network for the client side." alt="" coords="5,221,190,471"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,168,150,223,145,221,168,166"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html" title=" " alt="" coords="215,201,415,491"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,166,258,200,253,202,239,168"/>
+</map>

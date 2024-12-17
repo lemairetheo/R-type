@@ -5,11 +5,12 @@ PROJECT_BRIEF         = "A networked implementation of the classic R-Type game"
 
 # Configuration des répertoires
 OUTPUT_DIRECTORY       = output/
-INPUT                  = server/ client/ shared/
+INPUT                  = ../server/ ../client/ ../shared/ ./
 RECURSIVE              = YES
 
 # Configuration de la sortie
 GENERATE_HTML          = YES
+
 GENERATE_LATEX         = NO
 HTML_OUTPUT           = html
 
@@ -28,6 +29,9 @@ HAVE_DOT              = YES
 UML_LOOK              = YES
 CALL_GRAPH            = YES
 CALLER_GRAPH          = YES
+
+USE_MDFILE_AS_MAINPAGE = mainPage.md
+HTML_EXTRA_STYLESHEET = doxygen-awesome.css
 
 # Types de fichiers à documenter
 FILE_PATTERNS         = *.cpp *.hpp *.h *.md

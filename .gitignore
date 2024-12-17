@@ -2,4 +2,3 @@ venv
 cmake-build-debug*
 .idea
 cmake-build-debugx
-output/

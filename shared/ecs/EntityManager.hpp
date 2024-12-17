@@ -74,11 +74,6 @@ namespace rtype {
                 }
             }
         }
-
-
-
-
-
     private:
         std::unordered_map<std::type_index, std::unique_ptr<IComponent>> _components;
         std::vector<EntityID> availableEntities;

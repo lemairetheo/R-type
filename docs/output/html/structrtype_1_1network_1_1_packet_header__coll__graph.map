@@ -1,0 +1,3 @@
+<map id="rtype::network::PacketHeader" name="rtype::network::PacketHeader">
+<area shape="rect" id="Node000001" title="packet header This structure defines the header of a packet in the R&#45;Type protocol." alt="" coords="5,5,190,153"/>
+</map>
