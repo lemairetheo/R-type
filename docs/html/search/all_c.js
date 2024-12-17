@@ -2,7 +2,7 @@ var searchData=
 [
   ['icomponent_0',['IComponent',['../classrtype_1_1_i_component.html',1,'rtype']]],
   ['icomponent_2ehpp_1',['IComponent.hpp',['../_i_component_8hpp.html',1,'']]],
-  ['in_20github_20project_2',['2. Creating Issues in GitHub Project',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
+  ['in_20github_20project_2',['2. Creating Issues in GitHub Project',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
   ['info_5farch_3',['info_arch',['../_c_make_c_x_x_compiler_id_8cpp.html#a59647e99d304ed33b15cb284c27ed391',1,'CMakeCXXCompilerId.cpp']]],
   ['info_5fcompiler_4',['info_compiler',['../_c_make_c_x_x_compiler_id_8cpp.html#a4b0efeb7a5d59313986b3a0390f050f6',1,'CMakeCXXCompilerId.cpp']]],
   ['info_5flanguage_5fextensions_5fdefault_5',['info_language_extensions_default',['../_c_make_c_x_x_compiler_id_8cpp.html#a0f46a8a39e09d9b803c4766904fd7e99',1,'CMakeCXXCompilerId.cpp']]],
@@ -13,9 +13,9 @@ var searchData=
   ['instructions_10',['Build and Run Instructions',['../md__readme.html#autotoc_md29',1,'']]],
   ['isactive_11',['isActive',['../structrtype_1_1_projectile.html#a12f964f76e62a41a03b94aca24784a8d',1,'rtype::Projectile']]],
   ['isconnected_12',['isConnected',['../struct_player_info.html#a9d08877cf7fca3f4e83726677586cf68',1,'PlayerInfo']]],
-  ['issue_13',['Example Issue',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md8',1,'']]],
-  ['issue_20body_20template_14',['Issue Body Template',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md7',1,'']]],
-  ['issue_20title_20format_15',['Issue Title Format',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md6',1,'']]],
-  ['issues_20in_20github_20project_16',['2. Creating Issues in GitHub Project',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
+  ['issue_13',['Example Issue',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md8',1,'']]],
+  ['issue_20body_20template_14',['Issue Body Template',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md7',1,'']]],
+  ['issue_20title_20format_15',['Issue Title Format',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md6',1,'']]],
+  ['issues_20in_20github_20project_16',['2. Creating Issues in GitHub Project',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
   ['isystem_17',['ISystem',['../classrtype_1_1_i_system.html',1,'rtype']]]
 ];

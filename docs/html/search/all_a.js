@@ -16,6 +16,6 @@ var searchData=
   ['getinstance_13',['getInstance',['../classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44',1,'rtype::ResourceManager']]],
   ['gettexture_14',['getTexture',['../classrtype_1_1_resource_manager.html#aa8001e0d4dc2d3ddff70c77caa6c451d',1,'rtype::ResourceManager']]],
   ['getting_20started_15',['Getting Started',['../index.html#autotoc_md22',1,'']]],
-  ['github_20project_16',['2. Creating Issues in GitHub Project',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
-  ['guidelines_17',['Guidelines',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md1',1,'1. Commit Message Guidelines'],['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md10',1,'3. Workflow Guidelines']]]
+  ['github_20project_16',['2. Creating Issues in GitHub Project',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
+  ['guidelines_17',['Guidelines',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md1',1,'1. Commit Message Guidelines'],['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md10',1,'3. Workflow Guidelines']]]
 ];

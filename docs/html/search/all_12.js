@@ -19,12 +19,12 @@ var searchData=
   ['players_16',['players',['../classrtype_1_1_manager.html#a8c7e83a9722c1689c1f1c7b2389e1731',1,'rtype::Manager']]],
   ['port_17',['port',['../classrtype_1_1_a_network.html#a2464cb5a87a8de2d5e92e0ff76cd955f',1,'rtype::ANetwork']]],
   ['position_18',['Position',['../structrtype_1_1_position.html',1,'rtype']]],
-  ['pr_20body_20template_19',['PR Body Template',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md15',1,'']]],
-  ['pr_20title_20format_20',['PR Title Format',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md14',1,'']]],
-  ['project_21',['2. Creating Issues in GitHub Project',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
+  ['pr_20body_20template_19',['PR Body Template',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md15',1,'']]],
+  ['pr_20title_20format_20',['PR Title Format',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md14',1,'']]],
+  ['project_21',['2. Creating Issues in GitHub Project',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md5',1,'']]],
   ['project_20documentation_22',['R-Type Project Documentation',['../index.html',1,'']]],
   ['project_20overview_23',['Project Overview',['../md__readme.html#autotoc_md25',1,'']]],
   ['projectile_24',['Projectile',['../structrtype_1_1_projectile.html',1,'rtype']]],
   ['prototype_25',['Phase 1: Core Architecture &amp; Prototype',['../md__readme.html#autotoc_md38',1,'']]],
-  ['pull_20requests_26',['3.2 Pull Requests',['../md_docs_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md13',1,'']]]
+  ['pull_20requests_26',['3.2 Pull Requests',['../md_doxygen_config_2_c_o_d_i_n_g___c_o_n_v_e_n_t_i_o_n_s.html#autotoc_md13',1,'']]]
 ];
