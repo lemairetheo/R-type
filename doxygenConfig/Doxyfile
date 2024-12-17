@@ -12,7 +12,7 @@ RECURSIVE              = YES
 GENERATE_HTML          = YES
 
 GENERATE_LATEX         = NO
-HTML_OUTPUT           = html
+HTML_OUTPUT           = .
 
 # Options d'extraction
 EXTRACT_ALL            = YES
