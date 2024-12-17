@@ -6,7 +6,7 @@ var searchData=
   ['enemy_3',['Enemy',['../structrtype_1_1_enemy.html',1,'rtype']]],
   ['enemyspawnqueue_4',['enemySpawnQueue',['../classrtype_1_1game_1_1_game_engine.html#a07a60bf1c19ff553f7c142658228d2a1',1,'rtype::game::GameEngine']]],
   ['engine_5',['R-Type Game Engine',['../md__readme.html',1,'']]],
-  ['entities_6',['entities',['../classrtype_1_1_game.html#a0ffca39187d4d07eaead367c0b5a0347',1,'rtype::Game::entities'],['../classrtype_1_1game_1_1_game_engine.html#a23068f07f6c41310acf2594019fc7243',1,'rtype::game::GameEngine::entities']]],
+  ['entities_6',['entities',['../classrtype_1_1game_1_1_game_engine.html#a23068f07f6c41310acf2594019fc7243',1,'rtype::game::GameEngine::entities'],['../classrtype_1_1_game.html#a0ffca39187d4d07eaead367c0b5a0347',1,'rtype::Game::entities']]],
   ['entity_2ehpp_7',['Entity.hpp',['../_entity_8hpp.html',1,'']]],
   ['entity_5fdeath_8',['ENTITY_DEATH',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286a7ffe69b642fcafa7c6baf7cf5cf6d5de',1,'rtype::network']]],
   ['entity_5fupdate_9',['ENTITY_UPDATE',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286a4c2331132c063a843f644e8df6111cf0',1,'rtype::network']]],

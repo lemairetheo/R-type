@@ -3,10 +3,10 @@ var searchData=
   ['r_20type_20game_20engine_0',['R-Type Game Engine',['../md__readme.html',1,'']]],
   ['r_20type_20project_20documentation_1',['R-Type Project Documentation',['../index.html',1,'']]],
   ['readme_2',['readme',['../md_client_2systems_2readme.html',1,'']]],
-  ['readme_2emd_3',['Readme.md',['../_readme_8md.html',1,'']]],
-  ['readme_2emd_4',['readme.md',['../client_2systems_2_readme_8md.html',1,'']]],
-  ['receiveloop_5',['receiveLoop',['../classrtype_1_1network_1_1_network_client.html#a421721d823ac5209b9011e1e8ec84f5c',1,'rtype::network::NetworkClient::receiveLoop()'],['../classrtype_1_1network_1_1_network_manager.html#ac94837a2c201b125b273182ad4cc0212',1,'rtype::network::NetworkManager::receiveLoop()']]],
-  ['receivethread_6',['receiveThread',['../classrtype_1_1network_1_1_network_client.html#abf61864f85dff6fd5c44af51d8b701af',1,'rtype::network::NetworkClient::receiveThread'],['../classrtype_1_1network_1_1_network_manager.html#a38aa40c0044b48b4687d926232773415',1,'rtype::network::NetworkManager::receiveThread']]],
+  ['readme_2emd_3',['Readme.md',['../readme_8md.html',1,'']]],
+  ['readme_2emd_4',['readme.md',['../client_2systems_2readme_8md.html',1,'']]],
+  ['receiveloop_5',['receiveLoop',['../classrtype_1_1network_1_1_network_manager.html#ac94837a2c201b125b273182ad4cc0212',1,'rtype::network::NetworkManager::receiveLoop()'],['../classrtype_1_1network_1_1_network_client.html#a421721d823ac5209b9011e1e8ec84f5c',1,'rtype::network::NetworkClient::receiveLoop()']]],
+  ['receivethread_6',['receiveThread',['../classrtype_1_1network_1_1_network_manager.html#a38aa40c0044b48b4687d926232773415',1,'rtype::network::NetworkManager::receiveThread'],['../classrtype_1_1network_1_1_network_client.html#abf61864f85dff6fd5c44af51d8b701af',1,'rtype::network::NetworkClient::receiveThread']]],
   ['reference_5ftype_7',['reference_type',['../classrtype_1_1_sparse_array.html#a9b7c163c14c4ec498a97b3597d4587c6',1,'rtype::SparseArray']]],
   ['render_8',['render',['../classrtype_1_1_game.html#a6ffc1327f3ebe7ed2a9b39dbc9132939',1,'rtype::Game']]],
   ['rendercomponent_9',['RenderComponent',['../struct_render_component.html',1,'']]],
@@ -29,5 +29,5 @@ var searchData=
   ['rtype_3a_3anetwork_26',['network',['../namespacertype_1_1network.html',1,'rtype']]],
   ['run_27',['run',['../classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f',1,'rtype::Game']]],
   ['run_20instructions_28',['Build and Run Instructions',['../md__readme.html#autotoc_md29',1,'']]],
-  ['running_29',['running',['../classrtype_1_1network_1_1_network_client.html#a54f25aad066c264a50a13c66497b8695',1,'rtype::network::NetworkClient::running'],['../classrtype_1_1_manager.html#aa415df93976fc7dc961f34a2bded4a4a',1,'rtype::Manager::running'],['../classrtype_1_1network_1_1_network_manager.html#aa3560baea4c23ef8816cdd5770e77373',1,'rtype::network::NetworkManager::running']]]
+  ['running_29',['running',['../classrtype_1_1_manager.html#aa415df93976fc7dc961f34a2bded4a4a',1,'rtype::Manager::running'],['../classrtype_1_1network_1_1_network_manager.html#aa3560baea4c23ef8816cdd5770e77373',1,'rtype::network::NetworkManager::running'],['../classrtype_1_1network_1_1_network_client.html#a54f25aad066c264a50a13c66497b8695',1,'rtype::network::NetworkClient::running']]]
 ];
