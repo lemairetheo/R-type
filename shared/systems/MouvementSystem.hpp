@@ -15,14 +15,13 @@ namespace rtype {
                     pos.y += vel.dy * dt;
 
                     if (manager.hasComponent<Projectile>(entity)) {
-                        std::cout << pos.x << " " << pos.y << " entity : " << entity << std::endl;
-                        if (pos.x > 795) pos.x = 900;
-                        if (pos.y > 795) proj.isActive = false;
+                        if (pos.x > 795)
+                            pos.x = 900;
+                        if (pos.y > 795)
+                            proj.isActive = false;
                     } else {
-                        if (pos.x < 0.0f) pos.x = 0.0f;
-                        if (pos.x > 795) pos.x = 795;
-                        if (pos.y < 0.0f) pos.y = 0.0f;
-                        if (pos.y > 590) pos.y = 590;
+                        pos.x = std::clamp(pos.x, 0.0f, 795.0f);
+                        pos.y = std::clamp(pos.y, 0.0f, 590.0f);
                     }
                 }
             }

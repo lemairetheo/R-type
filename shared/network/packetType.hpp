@@ -10,18 +10,26 @@
 
 namespace rtype::network {
 
+    struct ConnectRequestPacket {
+        char playerName[32];
+    };
+    struct ConnectResponsePacket {
+        uint32_t playerId;    ///< ID unique du joueur
+        bool success;         ///< Si la connexion est acceptée
+        uint32_t entityId;    ///< ID de l'entité associée au joueur
+    };
     /**
      * @brief packet header
      * This structure defines the header of a packet in the R-Type protocol.
      */
-#pragma pack(push, 1)
-    struct PacketHeader {
-        uint8_t magic[2];      ///< Magic number pour identifier les paquets R-Type (RT)
-        uint8_t version;       ///< Version du protocole
-        uint8_t type;         ///< Type de paquet (@see PacketType)
-        uint16_t length;      ///< Longueur totale du paquet incluant l'en-tête
-        uint16_t sequence;    ///< Numéro de séquence pour le suivi des paquets
-    };
+    #pragma pack(push, 1)
+        struct PacketHeader {
+            uint8_t magic[2];      ///< Magic number pour identifier les paquets R-Type (RT)
+            uint8_t version;       ///< Version du protocole
+            uint8_t type;         ///< Type de paquet (@see PacketType)
+            uint16_t length;      ///< Longueur totale du paquet incluant l'en-tête
+            uint16_t sequence;    ///< Numéro de séquence pour le suivi des paquets
+        };
 
     /**
      * @brief Types de paquets supportés
@@ -38,15 +46,19 @@ namespace rtype::network {
         PLAYER_SHOOT = 0x12,      ///< Missile du joueur
         GAME_STATE = 0x11,         ///< État du jeu
         ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
+        ENTITY_DEATH = 0x21, //< Information sur une entité morte
+        END_GAME_STATE = 0x22,
     };
 
     struct EntityUpdatePacket {
         uint32_t entityId;   ///< ID de l'entité
+        uint32_t entityId2;
         int type;            ///< le nombre signifie le type de l'entité
         float x;             ///< Position X
         float y;             ///< Position Y
         float dx;            ///< Vélocité X
         float dy;            ///< Vélocité Y
+
     };
 
 

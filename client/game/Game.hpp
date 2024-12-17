@@ -25,6 +25,9 @@ namespace rtype {
         Game();
         void run();
     private:
+        bool endGame = false;
+        sf::Text endGameText;
+        sf::Font font;
         sf::RenderWindow window;
         EntityManager entities;
         std::vector<std::unique_ptr<ISystem>> systems;
@@ -34,5 +37,6 @@ namespace rtype {
         void handleEvents();
         void update();
         void render();
+        EntityID myPlayerId = 0;
     };
 }

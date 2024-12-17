@@ -12,12 +12,23 @@ namespace rtype {
         float dy;
     };
 
+    struct Player {
+        int score;
+        int damage;
+    };
+
     struct InputComponent {
         bool up = false;
         bool down = false;
         bool left = false;
         bool right = false;
         bool space = false;
+    };
+
+    struct PendingSpawn {
+        float delay;
+        float x;
+        float y;
     };
 
     struct NetworkComponent {
@@ -27,5 +38,10 @@ namespace rtype {
     struct Projectile {
         float damage;
         bool isActive;
+    };
+
+    struct Enemy {
+        int damage;
+        int life;
     };
 }
