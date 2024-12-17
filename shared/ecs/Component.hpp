@@ -12,6 +12,11 @@ namespace rtype {
         float dy;
     };
 
+    struct Player {
+        int score;
+        int damage;
+    };
+
     struct InputComponent {
         bool up = false;
         bool down = false;

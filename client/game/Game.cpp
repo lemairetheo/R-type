@@ -23,6 +23,15 @@ namespace rtype {
             auto textureSize = bgComp.sprite.getTexture()->getSize();
             bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
             entities.addComponent(bgDeep, bgComp);
+            if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) { // Assurez-vous d'avoir un fichier de police valide
+                std::cerr << "Error loading font" << std::endl;
+            }
+            endGameText.setFont(font);
+            endGameText.setString("GG Bro");
+            endGameText.setCharacterSize(50);
+            endGameText.setFillColor(sf::Color::White);
+            endGameText.setStyle(sf::Text::Bold);
+            endGameText.setPosition(200, 250);
         }
         {
             EntityID bgStars = entities.createEntity();
@@ -104,6 +113,12 @@ namespace rtype {
                     vel.dx = entityUpdate->dx;
                     vel.dy = entityUpdate->dy;
                 }
+                break;
+            }
+            case network::PacketType::END_GAME_STATE: {
+                endGame = true;
+                std::cout << "Game: End game state received. You won!" << std::endl;
+                break;
             }
             default:
                 break;
@@ -210,8 +225,15 @@ namespace rtype {
 
     void Game::render() {
         window.clear();
-        for (auto& system : systems) {
-            system->update(entities, 0);
+
+        if (!endGame) {
+            for (auto& system : systems) {
+                system->update(entities, 0);
+            }
+        }
+
+        if (endGame) {
+            window.draw(endGameText);
         }
         window.display();
     }

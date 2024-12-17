@@ -55,6 +55,7 @@ namespace rtype::game {
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
+        entities.addComponent(playerEntity, Player{0, 1});
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
@@ -103,6 +104,14 @@ namespace rtype::game {
 
                 if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius)) {
 
+                    for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                        if (entities.hasComponent<Player>(entity)) {
+                            auto& player = entities.getComponent<Player>(entity);
+                            player.score++;
+                            std::cout << "plus 1 : " << player.score << std::endl;
+                        }
+                    }
+
                     entities.getComponents<Projectile>().erase(missile);
                     entities.destroyEntity(missile);
                     entities.getComponents<Enemy>().erase(enemy);
@@ -123,6 +132,24 @@ namespace rtype::game {
 
                     std::cout << "Collision: Missile touche un ennemi !" << std::endl;
                     break; // Passe au prochain missile
+                }
+            }
+        }
+
+        for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+            if (entities.hasComponent<Player>(entity)) {
+                auto& player = entities.getComponent<Player>(entity);
+                if (player.score >= 10) {
+                    std::cout << "player score : " << player.score << std::endl;
+                    std::vector<uint8_t> packet(sizeof(network::PacketHeader));
+                    auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
+                    header->magic[0] = 'R';
+                    header->magic[1] = 'T';
+                    header->version = 1;
+                    header->type = static_cast<uint8_t>(network::PacketType::END_GAME_STATE);
+                    header->length = packet.size();
+                    header->sequence = 0;
+                    network.broadcast(packet);
                 }
             }
         }

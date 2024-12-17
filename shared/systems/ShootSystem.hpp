@@ -26,18 +26,10 @@ namespace rtype {
                     const auto& position = entities.getComponent<Position>(entity);
 
                     EntityID projectile = entities.createEntity();
-                    auto& test = entities.getComponent<Enemy>(projectile);
-                    if (test.damage) {
-                        std::cout << "test1" << std::endl;
-                        entities.resetEntityComponents(projectile);
-                        auto& test2 = entities.getComponent<Enemy>(projectile);
-                        std::cout << "test2" << test2.damage << std::endl;
-                    }
+
                     entities.addComponent(projectile, Position{position.x, position.y});
                     entities.addComponent(projectile, Velocity{300.0f, 0.0f});
                     entities.addComponent(projectile, Projectile{10.0f, true});
-
-                    std::cout << "Entity " << entity << " fired a projectile n°"<< projectile << std::endl;
                 }
             }
         }

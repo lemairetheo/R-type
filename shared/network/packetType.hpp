@@ -46,7 +46,8 @@ namespace rtype::network {
         PLAYER_SHOOT = 0x12,      ///< Missile du joueur
         GAME_STATE = 0x11,         ///< État du jeu
         ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
-        ENTITY_DEATH = 0x21,
+        ENTITY_DEATH = 0x21, //< Information sur une entité morte
+        END_GAME_STATE = 0x22,
     };
 
     struct EntityUpdatePacket {

@@ -71,8 +71,6 @@ namespace rtype {
             for (auto& [typeIndex, componentArray] : _components) {
                 if (componentArray) {
                     componentArray->erase(entity);
-                    // Débogage pour vérifier la suppression.
-                    std::cout << "Components for entity " << entity << " reset for type " << typeIndex.name() << "\n";
                 }
             }
         }

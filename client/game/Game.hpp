@@ -25,6 +25,9 @@ namespace rtype {
         Game();
         void run();
     private:
+        bool endGame = false;
+        sf::Text endGameText;
+        sf::Font font;
         sf::RenderWindow window;
         EntityManager entities;
         std::vector<std::unique_ptr<ISystem>> systems;
