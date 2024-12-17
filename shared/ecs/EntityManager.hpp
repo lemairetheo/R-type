@@ -6,10 +6,12 @@
 #include "IComponent.hpp"
 #include <unordered_map>
 #include <typeindex>
+#include <iostream>
 #include <memory>
 
 namespace rtype {
     constexpr size_t MAX_ENTITIES = 1000;
+    constexpr size_t NB_ENEMIES = 20;
 
     class EntityManager {
     public:
@@ -32,6 +34,20 @@ namespace rtype {
             return *static_cast<SparseArray<Component>*>(_components[typeIndex].get());
         }
 
+        template<typename... Components>
+        std::vector<EntityID> getEntitiesWithComponents() const {
+            std::vector<EntityID> result;
+
+            for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                if ((hasComponent<Components>(entity) && ...)) {
+                    result.push_back(entity);
+                }
+            }
+
+            return result;
+        }
+
+
         template<typename Component>
         void addComponent(EntityID entity, Component component) {
             getComponents<Component>().insert_at(entity, component);
@@ -53,10 +69,10 @@ namespace rtype {
 
         void resetEntityComponents(EntityID entity) {
             for (auto& [typeIndex, componentArray] : _components) {
-                // Accéder au tableau en tant que SparseArray générique
-                auto* sparseArray = static_cast<SparseArray<std::optional<IComponent>>*>(componentArray.get());
-                if (sparseArray && entity < sparseArray->getData().size()) {
-                    sparseArray->erase(entity);
+                if (componentArray) {
+                    componentArray->erase(entity);
+                    // Débogage pour vérifier la suppression.
+                    std::cout << "Components for entity " << entity << " reset for type " << typeIndex.name() << "\n";
                 }
             }
         }
@@ -64,9 +80,11 @@ namespace rtype {
 
 
 
+
     private:
         std::unordered_map<std::type_index, std::unique_ptr<IComponent>> _components;
         std::vector<EntityID> availableEntities;
-        EntityID nextEntity = 0;
+        EntityID nextEntity = 1;
+        int NbEntities = 1;
     };
 }

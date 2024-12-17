@@ -35,9 +35,8 @@ namespace rtype {
             _data[idx] = component;
         }
 
-        void erase(std::size_t idx) {
-            if (idx < _data.size())
-                _data[idx].reset();
+        void erase(EntityID entity) override {
+            _data[entity].reset();
         }
 
         container_t& getData() { return _data; }

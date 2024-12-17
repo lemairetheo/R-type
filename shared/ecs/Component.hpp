@@ -20,6 +20,12 @@ namespace rtype {
         bool space = false;
     };
 
+    struct PendingSpawn {
+        float delay;
+        float x;
+        float y;
+    };
+
     struct NetworkComponent {
         uint32_t networkId;
     };
@@ -27,5 +33,10 @@ namespace rtype {
     struct Projectile {
         float damage;
         bool isActive;
+    };
+
+    struct Enemy {
+        int damage;
+        int life;
     };
 }
