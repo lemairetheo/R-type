@@ -123,16 +123,18 @@ namespace rtype::game {
     }
 
     void GameEngine::handleCollision(EntityID missile, EntityID enemy) {
-        // Mise à jour du score
-        updatePlayerScore();
+        entities.getComponent<Enemy>(enemy).life--;
+        if (entities.getComponent<Enemy>(enemy).life <= 0) {
+            updatePlayerScore(); // Mise à jour du score
 
-        // Envoi du paquet de suppression
-            auto packet = createEntityDeathPacket(missile, enemy);  // Correction : utilisez createEntityDeathPacket
+            // Envoi du paquet de suppression
+            auto packet = createEntityDeathPacket(missile, enemy);
             network.broadcast(packet);
 
-        // Destruction des entités
-        entities.destroyEntity(missile);
-        entities.destroyEntity(enemy);
+            // Destruction des entités
+            entities.destroyEntity(missile);
+            entities.destroyEntity(enemy);
+        }
     }
 
     void GameEngine::spawnEnemy(float x, float y) {
