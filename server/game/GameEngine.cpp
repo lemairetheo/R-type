@@ -103,10 +103,24 @@ namespace rtype::game {
 
                 if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius)) {
 
-                    entities.resetEntityComponents(enemy);
-                    entities.destroyEntity(enemy);
-                    entities.resetEntityComponents(missile);
+                    entities.getComponents<Projectile>().erase(missile);
                     entities.destroyEntity(missile);
+                    entities.getComponents<Enemy>().erase(enemy);
+                    entities.destroyEntity(enemy);
+
+                    std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));
+                    auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
+                    auto* update = reinterpret_cast<network::EntityUpdatePacket*>(packet.data() + sizeof(network::PacketHeader));
+                    header->magic[0] = 'R';
+                    header->magic[1] = 'T';
+                    header->version = 1;
+                    header->type = static_cast<uint8_t>(network::PacketType::ENTITY_DEATH);
+                    header->length = packet.size();
+                    header->sequence = 0;
+                    update->entityId = enemy;
+                    update->entityId2 = missile;
+                    network.broadcast(packet);
+
                     std::cout << "Collision: Missile touche un ennemi !" << std::endl;
                     break; // Passe au prochain missile
                 }

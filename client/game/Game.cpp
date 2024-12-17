@@ -59,6 +59,18 @@ namespace rtype {
                 }
                 break;
             }
+            case network::PacketType::ENTITY_DEATH: {
+                const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
+                if (response->entityId) {
+                    entities.getComponents<Enemy>().erase(response->entityId);
+                    entities.destroyEntity(response->entityId);
+                }
+                if (response->entityId2) {
+                    entities.getComponents<Projectile>().erase(response->entityId2);
+                    entities.destroyEntity(response->entityId2);
+                }
+                break;
+            }
             case network::PacketType::ENTITY_UPDATE: {
                 const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
                 EntityID entity = entityUpdate->entityId;

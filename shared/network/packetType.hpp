@@ -46,15 +46,18 @@ namespace rtype::network {
         PLAYER_SHOOT = 0x12,      ///< Missile du joueur
         GAME_STATE = 0x11,         ///< État du jeu
         ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
+        ENTITY_DEATH = 0x21,
     };
 
     struct EntityUpdatePacket {
         uint32_t entityId;   ///< ID de l'entité
+        uint32_t entityId2;
         int type;            ///< le nombre signifie le type de l'entité
         float x;             ///< Position X
         float y;             ///< Position Y
         float dx;            ///< Vélocité X
         float dy;            ///< Vélocité Y
+
     };
 
 
