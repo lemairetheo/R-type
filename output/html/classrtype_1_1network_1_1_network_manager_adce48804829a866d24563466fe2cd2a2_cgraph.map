@@ -1,0 +1,7 @@
+<map id="rtype::network::NetworkManager::handleClientDisconnection" name="rtype::network::NetworkManager::handleClientDisconnection">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,217,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1" title=" " alt="" coords="265,5,476,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,23,249,23,249,28,217,28"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#a74f85d4d4da4cf9ad4d542a2dd47045c" title=" " alt="" coords="524,5,735,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="476,23,508,23,508,28,476,28"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="rtype::Game" name="rtype::Game">
+<area shape="rect" id="Node000001" title="Class representing the game itself in the client side of the projet." alt="" coords="57,576,229,866"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html" title=" " alt="" coords="5,202,200,513"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,512,128,558,122,559,117,513"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_client.html" title="Class that manages the network for the client side." alt="" coords="224,233,408,482"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,483,222,561,217,559,255,481"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_a_network.html" title=" " alt="" coords="239,5,393,153"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="319,168,319,233,314,233,314,168"/>
+</map>
