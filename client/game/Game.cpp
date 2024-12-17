@@ -23,7 +23,7 @@ namespace rtype {
             auto textureSize = bgComp.sprite.getTexture()->getSize();
             bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
             entities.addComponent(bgDeep, bgComp);
-            if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) { // Assurez-vous d'avoir un fichier de police valide
+            if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
                 std::cerr << "Error loading font" << std::endl;
             }
             endGameText.setFont(font);
@@ -96,7 +96,7 @@ namespace rtype {
                     } else if (entityUpdate->type == 1) {
                         entities.addComponent(entity, Projectile{10.0f, true});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16)); // Adjust these coordinates as needed
+                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type == 2) {
                         entities.addComponent(entity, Enemy{1, true});

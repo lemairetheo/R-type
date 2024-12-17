@@ -1,4 +1,3 @@
-// shared/System.hpp
 #pragma once
 #include "../ecs/EntityManager.hpp"
 
@@ -8,4 +7,4 @@ namespace rtype {
         virtual ~ISystem() = default;
         virtual void update(EntityManager& manager, float dt) = 0;
     };
-} // namespace rtype
+}

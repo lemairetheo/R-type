@@ -15,12 +15,11 @@ namespace rtype {
         }
 
         void handleShoot(EntityID entity, EntityManager& entities) {
-            // Vérifier si suffisamment de temps s'est écoulé depuis le dernier tir
             auto now = std::chrono::steady_clock::now();
             std::chrono::duration<float> elapsed = now - lastShootTime;
 
-            if (elapsed.count() >= 0.2f) {  // Si 1 seconde s'est écoulée
-                lastShootTime = now;  // Réinitialiser le temps
+            if (elapsed.count() >= 0.2f) {
+                lastShootTime = now;
 
                 if (entities.hasComponent<Position>(entity)) {
                     const auto& position = entities.getComponent<Position>(entity);
@@ -35,7 +34,7 @@ namespace rtype {
         }
 
     private:
-        std::chrono::steady_clock::time_point lastShootTime;  // Variable non statique pour suivre le dernier tir
+        std::chrono::steady_clock::time_point lastShootTime;
     };
 
 }

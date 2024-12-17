@@ -24,7 +24,7 @@ namespace rtype {
     private:
         network::NetworkManager network;
         game::GameEngine _game;
-        std::unordered_map<std::string, PlayerInfo> players;  // Pour gérer les clients connectés
+        std::unordered_map<std::string, PlayerInfo> players;
         std::atomic<bool> running;
         std::thread updateThread;
         void updateLoop();

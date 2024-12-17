@@ -14,9 +14,9 @@ namespace rtype::network {
         char playerName[32];
     };
     struct ConnectResponsePacket {
-        uint32_t playerId;    // ID unique du joueur
-        bool success;         // Si la connexion est acceptée
-        uint32_t entityId;    // ID de l'entité associée au joueur
+        uint32_t playerId;    ///< ID unique du joueur
+        bool success;         ///< Si la connexion est acceptée
+        uint32_t entityId;    ///< ID de l'entité associée au joueur
     };
     /**
      * @brief packet header

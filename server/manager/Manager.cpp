@@ -42,7 +42,7 @@ namespace rtype {
     void Manager::start() {
         running = true;
         network.start();
-        updateThread = std::thread(&Manager::updateLoop, this);  // Démarre la boucle de mise à jour
+        updateThread = std::thread(&Manager::updateLoop, this);
     }
 
     void Manager::stop() {

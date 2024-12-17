@@ -18,7 +18,7 @@ namespace rtype::game {
         void handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) override;
     private:
         ShootSystem shoot_system_;
-        std::vector<PendingSpawn> enemySpawnQueue; // File d'attente des spawns
+        std::vector<PendingSpawn> enemySpawnQueue;
         std::chrono::steady_clock::time_point lastUpdate;
         EntityManager entities;
         void handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender);
