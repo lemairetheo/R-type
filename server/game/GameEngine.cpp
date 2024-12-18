@@ -123,7 +123,7 @@ namespace rtype::game {
     }
 
     void GameEngine::handleCollision(EntityID missile, EntityID enemy) {
-        entities.getComponent<Enemy>(enemy).life--;
+        entities.getComponent<Enemy>(enemy).life -= entities.getComponent<Projectile>(missile).damage;
         if (entities.getComponent<Enemy>(enemy).life <= 0) {
             updatePlayerScore(); // Mise à jour du score
 
