@@ -43,5 +43,6 @@ namespace rtype {
     struct Enemy {
         int damage;
         float life;
+        int level;
     };
 }
