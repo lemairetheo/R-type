@@ -48,9 +48,9 @@ private:
 
     // Niveau possible des enemies -> {lvl, {life, damage}}
     static inline const std::unordered_map<int, std::pair<float, int>> enemyAttributes = {
-        {1, {10.0f, 5}},
-        {2, {100.0f, 5}},
-        {3, {200.0f, 5}}
+        {1, {1, 5}},
+        {2, {3, 5}},
+        {3, {5, 5}}
     };
 
 

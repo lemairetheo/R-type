@@ -28,7 +28,7 @@ namespace rtype {
 
                     entities.addComponent(projectile, Position{position.x, position.y});
                     entities.addComponent(projectile, Velocity{300.0f, 0.0f});
-                    entities.addComponent(projectile, Projectile{10.0f, true});
+                    entities.addComponent(projectile, Projectile{1.0f, true});
                 }
             }
         }

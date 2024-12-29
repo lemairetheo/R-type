@@ -42,7 +42,8 @@ namespace rtype::game {
                 if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
                     update->type = 1;
                 else if (entities.hasComponent<Enemy>(entity)) {
-                    update->type = entities.hasTypeEnemy<Enemy>(entity);
+                    auto it = entities.hasTypeEnemy<Enemy>(entity);
+                    update->type = it;
                 } else
                     update->type = 0;
                 network.broadcast(packet);
@@ -127,13 +128,16 @@ namespace rtype::game {
         if (entities.getComponent<Enemy>(enemy).life <= 0) {
             updatePlayerScore(); // Mise à jour du score
 
-            // Envoi du paquet de suppression
             auto packet = createEntityDeathPacket(missile, enemy);
             network.broadcast(packet);
 
-            // Destruction des entités
-            entities.destroyEntity(missile);
             entities.destroyEntity(enemy);
+            entities.destroyEntity(missile);
+        } else {
+            auto packet = createEntityDeathPacket(missile, -1);
+            network.broadcast(packet);
+
+            entities.destroyEntity(missile);
         }
     }
 
@@ -153,7 +157,7 @@ namespace rtype::game {
 
         int enemyLevel;
 
-        float randValue = dis(gen); // Génère un nombre aléatoire entre 0 et 1
+        float randValue = dis(gen);
 
         if (level == 1) {
             enemyLevel = 1;

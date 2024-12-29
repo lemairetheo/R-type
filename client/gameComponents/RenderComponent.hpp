@@ -19,4 +19,5 @@ struct RenderComponent {
     int frameCount = 5;
     int frameWidth = 33;
     int frameHeight = 17;
+    int Y = 0;
 };
