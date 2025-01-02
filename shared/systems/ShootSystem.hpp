@@ -19,7 +19,8 @@ namespace rtype {
             std::chrono::duration<float> elapsed = now - lastShootTime;
 
             if (elapsed.count() >= 0.2f) {
-                lastShootTime = now;
+                if (entities.hasComponent<Player>(entity))
+                    lastShootTime = now;
 
                 if (entities.hasComponent<Position>(entity)) {
                     const auto& position = entities.getComponent<Position>(entity);

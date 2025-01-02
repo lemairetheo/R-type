@@ -104,7 +104,7 @@ namespace rtype::game {
         auto currentTime = std::chrono::steady_clock::now();
         float dt = std::chrono::duration<float>(currentTime - lastUpdateEnemiesShoot).count();
 
-        if (dt >= 0.02f)
+        if (dt >= 1.2f)
             lastUpdateEnemiesShoot = currentTime;
         else
             return;
