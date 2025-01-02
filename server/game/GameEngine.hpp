@@ -48,9 +48,9 @@ namespace rtype::game {
 
             // Niveau possible des enemies -> {lvl, {life, damage, speed shoot}}
             static inline const std::unordered_map<int, std::tuple<float, int, float>> enemyAttributes = {
-                {1, {1, 5, -100.0f}},
-                {2, {3, 5, -300.0f}},
-                {3, {5, 5, -600.0f}}
+                {1, {1, 5, 100.0f}},
+                {2, {3, 5, 300.0f}},
+                {3, {5, 5, 600.0f}}
             };
 
 
@@ -63,6 +63,7 @@ namespace rtype::game {
             void handleEnemyShoot();
             void handleCollisions();
             void handleCollision(EntityID missile, EntityID enemy);
+            void handleCollisionPlayer(EntityID missile, EntityID player);
             void updatePlayerScore();
             void broadcastEndGameState();
 

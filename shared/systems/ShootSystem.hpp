@@ -32,7 +32,7 @@ namespace rtype {
                         entities.addComponent(projectile, Velocity{300.0f, 0.0f});
                         entities.addComponent(projectile, Projectile{1.0f, 0, true});
                     } else if (entities.hasComponent<Enemy>(entity)) {
-                        entities.addComponent(projectile, Velocity{ entities.getComponent<Enemy>(entity).speedShoot, 0.0f});
+                        entities.addComponent(projectile, Velocity{ entities.getComponent<Enemy>(entity).speedShoot * -1, 0.0f});
                         entities.addComponent(projectile, Projectile{1.0f, 2, true});
                     }
                 }

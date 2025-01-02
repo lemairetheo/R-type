@@ -143,10 +143,10 @@ namespace rtype::game {
             for (EntityID player : players) {
                 const auto& playerPos = entities.getComponent<Position>(player);
 
+                std::cout << entities.getComponent<Player>(player).life << std::endl;
                 if (checkCollision(missilePos, missileRadius, playerPos, 20.0f) && entities.getComponent<Projectile>(missile).lunchByType != 0) {
-                    entities.getComponent<Player>(player).life--;
-                    if (entities.getComponent<Player>(player).life <= 0)
-                        exit(0); // Le joueur n'a plus de vie et est mort;
+                    handleCollisionPlayer(missile, player);
+                    break;
                 }
             }
         }
@@ -167,6 +167,20 @@ namespace rtype::game {
             network.broadcast(packet);
 
             entities.destroyEntity(missile);
+        }
+    }
+
+    void GameEngine::handleCollisionPlayer(EntityID missile, EntityID player) {
+        entities.getComponent<Player>(player).life--;
+        auto packet = createEntityDeathPacket(missile, -1);
+        network.broadcast(packet);
+        entities.destroyEntity(missile);
+
+        std::cout << entities.getComponent<Player>(player).life << std::endl;
+        if (entities.getComponent<Player>(player).life <= 0) {
+            packet = createEntityDeathPacket(player, -1);
+            network.broadcast(packet);
+            exit(0); // Le joueur n'a plus de vie et est mort -> À modifier (le if) pour avoir le comportement souhaité
         }
     }
 
