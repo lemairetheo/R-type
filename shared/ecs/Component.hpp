@@ -14,6 +14,7 @@ namespace rtype {
 
     struct Player {
         int score;
+        int life;
         int damage;
     };
 

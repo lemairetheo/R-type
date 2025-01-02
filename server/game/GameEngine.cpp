@@ -56,7 +56,7 @@ namespace rtype::game {
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
-        entities.addComponent(playerEntity, Player{0, 1});
+        entities.addComponent(playerEntity, Player{0, 3});
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
@@ -119,6 +119,7 @@ namespace rtype::game {
     void GameEngine::handleCollisions() {
         auto missiles = entities.getEntitiesWithComponents<Projectile>();
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        auto players = entities.getEntitiesWithComponents<Player>();
 
         for (EntityID missile : missiles) {
             if (!entities.hasComponent<Position>(missile)) continue;
@@ -126,8 +127,8 @@ namespace rtype::game {
             const auto& missilePos = entities.getComponent<Position>(missile);
             const float missileRadius = 5.0f;
 
+            // Handle collision with enemies
             for (EntityID enemy: enemies) {
-                // Ajouter une condition pour que les enemies ne se shoot pas entre eux et inversement pour le player
                 if (!entities.hasComponent<Position>(enemy)) continue;
 
                 const auto& enemyPos = entities.getComponent<Position>(enemy);
@@ -136,6 +137,16 @@ namespace rtype::game {
                 if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius) && entities.getComponent<Projectile>(missile).lunchByType != 2) {
                     handleCollision(missile, enemy);
                     break;  // Un missile ne touche qu'un seul ennemi
+                }
+            }
+            // Handle collision with players
+            for (EntityID player : players) {
+                const auto& playerPos = entities.getComponent<Position>(player);
+
+                if (checkCollision(missilePos, missileRadius, playerPos, 20.0f) && entities.getComponent<Projectile>(missile).lunchByType != 0) {
+                    entities.getComponent<Player>(player).life--;
+                    if (entities.getComponent<Player>(player).life <= 0)
+                        exit(0); // Le joueur n'a plus de vie et est mort;
                 }
             }
         }
