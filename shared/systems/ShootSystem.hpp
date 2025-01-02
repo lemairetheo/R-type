@@ -27,8 +27,13 @@ namespace rtype {
                     EntityID projectile = entities.createEntity();
 
                     entities.addComponent(projectile, Position{position.x, position.y});
-                    entities.addComponent(projectile, Velocity{300.0f, 0.0f});
-                    entities.addComponent(projectile, Projectile{1.0f, true});
+                    if (entities.hasComponent<Player>(entity)) {
+                        entities.addComponent(projectile, Velocity{300.0f, 0.0f});
+                        entities.addComponent(projectile, Projectile{1.0f, 0, true});
+                    } else if (entities.hasComponent<Enemy>(entity)) {
+                        entities.addComponent(projectile, Velocity{ entities.getComponent<Enemy>(entity).speedShoot, 0.0f});
+                        entities.addComponent(projectile, Projectile{1.0f, 2, true});
+                    }
                 }
             }
         }
