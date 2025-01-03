@@ -17,11 +17,11 @@ namespace rtype::game {
 class GameEngine : public engine::AEngine {
 public:
     GameEngine(network::NetworkManager& networkManager);
+    void handleMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) override;
+    EntityID createNewPlayer(const asio::ip::udp::endpoint& sender);
 
     void broadcastWorldState();
-    EntityID createNewPlayer(const sockaddr_in& sender);
     void update() override;
-    void handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) override;
 
 private:
     // Systèmes et gestion des entités

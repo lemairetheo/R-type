@@ -48,13 +48,13 @@ namespace rtype {
         systems.push_back(std::make_unique<MovementSystem>());
         systems.push_back(std::make_unique<AnimationSystem>());
         systems.push_back(std::make_unique<RenderSystem>(window));
-        network.setMessageCallback([this](const std::vector<uint8_t>& data, const sockaddr_in& sender) {
+        network.setMessageCallback([this](const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
             handleNetworkMessage(data, sender);
         });
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
-    void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
+void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const asio::ip::udp::endpoint& sender) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());

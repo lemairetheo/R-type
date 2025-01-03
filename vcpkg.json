@@ -1,0 +1,14 @@
+{
+  "name": "r-type",
+  "version": "1.0.0",
+  "dependencies": [
+    {
+      "name": "asio"
+    },
+    {
+      "name": "sfml",
+      "features": ["graphics"]
+    }
+  ],
+  "builtin-baseline": "4b3b6201414638abfcd8ef4629dfbd958985667e"
+}

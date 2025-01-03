@@ -17,6 +17,7 @@ target_link_libraries(r-type_server
         PRIVATE
         r-type-shared
 )
+target_link_libraries(r-type_server PRIVATE asio::asio)
 
 # Platform specific configurations
 if(WIN32)
