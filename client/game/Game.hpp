@@ -25,6 +25,8 @@ namespace rtype {
         Game();
         void run();
     private:
+        int playerLife = 3;
+        sf::Text lifeText;
         bool endGame = false;
         sf::Text endGameText;
         sf::Font font;
