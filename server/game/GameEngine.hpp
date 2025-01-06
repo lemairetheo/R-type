@@ -19,9 +19,9 @@ namespace rtype::game {
             GameEngine(network::NetworkManager& networkManager);
 
             void broadcastWorldState();
-            EntityID createNewPlayer(const sockaddr_in& sender);
+            EntityID createNewPlayer(const asio::ip::udp::endpoint& sender);
             void update() override;
-            void handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) override;
+            void handleMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) override;
 
         private:
             // Systèmes et gestion des entités
@@ -55,7 +55,7 @@ namespace rtype::game {
 
 
             // Méthodes de gestion des messages réseau
-            void handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender);
+            void handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender, const std::string& clientId);
             void handlePlayerDisconnection(const std::string& clientId);
 
             // Méthodes de mise à jour du jeu

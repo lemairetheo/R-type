@@ -57,7 +57,7 @@ namespace rtype {
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
-void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const asio::ip::udp::endpoint& sender) {
+void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
@@ -93,6 +93,7 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                     entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
                     RenderComponent renderComp;
                     if (entityUpdate->type == 0) {
+                        std::cout << "player created" << std::endl;
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
@@ -141,6 +142,9 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                 } else {
                     auto& pos = entities.getComponent<Position>(entity);
                     auto& vel = entities.getComponent<Velocity>(entity);
+                    //zif (entityUpdate->type == 0)
+                        //std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
+
                     pos.x = entityUpdate->x;
                     pos.y = entityUpdate->y;
                     vel.dx = entityUpdate->dx;
@@ -182,6 +186,7 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
 
         std::cout << "Game: Successfully connected with ID: " << myPlayerId << std::endl;
         while (window.isOpen()) {
+
             handleEvents();
             update();
             render();
@@ -213,6 +218,8 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
         input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
         input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
 
+        std::cout << "input : " << input.down << std::endl;
+
         if (input.up || input.down || input.left || input.right || input.space) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));
             auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
@@ -242,11 +249,8 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
         lastUpdate = currentTime;
 
-        std::cout << "Number of systems: " << systems.size() << std::endl;
-
         for (size_t i = 0; i < systems.size(); ++i) {
             try {
-                std::cout << "Updating system " << i << std::endl;
                 systems[i]->update(entities, dt);
             } catch (const std::exception& e) {
                 std::cerr << "Exception in system " << i << ": " << e.what() << std::endl;

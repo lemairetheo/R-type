@@ -143,7 +143,6 @@ namespace rtype::game {
             for (EntityID player : players) {
                 const auto& playerPos = entities.getComponent<Position>(player);
 
-                std::cout << entities.getComponent<Player>(player).life << std::endl;
                 if (checkCollision(missilePos, missileRadius, playerPos, 20.0f) && entities.getComponent<Projectile>(missile).lunchByType != 0) {
                     handleCollisionPlayer(missile, player);
                     break;
@@ -176,7 +175,6 @@ namespace rtype::game {
         network.broadcast(packet);
         entities.destroyEntity(missile);
 
-        std::cout << entities.getComponent<Player>(player).life << std::endl;
         if (entities.getComponent<Player>(player).life <= 0) {
             packet = createEntityDeathPacket(player, -1);
             network.broadcast(packet);
@@ -280,9 +278,7 @@ namespace rtype::game {
         return packet;
     }
 
-    void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
-        std::string clientId = std::string(inet_ntoa(sender.sin_addr)) + ":" + std::to_string(ntohs(sender.sin_port));
-
+    void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender, const std::string& clientId) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
@@ -318,16 +314,23 @@ namespace rtype::game {
                     if (inputPacket->up) vel.dy = -speed;
                     if (inputPacket->down) vel.dy = speed;
                 }
-            }
+                }
         }
     }
+
+
     void GameEngine::handleMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
         sockaddr_in addr{};
         addr.sin_family = AF_INET;
         addr.sin_port = htons(sender.port());
         addr.sin_addr.s_addr = sender.address().to_v4().to_ulong();
-        handleNetworkMessage(data, addr);
+
+        // Créez un identifiant client à partir de l'IP et du port
+        std::string clientId = sender.address().to_string() + ":" + std::to_string(sender.port());
+
+        handleNetworkMessage(data, addr, clientId);
     }
+
 
     void GameEngine::handlePlayerDisconnection(const std::string& clientId) {
         if (auto it = playerEntities.find(clientId); it != playerEntities.end()) {
