@@ -1,4 +1,14 @@
-cmake_minimum_required(VERSION 3.30)
+cmake_minimum_required(VERSION 3.29)
+if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg")
+    find_package(Git REQUIRED)
+    execute_process(
+            COMMAND ${GIT_EXECUTABLE} clone https://github.com/Microsoft/vcpkg.git
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+            RESULT_VARIABLE GIT_RESULT
+    )
+endif()
+
+
 # Configuration de vcpkg - AJOUTEZ CECI AU DÉBUT
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
     set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake"
