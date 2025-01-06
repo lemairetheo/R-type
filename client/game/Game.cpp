@@ -7,7 +7,10 @@
 namespace rtype {
     Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
         std::cout << "Game: Initializing..." << std::endl;
-
+        lifeText.setFont(font);
+        lifeText.setCharacterSize(20);
+        lifeText.setFillColor(sf::Color::White);
+        lifeText.setPosition(10, 10);
         auto& resources = ResourceManager::getInstance();
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
@@ -86,6 +89,12 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
             case network::PacketType::ENTITY_UPDATE: {
                 const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
                 EntityID entity = entityUpdate->entityId;
+
+                if (entityUpdate->type == 0 && entity == myPlayerId) {
+                    playerLife = entityUpdate->life;
+                    lifeText.setString("Life: " + std::to_string(playerLife));
+                }
+
                 if (!entities.hasComponent<Position>(entity)) {
                     std::cout << "Game: Entity doesn't exist : " << entityUpdate->type << std::endl;
                     entities.createEntity();
@@ -267,6 +276,7 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
             for (auto& system : systems) {
                 system->update(entities, 0);
             }
+            window.draw(lifeText);
         }
 
         if (endGame) {

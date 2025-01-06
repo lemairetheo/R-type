@@ -39,7 +39,12 @@ namespace rtype::game {
                 update->y = pos.y;
                 update->dx = vel.dx;
                 update->dy = vel.dy;
-                if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
+                update->life = 0;
+
+                if (entities.hasComponent<Player>(entity)) {
+                    update->type = 0;
+                    update->life = entities.getComponent<Player>(entity).life;
+                } else if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
                     update->type = 1;
                 else if (entities.hasComponent<Enemy>(entity)) {
                     auto it = entities.hasTypeEnemy<Enemy>(entity);
@@ -56,7 +61,7 @@ namespace rtype::game {
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
-        entities.addComponent(playerEntity, Player{0, 3});
+        entities.addComponent(playerEntity, Player{0, 10});
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;

@@ -58,7 +58,7 @@ namespace rtype::network {
         float y;             ///< Position Y
         float dx;            ///< Vélocité X
         float dy;            ///< Vélocité Y
-
+        int life;
     };
 
 
