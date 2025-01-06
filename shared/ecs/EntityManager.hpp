@@ -67,6 +67,29 @@ namespace rtype {
             return static_cast<const SparseArray<Component>*>(it->second.get())->operator[](entity).has_value();
         }
 
+        template<typename Component>
+        int hasTypeEnemy(EntityID entity) const {
+            auto typeIndex = std::type_index(typeid(Component));
+            auto it = _components.find(typeIndex);
+
+            if (it == _components.end())
+                return 0;
+
+            const auto& sparseArray = *static_cast<const SparseArray<Component>*>(it->second.get());
+            if (!sparseArray[entity].has_value())
+                return 0;
+
+            const auto& enemyComponent = sparseArray[entity].value();
+
+            if (enemyComponent.level == 1)
+                return 2;
+            else if (enemyComponent.level == 2)
+                return 3;
+            else if (enemyComponent.level == 3)
+                return 4;
+            return 0;
+        }
+
         void resetEntityComponents(EntityID entity) {
             for (auto& [typeIndex, componentArray] : _components) {
                 if (componentArray) {

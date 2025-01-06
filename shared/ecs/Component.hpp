@@ -14,6 +14,7 @@ namespace rtype {
 
     struct Player {
         int score;
+        int life;
         int damage;
     };
 
@@ -37,11 +38,14 @@ namespace rtype {
 
     struct Projectile {
         float damage;
+        int lunchByType; // Si lancer par un joueur ou enemies (0 = player, 2 enemies)
         bool isActive;
     };
 
     struct Enemy {
         int damage;
-        int life;
+        float life;
+        int level;
+        float speedShoot; // Velocity
     };
 }
