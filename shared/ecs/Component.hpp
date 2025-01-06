@@ -24,6 +24,7 @@ namespace rtype {
         bool left = false;
         bool right = false;
         bool space = false;
+        bool Ultimate = false;
     };
 
     struct PendingSpawn {
@@ -40,6 +41,7 @@ namespace rtype {
         float damage;
         int lunchByType; // Si lancer par un joueur ou enemies (0 = player, 2 enemies)
         bool isActive;
+        bool isUltimate;
     };
 
     struct Enemy {
@@ -48,4 +50,5 @@ namespace rtype {
         int level;
         float speedShoot; // Velocity
     };
+
 }
