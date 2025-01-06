@@ -5,7 +5,7 @@
 #include "Game.hpp"
 
 namespace rtype {
-    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
+    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242), menu(800,600) {
         std::cout << "Game: Initializing..." << std::endl;
 
         auto& resources = ResourceManager::getInstance();
@@ -126,7 +126,7 @@ namespace rtype {
     }
 
     void Game::run() {
-        Menu menu(800, 600);
+
         while (menu.getIsPlaying() == false) {
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed)
@@ -189,11 +189,19 @@ namespace rtype {
         }
 
         InputComponent input;
-        input.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
-        input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-        input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Q);
-        input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-        input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+        if (menu.getRightMode() == true) {
+            input.up = sf::Keyboard::isKeyPressed(sf::Keyboard::I);
+            input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
+            input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::J);
+            input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::L);
+            input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+        } else {
+            input.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
+            input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+            input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Q);
+            input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+            input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+        }
 
         if (input.up || input.down || input.left || input.right || input.space) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));

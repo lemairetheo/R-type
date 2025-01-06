@@ -4,7 +4,7 @@ namespace rtype {
 
     Button::Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text,
                    const sf::Color& textColor, const sf::Color& normalColor, const sf::Color& hoverColor, const sf::Color& activeColor)
-        : normalColor(normalColor), hoverColor(hoverColor), activeColor(activeColor),
+        : normalColor(normalColor), hoverColor(hoverColor), activeColor(activeColor), _text(text),
           isActive(false), isHovered(false), currentScale(1.0f), targetScale(1.0f), onClick(nullptr) {
         if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
             throw std::runtime_error("Failed to load font!");
@@ -28,8 +28,6 @@ namespace rtype {
             targetScale = 1.1f;
 
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left) {
-                isActive = !isActive;
-                buttonShape.setFillColor(isActive ? activeColor : normalColor);
 
                 if (onClick) {
                     onClick();
@@ -44,13 +42,21 @@ namespace rtype {
         return false;
     }
 
-    void Button::render(sf::RenderWindow& window) {
+    void Button::render(sf::RenderWindow& window, std::string type) {
         currentScale += (targetScale - currentScale) * 0.1f;
 
         buttonShape.setScale(currentScale, currentScale);
 
         if (isHovered) {
             buttonShape.setFillColor(hoverColor);
+        } else {
+            if (type == "right" && _text == "RIGHT-HANDED MODE") {
+                buttonShape.setFillColor(activeColor);
+            } else if (type == "left" && _text == "LEFT-HANDED MODE") {
+                buttonShape.setFillColor(activeColor);
+            } else {
+                buttonShape.setFillColor(normalColor);
+            }
         }
 
         buttonText.setCharacterSize(static_cast<unsigned int>(16 * currentScale));
@@ -108,9 +114,11 @@ namespace rtype {
     }
 
     void Button::setRectangleShape(sf::Color color) {
-      buttonShape.setFillColor(color);
+        buttonShape.setFillColor(color);
     }
 
-
+    sf::Text Button::getButtonText() {
+        return buttonText;
+    }
 
 }

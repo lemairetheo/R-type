@@ -40,5 +40,6 @@ namespace rtype {
         void render();
         EntityID myPlayerId = 0;
         sf::Event event;
+        Menu menu;
     };
 }

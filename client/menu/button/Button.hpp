@@ -14,7 +14,7 @@ namespace rtype {
                const sf::Color& hoverColor = sf::Color::Yellow, const sf::Color& activeColor = sf::Color::Green);
 
         bool handleEvent(const sf::Event& event, const sf::RenderWindow& window) override;
-        void render(sf::RenderWindow& window) override;
+        void render(sf::RenderWindow& window, std::string type) override;
 
         std::string getValue() const override; // Retourne "ON" ou "OFF"
         void setPosition(const sf::Vector2f& position) override;
@@ -26,11 +26,13 @@ namespace rtype {
         void setOnClick(std::function<void()> callback);
         sf::RectangleShape getRectangleShape() const;
         void setRectangleShape(sf::Color color);
+        sf::Text getButtonText();
 
     private:
         sf::RectangleShape buttonShape;
         sf::Text buttonText;
         sf::Font font;
+        std::string _text;
 
         sf::Color normalColor;
         sf::Color hoverColor;

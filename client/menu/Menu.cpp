@@ -9,15 +9,14 @@ namespace rtype {
         inMenu = true;
         left_mode = true;
         exit_settings_button = new Button({400, 500}, {200, 50}, "EXIT", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
-        right_mode_button = new Button({550, 200}, {200, 50}, "RIGHT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
-        left_mode_button = new Button({250, 200}, {200, 50}, "LEFT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
+        right_mode_button = new Button({550, 200}, {200, 50}, "RIGHT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+        left_mode_button = new Button({250, 200}, {200, 50}, "LEFT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+        left_mode_button->setRectangleShape(sf::Color::Yellow);
     };
 
     const Button &Menu::getPlayButton() {
         return *play_button;
     }
-
-
 
     void Menu::render(sf::RenderWindow &window, sf::Event &event) {
         if (inMenu) {
@@ -25,19 +24,20 @@ namespace rtype {
                 isPlaying = true;
                 inMenu = false;
             }
-            play_button->render(window);
+            play_button->render(window, "play");
+
             if (settings_button->handleEvent(event, window) == true) {
                 isInSettings = true;
                 inMenu = false;
             }
-            settings_button->render(window);
+            settings_button->render(window, "settings");
         }
         if (isInSettings) {
             if (exit_settings_button->handleEvent(event, window) == true) {
                 isInSettings = false;
                 inMenu = true;
             }
-            exit_settings_button->render(window);
+            exit_settings_button->render(window, "exit");
             if (left_mode_button->handleEvent(event, window) == true) {
                 left_mode = true;
                 right_mode = false;
@@ -50,13 +50,23 @@ namespace rtype {
                 left_mode_button->setRectangleShape(sf::Color::White);
                 right_mode_button->setRectangleShape(sf::Color::Yellow);
             }
-            right_mode_button->render(window);
-            left_mode_button->render(window);
+            if (right_mode) {
+                right_mode_button->render(window, "right");
+                left_mode_button->render(window, "right");
+            } else if (left_mode) {
+                right_mode_button->render(window, "left");
+                left_mode_button->render(window, "left");
+            }
+
         }
     }
 
     bool Menu::getIsPlaying() {
         return isPlaying;
+    }
+
+    bool Menu::getRightMode() {
+        return right_mode;
     }
 
 

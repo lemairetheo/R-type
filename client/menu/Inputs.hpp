@@ -11,7 +11,7 @@
             virtual ~Inputs() = default;
 
             virtual bool handleEvent(const sf::Event& event, const sf::RenderWindow& window) = 0;
-            virtual void render(sf::RenderWindow& window) = 0;
+            virtual void render(sf::RenderWindow& window, std::string type) = 0;
 
             virtual std::string getValue() const = 0;
             virtual void setPosition(const sf::Vector2f& position) = 0;

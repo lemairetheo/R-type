@@ -14,6 +14,8 @@ namespace rtype {
 
         bool getIsPlaying();
 
+        bool getRightMode();
+
     private:
         bool isPlaying = false;
         bool isInSettings = false;
