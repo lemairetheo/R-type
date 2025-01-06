@@ -56,7 +56,7 @@ namespace rtype::game {
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
-        entities.addComponent(playerEntity, Player{0, 1});
+        entities.addComponent(playerEntity, Player{0, 3});
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
@@ -78,6 +78,7 @@ namespace rtype::game {
         lastUpdate = currentTime;
 
         handleEnemySpawns(dt);
+        handleEnemyShoot();
         handleCollisions();
 
         for (auto& system : systems) {
@@ -99,9 +100,26 @@ namespace rtype::game {
         }
     }
 
+    void GameEngine::handleEnemyShoot() {
+        auto currentTime = std::chrono::steady_clock::now();
+        float dt = std::chrono::duration<float>(currentTime - lastUpdateEnemiesShoot).count();
+
+        if (dt >= 1.2f)
+            lastUpdateEnemiesShoot = currentTime;
+        else
+            return;
+
+        auto enemies = entities.getEntitiesWithComponents<Enemy>();
+
+        for (EntityID enemy : enemies) {
+            shoot_system_.update(entities, enemy);
+        }
+    }
+
     void GameEngine::handleCollisions() {
         auto missiles = entities.getEntitiesWithComponents<Projectile>();
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        auto players = entities.getEntitiesWithComponents<Player>();
 
         for (EntityID missile : missiles) {
             if (!entities.hasComponent<Position>(missile)) continue;
@@ -109,15 +127,26 @@ namespace rtype::game {
             const auto& missilePos = entities.getComponent<Position>(missile);
             const float missileRadius = 5.0f;
 
-            for (EntityID enemy : enemies) {
+            // Handle collision with enemies
+            for (EntityID enemy: enemies) {
                 if (!entities.hasComponent<Position>(enemy)) continue;
 
                 const auto& enemyPos = entities.getComponent<Position>(enemy);
                 const float enemyRadius = 20.0f;
 
-                if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius)) {
+                if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius) && entities.getComponent<Projectile>(missile).lunchByType != 2) {
                     handleCollision(missile, enemy);
                     break;  // Un missile ne touche qu'un seul ennemi
+                }
+            }
+            // Handle collision with players
+            for (EntityID player : players) {
+                const auto& playerPos = entities.getComponent<Position>(player);
+
+                std::cout << entities.getComponent<Player>(player).life << std::endl;
+                if (checkCollision(missilePos, missileRadius, playerPos, 20.0f) && entities.getComponent<Projectile>(missile).lunchByType != 0) {
+                    handleCollisionPlayer(missile, player);
+                    break;
                 }
             }
         }
@@ -141,13 +170,27 @@ namespace rtype::game {
         }
     }
 
-    std::tuple<float, int> GameEngine::getEnemyAttributes(int level) {
+    void GameEngine::handleCollisionPlayer(EntityID missile, EntityID player) {
+        entities.getComponent<Player>(player).life--;
+        auto packet = createEntityDeathPacket(missile, -1);
+        network.broadcast(packet);
+        entities.destroyEntity(missile);
+
+        std::cout << entities.getComponent<Player>(player).life << std::endl;
+        if (entities.getComponent<Player>(player).life <= 0) {
+            packet = createEntityDeathPacket(player, -1);
+            network.broadcast(packet);
+            exit(0); // Le joueur n'a plus de vie et est mort -> À modifier (le if) pour avoir le comportement souhaité
+        }
+    }
+
+    std::tuple<float, int, float> GameEngine::getEnemyAttributes(int level) {
         auto it = enemyAttributes.find(level);
         if (it != enemyAttributes.end()) {
             return it->second;
         }
 
-        return {10.0f, 5}; // Default
+        return {10.0f, 5, -30.0}; // Default
     }
 
     void GameEngine::spawnEnemy(float x, float y, int level) {
@@ -174,9 +217,9 @@ namespace rtype::game {
         } else {
             enemyLevel = 1;
         }
-        auto [life, damage] = getEnemyAttributes(enemyLevel);
+        auto [life, damage, speedShoot] = getEnemyAttributes(enemyLevel);
 
-        entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel});
+        entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
     }
 
     bool GameEngine::checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
@@ -206,36 +249,36 @@ namespace rtype::game {
         return packet;
     }
 
-void GameEngine::updatePlayerScore() {
-    for (EntityID entity : entities.getEntitiesWithComponents<Player>()) {
-        auto& player = entities.getComponent<Player>(entity);
-        player.score++;
+    void GameEngine::updatePlayerScore() {
+        for (EntityID entity : entities.getEntitiesWithComponents<Player>()) {
+            auto& player = entities.getComponent<Player>(entity);
+            player.score++;
 
-        if (player.score >= 10) {
-            broadcastEndGameState();
-            break;
+            if (player.score >= 10) {
+                broadcastEndGameState();
+                break;
+            }
         }
     }
-}
 
-void GameEngine::broadcastEndGameState() {
-    auto packet = createEndGamePacket();
-    network.broadcast(packet);
-}
+    void GameEngine::broadcastEndGameState() {
+        auto packet = createEndGamePacket();
+        network.broadcast(packet);
+    }
 
-std::vector<uint8_t> GameEngine::createEndGamePacket() const {
-    std::vector<uint8_t> packet(sizeof(network::PacketHeader));
-    auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
+    std::vector<uint8_t> GameEngine::createEndGamePacket() const {
+        std::vector<uint8_t> packet(sizeof(network::PacketHeader));
+        auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
 
-    header->magic[0] = 'R';
-    header->magic[1] = 'T';
-    header->version = 1;
-    header->type = static_cast<uint8_t>(network::PacketType::END_GAME_STATE);
-    header->length = packet.size();
-    header->sequence = 0;
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(network::PacketType::END_GAME_STATE);
+        header->length = packet.size();
+        header->sequence = 0;
 
-    return packet;
-}
+        return packet;
+    }
 
     void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
         std::string clientId = std::string(inet_ntoa(sender.sin_addr)) + ":" + std::to_string(ntohs(sender.sin_port));
@@ -267,14 +310,14 @@ std::vector<uint8_t> GameEngine::createEndGamePacket() const {
                     input.space = false;
                 }
 
-                    if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space) {
-                        vel.dx = 0.0f;
-                        vel.dy = 0.0f;
-                        if (inputPacket->left) vel.dx = -speed;
-                        if (inputPacket->right) vel.dx = speed;
-                        if (inputPacket->up) vel.dy = -speed;
-                        if (inputPacket->down) vel.dy = speed;
-                    }
+                if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space) {
+                    vel.dx = 0.0f;
+                    vel.dy = 0.0f;
+                    if (inputPacket->left) vel.dx = -speed;
+                    if (inputPacket->right) vel.dx = speed;
+                    if (inputPacket->up) vel.dy = -speed;
+                    if (inputPacket->down) vel.dy = speed;
+                }
             }
         }
     }
