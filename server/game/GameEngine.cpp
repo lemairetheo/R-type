@@ -41,9 +41,10 @@ namespace rtype::game {
                 update->dy = vel.dy;
                 if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
                     update->type = 1;
-                else if (entities.hasComponent<Enemy>(entity))
-                    update->type = 2;
-                else
+                else if (entities.hasComponent<Enemy>(entity)) {
+                    auto it = entities.hasTypeEnemy<Enemy>(entity);
+                    update->type = it;
+                } else
                     update->type = 0;
                 network.broadcast(packet);
             }
@@ -90,7 +91,7 @@ namespace rtype::game {
         for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end(); ) {
             it->delay -= dt;
             if (it->delay <= 0) {
-                spawnEnemy(it->x, it->y);
+                spawnEnemy(it->x, it->y, 2);
                 it = enemySpawnQueue.erase(it);
             } else {
                 ++it;
@@ -123,23 +124,59 @@ namespace rtype::game {
     }
 
     void GameEngine::handleCollision(EntityID missile, EntityID enemy) {
-        // Mise à jour du score
-        updatePlayerScore();
+        entities.getComponent<Enemy>(enemy).life -= entities.getComponent<Projectile>(missile).damage;
+        if (entities.getComponent<Enemy>(enemy).life <= 0) {
+            updatePlayerScore(); // Mise à jour du score
 
-        // Envoi du paquet de suppression
-            auto packet = createEntityDeathPacket(missile, enemy);  // Correction : utilisez createEntityDeathPacket
+            auto packet = createEntityDeathPacket(missile, enemy);
             network.broadcast(packet);
 
-        // Destruction des entités
-        entities.destroyEntity(missile);
-        entities.destroyEntity(enemy);
+            entities.destroyEntity(enemy);
+            entities.destroyEntity(missile);
+        } else {
+            auto packet = createEntityDeathPacket(missile, -1);
+            network.broadcast(packet);
+
+            entities.destroyEntity(missile);
+        }
     }
 
-    void GameEngine::spawnEnemy(float x, float y) {
+    std::tuple<float, int> GameEngine::getEnemyAttributes(int level) {
+        auto it = enemyAttributes.find(level);
+        if (it != enemyAttributes.end()) {
+            return it->second;
+        }
+
+        return {10.0f, 5}; // Default
+    }
+
+    void GameEngine::spawnEnemy(float x, float y, int level) {
         EntityID enemyEntity = entities.createEntity();
         entities.addComponent(enemyEntity, Position{x, y});
         entities.addComponent(enemyEntity, Velocity{-50.0f, 0.0f});
-        entities.addComponent(enemyEntity, Enemy{1, 1});
+
+        int enemyLevel;
+
+        float randValue = dis(gen);
+
+        if (level == 1) {
+            enemyLevel = 1;
+        } else if (level == 2) {
+            if (randValue <= 0.75f)
+                enemyLevel = 1;
+            else
+                enemyLevel = 2;
+        } else if (level == 3) {
+            if (randValue <= 0.7f)
+                enemyLevel = 1;
+            else
+                enemyLevel = 3;
+        } else {
+            enemyLevel = 1;
+        }
+        auto [life, damage] = getEnemyAttributes(enemyLevel);
+
+        entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel});
     }
 
     bool GameEngine::checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {

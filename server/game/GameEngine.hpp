@@ -11,6 +11,7 @@
 #include <vector>
 #include <string>
 #include <chrono>
+#include <random>
 
 namespace rtype::game {
 
@@ -40,6 +41,19 @@ private:
     // File d'attente pour les spawns d'ennemis
     std::vector<PendingSpawn> enemySpawnQueue;
 
+    // Initialise le générateur aléatoire
+    std::random_device rd;
+    std::mt19937 gen;
+    std::uniform_real_distribution<float> dis;
+
+    // Niveau possible des enemies -> {lvl, {life, damage}}
+    static inline const std::unordered_map<int, std::pair<float, int>> enemyAttributes = {
+        {1, {1, 5}},
+        {2, {3, 5}},
+        {3, {5, 5}}
+    };
+
+
     // Méthodes de gestion des messages réseau
     void handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender);
     void handlePlayerDisconnection(const std::string& clientId);
@@ -54,7 +68,8 @@ private:
     // Méthodes utilitaires
     bool checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2);
     std::vector<uint8_t> createEndGamePacket() const;
-    void spawnEnemy(float x, float y);
+    static std::tuple<float, int> getEnemyAttributes(int level);
+    void spawnEnemy(float x, float y, int level);
     std::string formatClientId(const sockaddr_in& client) const;
 
     // Méthodes de gestion des paquets

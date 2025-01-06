@@ -12,8 +12,11 @@ namespace rtype {
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
         resources.loadTexture("player", "assets/sprites/ship.gif");
+        resources.loadTexture("player", "assets/sprites/ship.gif");
         resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
-        resources.loadTexture("enemy", "assets/sprites/r-typesheet7.gif");
+        resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
+        resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
+        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet8.gif");
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -70,7 +73,7 @@ namespace rtype {
             }
             case network::PacketType::ENTITY_DEATH: {
                 const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
-                if (response->entityId) {
+                if (response->entityId != -1) {
                     entities.getComponents<Enemy>().erase(response->entityId);
                     entities.destroyEntity(response->entityId);
                 }
@@ -98,12 +101,42 @@ namespace rtype {
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
-                    } else if (entityUpdate->type == 2) {
+                    } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
+                        static const std::unordered_map<int, std::string> textureMap = {
+                            {2, "enemy_lvl_1"},
+                            {3, "enemy_lvl_2"},
+                            {4, "enemy_lvl_3"}
+                        };
+
                         entities.addComponent(entity, Enemy{1, true});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("enemy"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 34, 35));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
+
+                        auto it = textureMap.find(entityUpdate->type);
+                        if (it != textureMap.end()) {
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
+                            if (it->first == 2) {
+                                renderComp.frameWidth = 36;
+                                renderComp.frameHeight = 34;
+                                renderComp.Y = 0;
+                                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
+                            }
+                            else if (it->first == 3) {
+                                renderComp.frameWidth = 34;
+                                renderComp.frameHeight = 28;
+                                renderComp.Y = 1;
+                                renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
+                            }
+                            else if (it->first == 4) {
+                                renderComp.frameWidth = 48;
+                                renderComp.frameHeight = 52;
+                                renderComp.Y = 7;
+                                renderComp.frameCount = 3;
+                                renderComp.sprite.setTextureRect(sf::IntRect(3, 7, 48, 52));
+                            }
+                            renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
+
+                        }
                     }
+
                     entities.addComponent(entity, renderComp);
                 } else {
                     auto& pos = entities.getComponent<Position>(entity);
