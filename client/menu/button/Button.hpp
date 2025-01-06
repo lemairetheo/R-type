@@ -11,7 +11,7 @@ namespace rtype {
     public:
         Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text,
                const sf::Color& textColor = sf::Color::Black, const sf::Color& normalColor = sf::Color::White,
-               const sf::Color& hoverColor = sf::Color::Yellow);
+               const sf::Color& hoverColor = sf::Color::Yellow, const sf::Color& activeColor = sf::Color::Green);
 
         bool handleEvent(const sf::Event& event, const sf::RenderWindow& window) override;
         void render(sf::RenderWindow& window) override;
@@ -24,6 +24,8 @@ namespace rtype {
         void setText(const std::string& text);
         void setTextColor(const sf::Color& color);
         void setOnClick(std::function<void()> callback);
+        sf::RectangleShape getRectangleShape() const;
+        void setRectangleShape(sf::Color color);
 
     private:
         sf::RectangleShape buttonShape;
