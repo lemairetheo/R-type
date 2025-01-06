@@ -9,11 +9,11 @@ namespace rtype {
         std::cout << "Game: Initializing..." << std::endl;
 
         auto& resources = ResourceManager::getInstance();
-        resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
-        resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
-        resources.loadTexture("player", "assets/sprites/ship.gif");
-        resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
-        resources.loadTexture("enemy", "assets/sprites/r-typesheet7.gif");
+        resources.loadTexture("bg-blue", "./client/assets/background/bg-blue.png");
+        resources.loadTexture("bg-stars", "./client/assets/background/bg-stars.png");
+        resources.loadTexture("player", "./client/assets/sprites/ship.gif");
+        resources.loadTexture("sheet", "./client/assets/sprites/r-typesheet1.gif");
+        resources.loadTexture("enemy", "./client/assets/sprites/r-typesheet7.gif");
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -23,7 +23,7 @@ namespace rtype {
             auto textureSize = bgComp.sprite.getTexture()->getSize();
             bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
             entities.addComponent(bgDeep, bgComp);
-            if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
+            if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
                 std::cerr << "Error loading font" << std::endl;
             }
             endGameText.setFont(font);
@@ -126,6 +126,21 @@ namespace rtype {
     }
 
     void Game::run() {
+        Menu menu(800, 600);
+        while (menu.getIsPlaying() == false) {
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            }
+            window.clear();
+            update();
+            for (auto& system : systems) {
+                system->update(entities, 0);
+            }
+            menu.render(window, event);
+            window.display();
+        }
+
         network.start();
         std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
         auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());
