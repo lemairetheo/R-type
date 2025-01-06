@@ -51,8 +51,8 @@ namespace rtype::game {
         }
     }
 
-    EntityID GameEngine::createNewPlayer(const sockaddr_in& client) {
-        std::string clientId = std::string(inet_ntoa(client.sin_addr)) + ":" + std::to_string(ntohs(client.sin_port));
+    EntityID GameEngine::createNewPlayer(const asio::ip::udp::endpoint& sender) {
+        std::string clientId = sender.address().to_string() + ":" + std::to_string(sender.port());
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
@@ -321,8 +321,12 @@ namespace rtype::game {
             }
         }
     }
-    void GameEngine::handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
-        handleNetworkMessage(data, sender);
+    void GameEngine::handleMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
+        sockaddr_in addr{};
+        addr.sin_family = AF_INET;
+        addr.sin_port = htons(sender.port());
+        addr.sin_addr.s_addr = sender.address().to_v4().to_ulong();
+        handleNetworkMessage(data, addr);
     }
 
     void GameEngine::handlePlayerDisconnection(const std::string& clientId) {

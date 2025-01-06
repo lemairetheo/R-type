@@ -5,11 +5,8 @@
 
 #pragma once
 #include "../shared/abstracts/ANetwork.hpp"
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+#include <asio.hpp>
 #include <thread>
-#include <unistd.h>
 #include <atomic>
 
 namespace rtype::network {
@@ -19,18 +16,23 @@ namespace rtype::network {
      */
     class NetworkClient : public ANetwork {
     public:
-        explicit NetworkClient(uint16_t port) : ANetwork(port), running(false), sock(-1) {}
+        explicit NetworkClient(uint16_t port);
         void start() override;
         void stop() override;
         void sendTo(const std::vector<uint8_t>& data);
-        void setMessageCallback(std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> callback) override;
+        void setMessageCallback(std::function<void(const std::vector<uint8_t>&, const asio::ip::udp::endpoint&)> callback) override;
 
     private:
         void receiveLoop();
-        int sock;
-        sockaddr_in serverAddr;
-        std::thread receiveThread;
+        void startReceive();
+        void handleReceive(const asio::error_code& error, std::size_t bytes_transferred);
+
+        asio::io_context io_context;
+        asio::ip::udp::socket socket;
+        asio::ip::udp::endpoint server_endpoint;
+        std::thread io_thread;
         std::atomic<bool> running;
-        std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> messageCallback;
+        std::vector<uint8_t> receive_buffer;
+        std::function<void(const std::vector<uint8_t>&, const asio::ip::udp::endpoint&)> messageCallback;
     };
 }

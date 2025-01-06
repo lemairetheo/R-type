@@ -1,98 +1,124 @@
 #include "NetworkManager.hpp"
-#include <iostream>
-#include <cstring>
 
 namespace rtype::network {
 
-    NetworkManager::NetworkManager(uint16_t port) : ANetwork(port), sock(-1), running(false) {}
+    NetworkManager::NetworkManager(uint16_t port)
+        : ANetwork(port)
+        , socket(io_context)
+        , running(false)
+        , receive_buffer(1024) {
+    }
 
     NetworkManager::~NetworkManager() {
         stop();
     }
 
     void NetworkManager::start() {
-        if (running)
-            return;
+        if (running) return;
 
-        sock = socket(AF_INET, SOCK_DGRAM, 0);
-        if (sock < 0) {
-            throw std::runtime_error("Failed to create socket");
+        try {
+            socket.open(asio::ip::udp::v4());
+            socket.bind(asio::ip::udp::endpoint(asio::ip::address_v4::any(), port));
+
+            running = true;
+            startReceive();
+
+            io_thread = std::thread([this]() {
+                try {
+                    io_context.run();
+                } catch (const std::exception& e) {
+                    std::cout << "Network error: " << e.what() << std::endl;
+                }
+            });
+
+            std::cout << "Network Manager started on port " << port << std::endl;
+        } catch (const std::exception& e) {
+            throw std::runtime_error("Failed to start network: " + std::string(e.what()));
         }
-
-        sockaddr_in serverAddr{};
-        serverAddr.sin_family = AF_INET;
-        serverAddr.sin_port = htons(port);
-        serverAddr.sin_addr.s_addr = INADDR_ANY;
-
-        if (bind(sock, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) < 0) {
-            close(sock);
-            throw std::runtime_error("Failed to bind socket");
-        }
-
-        running = true;
-        receiveThread = std::thread(&NetworkManager::receiveLoop, this);
-        std::cout << "Network Manager started on port " << port << std::endl;
     }
 
     void NetworkManager::stop() {
-        if (!running)
-            return;
+        if (!running) return;
 
         running = false;
-        if (receiveThread.joinable()) {
-            receiveThread.join();
+        io_context.stop();
+
+        if (socket.is_open()) {
+            socket.close();
         }
 
-        if (sock >= 0) {
-            close(sock);
-            sock = -1;
+        if (io_thread.joinable()) {
+            io_thread.join();
         }
+
         std::cout << "Network Manager stopped" << std::endl;
     }
 
-    void NetworkManager::setMessageCallback(std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> callback) {
+    void NetworkManager::setMessageCallback(
+        std::function<void(const std::vector<uint8_t>&, const asio::ip::udp::endpoint&)> callback) {
         messageCallback = std::move(callback);
     }
 
     void NetworkManager::broadcast(const std::vector<uint8_t>& data) {
-        for (const auto& [id, client] : clients)
-            this->sendTo(data, client);
+        for (const auto& [id, client] : clients) {
+            sendTo(data, client);
+        }
     }
 
-    void NetworkManager::sendTo(const std::vector<uint8_t>& data, const sockaddr_in& client) {
-        if (sock < 0) return;
-        sendto(sock, data.data(), data.size(), 0, (struct sockaddr*)&client, sizeof(client));
+    void NetworkManager::sendTo(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& client) {
+        socket.async_send_to(
+            asio::buffer(data),
+            client,
+            [](const asio::error_code& error, std::size_t /*bytes_transferred*/) {
+                if (error) {
+                    std::cout << "Send error: " << error.message() << std::endl;
+                }
+            }
+        );
     }
 
+    void NetworkManager::startReceive() {
+        socket.async_receive_from(
+            asio::buffer(receive_buffer),
+            sender_endpoint,
+            [this](const asio::error_code& error, std::size_t bytes_transferred) {
+                this->handleReceive(error, bytes_transferred);
+            }
+        );
+    }
+
+    void NetworkManager::handleReceive(const asio::error_code& error, std::size_t bytes_transferred) {
+        if (!error && bytes_transferred > 0) {
+            const auto* header = reinterpret_cast<const PacketHeader*>(receive_buffer.data());
+            std::string clientId = sender_endpoint.address().to_string() + ":" +
+                                 std::to_string(sender_endpoint.port());
+
+            if (header->type == static_cast<uint8_t>(PacketType::CONNECT_REQUEST)) {
+                if (clients.find(clientId) == clients.end()) {
+                    clients[clientId] = sender_endpoint;
+                    std::cout << "New client connected: " << clientId << std::endl;
+                }
+            }
+
+            if (messageCallback) {
+                std::vector<uint8_t> received_data(
+                    receive_buffer.begin(),
+                    receive_buffer.begin() + bytes_transferred
+                );
+                messageCallback(received_data, sender_endpoint);
+            }
+
+            if (running) {
+                startReceive();
+            }
+        } else if (error != asio::error::operation_aborted && running) {
+            std::cout << "Receive error: " << error.message() << std::endl;
+            startReceive();
+        }
+    }
 
     void NetworkManager::update() {
         checkTimeouts();
-    }
-
-    void NetworkManager::receiveLoop() {
-        std::vector<uint8_t> buffer(1024);
-        sockaddr_in clientAddr{};
-        socklen_t clientAddrLen = sizeof(clientAddr);
-
-        while (running) {
-            std::memset(&clientAddr, 0, sizeof(clientAddr));
-            ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0,
-                                      (struct sockaddr*)&clientAddr, &clientAddrLen);
-
-            if (received > 0) {
-                const auto* header = reinterpret_cast<const PacketHeader*>(buffer.data());
-                std::string clientId = std::string(inet_ntoa(clientAddr.sin_addr)) + ":" + std::to_string(ntohs(clientAddr.sin_port));
-                if (header->type == static_cast<uint8_t>(PacketType::CONNECT_REQUEST)) {
-                    if (clients.find(clientId) == clients.end()) {
-                        clients[clientId] = clientAddr;
-                        std::cout << "New client connected: " << clientId << std::endl;
-                    }
-                }
-                if (messageCallback) {
-                    messageCallback(std::vector(buffer.begin(), buffer.begin() + received), clientAddr);
-                }
-            }
-        }
     }
 
     void NetworkManager::updateClientActivity(const std::string& clientId) {
@@ -119,7 +145,6 @@ namespace rtype::network {
             clients.erase(it);
             clientLastSeen.erase(clientId);
 
-            // Notifier les autres clients
             std::vector<uint8_t> packet(sizeof(PacketHeader));
             auto* header = reinterpret_cast<PacketHeader*>(packet.data());
             header->magic[0] = 'R';
@@ -131,4 +156,4 @@ namespace rtype::network {
             broadcast(packet);
         }
     }
-} // namespace rtype::network
+}
