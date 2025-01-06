@@ -68,6 +68,7 @@ namespace rtype::network {
         bool left;
         bool right;
         bool space;
+        bool ultimate;
     };
 
 #pragma pack(pop)

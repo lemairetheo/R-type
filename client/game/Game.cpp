@@ -14,6 +14,7 @@ namespace rtype {
         resources.loadTexture("player", "assets/sprites/ship.gif");
         resources.loadTexture("player", "assets/sprites/ship.gif");
         resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
+        resources.loadTexture("ultimate", "assets/sprites/r-typesheet2.gif");
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
         resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet8.gif");
@@ -87,7 +88,6 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                 const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
                 EntityID entity = entityUpdate->entityId;
                 if (!entities.hasComponent<Position>(entity)) {
-                    std::cout << "Game: Entity doesn't exist : " << entityUpdate->type << std::endl;
                     entities.createEntity();
                     entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
                     entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
@@ -101,6 +101,11 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                         entities.addComponent(entity, Projectile{10.0f, true});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
+                        renderComp.sprite.setOrigin(8.0f, 8.0f);
+                    } else if (entityUpdate->type == 5) {
+                        entities.addComponent(entity, Projectile{10.0f, true});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
                         static const std::unordered_map<int, std::string> textureMap = {
@@ -217,10 +222,15 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
         input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Q);
         input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
         input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+        input.Ultimate = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
 
-        std::cout << "input : " << input.down << std::endl;
+        if (input.Ultimate)
+            std::cout << "ULT" << input.Ultimate << std::endl;
 
-        if (input.up || input.down || input.left || input.right || input.space) {
+        if (input.space)
+            std::cout << "ULT" << input.space << std::endl;
+
+        if (input.up || input.down || input.left || input.right || input.space || input.Ultimate) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));
             auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
             auto* inputPacket = reinterpret_cast<network::PlayerInputPacket*>(packet.data() + sizeof(network::PacketHeader));
@@ -235,12 +245,14 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
             inputPacket->left = input.left;
             inputPacket->right = input.right;
             inputPacket->space = input.space;
+            inputPacket->ultimate = input.Ultimate;
             network.sendTo(packet);
 
-            if (input.space) {
+            if (input.space)
                 inputPacket->space = false;
-            }
 
+            if (input.Ultimate)
+                inputPacket->ultimate = false;
         }
     }
 

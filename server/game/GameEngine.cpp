@@ -39,9 +39,12 @@ namespace rtype::game {
                 update->y = pos.y;
                 update->dx = vel.dx;
                 update->dy = vel.dy;
-                if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
-                    update->type = 1;
-                else if (entities.hasComponent<Enemy>(entity)) {
+                if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
+                    if (entities.getComponent<Projectile>(entity).isUltimate)
+                        update->type = 5;
+                    else
+                        update->type = 1;
+                } else if (entities.hasComponent<Enemy>(entity)) {
                     auto it = entities.hasTypeEnemy<Enemy>(entity);
                     update->type = it;
                 } else
@@ -112,7 +115,7 @@ namespace rtype::game {
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
 
         for (EntityID enemy : enemies) {
-            shoot_system_.update(entities, enemy);
+            shoot_system_.update(entities, enemy, false);
         }
     }
 
@@ -126,6 +129,7 @@ namespace rtype::game {
 
             const auto& missilePos = entities.getComponent<Position>(missile);
             const float missileRadius = 5.0f;
+            bool isUltimate = entities.getComponent<Projectile>(missile).isUltimate;
 
             // Handle collision with enemies
             for (EntityID enemy: enemies) {
@@ -136,7 +140,9 @@ namespace rtype::game {
 
                 if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius) && entities.getComponent<Projectile>(missile).lunchByType != 2) {
                     handleCollision(missile, enemy);
-                    break;  // Un missile ne touche qu'un seul ennemi
+                    if (!isUltimate) {
+                        break;
+                    }
                 }
             }
             // Handle collision with players
@@ -152,19 +158,21 @@ namespace rtype::game {
     }
 
     void GameEngine::handleCollision(EntityID missile, EntityID enemy) {
-        entities.getComponent<Enemy>(enemy).life -= entities.getComponent<Projectile>(missile).damage;
-        if (entities.getComponent<Enemy>(enemy).life <= 0) {
-            updatePlayerScore(); // Mise à jour du score
+        auto& projectile = entities.getComponent<Projectile>(missile);
+        entities.getComponent<Enemy>(enemy).life -= projectile.damage;
 
+        if (entities.getComponent<Enemy>(enemy).life <= 0) {
+            updatePlayerScore();
             auto packet = createEntityDeathPacket(missile, enemy);
             network.broadcast(packet);
-
             entities.destroyEntity(enemy);
-            entities.destroyEntity(missile);
-        } else {
+
+            if (!projectile.isUltimate) {
+                entities.destroyEntity(missile);
+            }
+        } else if (!projectile.isUltimate) {
             auto packet = createEntityDeathPacket(missile, -1);
             network.broadcast(packet);
-
             entities.destroyEntity(missile);
         }
     }
@@ -301,12 +309,22 @@ namespace rtype::game {
                     input.space = true;
                 }
 
+                if (inputPacket->ultimate && !entities.hasComponent<Projectile>(playerEntity)) {
+                    input.Ultimate = true;
+                }
+
                 if (input.space) {
-                    shoot_system_.update(entities, playerEntity);
+                    shoot_system_.update(entities, playerEntity, false );
                     input.space = false;
                 }
 
-                if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space) {
+                if (input.Ultimate) {
+                    std::cout << "create ult" << std::endl;
+                    shoot_system_.update(entities, playerEntity, true );
+                    input.Ultimate = false;
+                }
+
+                if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space && !inputPacket->ultimate) {
                     vel.dx = 0.0f;
                     vel.dy = 0.0f;
                     if (inputPacket->left) vel.dx = -speed;

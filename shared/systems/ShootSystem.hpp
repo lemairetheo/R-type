@@ -8,19 +8,29 @@ namespace rtype {
 
     class ShootSystem {
     public:
-        ShootSystem() : lastShootTime(std::chrono::steady_clock::now()) {}
+        ShootSystem() :
+            lastShootTime(std::chrono::steady_clock::now()),
+            lastUltimateTime(std::chrono::steady_clock::now()) {}
 
-        void update(EntityManager& entities, EntityID entity) {
-            handleShoot(entity, entities);
+        void update(EntityManager& entities, EntityID entity, bool ultimate) {
+            handleShoot(entity, entities, ultimate);
         }
 
-        void handleShoot(EntityID entity, EntityManager& entities) {
+        void handleShoot(EntityID entity, EntityManager& entities, bool ultimate) {
             auto now = std::chrono::steady_clock::now();
-            std::chrono::duration<float> elapsed = now - lastShootTime;
+            std::chrono::duration<float> elapsedShoot = now - lastShootTime;
+            std::chrono::duration<float> elapsedUltimate = now - lastUltimateTime;
 
-            if (elapsed.count() >= 0.2f) {
-                if (entities.hasComponent<Player>(entity))
+            bool canShoot = elapsedShoot.count() >= 0.2f;
+            bool canUltimate = elapsedUltimate.count() >= 5.0f;
+
+            if (canShoot && (!ultimate || (ultimate && canUltimate))) {
+                if (entities.hasComponent<Player>(entity)) {
                     lastShootTime = now;
+                    if (ultimate) {
+                        lastUltimateTime = now;
+                    }
+                }
 
                 if (entities.hasComponent<Position>(entity)) {
                     const auto& position = entities.getComponent<Position>(entity);
@@ -29,11 +39,16 @@ namespace rtype {
 
                     entities.addComponent(projectile, Position{position.x, position.y});
                     if (entities.hasComponent<Player>(entity)) {
-                        entities.addComponent(projectile, Velocity{300.0f, 0.0f});
-                        entities.addComponent(projectile, Projectile{1.0f, 0, true});
+                        if (ultimate) {
+                            entities.addComponent(projectile, Velocity{300.0f, 0.0f});
+                            entities.addComponent(projectile, Projectile{5.0f, 0, true, true});
+                        } else {
+                            entities.addComponent(projectile, Velocity{300.0f, 0.0f});
+                            entities.addComponent(projectile, Projectile{1.0f, 0, true, false});
+                        }
                     } else if (entities.hasComponent<Enemy>(entity)) {
                         entities.addComponent(projectile, Velocity{ entities.getComponent<Enemy>(entity).speedShoot * -1, 0.0f});
-                        entities.addComponent(projectile, Projectile{1.0f, 2, true});
+                        entities.addComponent(projectile, Projectile{1.0f, 2, true, false});
                     }
                 }
             }
@@ -41,6 +56,6 @@ namespace rtype {
 
     private:
         std::chrono::steady_clock::time_point lastShootTime;
+        std::chrono::steady_clock::time_point lastUltimateTime;
     };
-
 }
