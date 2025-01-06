@@ -16,7 +16,8 @@ namespace rtype {
                     render.currentFrame = (render.currentFrame + 1) % render.frameCount;
 
                     int xPos = render.currentFrame * render.frameWidth;
-                    render.sprite.setTextureRect(sf::IntRect(xPos, 0, render.frameWidth, render.frameHeight));
+
+                    render.sprite.setTextureRect(sf::IntRect(xPos, render.Y, render.frameWidth, render.frameHeight));
                 }
             }
         }

@@ -19,7 +19,8 @@ namespace rtype {
             std::chrono::duration<float> elapsed = now - lastShootTime;
 
             if (elapsed.count() >= 0.2f) {
-                lastShootTime = now;
+                if (entities.hasComponent<Player>(entity))
+                    lastShootTime = now;
 
                 if (entities.hasComponent<Position>(entity)) {
                     const auto& position = entities.getComponent<Position>(entity);
@@ -27,8 +28,13 @@ namespace rtype {
                     EntityID projectile = entities.createEntity();
 
                     entities.addComponent(projectile, Position{position.x, position.y});
-                    entities.addComponent(projectile, Velocity{300.0f, 0.0f});
-                    entities.addComponent(projectile, Projectile{10.0f, true});
+                    if (entities.hasComponent<Player>(entity)) {
+                        entities.addComponent(projectile, Velocity{300.0f, 0.0f});
+                        entities.addComponent(projectile, Projectile{1.0f, 0, true});
+                    } else if (entities.hasComponent<Enemy>(entity)) {
+                        entities.addComponent(projectile, Velocity{ entities.getComponent<Enemy>(entity).speedShoot * -1, 0.0f});
+                        entities.addComponent(projectile, Projectile{1.0f, 2, true});
+                    }
                 }
             }
         }
