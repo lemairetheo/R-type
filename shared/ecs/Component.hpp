@@ -52,4 +52,8 @@ namespace rtype {
         float speedShoot; // Velocity
     };
 
+    struct HealthBonus {
+        int healthAmount = 3;
+    };
+
 }

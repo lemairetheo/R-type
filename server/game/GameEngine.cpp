@@ -51,6 +51,9 @@ namespace rtype::game {
                 } else if (entities.hasComponent<Enemy>(entity)) {
                     auto it = entities.hasTypeEnemy<Enemy>(entity);
                     update->type = it;
+                } else if (entities.hasComponent<HealthBonus>(entity)) {
+                    std::cout << "HealthBonus" << std::endl;
+                    update->type = 6;
                 } else
                     update->type = 0;
                 network.broadcast(packet);
@@ -84,6 +87,14 @@ namespace rtype::game {
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
         lastUpdate = currentTime;
 
+        static float spawnTimer = 0.0f;
+        spawnTimer += dt;
+
+        if (spawnTimer >= 10.0f) {
+            spawnHealthPack();
+            spawnTimer = 0.0f;
+        }
+
         handleEnemySpawns(dt);
         handleEnemyShoot();
         handleCollisions();
@@ -93,6 +104,16 @@ namespace rtype::game {
         }
 
         broadcastWorldState();
+    }
+
+    void GameEngine::spawnHealthPack() {
+        float x = static_cast<float>(rand() % 800); // Position X aléatoire
+        float y = static_cast<float>(rand() % 600); // Position Y aléatoire
+
+        EntityID healthPackEntity = entities.createEntity();
+        entities.addComponent(healthPackEntity, Position{x, y});
+        entities.addComponent(healthPackEntity, HealthBonus{3});
+        entities.addComponent(healthPackEntity, Velocity{0.0f, 0.0f});
     }
 
     void GameEngine::handleEnemySpawns(float dt) {
@@ -127,13 +148,13 @@ namespace rtype::game {
         auto missiles = entities.getEntitiesWithComponents<Projectile>();
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
         auto players = entities.getEntitiesWithComponents<Player>();
+        auto healthPacks = entities.getEntitiesWithComponents<HealthBonus>();
 
         for (EntityID missile : missiles) {
             if (!entities.hasComponent<Position>(missile)) continue;
 
             const auto& missilePos = entities.getComponent<Position>(missile);
             const float missileRadius = 5.0f;
-            bool isUltimate = entities.getComponent<Projectile>(missile).isUltimate;
 
             // Handle collision with enemies
             for (EntityID enemy: enemies) {
@@ -144,9 +165,6 @@ namespace rtype::game {
 
                 if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius) && entities.getComponent<Projectile>(missile).lunchByType != 2) {
                     handleCollision(missile, enemy);
-                    if (!isUltimate) {
-                        break;
-                    }
                 }
             }
             // Handle collision with players
@@ -159,6 +177,24 @@ namespace rtype::game {
                 }
             }
         }
+
+        for (EntityID player : players) {
+            const auto& playerPos = entities.getComponent<Position>(player);
+
+            for (EntityID healthPack : healthPacks) {
+                const auto& healthPackPos = entities.getComponent<Position>(healthPack);
+
+                if (checkCollision(playerPos, 20.0f, healthPackPos, 10.0f)) {
+                    auto& playerComp = entities.getComponent<Player>(player);
+                    playerComp.life += entities.getComponent<HealthBonus>(healthPack).healthAmount;
+
+                    // Détruire le sprite de vie après la collision
+                    auto packet = createEntityDeathPacket(-1, healthPack);
+                    network.broadcast(packet);
+                    entities.destroyEntity(healthPack);
+                }
+            }
+        }
     }
 
     void GameEngine::handleCollision(EntityID missile, EntityID enemy) {
@@ -167,11 +203,14 @@ namespace rtype::game {
 
         if (entities.getComponent<Enemy>(enemy).life <= 0) {
             updatePlayerScore();
-            auto packet = createEntityDeathPacket(missile, enemy);
-            network.broadcast(packet);
-            entities.destroyEntity(enemy);
-
-            if (!projectile.isUltimate) {
+            if (projectile.isUltimate) {
+                auto packet = createEntityDeathPacket(-1, enemy);
+                network.broadcast(packet);
+                entities.destroyEntity(enemy);
+            } else {
+                auto packet = createEntityDeathPacket(missile, enemy);
+                network.broadcast(packet);
+                entities.destroyEntity(enemy);
                 entities.destroyEntity(missile);
             }
         } else if (!projectile.isUltimate) {
@@ -188,7 +227,7 @@ namespace rtype::game {
         entities.destroyEntity(missile);
 
         if (entities.getComponent<Player>(player).life <= 0) {
-            packet = createEntityDeathPacket(player, -1);
+            packet = createEntityDeathPacket(-1, player);
             network.broadcast(packet);
             // Au lieu de exit(0), gérez la mort du joueur proprement
             handlePlayerDeath(player);
@@ -296,7 +335,7 @@ namespace rtype::game {
     }
 
     void GameEngine::spawnEnemiesForLevel(int level) {
-        const int ENEMIES_PER_LEVEL[] = {10, 10, 10};
+        const int ENEMIES_PER_LEVEL[] = {15, 15, 15};
         int nbEnemies = ENEMIES_PER_LEVEL[level - 1];
 
     for (size_t i = 0; i < static_cast<size_t>(nbEnemies); i++) {
