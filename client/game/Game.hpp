@@ -38,6 +38,7 @@ namespace rtype {
         void handleEvents();
         void update();
         void render();
+        void displayMenu();
         EntityID myPlayerId = 0;
         sf::Event event;
         Menu menu;

@@ -14,6 +14,8 @@ namespace rtype {
         resources.loadTexture("player", "./client/assets/sprites/ship.gif");
         resources.loadTexture("sheet", "./client/assets/sprites/r-typesheet1.gif");
         resources.loadTexture("enemy", "./client/assets/sprites/r-typesheet7.gif");
+        resources.loadTexture("enemy-colorblind", "./client/assets/sprites/r-typesheet7-2.png");
+
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -90,7 +92,10 @@ namespace rtype {
                     entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
                     RenderComponent renderComp;
                     if (entityUpdate->type == 0) {
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                        if (menu.getColorblindMode() == true)
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player-colorblind"));
+                        else
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
                     } else if (entityUpdate->type == 1) {
@@ -100,7 +105,10 @@ namespace rtype {
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type == 2) {
                         entities.addComponent(entity, Enemy{1, true});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("enemy"));
+                        if (menu.getColorblindMode() == true)
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("enemy-colorblind"));
+                        else
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("enemy"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 34, 35));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     }
@@ -125,13 +133,14 @@ namespace rtype {
         }
     }
 
-    void Game::run() {
-
-        while (menu.getIsPlaying() == false) {
+    void Game::displayMenu() {
+        while (!menu.getIsPlaying()) {
             while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
+                if (event.type == sf::Event::Closed) {
                     window.close();
+                }
             }
+
             window.clear();
             update();
             for (auto& system : systems) {
@@ -141,6 +150,28 @@ namespace rtype {
             window.display();
         }
 
+        if (menu.getColorblindMode()) {
+            auto& resources = ResourceManager::getInstance();
+            resources.loadTexture("bg-colorblind", "./client/assets/background/Nebula Red.png");
+            resources.loadTexture("player-colorblind", "./client/assets/sprites/ship2.png");
+
+            auto& bgComponents = entities.getComponents<BackgroundComponent>();
+
+            for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                if (bgComponents[entity].has_value() && bgComponents[entity]->layer == 0) {
+                    auto& bgComp = bgComponents[entity].value();
+                    bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-colorblind"));
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+
+    void Game::run() {
+        displayMenu();
         network.start();
         std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
         auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());

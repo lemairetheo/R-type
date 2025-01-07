@@ -16,17 +16,21 @@ namespace rtype {
 
         bool getRightMode();
 
+        bool getColorblindMode();
+
     private:
         bool isPlaying = false;
         bool isInSettings = false;
         bool inMenu = false;
         bool right_mode = false;
         bool left_mode = false;
+        bool colorblind_mode = false;
         Button *play_button;
         Button *settings_button;
         Button *exit_settings_button;
         Button *left_mode_button;
         Button *right_mode_button;
+        Button *colorblind_mode_button;
         unsigned int _width;
         unsigned int _height;
 
