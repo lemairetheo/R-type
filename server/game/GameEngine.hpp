@@ -12,6 +12,7 @@
 #include <string>
 #include <chrono>
 #include <random>
+#include <map>
 
 namespace rtype::game {
     class GameEngine : public engine::AEngine {
@@ -51,6 +52,17 @@ namespace rtype::game {
                 {1, {1, 5, 100.0f}},
                 {2, {3, 5, 300.0f}},
                 {3, {5, 5, 600.0f}}
+            };
+
+            // gestion des level
+            int currentLevel = 1;
+            void switchToNextLevel();
+            void spawnEnemiesForLevel(int level);
+
+            const std::map<int, int> SCORE_THRESHOLDS = {
+                {1, 10},  // Score 10 pour passer au niveau 2
+                {2, 20},  // Score 20 pour passer au niveau 3
+                {3, 30}   // Score final
             };
 
 

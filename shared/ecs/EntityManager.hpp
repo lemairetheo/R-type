@@ -11,7 +11,7 @@
 
 namespace rtype {
     constexpr size_t MAX_ENTITIES = 1000;
-    constexpr size_t NB_ENEMIES = 20;
+    constexpr size_t NB_ENEMIES = 50;
 
     class EntityManager {
     public:

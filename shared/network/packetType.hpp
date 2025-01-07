@@ -58,7 +58,9 @@ namespace rtype::network {
         float y;             ///< Position Y
         float dx;            ///< Vélocité X
         float dy;            ///< Vélocité Y
-        int life;
+        int life;   ///< vie du player
+        int score;  ///< score de la partie
+        int level; ///< level actuel
     };
 
 

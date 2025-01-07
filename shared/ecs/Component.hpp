@@ -31,6 +31,7 @@ namespace rtype {
         float delay;
         float x;
         float y;
+        int level;
     };
 
     struct NetworkComponent {

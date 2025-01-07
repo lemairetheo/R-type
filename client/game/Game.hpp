@@ -30,6 +30,10 @@ namespace rtype {
         bool endGame = false;
         sf::Text endGameText;
         sf::Font font;
+        sf::Text scoreText;
+        int playerScore = 0;
+        sf::Text levelText;
+        int currentLevel = 1;
         sf::RenderWindow window;
         EntityManager entities;
         std::vector<std::unique_ptr<ISystem>> systems;
