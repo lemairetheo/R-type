@@ -54,7 +54,7 @@ namespace rtype {
                 buttonShape.setFillColor(activeColor);
             } else if (type == "left" && _text == "LEFT-HANDED MODE") {
                 buttonShape.setFillColor(activeColor);
-            } else if (type == "activated" && _text == "COLORBLIND MODE") {
+            } else if (type == "activated" && (_text == "COLORBLIND MODE" || _text == "NORMAL MODE")) {
                 buttonShape.setFillColor(activeColor);
             } else {
                 buttonShape.setFillColor(normalColor);

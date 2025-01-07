@@ -145,6 +145,7 @@ namespace rtype {
             while (window.pollEvent(event)) {
                 if (event.type == sf::Event::Closed) {
                     window.close();
+                    exit(0);
                 }
             }
 

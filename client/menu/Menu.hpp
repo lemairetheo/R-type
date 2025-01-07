@@ -34,10 +34,13 @@ namespace rtype {
         Button *right_mode_button;
         Button *colorblind_mode_button;
         Button *help_button;
+        Button *normal_mode_button;
         unsigned int _width;
         unsigned int _height;
         sf::Text help_text;
         sf::Text title_text;
+        sf::Text settings_text;
+        sf::Text help_description_text;
         sf::Font font;
 
     };

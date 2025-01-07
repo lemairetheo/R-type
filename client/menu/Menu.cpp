@@ -11,8 +11,10 @@ namespace rtype {
         exit_settings_button = new Button({400, 400}, {200, 50}, "EXIT", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
         right_mode_button = new Button({550, 200}, {200, 50}, "RIGHT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         left_mode_button = new Button({250, 200}, {200, 50}, "LEFT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
-        colorblind_mode_button = new Button({400, 300}, {200, 50}, "COLORBLIND MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+        colorblind_mode_button = new Button({250, 300}, {200, 50}, "COLORBLIND MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         help_button = new Button({150, 500}, {200, 50}, "HELP", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+        normal_mode_button = new Button({550, 300}, {200, 50}, "NORMAL MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+
 
         if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Erreur : Impossible de charger la police !\n";
@@ -21,10 +23,10 @@ namespace rtype {
 
         help_text.setFont(font);
         help_text.setString("HELP");
-        help_text.setCharacterSize(24);
+        help_text.setCharacterSize(55);
         help_text.setFillColor(sf::Color::White);
         help_text.setStyle(sf::Text::Bold | sf::Text::Italic);
-        help_text.setPosition(400.f, 100.f);
+        help_text.setPosition(350.f, 50.f);
 
         title_text.setFont(font);
         title_text.setString("R-Type");
@@ -32,6 +34,20 @@ namespace rtype {
         title_text.setFillColor(sf::Color::White);
         title_text.setStyle(sf::Text::Bold | sf::Text::Italic);
         title_text.setPosition(300.f, 100.f);
+
+        settings_text.setFont(font);
+        settings_text.setString("SETTINGS");
+        settings_text.setCharacterSize(55);
+        settings_text.setFillColor(sf::Color::White);
+        settings_text.setStyle(sf::Text::Bold | sf::Text::Italic);
+        settings_text.setPosition(270.f, 50.f);
+
+        help_description_text.setFont(font);
+        help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, Z to go up,\nQ to go left, S to go down and D to go right.");
+        help_description_text.setCharacterSize(20);
+        help_description_text.setFillColor(sf::Color::White);
+        help_description_text.setStyle(sf::Text::Bold | sf::Text::Italic);
+        help_description_text.setPosition(100.f, 150.f);
     };
 
     const Button &Menu::getPlayButton() {
@@ -68,16 +84,21 @@ namespace rtype {
             }
             exit_settings_button->render(window, "exit");
             if (colorblind_mode_button->handleEvent(event, window) == true) {
+                if ( colorblind_mode == false) {
+                    colorblind_mode = true;
+                }
+            }
+            if (normal_mode_button->handleEvent(event, window) == true) {
                 if (colorblind_mode == true) {
                     colorblind_mode = false;
-                } else if ( colorblind_mode == false) {
-                    colorblind_mode = true;
                 }
             }
             if (colorblind_mode == true) {
                 colorblind_mode_button->render(window, "activated");
+                normal_mode_button->render(window, "desactivated");
             } else if ( colorblind_mode == false) {
                 colorblind_mode_button->render(window, "desactivated");
+                normal_mode_button->render(window, "activated");
             }
 
             if (left_mode_button->handleEvent(event, window) == true) {
@@ -99,6 +120,7 @@ namespace rtype {
                 right_mode_button->render(window, "left");
                 left_mode_button->render(window, "left");
             }
+            window.draw(settings_text);
 
         }
         if (isInHelp) {
@@ -108,6 +130,12 @@ namespace rtype {
             }
             exit_settings_button->render(window, "EXIT");
             window.draw(help_text);
+            if (left_mode)
+                help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, Z to go up,\nQ to go left, S to go down and D to go right.");
+            if (right_mode)
+                help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, I to go up,\nJ to go left, K to go down and L to go right.");
+
+            window.draw(help_description_text);
         }
     }
 
