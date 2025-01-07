@@ -72,13 +72,27 @@ namespace rtype {
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
-void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
-        if (data.size() < sizeof(network::PacketHeader)) return;
 
-        const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
 
+    void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const asio::ip::udp::endpoint& sender) {
+    if (data.empty() || data.size() < sizeof(network::PacketHeader)) {
+        std::cerr << "Invalid packet size" << std::endl;
+        return;
+    }
+
+    const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
+    if (!header) {
+        std::cerr << "Null header" << std::endl;
+        return;
+    }
+
+    try {
         switch(static_cast<network::PacketType>(header->type)) {
             case network::PacketType::CONNECT_RESPONSE: {
+                if (data.size() < sizeof(network::PacketHeader) + sizeof(network::ConnectResponsePacket)) {
+                    std::cerr << "Packet too small for ConnectResponse" << std::endl;
+                    return;
+                }
                 const auto* response = reinterpret_cast<const network::ConnectResponsePacket*>(data.data() + sizeof(network::PacketHeader));
                 if (response->success) {
                     myPlayerId = response->playerId;
@@ -86,28 +100,57 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                 }
                 break;
             }
+
             case network::PacketType::ENTITY_DEATH: {
-                const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
-                if (response->entityId != -1) {
-                    if (entities.hasComponent<Enemy>(response->entityId))
-                        entities.getComponents<Enemy>().erase(response->entityId);
-                    if (entities.hasComponent<Player>(response->entityId))
-                        entities.getComponents<Player>().erase(response->entityId);
-                    if (entities.hasComponent<Position>(response->entityId))
-                        entities.getComponents<Position>().erase(response->entityId);
-                    if (entities.hasComponent<Velocity>(response->entityId))
-                        entities.getComponents<Velocity>().erase(response->entityId);
-                    entities.destroyEntity(response->entityId);
+                if (data.size() < sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket)) {
+                    std::cerr << "Packet too small for EntityDeath" << std::endl;
+                    return;
                 }
-                if (response->entityId2 != -1) {
-                    entities.getComponents<Projectile>().erase(response->entityId2);
-                    entities.destroyEntity(response->entityId2);
+                const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
+
+                if (static_cast<int32_t>(response->entityId) != -1) {
+                    std::cout << "Processing death for entity: " << response->entityId << std::endl;
+                    try {
+                        if (entities.hasComponent<Enemy>(response->entityId)) {
+                            entities.getComponents<Enemy>().erase(response->entityId);
+                        }
+                        if (entities.hasComponent<Player>(response->entityId)) {
+                            entities.getComponents<Player>().erase(response->entityId);
+                        }
+                        if (entities.hasComponent<Position>(response->entityId)) {
+                            entities.getComponents<Position>().erase(response->entityId);
+                        }
+                        if (entities.hasComponent<Velocity>(response->entityId)) {
+                            entities.getComponents<Velocity>().erase(response->entityId);
+                        }
+                        entities.destroyEntity(response->entityId);
+                    } catch (const std::exception& e) {
+                        std::cerr << "Error processing entity death: " << e.what() << std::endl;
+                    }
+                }
+
+                if (static_cast<int32_t>(response->entityId2) != -1) {
+                    try {
+                        if (entities.hasComponent<Projectile>(response->entityId2)) {
+                            entities.getComponents<Projectile>().erase(response->entityId2);
+                        }
+                        entities.destroyEntity(response->entityId2);
+                    } catch (const std::exception& e) {
+                        std::cerr << "Error processing projectile death: " << e.what() << std::endl;
+                    }
                 }
                 break;
             }
+
             case network::PacketType::ENTITY_UPDATE: {
+                if (data.size() < sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket)) {
+                    std::cerr << "Packet too small for EntityUpdate" << std::endl;
+                    return;
+                }
                 const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
                 EntityID entity = entityUpdate->entityId;
+
+                std::cout << "Processing update for entity: " << entity << " type: " << entityUpdate->type << std::endl;
 
                 if (entityUpdate->type == 0 && entity == myPlayerId) {
                     playerScore = entityUpdate->score;
@@ -118,111 +161,131 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                     levelText.setString("Level: " + std::to_string(currentLevel));
                 }
 
-                if (!entities.hasComponent<Position>(entity)) {
-                    entities.createEntity();
-                    entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
-                    entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
-                    RenderComponent renderComp;
-                    if (entityUpdate->type == 0) {
-                        std::cout << "player created" << std::endl;
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
-                        renderComp.sprite.setOrigin(16.5f, 8.5f);
-                    } else if (entityUpdate->type == 1) {
-                        entities.addComponent(entity, Projectile{10.0f, true});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                    } else if (entityUpdate->type == 5) {
-                        entities.addComponent(entity, Projectile{10.0f, true});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                        renderComp.frameWidth = 37;
-                        renderComp.frameHeight = 31;
-                        renderComp.frameCount = 3;
-                    } else if (entityUpdate->type == 6) {
-                        entities.addComponent(entity, HealthBonus{3});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("healthPack"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(7, 11, 130, 130));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                        renderComp.frameWidth = 130;
-                        renderComp.frameHeight = 130;
-                        renderComp.frameCount = 1;
-                        renderComp.sprite.setScale(0.3f, 0.3f);
-                    } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
-                        static const std::unordered_map<int, std::string> textureMap = {
-                            {2, "enemy_lvl_1"},
-                            {3, "enemy_lvl_2"},
-                            {4, "enemy_lvl_3"}
-                        };
+                try {
+                    if (!entities.hasComponent<Position>(entity)) {
+                        std::cout << "Creating new entity: " << entity << std::endl;
+                        entities.createEntity();
+                        entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
+                        entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
+                        RenderComponent renderComp;
 
-                        entities.addComponent(entity, Enemy{1, true});
-
-                        auto it = textureMap.find(entityUpdate->type);
-                        if (it != textureMap.end()) {
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
-                            if (it->first == 2) {
-                                renderComp.frameWidth = 33;
-                                renderComp.frameHeight = 34;
-                                renderComp.Y = 0;
-                                renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
-                            }
-                            else if (it->first == 3) {
-                                renderComp.frameWidth = 53;
-                                renderComp.frameHeight = 54;
-                                renderComp.Y = 0;
-                                renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
-                            }
-                            else if (it->first == 4) {
-                                renderComp.frameWidth = 49;
-                                renderComp.frameHeight = 52;
-                                renderComp.Y = 0;
-                                renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
-                            }
-                            renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
-
+                        if (entityUpdate->type == 0) {
+                            std::cout << "Creating player entity" << std::endl;
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                            renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
+                            renderComp.sprite.setOrigin(16.5f, 8.5f);
                         }
-                    }
+                        else if (entityUpdate->type == 1) {
+                            std::cout << "Creating projectile entity" << std::endl;
+                            entities.addComponent(entity, Projectile{10.0f, true, true, false});
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                            renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
+                            renderComp.sprite.setOrigin(8.0f, 8.0f);
+                        }
+                        else if (entityUpdate->type == 5) {
+                            std::cout << "Creating ultimate projectile entity" << std::endl;
+                            entities.addComponent(entity, Projectile{10.0f, true, true, true});
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
+                            renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
+                            renderComp.sprite.setOrigin(8.0f, 8.0f);
+                            renderComp.frameWidth = 37;
+                            renderComp.frameHeight = 31;
+                            renderComp.frameCount = 3;
+                        }
+                        else if (entityUpdate->type == 6) {
+                            std::cout << "Creating health bonus entity" << std::endl;
+                            entities.addComponent(entity, HealthBonus{3});
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("healthPack"));
+                            renderComp.sprite.setTextureRect(sf::IntRect(7, 11, 130, 130));
+                            renderComp.sprite.setOrigin(8.0f, 8.0f);
+                            renderComp.frameWidth = 130;
+                            renderComp.frameHeight = 130;
+                            renderComp.frameCount = 1;
+                            renderComp.sprite.setScale(0.3f, 0.3f);
+                        }
+                        else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
+                            std::cout << "Creating enemy entity type: " << entityUpdate->type << std::endl;
+                            static const std::unordered_map<int, std::string> textureMap = {
+                                {2, "enemy_lvl_1"},
+                                {3, "enemy_lvl_2"},
+                                {4, "enemy_lvl_3"}
+                            };
 
-                    entities.addComponent(entity, renderComp);
-                } else {
-                    if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
-                        std::cout << "la ça bug" << std::endl;
-                        entities.getComponents<Enemy>().erase(entity);
-                        entities.getComponents<Position>().erase(entity);
-                        break;
-                        RenderComponent renderComp = entities.getComponent<RenderComponent>(entity);
-                        entities.addComponent(entity, Projectile{10.0f, true});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                        std::cout << entities.hasComponent<Enemy>(entity) << std::endl;
-                    }
-                    auto& pos = entities.getComponent<Position>(entity);
-                    auto& vel = entities.getComponent<Velocity>(entity);
-                    //zif (entityUpdate->type == 0)
-                        //std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
+                            entities.addComponent(entity, Enemy{1, true, 1, 1.0f});
 
-                    pos.x = entityUpdate->x;
-                    pos.y = entityUpdate->y;
-                    vel.dx = entityUpdate->dx;
-                    vel.dy = entityUpdate->dy;
+                            auto it = textureMap.find(entityUpdate->type);
+                            if (it != textureMap.end()) {
+                                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
+                                if (it->first == 2) {
+                                    renderComp.frameWidth = 33;
+                                    renderComp.frameHeight = 34;
+                                    renderComp.Y = 0;
+                                    renderComp.frameCount = 3;
+                                    renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
+                                }
+                                else if (it->first == 3) {
+                                    renderComp.frameWidth = 53;
+                                    renderComp.frameHeight = 54;
+                                    renderComp.Y = 0;
+                                    renderComp.frameCount = 3;
+                                    renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
+                                }
+                                else if (it->first == 4) {
+                                    renderComp.frameWidth = 49;
+                                    renderComp.frameHeight = 52;
+                                    renderComp.Y = 0;
+                                    renderComp.frameCount = 3;
+                                    renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
+                                }
+                                renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
+                            }
+                        }
+
+                        entities.addComponent(entity, renderComp);
+                    }
+                    else {
+                        if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
+                            std::cout << "Converting enemy to projectile" << std::endl;
+                            if (entities.hasComponent<RenderComponent>(entity)) {
+                                auto& renderComp = entities.getComponent<RenderComponent>(entity);
+                                entities.getComponents<Enemy>().erase(entity);
+                                entities.addComponent(entity, Projectile{10.0f, true, true, false});
+                                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                                renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
+                                renderComp.sprite.setOrigin(8.0f, 8.0f);
+                            }
+                        }
+
+                        auto& pos = entities.getComponent<Position>(entity);
+                        auto& vel = entities.getComponent<Velocity>(entity);
+                        pos.x = entityUpdate->x;
+                        pos.y = entityUpdate->y;
+                        vel.dx = entityUpdate->dx;
+                        vel.dy = entityUpdate->dy;
+                    }
+                } catch (const std::exception& e) {
+                    std::cerr << "Error processing entity update: " << e.what() << std::endl;
                 }
                 break;
             }
+
             case network::PacketType::END_GAME_STATE: {
                 endGame = true;
-                std::cout << "Game: End game state received. You won!" << std::endl;
+                std::cout << "Game: End game state received" << std::endl;
                 break;
             }
-            default:
+
+            default: {
+                std::cerr << "Unknown packet type: " << static_cast<int>(header->type) << std::endl;
                 break;
+            }
         }
+    } catch (const std::exception& e) {
+        std::cerr << "Global error in handleNetworkMessage: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Unknown error in handleNetworkMessage" << std::endl;
     }
+}
 
     void Game::run() {
         network.start();
