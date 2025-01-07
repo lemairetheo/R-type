@@ -4,14 +4,28 @@
 
 namespace rtype {
     Menu::Menu(unsigned int width, unsigned int height) : play_button(nullptr), _width(width), _height(height) {
-        play_button = new Button({550, 500}, {200, 50}, "PLAY", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
-        settings_button = new Button({200, 500}, {200, 50}, "SETTINGS", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
+        play_button = new Button({400, 500}, {200, 50}, "PLAY", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
+        settings_button = new Button({650, 500}, {200, 50}, "SETTINGS", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
         inMenu = true;
         left_mode = true;
-        exit_settings_button = new Button({400, 500}, {200, 50}, "EXIT", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
+        exit_settings_button = new Button({400, 400}, {200, 50}, "EXIT", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::White);
         right_mode_button = new Button({550, 200}, {200, 50}, "RIGHT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         left_mode_button = new Button({250, 200}, {200, 50}, "LEFT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         colorblind_mode_button = new Button({400, 300}, {200, 50}, "COLORBLIND MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+        help_button = new Button({150, 500}, {200, 50}, "HELP", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
+        help_text.setCharacterSize(20);
+        sf::Font font;
+
+        if (!font.loadFromFile("./client/assets/fonts/Robo")) {
+            std::cerr << "Erreur : Impossible de charger la police !\n";
+        }
+
+        help_text.setFont(font);
+        help_text.setString("HELP");
+        help_text.setCharacterSize(24);
+        help_text.setFillColor(sf::Color::White);
+        help_text.setStyle(sf::Text::Bold | sf::Text::Italic);
+        help_text.setPosition(100.f, 50.f);
     };
 
     const Button &Menu::getPlayButton() {
@@ -31,6 +45,12 @@ namespace rtype {
                 inMenu = false;
             }
             settings_button->render(window, "settings");
+
+            if (help_button->handleEvent(event, window) == true) {
+                isInHelp = true;
+                inMenu = false;
+            }
+            help_button->render(window, "help");
         }
         if (isInSettings) {
             if (exit_settings_button->handleEvent(event, window) == true) {
@@ -71,6 +91,14 @@ namespace rtype {
                 left_mode_button->render(window, "left");
             }
 
+        }
+        if (isInHelp) {
+            if (exit_settings_button->handleEvent(event, window) == true) {
+                isInHelp = false;
+                inMenu = true;
+            }
+
+            exit_settings_button->render(window, "EXIT");
         }
     }
 

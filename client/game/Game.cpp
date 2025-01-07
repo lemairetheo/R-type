@@ -15,6 +15,7 @@ namespace rtype {
         resources.loadTexture("sheet", "./client/assets/sprites/r-typesheet1.gif");
         resources.loadTexture("enemy", "./client/assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy-colorblind", "./client/assets/sprites/r-typesheet7-2.png");
+        resources.loadTexture("sheet-colorblind", "./client/assets/sprites/r-typesheet1-2.png");
 
         {
             EntityID bgDeep = entities.createEntity();
@@ -100,7 +101,11 @@ namespace rtype {
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
                     } else if (entityUpdate->type == 1) {
                         entities.addComponent(entity, Projectile{10.0f, true});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                        if (menu.getColorblindMode() == true) {
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet-colorblind"));
+                        } else {
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                        }
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type == 2) {

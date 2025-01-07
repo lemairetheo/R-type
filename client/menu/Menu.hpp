@@ -2,6 +2,7 @@
 #define MENU_HPP
 
 #include "./button/Button.hpp"
+#include <iostream>
 
 namespace rtype {
     class Menu {
@@ -22,6 +23,7 @@ namespace rtype {
         bool isPlaying = false;
         bool isInSettings = false;
         bool inMenu = false;
+        bool isInHelp = false;
         bool right_mode = false;
         bool left_mode = false;
         bool colorblind_mode = false;
@@ -31,10 +33,10 @@ namespace rtype {
         Button *left_mode_button;
         Button *right_mode_button;
         Button *colorblind_mode_button;
+        Button *help_button;
         unsigned int _width;
         unsigned int _height;
-
-
+        sf::Text help_text;
 
     };
 }
