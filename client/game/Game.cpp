@@ -26,12 +26,12 @@ namespace rtype {
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
         resources.loadTexture("player", "assets/sprites/ship.gif");
-        resources.loadTexture("player", "assets/sprites/ship.gif");
+        resources.loadTexture("healthPack", "assets/sprites/heal.png");
         resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
         resources.loadTexture("ultimate", "assets/sprites/r-typesheet2.gif");
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
-        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet8.gif");
+        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -89,10 +89,17 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
             case network::PacketType::ENTITY_DEATH: {
                 const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
                 if (response->entityId != -1) {
-                    entities.getComponents<Enemy>().erase(response->entityId);
+                    if (entities.hasComponent<Enemy>(response->entityId))
+                        entities.getComponents<Enemy>().erase(response->entityId);
+                    if (entities.hasComponent<Player>(response->entityId))
+                        entities.getComponents<Player>().erase(response->entityId);
+                    if (entities.hasComponent<Position>(response->entityId))
+                        entities.getComponents<Position>().erase(response->entityId);
+                    if (entities.hasComponent<Velocity>(response->entityId))
+                        entities.getComponents<Velocity>().erase(response->entityId);
                     entities.destroyEntity(response->entityId);
                 }
-                if (response->entityId2) {
+                if (response->entityId2 != -1) {
                     entities.getComponents<Projectile>().erase(response->entityId2);
                     entities.destroyEntity(response->entityId2);
                 }
@@ -103,8 +110,9 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                 EntityID entity = entityUpdate->entityId;
 
                 if (entityUpdate->type == 0 && entity == myPlayerId) {
-                    playerScore = entityUpdate->score; // Ajoutez score dans EntityUpdatePacket
+                    playerScore = entityUpdate->score;
                     currentLevel = entityUpdate->level;
+                    playerLife = entityUpdate->life;
                     lifeText.setString("Life: " + std::to_string(playerLife));
                     scoreText.setString("Score: " + std::to_string(playerScore));
                     levelText.setString("Level: " + std::to_string(currentLevel));
@@ -130,6 +138,18 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
                         renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
+                        renderComp.frameWidth = 37;
+                        renderComp.frameHeight = 31;
+                        renderComp.frameCount = 3;
+                    } else if (entityUpdate->type == 6) {
+                        entities.addComponent(entity, HealthBonus{3});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("healthPack"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(7, 11, 130, 130));
+                        renderComp.sprite.setOrigin(8.0f, 8.0f);
+                        renderComp.frameWidth = 130;
+                        renderComp.frameHeight = 130;
+                        renderComp.frameCount = 1;
+                        renderComp.sprite.setScale(0.3f, 0.3f);
                     } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
                         static const std::unordered_map<int, std::string> textureMap = {
                             {2, "enemy_lvl_1"},
@@ -143,23 +163,25 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                         if (it != textureMap.end()) {
                             renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
                             if (it->first == 2) {
-                                renderComp.frameWidth = 36;
+                                renderComp.frameWidth = 33;
                                 renderComp.frameHeight = 34;
                                 renderComp.Y = 0;
+                                renderComp.frameCount = 3;
                                 renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
                             }
                             else if (it->first == 3) {
-                                renderComp.frameWidth = 34;
-                                renderComp.frameHeight = 28;
-                                renderComp.Y = 1;
+                                renderComp.frameWidth = 53;
+                                renderComp.frameHeight = 54;
+                                renderComp.Y = 0;
+                                renderComp.frameCount = 3;
                                 renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
                             }
                             else if (it->first == 4) {
-                                renderComp.frameWidth = 48;
+                                renderComp.frameWidth = 49;
                                 renderComp.frameHeight = 52;
-                                renderComp.Y = 7;
+                                renderComp.Y = 0;
                                 renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(3, 7, 48, 52));
+                                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
                             }
                             renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
 
@@ -168,6 +190,18 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
 
                     entities.addComponent(entity, renderComp);
                 } else {
+                    if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
+                        std::cout << "la ça bug" << std::endl;
+                        entities.getComponents<Enemy>().erase(entity);
+                        entities.getComponents<Position>().erase(entity);
+                        break;
+                        RenderComponent renderComp = entities.getComponent<RenderComponent>(entity);
+                        entities.addComponent(entity, Projectile{10.0f, true});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
+                        renderComp.sprite.setOrigin(8.0f, 8.0f);
+                        std::cout << entities.hasComponent<Enemy>(entity) << std::endl;
+                    }
                     auto& pos = entities.getComponent<Position>(entity);
                     auto& vel = entities.getComponent<Velocity>(entity);
                     //zif (entityUpdate->type == 0)

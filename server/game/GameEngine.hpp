@@ -58,6 +58,7 @@ namespace rtype::game {
             int currentLevel = 1;
             void switchToNextLevel();
             void spawnEnemiesForLevel(int level);
+            void spawnHealthPack();
 
             const std::map<int, int> SCORE_THRESHOLDS = {
                 {1, 10},  // Score 10 pour passer au niveau 2
