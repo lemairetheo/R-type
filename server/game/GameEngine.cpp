@@ -63,7 +63,7 @@ namespace rtype::game {
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
-        entities.addComponent(playerEntity, Player{0, 10});
+        entities.addComponent(playerEntity, Player{0, 10, 1});
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
@@ -190,8 +190,15 @@ namespace rtype::game {
         if (entities.getComponent<Player>(player).life <= 0) {
             packet = createEntityDeathPacket(player, -1);
             network.broadcast(packet);
-            exit(0); // Le joueur n'a plus de vie et est mort -> À modifier (le if) pour avoir le comportement souhaité
+            // Au lieu de exit(0), gérez la mort du joueur proprement
+            handlePlayerDeath(player);
         }
+    }
+
+    void GameEngine::handlePlayerDeath(EntityID player) {
+        // Notifier les autres joueurs
+        // Réinitialiser le joueur ou le mettre en attente de respawn
+        // etc.
     }
 
     std::tuple<float, int, float> GameEngine::getEnemyAttributes(int level) {
@@ -292,7 +299,7 @@ namespace rtype::game {
         const int ENEMIES_PER_LEVEL[] = {10, 10, 10};
         int nbEnemies = ENEMIES_PER_LEVEL[level - 1];
 
-        for (size_t i = 0; i < nbEnemies; i++) {
+    for (size_t i = 0; i < static_cast<size_t>(nbEnemies); i++) {
             float delay = static_cast<float>(i) * 2.0f;
             float x = static_cast<float>(800);
             float y = static_cast<float>(rand() % 600);
@@ -319,7 +326,7 @@ namespace rtype::game {
         return packet;
     }
 
-    void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender, const std::string& clientId) {
+    void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const sockaddr_in& sender, const std::string& clientId) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
