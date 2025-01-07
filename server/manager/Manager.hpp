@@ -18,6 +18,9 @@ namespace rtype {
     class Manager {
     public:
         Manager(uint16_t port);
+        ~Manager() {
+            stop();
+        }
         void start();
         void stop();
     private:

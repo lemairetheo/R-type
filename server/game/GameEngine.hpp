@@ -91,5 +91,5 @@ namespace rtype::game {
             std::vector<uint8_t> createPacket(network::PacketType type, const auto& data) const;
             std::vector<uint8_t> createEntityDeathPacket(EntityID missile, EntityID enemy) const;
         };
-
+    };
 } // namespace rtype::game
