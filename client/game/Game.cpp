@@ -16,6 +16,8 @@ namespace rtype {
         resources.loadTexture("enemy", "./client/assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy-colorblind", "./client/assets/sprites/r-typesheet7-2.png");
         resources.loadTexture("sheet-colorblind", "./client/assets/sprites/r-typesheet1-2.png");
+        resources.loadTexture("bg-colorblind", "./client/assets/background/Nebula Red.png");
+        resources.loadTexture("player-colorblind", "./client/assets/sprites/ship2.png");
 
         {
             EntityID bgDeep = entities.createEntity();
@@ -147,28 +149,35 @@ namespace rtype {
             }
 
             window.clear();
+
+            if (menu.getColorblindMode()) {
+                auto& bgComponents = entities.getComponents<BackgroundComponent>();
+
+                for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                    if (bgComponents[entity].has_value() && bgComponents[entity]->layer == 0) {
+                        auto& bgComp = bgComponents[entity].value();
+                        bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-colorblind"));
+                        break;
+                    }
+                }
+            } else {
+                auto& bgComponents = entities.getComponents<BackgroundComponent>();
+
+                for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                    if (bgComponents[entity].has_value() && bgComponents[entity]->layer == 0) {
+                        auto& bgComp = bgComponents[entity].value();
+                        bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-blue"));
+                        break;
+                    }
+                }
+            }
+
             update();
             for (auto& system : systems) {
                 system->update(entities, 0);
             }
             menu.render(window, event);
             window.display();
-        }
-
-        if (menu.getColorblindMode()) {
-            auto& resources = ResourceManager::getInstance();
-            resources.loadTexture("bg-colorblind", "./client/assets/background/Nebula Red.png");
-            resources.loadTexture("player-colorblind", "./client/assets/sprites/ship2.png");
-
-            auto& bgComponents = entities.getComponents<BackgroundComponent>();
-
-            for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
-                if (bgComponents[entity].has_value() && bgComponents[entity]->layer == 0) {
-                    auto& bgComp = bgComponents[entity].value();
-                    bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-colorblind"));
-                    break;
-                }
-            }
         }
     }
 

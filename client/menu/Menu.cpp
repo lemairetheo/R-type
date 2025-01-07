@@ -13,11 +13,10 @@ namespace rtype {
         left_mode_button = new Button({250, 200}, {200, 50}, "LEFT-HANDED MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         colorblind_mode_button = new Button({400, 300}, {200, 50}, "COLORBLIND MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         help_button = new Button({150, 500}, {200, 50}, "HELP", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
-        help_text.setCharacterSize(20);
-        sf::Font font;
 
-        if (!font.loadFromFile("./client/assets/fonts/Robo")) {
+        if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Erreur : Impossible de charger la police !\n";
+            exit(84);
         }
 
         help_text.setFont(font);
@@ -25,7 +24,14 @@ namespace rtype {
         help_text.setCharacterSize(24);
         help_text.setFillColor(sf::Color::White);
         help_text.setStyle(sf::Text::Bold | sf::Text::Italic);
-        help_text.setPosition(100.f, 50.f);
+        help_text.setPosition(400.f, 100.f);
+
+        title_text.setFont(font);
+        title_text.setString("R-Type");
+        title_text.setCharacterSize(55);
+        title_text.setFillColor(sf::Color::White);
+        title_text.setStyle(sf::Text::Bold | sf::Text::Italic);
+        title_text.setPosition(300.f, 100.f);
     };
 
     const Button &Menu::getPlayButton() {
@@ -51,6 +57,9 @@ namespace rtype {
                 inMenu = false;
             }
             help_button->render(window, "help");
+            std::cout << "avant le draw" << std::endl;
+            window.draw(title_text);
+            std::cout << "apres le draw" << std::endl;
         }
         if (isInSettings) {
             if (exit_settings_button->handleEvent(event, window) == true) {
@@ -97,8 +106,8 @@ namespace rtype {
                 isInHelp = false;
                 inMenu = true;
             }
-
             exit_settings_button->render(window, "EXIT");
+            window.draw(help_text);
         }
     }
 

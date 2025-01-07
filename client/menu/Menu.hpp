@@ -37,6 +37,8 @@ namespace rtype {
         unsigned int _width;
         unsigned int _height;
         sf::Text help_text;
+        sf::Text title_text;
+        sf::Font font;
 
     };
 }
