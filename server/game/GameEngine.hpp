@@ -57,6 +57,7 @@ namespace rtype::game {
             // gestion des level
             int currentLevel = 1;
             void switchToNextLevel();
+            void handlePlayerDeath(EntityID player);
             void spawnEnemiesForLevel(int level);
             void spawnHealthPack();
 
@@ -90,6 +91,5 @@ namespace rtype::game {
             // Méthodes de gestion des paquets
             std::vector<uint8_t> createPacket(network::PacketType type, const auto& data) const;
             std::vector<uint8_t> createEntityDeathPacket(EntityID missile, EntityID enemy) const;
-        };
     };
-} // namespace rtype::game
+};

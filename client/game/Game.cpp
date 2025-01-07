@@ -72,35 +72,19 @@ namespace rtype {
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
+void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
+        if (data.size() < sizeof(network::PacketHeader)) return;
 
-    void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const asio::ip::udp::endpoint& sender) {
-    std::cout << "Received packet of size: " << data.size() << std::endl;
+        const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
 
-    if (data.size() < sizeof(network::PacketHeader)) {
-        std::cout << "Packet too small! Expected: " << sizeof(network::PacketHeader)
-                  << ", Got: " << data.size() << std::endl;
-        return;
-    }
-
-    const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
-
-    if (header->magic[0] != 'R' || header->magic[1] != 'T') {
-        std::cout << "Invalid magic number!" << std::endl;
-        return;
-    }
-
-    std::cout << "Processing packet type: " << static_cast<int>(header->type) << std::endl;
-
-    switch(static_cast<network::PacketType>(header->type)) {
-        case network::PacketType::CONNECT_RESPONSE: {
-            if (data.size() < sizeof(network::PacketHeader) + sizeof(network::ConnectResponsePacket)) {
-                std::cout << "Connect response packet too small!" << std::endl;
-                return;
-            }
-            const auto* response = reinterpret_cast<const network::ConnectResponsePacket*>(data.data() + sizeof(network::PacketHeader));
-            if (response->success) {
-                myPlayerId = response->playerId;
-                std::cout << "Game: Connected with ID " << myPlayerId << std::endl;
+        switch(static_cast<network::PacketType>(header->type)) {
+            case network::PacketType::CONNECT_RESPONSE: {
+                const auto* response = reinterpret_cast<const network::ConnectResponsePacket*>(data.data() + sizeof(network::PacketHeader));
+                if (response->success) {
+                    myPlayerId = response->playerId;
+                    std::cout << "Game: Connected with ID " << myPlayerId << std::endl;
+                }
+                break;
             }
             case network::PacketType::ENTITY_DEATH: {
                 const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
@@ -119,46 +103,38 @@ namespace rtype {
                     entities.getComponents<Projectile>().erase(response->entityId2);
                     entities.destroyEntity(response->entityId2);
                 }
+                break;
             }
-        case network::PacketType::ENTITY_UPDATE: {
-            if (data.size() < sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket)) {
-                std::cout << "Entity update packet too small!" << std::endl;
-                return;
-            }
-            const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
-            EntityID entity = entityUpdate->entityId;
+            case network::PacketType::ENTITY_UPDATE: {
+                const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
+                EntityID entity = entityUpdate->entityId;
 
-            std::cout << "Processing entity update - ID: " << entity
-                      << " Type: " << entityUpdate->type << std::endl;
+                if (entityUpdate->type == 0 && entity == myPlayerId) {
+                    playerScore = entityUpdate->score;
+                    currentLevel = entityUpdate->level;
+                    playerLife = entityUpdate->life;
+                    lifeText.setString("Life: " + std::to_string(playerLife));
+                    scoreText.setString("Score: " + std::to_string(playerScore));
+                    levelText.setString("Level: " + std::to_string(currentLevel));
+                }
 
-            if (entityUpdate->type == 0 && entity == myPlayerId) {
-                playerScore = entityUpdate->score;
-                currentLevel = entityUpdate->level;
-                lifeText.setString("Life: " + std::to_string(playerLife));
-                scoreText.setString("Score: " + std::to_string(playerScore));
-                levelText.setString("Level: " + std::to_string(currentLevel));
-            }
-
-            try {
                 if (!entities.hasComponent<Position>(entity)) {
-                    std::cout << "Creating new entity: " << entity << std::endl;
                     entities.createEntity();
                     entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
                     entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
                     RenderComponent renderComp;
-
                     if (entityUpdate->type == 0) {
-                        std::cout << "Creating player entity" << std::endl;
+                        std::cout << "player created" << std::endl;
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
                     } else if (entityUpdate->type == 1) {
-                        entities.addComponent(entity, Projectile{10.0f, true, true, false});
+                        entities.addComponent(entity, Projectile{10.0f, true});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type == 5) {
-                        entities.addComponent(entity, Projectile{10.0f, true, true, false});
+                        entities.addComponent(entity, Projectile{10.0f, true});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
                         renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
@@ -181,7 +157,8 @@ namespace rtype {
                             {4, "enemy_lvl_3"}
                         };
 
-                        entities.addComponent(entity, Enemy{1, true, entityUpdate->type, -30.0f});
+                        entities.addComponent(entity, Enemy{1, true});
+
                         auto it = textureMap.find(entityUpdate->type);
                         if (it != textureMap.end()) {
                             renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
@@ -207,6 +184,7 @@ namespace rtype {
                                 renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
                             }
                             renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
+
                         }
                     }
 
@@ -226,29 +204,25 @@ namespace rtype {
                     }
                     auto& pos = entities.getComponent<Position>(entity);
                     auto& vel = entities.getComponent<Velocity>(entity);
+                    //zif (entityUpdate->type == 0)
+                        //std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
+
                     pos.x = entityUpdate->x;
                     pos.y = entityUpdate->y;
                     vel.dx = entityUpdate->dx;
                     vel.dy = entityUpdate->dy;
                 }
-            } catch (const std::exception& e) {
-                std::cerr << "Exception in entity update: " << e.what() << std::endl;
+                break;
             }
-            break;
-        }
-
-        case network::PacketType::END_GAME_STATE: {
-            endGame = true;
-            std::cout << "Game: End game state received. You won!" << std::endl;
-            break;
-        }
-
-        default: {
-            std::cout << "Unknown packet type received: " << static_cast<int>(header->type) << std::endl;
-            break;
+            case network::PacketType::END_GAME_STATE: {
+                endGame = true;
+                std::cout << "Game: End game state received. You won!" << std::endl;
+                break;
+            }
+            default:
+                break;
         }
     }
-}
 
     void Game::run() {
         network.start();
