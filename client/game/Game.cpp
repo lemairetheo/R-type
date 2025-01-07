@@ -11,6 +11,17 @@ namespace rtype {
         lifeText.setCharacterSize(20);
         lifeText.setFillColor(sf::Color::White);
         lifeText.setPosition(10, 10);
+        scoreText.setFont(font);
+        scoreText.setCharacterSize(20);
+        scoreText.setFillColor(sf::Color::White);
+        scoreText.setPosition(10, 40); // En dessous de la vie
+        scoreText.setString("Score: 0");
+        levelText.setFont(font);
+        levelText.setCharacterSize(20);
+        levelText.setFillColor(sf::Color::White);
+        levelText.setPosition(700, 10); // En dessous du score
+        levelText.setString("Level: 1");
+
         auto& resources = ResourceManager::getInstance();
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
@@ -92,8 +103,11 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                 EntityID entity = entityUpdate->entityId;
 
                 if (entityUpdate->type == 0 && entity == myPlayerId) {
-                    playerLife = entityUpdate->life;
+                    playerScore = entityUpdate->score; // Ajoutez score dans EntityUpdatePacket
+                    currentLevel = entityUpdate->level;
                     lifeText.setString("Life: " + std::to_string(playerLife));
+                    scoreText.setString("Score: " + std::to_string(playerScore));
+                    levelText.setString("Level: " + std::to_string(currentLevel));
                 }
 
                 if (!entities.hasComponent<Position>(entity)) {
@@ -233,12 +247,6 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
         input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
         input.Ultimate = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
 
-        if (input.Ultimate)
-            std::cout << "ULT" << input.Ultimate << std::endl;
-
-        if (input.space)
-            std::cout << "ULT" << input.space << std::endl;
-
         if (input.up || input.down || input.left || input.right || input.space || input.Ultimate) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));
             auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
@@ -289,6 +297,8 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                 system->update(entities, 0);
             }
             window.draw(lifeText);
+            window.draw(scoreText);
+            window.draw(levelText);
         }
 
         if (endGame) {

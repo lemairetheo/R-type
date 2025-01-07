@@ -11,12 +11,7 @@ namespace rtype::game {
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         systems.push_back(std::make_unique<MovementSystem>());
-        for (size_t i = 0; i < NB_ENEMIES; i++) {
-            float delay = static_cast<float>(i) * 2.0f;
-            float x = static_cast<float>(800);
-            float y = static_cast<float>(rand() % 600);
-            enemySpawnQueue.push_back(PendingSpawn{delay, x, y});
-        }
+        spawnEnemiesForLevel(1);
     }
 
     void GameEngine::broadcastWorldState() {
@@ -40,10 +35,14 @@ namespace rtype::game {
                 update->dx = vel.dx;
                 update->dy = vel.dy;
                 update->life = 0;
+                update->score = 0;
+                update->level = 0;
 
                 if (entities.hasComponent<Player>(entity)) {
                     update->type = 0;
                     update->life = entities.getComponent<Player>(entity).life;
+                    update->score = entities.getComponent<Player>(entity).score;
+                    update->level = currentLevel;
                 } if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
                     if (entities.getComponent<Projectile>(entity).isUltimate)
                         update->type = 5;
@@ -97,10 +96,10 @@ namespace rtype::game {
     }
 
     void GameEngine::handleEnemySpawns(float dt) {
-        for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end(); ) {
+        for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end();) {
             it->delay -= dt;
             if (it->delay <= 0) {
-                spawnEnemy(it->x, it->y, 2);
+                spawnEnemy(it->x, it->y, it->level);
                 it = enemySpawnQueue.erase(it);
             } else {
                 ++it;
@@ -265,10 +264,39 @@ namespace rtype::game {
             auto& player = entities.getComponent<Player>(entity);
             player.score++;
 
-            if (player.score >= 10) {
-                broadcastEndGameState();
-                break;
+            // Vérification du changement de niveau
+            auto threshold = SCORE_THRESHOLDS.find(currentLevel);
+            if (threshold != SCORE_THRESHOLDS.end() && player.score >= threshold->second) {
+                if (currentLevel < 3) {
+                    currentLevel++;
+                    switchToNextLevel();
+                } else {
+                    broadcastEndGameState();
+                }
             }
+        }
+    }
+
+    void GameEngine::switchToNextLevel() {
+        // Suppression des ennemis existants
+        auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        for (EntityID enemy : enemies) {
+            entities.destroyEntity(enemy);
+        }
+
+        enemySpawnQueue.clear();
+        spawnEnemiesForLevel(currentLevel);
+    }
+
+    void GameEngine::spawnEnemiesForLevel(int level) {
+        const int ENEMIES_PER_LEVEL[] = {10, 10, 10};
+        int nbEnemies = ENEMIES_PER_LEVEL[level - 1];
+
+        for (size_t i = 0; i < nbEnemies; i++) {
+            float delay = static_cast<float>(i) * 2.0f;
+            float x = static_cast<float>(800);
+            float y = static_cast<float>(rand() % 600);
+            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level});
         }
     }
 
@@ -324,7 +352,6 @@ namespace rtype::game {
                 }
 
                 if (input.Ultimate) {
-                    std::cout << "create ult" << std::endl;
                     shoot_system_.update(entities, playerEntity, true );
                     input.Ultimate = false;
                 }
