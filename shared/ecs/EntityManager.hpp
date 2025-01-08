@@ -11,7 +11,7 @@
 
 namespace rtype {
     constexpr size_t MAX_ENTITIES = 1000;
-    constexpr size_t NB_ENEMIES = 20;
+    constexpr size_t NB_ENEMIES = 50;
 
     class EntityManager {
     public:
@@ -65,6 +65,29 @@ namespace rtype {
             if (it == _components.end())
                 return false;
             return static_cast<const SparseArray<Component>*>(it->second.get())->operator[](entity).has_value();
+        }
+
+        template<typename Component>
+        int hasTypeEnemy(EntityID entity) const {
+            auto typeIndex = std::type_index(typeid(Component));
+            auto it = _components.find(typeIndex);
+
+            if (it == _components.end())
+                return 0;
+
+            const auto& sparseArray = *static_cast<const SparseArray<Component>*>(it->second.get());
+            if (!sparseArray[entity].has_value())
+                return 0;
+
+            const auto& enemyComponent = sparseArray[entity].value();
+
+            if (enemyComponent.level == 1)
+                return 2;
+            else if (enemyComponent.level == 2)
+                return 3;
+            else if (enemyComponent.level == 3)
+                return 4;
+            return 0;
         }
 
         void resetEntityComponents(EntityID entity) {

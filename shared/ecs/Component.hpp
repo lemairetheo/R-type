@@ -14,6 +14,7 @@ namespace rtype {
 
     struct Player {
         int score;
+        int life;
         int damage;
     };
 
@@ -23,12 +24,14 @@ namespace rtype {
         bool left = false;
         bool right = false;
         bool space = false;
+        bool Ultimate = false;
     };
 
     struct PendingSpawn {
         float delay;
         float x;
         float y;
+        int level;
     };
 
     struct NetworkComponent {
@@ -37,11 +40,20 @@ namespace rtype {
 
     struct Projectile {
         float damage;
+        int lunchByType; // Si lancer par un joueur ou enemies (0 = player, 2 enemies)
         bool isActive;
+        bool isUltimate;
     };
 
     struct Enemy {
         int damage;
-        int life;
+        float life;
+        int level;
+        float speedShoot; // Velocity
     };
+
+    struct HealthBonus {
+        int healthAmount = 3;
+    };
+
 }

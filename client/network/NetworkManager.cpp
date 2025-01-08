@@ -1,7 +1,3 @@
-//
-// Created by Jean-Baptiste  Azan on 06/12/2024.
-//
-
 /**
  * \file NetworkManager.cpp
  * \brief Implementation of the network management for the client.
@@ -11,67 +7,109 @@
 
 namespace rtype::network {
 
+    NetworkClient::NetworkClient(uint16_t port)
+        : ANetwork(port)
+        , socket(io_context)
+        , running(false)
+        , receive_buffer(1024) {
+    }
+
     void NetworkClient::start() {
         if (running) return;
-        sock = socket(AF_INET, SOCK_DGRAM, 0);
-        if (sock < 0) {
-            throw std::runtime_error("Failed to create socket");
+
+        try {
+            socket.open(asio::ip::udp::v4());
+            socket.set_option(asio::socket_base::reuse_address(true));
+
+            // Bind to any available port
+            socket.bind(asio::ip::udp::endpoint(asio::ip::address_v4::any(), 0));
+
+            // Set up server endpoint
+            server_endpoint = asio::ip::udp::endpoint(
+                asio::ip::address::from_string("127.0.0.1"),
+                port
+            );
+
+            running = true;
+            startReceive();
+
+            // Start the io_context in a separate thread
+            io_thread = std::thread([this]() {
+                try {
+                    io_context.run();
+                } catch (const std::exception& e) {
+                    std::cout << "Client: Network error: " << e.what() << std::endl;
+                }
+            });
+
+            std::cout << "Client: Network initialized and running" << std::endl;
+        } catch (const std::exception& e) {
+            std::cout << "Client: Failed to start network: " << e.what() << std::endl;
+            throw;
         }
-        sockaddr_in clientAddr{};
-        clientAddr.sin_family = AF_INET;
-        clientAddr.sin_port = 0;
-        clientAddr.sin_addr.s_addr = INADDR_ANY;
-        if (bind(sock, (struct sockaddr*)&clientAddr, sizeof(clientAddr)) < 0) {
-            std::cout << "Client: Failed to bind: " << strerror(errno) << std::endl;
-            close(sock);
-            throw std::runtime_error("Failed to bind socket");
-        }
-        socklen_t len = sizeof(clientAddr);
-        if (getsockname(sock, (struct sockaddr *)&clientAddr, &len) < 0) {
-            std::cout << "Client: Failed to get socket name: " << strerror(errno) << std::endl;
-        }
-        serverAddr.sin_family = AF_INET;
-        serverAddr.sin_port = htons(port);
-        serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");  // localhost
-        running = true;
-        receiveThread = std::thread(&NetworkClient::receiveLoop, this);
-        std::cout << "Client: Network initialized and running" << std::endl;
     }
 
     void NetworkClient::stop() {
         if (!running) return;
         running = false;
-        if (receiveThread.joinable())
-            receiveThread.join();
-        close(sock);
+
+        io_context.stop();
+        if (socket.is_open()) {
+            socket.close();
+        }
+
+        if (io_thread.joinable()) {
+            io_thread.join();
+        }
     }
 
     void NetworkClient::sendTo(const std::vector<uint8_t>& data) {
-        sendto(sock, data.data(), data.size(), 0, (struct sockaddr*)&serverAddr, sizeof(serverAddr));
+        socket.async_send_to(
+            asio::buffer(data),
+            server_endpoint,
+        [](const asio::error_code& error, [[maybe_unused]] std::size_t bytes_transferred) {
+                if (error) {
+                    std::cout << "Client: Send error: " << error.message() << std::endl;
+                }
+            }
+        );
     }
 
-    void NetworkClient::setMessageCallback(std::function<void(const std::vector<uint8_t>&, const sockaddr_in&)> callback) {
+    void NetworkClient::setMessageCallback(
+        std::function<void(const std::vector<uint8_t>&, const asio::ip::udp::endpoint&)> callback) {
         messageCallback = std::move(callback);
     }
 
-    void NetworkClient::receiveLoop() {
-        std::cout << "Client: Receive loop started" << std::endl;
-        std::vector<uint8_t> buffer(1024);
-        sockaddr_in senderAddr;
-        socklen_t senderLen = sizeof(senderAddr);
+    void NetworkClient::startReceive() {
+        asio::ip::udp::endpoint sender_endpoint;
+        socket.async_receive_from(
+            asio::buffer(receive_buffer),
+            sender_endpoint,
+            [this](const asio::error_code& error, std::size_t bytes_transferred) {
+                this->handleReceive(error, bytes_transferred);
+            }
+        );
+    }
 
-        while (running) {
-            ssize_t received = recvfrom(sock, buffer.data(), buffer.size(), 0, (struct sockaddr*)&senderAddr, &senderLen);
-            if (received < 0)
-                std::cout << "Client: Error receiving: " << strerror(errno) << std::endl;
-            else if (received > 0) {
-                std::cout << "Client: Received " << received << " bytes" << std::endl;
-                std::cout << "Client: Message: " << std::string(buffer.begin(), buffer.begin() + received) << std::endl;
-                if (messageCallback)
-                    messageCallback(std::vector<uint8_t>(buffer.begin(),buffer.begin() + received), senderAddr);
+    void NetworkClient::handleReceive(const asio::error_code& error, std::size_t bytes_transferred) {
+        if (!error && bytes_transferred > 0) {
+            if (messageCallback) {
+                std::vector<uint8_t> received_data(
+                    receive_buffer.begin(),
+                    receive_buffer.begin() + bytes_transferred
+                );
+                asio::ip::udp::endpoint sender_endpoint;
+                messageCallback(received_data, sender_endpoint);
+            }
+
+            if (running) {
+                startReceive();  // Continue receiving
+            }
+        } else if (error != asio::error::operation_aborted) {
+            std::cout << "Client: Receive error: " << error.message() << std::endl;
+            if (running) {
+                startReceive();  // Try to continue receiving despite error
             }
         }
-        std::cout << "Client: Receive loop ended" << std::endl;
     }
 }
-

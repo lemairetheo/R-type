@@ -16,7 +16,7 @@ namespace rtype {
         normal_mode_button = new Button({550, 300}, {200, 50}, "NORMAL MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
 
 
-        if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
+        if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Erreur : Impossible de charger la police !\n";
             exit(84);
         }

@@ -1,7 +1,14 @@
 #include "manager/Manager.hpp"
 #include <iostream>
 
+void signal_handler(int signum) {
+    std::cout << "Signal " << signum << " reçu, arrêt du serveur..." << std::endl;
+ }
+
 int main(int argc, char** argv) {
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+
     try {
         uint16_t port = 4242;
         if (argc > 1) {
@@ -13,8 +20,9 @@ int main(int argc, char** argv) {
         rtype::Manager manager(port);
         manager.start();
 
-        while (true)
+        while (true) {
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        }
     } catch (const std::exception& e) {
         std::cerr << "Fatal error: " << e.what() << std::endl;
         return 1;

@@ -7,8 +7,7 @@
 
 #include <iostream>
 #include <vector>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+#include <asio.hpp>
 #include "network/NetworkManager.hpp"
 #include "game/GameEngine.hpp"
 #include <unordered_map>
@@ -19,16 +18,19 @@ namespace rtype {
     class Manager {
     public:
         Manager(uint16_t port);
+        ~Manager() {
+            stop();
+        }
         void start();
         void stop();
     private:
+        void handleNewConnection(const asio::ip::udp::endpoint& sender);
         network::NetworkManager network;
-        game::GameEngine _game;
+        std::unique_ptr<game::GameEngine> game;
         std::unordered_map<std::string, PlayerInfo> players;
         std::atomic<bool> running;
         std::thread updateThread;
         void updateLoop();
-        void handleNewConnection(const sockaddr_in& sender);
     };
 }
 

@@ -11,12 +11,7 @@ namespace rtype::game {
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         systems.push_back(std::make_unique<MovementSystem>());
-        for (size_t i = 0; i < NB_ENEMIES; i++) {
-            float delay = static_cast<float>(i) * 2.0f;
-            float x = static_cast<float>(800);
-            float y = static_cast<float>(rand() % 600);
-            enemySpawnQueue.push_back(PendingSpawn{delay, x, y});
-        }
+        spawnEnemiesForLevel(1);
     }
 
     void GameEngine::broadcastWorldState() {
@@ -39,23 +34,39 @@ namespace rtype::game {
                 update->y = pos.y;
                 update->dx = vel.dx;
                 update->dy = vel.dy;
-                if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity))
-                    update->type = 1;
-                else if (entities.hasComponent<Enemy>(entity))
-                    update->type = 2;
-                else
+                update->life = 0;
+                update->score = 0;
+                update->level = 0;
+
+                if (entities.hasComponent<Player>(entity)) {
+                    update->type = 0;
+                    update->life = entities.getComponent<Player>(entity).life;
+                    update->score = entities.getComponent<Player>(entity).score;
+                    update->level = currentLevel;
+                } if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
+                    if (entities.getComponent<Projectile>(entity).isUltimate)
+                        update->type = 5;
+                    else
+                        update->type = 1;
+                } else if (entities.hasComponent<Enemy>(entity)) {
+                    auto it = entities.hasTypeEnemy<Enemy>(entity);
+                    update->type = it;
+                } else if (entities.hasComponent<HealthBonus>(entity)) {
+                    std::cout << "HealthBonus" << std::endl;
+                    update->type = 6;
+                } else
                     update->type = 0;
                 network.broadcast(packet);
             }
         }
     }
 
-    EntityID GameEngine::createNewPlayer(const sockaddr_in& client) {
-        std::string clientId = std::string(inet_ntoa(client.sin_addr)) + ":" + std::to_string(ntohs(client.sin_port));
+    EntityID GameEngine::createNewPlayer(const asio::ip::udp::endpoint& sender) {
+        std::string clientId = sender.address().to_string() + ":" + std::to_string(sender.port());
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
-        entities.addComponent(playerEntity, Player{0, 1});
+        entities.addComponent(playerEntity, Player{0, 10, 1});
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
@@ -76,7 +87,16 @@ namespace rtype::game {
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
         lastUpdate = currentTime;
 
+        static float spawnTimer = 0.0f;
+        spawnTimer += dt;
+
+        if (spawnTimer >= 10.0f) {
+            spawnHealthPack();
+            spawnTimer = 0.0f;
+        }
+
         handleEnemySpawns(dt);
+        handleEnemyShoot();
         handleCollisions();
 
         for (auto& system : systems) {
@@ -86,11 +106,21 @@ namespace rtype::game {
         broadcastWorldState();
     }
 
+    void GameEngine::spawnHealthPack() {
+        float x = static_cast<float>(rand() % 800); // Position X aléatoire
+        float y = static_cast<float>(rand() % 600); // Position Y aléatoire
+
+        EntityID healthPackEntity = entities.createEntity();
+        entities.addComponent(healthPackEntity, Position{x, y});
+        entities.addComponent(healthPackEntity, HealthBonus{3});
+        entities.addComponent(healthPackEntity, Velocity{0.0f, 0.0f});
+    }
+
     void GameEngine::handleEnemySpawns(float dt) {
-        for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end(); ) {
+        for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end();) {
             it->delay -= dt;
             if (it->delay <= 0) {
-                spawnEnemy(it->x, it->y);
+                spawnEnemy(it->x, it->y, it->level);
                 it = enemySpawnQueue.erase(it);
             } else {
                 ++it;
@@ -98,9 +128,27 @@ namespace rtype::game {
         }
     }
 
+    void GameEngine::handleEnemyShoot() {
+        auto currentTime = std::chrono::steady_clock::now();
+        float dt = std::chrono::duration<float>(currentTime - lastUpdateEnemiesShoot).count();
+
+        if (dt >= 1.2f)
+            lastUpdateEnemiesShoot = currentTime;
+        else
+            return;
+
+        auto enemies = entities.getEntitiesWithComponents<Enemy>();
+
+        for (EntityID enemy : enemies) {
+            shoot_system_.update(entities, enemy, false);
+        }
+    }
+
     void GameEngine::handleCollisions() {
         auto missiles = entities.getEntitiesWithComponents<Projectile>();
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        auto players = entities.getEntitiesWithComponents<Player>();
+        auto healthPacks = entities.getEntitiesWithComponents<HealthBonus>();
 
         for (EntityID missile : missiles) {
             if (!entities.hasComponent<Position>(missile)) continue;
@@ -108,38 +156,126 @@ namespace rtype::game {
             const auto& missilePos = entities.getComponent<Position>(missile);
             const float missileRadius = 5.0f;
 
-            for (EntityID enemy : enemies) {
+            // Handle collision with enemies
+            for (EntityID enemy: enemies) {
                 if (!entities.hasComponent<Position>(enemy)) continue;
 
                 const auto& enemyPos = entities.getComponent<Position>(enemy);
                 const float enemyRadius = 20.0f;
 
-                if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius)) {
+                if (checkCollision(missilePos, missileRadius, enemyPos, enemyRadius) && entities.getComponent<Projectile>(missile).lunchByType != 2) {
                     handleCollision(missile, enemy);
-                    break;  // Un missile ne touche qu'un seul ennemi
+                }
+            }
+            // Handle collision with players
+            for (EntityID player : players) {
+                const auto& playerPos = entities.getComponent<Position>(player);
+
+                if (checkCollision(missilePos, missileRadius, playerPos, 20.0f) && entities.getComponent<Projectile>(missile).lunchByType != 0) {
+                    handleCollisionPlayer(missile, player);
+                    break;
+                }
+            }
+        }
+
+        for (EntityID player : players) {
+            const auto& playerPos = entities.getComponent<Position>(player);
+
+            for (EntityID healthPack : healthPacks) {
+                const auto& healthPackPos = entities.getComponent<Position>(healthPack);
+
+                if (checkCollision(playerPos, 20.0f, healthPackPos, 10.0f)) {
+                    auto& playerComp = entities.getComponent<Player>(player);
+                    playerComp.life += entities.getComponent<HealthBonus>(healthPack).healthAmount;
+
+                    // Détruire le sprite de vie après la collision
+                    auto packet = createEntityDeathPacket(-1, healthPack);
+                    network.broadcast(packet);
+                    entities.destroyEntity(healthPack);
                 }
             }
         }
     }
 
     void GameEngine::handleCollision(EntityID missile, EntityID enemy) {
-        // Mise à jour du score
-        updatePlayerScore();
+        auto& projectile = entities.getComponent<Projectile>(missile);
+        entities.getComponent<Enemy>(enemy).life -= projectile.damage;
 
-        // Envoi du paquet de suppression
-            auto packet = createEntityDeathPacket(missile, enemy);  // Correction : utilisez createEntityDeathPacket
+        if (entities.getComponent<Enemy>(enemy).life <= 0) {
+            updatePlayerScore();
+            if (projectile.isUltimate) {
+                auto packet = createEntityDeathPacket(-1, enemy);
+                network.broadcast(packet);
+                entities.destroyEntity(enemy);
+            } else {
+                auto packet = createEntityDeathPacket(missile, enemy);
+                network.broadcast(packet);
+                entities.destroyEntity(enemy);
+                entities.destroyEntity(missile);
+            }
+        } else if (!projectile.isUltimate) {
+            auto packet = createEntityDeathPacket(missile, -1);
             network.broadcast(packet);
-
-        // Destruction des entités
-        entities.destroyEntity(missile);
-        entities.destroyEntity(enemy);
+            entities.destroyEntity(missile);
+        }
     }
 
-    void GameEngine::spawnEnemy(float x, float y) {
+    void GameEngine::handleCollisionPlayer(EntityID missile, EntityID player) {
+        entities.getComponent<Player>(player).life--;
+        auto packet = createEntityDeathPacket(missile, -1);
+        network.broadcast(packet);
+        entities.destroyEntity(missile);
+
+        if (entities.getComponent<Player>(player).life <= 0) {
+            packet = createEntityDeathPacket(-1, player);
+            network.broadcast(packet);
+            // Au lieu de exit(0), gérez la mort du joueur proprement
+            handlePlayerDeath(player);
+        }
+    }
+
+    void GameEngine::handlePlayerDeath(EntityID player) {
+        // Notifier les autres joueurs
+        // Réinitialiser le joueur ou le mettre en attente de respawn
+        // etc.
+    }
+
+    std::tuple<float, int, float> GameEngine::getEnemyAttributes(int level) {
+        auto it = enemyAttributes.find(level);
+        if (it != enemyAttributes.end()) {
+            return it->second;
+        }
+
+        return {10.0f, 5, -30.0}; // Default
+    }
+
+    void GameEngine::spawnEnemy(float x, float y, int level) {
         EntityID enemyEntity = entities.createEntity();
         entities.addComponent(enemyEntity, Position{x, y});
         entities.addComponent(enemyEntity, Velocity{-50.0f, 0.0f});
-        entities.addComponent(enemyEntity, Enemy{1, 1});
+
+        int enemyLevel;
+
+        float randValue = dis(gen);
+
+        if (level == 1) {
+            enemyLevel = 1;
+        } else if (level == 2) {
+            if (randValue <= 0.75f)
+                enemyLevel = 1;
+            else
+                enemyLevel = 2;
+        } else if (level == 3) {
+            if (randValue <= 0.7f)
+                enemyLevel = 1;
+            else
+                enemyLevel = 3;
+        } else {
+            enemyLevel = 1;
+        }
+        auto [life, damage, speedShoot] = getEnemyAttributes(enemyLevel);
+
+        entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
     }
 
     bool GameEngine::checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
@@ -169,40 +305,67 @@ namespace rtype::game {
         return packet;
     }
 
-void GameEngine::updatePlayerScore() {
-    for (EntityID entity : entities.getEntitiesWithComponents<Player>()) {
-        auto& player = entities.getComponent<Player>(entity);
-        player.score++;
+    void GameEngine::updatePlayerScore() {
+        for (EntityID entity : entities.getEntitiesWithComponents<Player>()) {
+            auto& player = entities.getComponent<Player>(entity);
+            player.score++;
 
-        if (player.score >= 10) {
-            broadcastEndGameState();
-            break;
+            // Vérification du changement de niveau
+            auto threshold = SCORE_THRESHOLDS.find(currentLevel);
+            if (threshold != SCORE_THRESHOLDS.end() && player.score >= threshold->second) {
+                if (currentLevel < 3) {
+                    currentLevel++;
+                    switchToNextLevel();
+                } else {
+                    broadcastEndGameState();
+                }
+            }
         }
     }
-}
 
-void GameEngine::broadcastEndGameState() {
-    auto packet = createEndGamePacket();
-    network.broadcast(packet);
-}
+    void GameEngine::switchToNextLevel() {
+        // Suppression des ennemis existants
+        auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        for (EntityID enemy : enemies) {
+            entities.destroyEntity(enemy);
+        }
 
-std::vector<uint8_t> GameEngine::createEndGamePacket() const {
-    std::vector<uint8_t> packet(sizeof(network::PacketHeader));
-    auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
+        enemySpawnQueue.clear();
+        spawnEnemiesForLevel(currentLevel);
+    }
 
-    header->magic[0] = 'R';
-    header->magic[1] = 'T';
-    header->version = 1;
-    header->type = static_cast<uint8_t>(network::PacketType::END_GAME_STATE);
-    header->length = packet.size();
-    header->sequence = 0;
+    void GameEngine::spawnEnemiesForLevel(int level) {
+        const int ENEMIES_PER_LEVEL[] = {15, 15, 15};
+        int nbEnemies = ENEMIES_PER_LEVEL[level - 1];
 
-    return packet;
-}
+    for (size_t i = 0; i < static_cast<size_t>(nbEnemies); i++) {
+            float delay = static_cast<float>(i) * 2.0f;
+            float x = static_cast<float>(800);
+            float y = static_cast<float>(rand() % 600);
+            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level});
+        }
+    }
 
-    void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
-        std::string clientId = std::string(inet_ntoa(sender.sin_addr)) + ":" + std::to_string(ntohs(sender.sin_port));
+    void GameEngine::broadcastEndGameState() {
+        auto packet = createEndGamePacket();
+        network.broadcast(packet);
+    }
 
+    std::vector<uint8_t> GameEngine::createEndGamePacket() const {
+        std::vector<uint8_t> packet(sizeof(network::PacketHeader));
+        auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(network::PacketType::END_GAME_STATE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        return packet;
+    }
+
+    void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const sockaddr_in& sender, const std::string& clientId) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
@@ -225,25 +388,45 @@ std::vector<uint8_t> GameEngine::createEndGamePacket() const {
                     input.space = true;
                 }
 
+                if (inputPacket->ultimate && !entities.hasComponent<Projectile>(playerEntity)) {
+                    input.Ultimate = true;
+                }
+
                 if (input.space) {
-                    shoot_system_.update(entities, playerEntity);
+                    shoot_system_.update(entities, playerEntity, false );
                     input.space = false;
                 }
 
-                    if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space) {
-                        vel.dx = 0.0f;
-                        vel.dy = 0.0f;
-                        if (inputPacket->left) vel.dx = -speed;
-                        if (inputPacket->right) vel.dx = speed;
-                        if (inputPacket->up) vel.dy = -speed;
-                        if (inputPacket->down) vel.dy = speed;
-                    }
-            }
+                if (input.Ultimate) {
+                    shoot_system_.update(entities, playerEntity, true );
+                    input.Ultimate = false;
+                }
+
+                if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space && !inputPacket->ultimate) {
+                    vel.dx = 0.0f;
+                    vel.dy = 0.0f;
+                    if (inputPacket->left) vel.dx = -speed;
+                    if (inputPacket->right) vel.dx = speed;
+                    if (inputPacket->up) vel.dy = -speed;
+                    if (inputPacket->down) vel.dy = speed;
+                }
+                }
         }
     }
-    void GameEngine::handleMessage(const std::vector<uint8_t>& data, const sockaddr_in& sender) {
-        handleNetworkMessage(data, sender);
+
+
+    void GameEngine::handleMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
+        sockaddr_in addr{};
+        addr.sin_family = AF_INET;
+        addr.sin_port = htons(sender.port());
+        addr.sin_addr.s_addr = sender.address().to_v4().to_ulong();
+
+        // Créez un identifiant client à partir de l'IP et du port
+        std::string clientId = sender.address().to_string() + ":" + std::to_string(sender.port());
+
+        handleNetworkMessage(data, addr, clientId);
     }
+
 
     void GameEngine::handlePlayerDisconnection(const std::string& clientId) {
         if (auto it = playerEntities.find(clientId); it != playerEntities.end()) {

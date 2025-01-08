@@ -7,7 +7,7 @@
 #include "gameComponents/RenderComponent.hpp"
 
 namespace rtype {
-    void RenderSystem::update(EntityManager& manager, float dt) {
+    void RenderSystem::update(EntityManager& manager, [[maybe_unused]] float dt) {
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
             if (manager.hasComponent<Position>(entity) &&
                 manager.hasComponent<RenderComponent>(entity)) {

@@ -58,7 +58,9 @@ namespace rtype::network {
         float y;             ///< Position Y
         float dx;            ///< Vélocité X
         float dy;            ///< Vélocité Y
-
+        int life;   ///< vie du player
+        int score;  ///< score de la partie
+        int level; ///< level actuel
     };
 
 
@@ -68,6 +70,7 @@ namespace rtype::network {
         bool left;
         bool right;
         bool space;
+        bool ultimate;
     };
 
 #pragma pack(pop)

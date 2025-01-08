@@ -6,7 +6,7 @@ namespace rtype {
                    const sf::Color& textColor, const sf::Color& normalColor, const sf::Color& hoverColor, const sf::Color& activeColor)
         : normalColor(normalColor), hoverColor(hoverColor), activeColor(activeColor), _text(text),
           isActive(false), isHovered(false), currentScale(1.0f), targetScale(1.0f), onClick(nullptr) {
-        if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
+        if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
             throw std::runtime_error("Failed to load font!");
         }
 
