@@ -16,7 +16,7 @@ namespace rtype {
         normal_mode_button = new Button({550, 300}, {200, 50}, "NORMAL MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
 
 
-        if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
+        if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Erreur : Impossible de charger la police !\n";
             exit(84);
         }
@@ -43,7 +43,7 @@ namespace rtype {
         settings_text.setPosition(270.f, 50.f);
 
         help_description_text.setFont(font);
-        help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, Z to go up,\nQ to go left, S to go down and D to go right.");
+        help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, X to throw\nan ultimate, Z to go up, Q to go left, S to go down and\nD to go right.");
         help_description_text.setCharacterSize(20);
         help_description_text.setFillColor(sf::Color::White);
         help_description_text.setStyle(sf::Text::Bold | sf::Text::Italic);
@@ -131,9 +131,9 @@ namespace rtype {
             exit_settings_button->render(window, "EXIT");
             window.draw(help_text);
             if (left_mode)
-                help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, Z to go up,\nQ to go left, S to go down and D to go right.");
+                help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, X to throw\nan ultimate, Z to go up, Q to go left, S to go down and D to go right.");
             if (right_mode)
-                help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, I to go up,\nJ to go left, K to go down and L to go right.");
+                help_description_text.setString("The goal of this game is to defeat the final boss without dying.\nThere are 3 waves of enemies with 3 different monsters before \nreaching the final boss. Press space to fire missiles, N to throw\nan ultimate, I to go up, J to go left, K to go down and L to go right.");
 
             window.draw(help_description_text);
         }
