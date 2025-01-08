@@ -128,6 +128,9 @@ namespace rtype {
                         if (entities.hasComponent<Velocity>(response->entityId)) {
                             entities.getComponents<Velocity>().erase(response->entityId);
                         }
+                        if (entities.hasComponent<HealthBonus>(response->entityId)) {
+                            entities.getComponents<HealthBonus>().erase(response->entityId);
+                        }
                         entities.destroyEntity(response->entityId);
                     } catch (const std::exception& e) {
                         std::cerr << "Error processing entity death: " << e.what() << std::endl;
@@ -164,6 +167,7 @@ namespace rtype {
                     lifeText.setString("Life: " + std::to_string(playerLife));
                     scoreText.setString("Score: " + std::to_string(playerScore));
                     levelText.setString("Level: " + std::to_string(currentLevel));
+                    std::cout << "Updating player entity: " << entity << " with life: " << playerLife << std::endl;
                 }
 
                 try {
@@ -270,17 +274,11 @@ namespace rtype {
                     }
                     else {
                         if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
-                            std::cout << "Converting enemy to projectile" << std::endl;
-                            if (entities.hasComponent<RenderComponent>(entity)) {
-                                auto& renderComp = entities.getComponent<RenderComponent>(entity);
-                                entities.getComponents<Enemy>().erase(entity);
-                                entities.addComponent(entity, Projectile{10.0f, true, true, false});
-                                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                                renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
-                                renderComp.sprite.setOrigin(8.0f, 8.0f);
-                            }
+                            std::cout << "la ça bug" << std::endl;
+                            entities.getComponents<Enemy>().erase(entity);
+                            entities.getComponents<Position>().erase(entity);
+                            break;
                         }
-
                         auto& pos = entities.getComponent<Position>(entity);
                         auto& vel = entities.getComponent<Velocity>(entity);
                         pos.x = entityUpdate->x;

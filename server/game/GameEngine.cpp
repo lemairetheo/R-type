@@ -39,6 +39,7 @@ namespace rtype::game {
                     update->life = entities.getComponent<Player>(entity).life;
                     update->score = entities.getComponent<Player>(entity).score;
                     update->level = currentLevel;
+                    std::cout << "update player" << std::endl;
                 } if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
                     if (entities.getComponent<Projectile>(entity).isUltimate)
                         update->type = 5;
@@ -48,7 +49,6 @@ namespace rtype::game {
                     auto it = entities.hasTypeEnemy<Enemy>(entity);
                     update->type = it;
                 } else if (entities.hasComponent<HealthBonus>(entity)) {
-                    std::cout << "HealthBonus" << std::endl;
                     update->type = 6;
                 } else
                     update->type = 0;
@@ -87,7 +87,16 @@ namespace rtype::game {
         static float spawnTimer = 0.0f;
         spawnTimer += dt;
 
-        if (spawnTimer >= 10.0f) {
+        bool healthPackExists = false;
+        auto healthpacks = entities.getEntitiesWithComponents<HealthBonus>();
+        for (EntityID healthpack : healthpacks) {
+            if (healthpack) {
+                healthPackExists = true;
+                break;
+            }
+        }
+
+        if (spawnTimer >= 10.0f && !healthPackExists) {
             spawnHealthPack();
             spawnTimer = 0.0f;
         }
@@ -407,7 +416,7 @@ namespace rtype::game {
                     if (inputPacket->up) vel.dy = -speed;
                     if (inputPacket->down) vel.dy = speed;
                 }
-                }
+            }
         }
     }
 
