@@ -8,6 +8,8 @@
 #include <asio.hpp>
 #include <thread>
 #include <atomic>
+#include <cstring>
+#include <cerrno>
 
 namespace rtype::network {
     /**

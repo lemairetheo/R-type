@@ -14,6 +14,7 @@
 #include "systems/AnimationSystem.hpp"
 #include "gameComponents/backgroundComponent.hpp"
 #include "systems/BackgroundSystem.hpp"
+#include "menu/Menu.hpp"
 
 namespace rtype {
     /**
@@ -42,6 +43,9 @@ namespace rtype {
         void handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender);        void handleEvents();
         void update();
         void render();
+        void displayMenu();
         EntityID myPlayerId = 0;
+        sf::Event event;
+        Menu menu;
     };
 }
