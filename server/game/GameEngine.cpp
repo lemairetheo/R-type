@@ -7,11 +7,7 @@ namespace rtype::game {
         : network(networkManager),
     lastUpdate(std::chrono::steady_clock::now())
     {
-        EntityID playerEntity = entities.createEntity();
-        entities.addComponent(playerEntity, Position{400.0f, 300.0f});
-        entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         systems.push_back(std::make_unique<MovementSystem>());
-        spawnEnemiesForLevel(1);
     }
 
     void GameEngine::broadcastWorldState() {
@@ -70,6 +66,7 @@ namespace rtype::game {
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
+        spawnEnemiesForLevel(1);
         return playerEntity;
     }
 
