@@ -23,19 +23,20 @@ namespace rtype {
         levelText.setString("Level: 1");
 
         auto& resources = ResourceManager::getInstance();
-        resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
-        resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
-        resources.loadTexture("player", "assets/sprites/ship.gif");
-        resources.loadTexture("healthPack", "assets/sprites/heal.png");
-        resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
-        resources.loadTexture("ultimate", "assets/sprites/r-typesheet2.gif");
-        resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
-        resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
-        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
-        resources.loadTexture("enemy-colorblind", "assets/sprites/r-typesheet7-2.png");
-        resources.loadTexture("sheet-colorblind", "assets/sprites/r-typesheet1-2.png");
-        resources.loadTexture("bg-colorblind", "assets/background/Nebula Red.png");
-        resources.loadTexture("player-colorblind", "assets/sprites/ship2.png");
+        resources.loadTexture("bg-blue", "./client/assets/background/bg-blue.png");
+        resources.loadTexture("bg-stars", "./client/assets/background/bg-stars.png");
+        resources.loadTexture("player", "./client/assets/sprites/ship.gif");
+        resources.loadTexture("healthPack", "./client/assets/sprites/heal.png");
+        resources.loadTexture("sheet", "./client/assets/sprites/r-typesheet1.gif");
+        resources.loadTexture("ultimate", "./client/assets/sprites/r-typesheet2.gif");
+        resources.loadTexture("ultimate-colorblind", "./client/assets/sprites/r-typesheet2-2.png");
+        resources.loadTexture("enemy_lvl_1", "./client/assets/sprites/r-typesheet7.gif");
+        resources.loadTexture("enemy_lvl_2", "./client/assets/sprites/r-typesheet9.gif");
+        resources.loadTexture("enemy_lvl_3", "./client/assets/sprites/r-typesheet14.gif");
+        resources.loadTexture("enemy_lvl_1-colorblind", "./client/assets/sprites/r-typesheet7-2.png");
+        resources.loadTexture("sheet-colorblind", "./client/assets/sprites/r-typesheet1-2.png");
+        resources.loadTexture("bg-colorblind", "./client/assets/background/Nebula Red.png");
+        resources.loadTexture("player-colorblind", "./client/assets/sprites/ship2.png");
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -45,7 +46,7 @@ namespace rtype {
             auto textureSize = bgComp.sprite.getTexture()->getSize();
             bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
             entities.addComponent(bgDeep, bgComp);
-            if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
+            if (!font.loadFromFile("./client/assets/fonts/Roboto-Medium.ttf")) {
                 std::cerr << "Error loading font" << std::endl;
             }
             endGameText.setFont(font);
@@ -196,7 +197,11 @@ namespace rtype {
                         else if (entityUpdate->type == 5) {
                             std::cout << "Creating ultimate projectile entity" << std::endl;
                             entities.addComponent(entity, Projectile{10.0f, true, true, true});
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
+                            if (menu.getColorblindMode() == true) {
+                                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate-colorblind"));
+                            } else {
+                                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
+                            }
                             renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
                             renderComp.sprite.setOrigin(8.0f, 8.0f);
                             renderComp.frameWidth = 37;
@@ -216,11 +221,20 @@ namespace rtype {
                         }
                         else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
                             std::cout << "Creating enemy entity type: " << entityUpdate->type << std::endl;
-                            static const std::unordered_map<int, std::string> textureMap = {
-                                {2, "enemy_lvl_1"},
-                                {3, "enemy_lvl_2"},
-                                {4, "enemy_lvl_3"}
-                            };
+                            static std::unordered_map<int, std::string> textureMap;
+                            if (menu.getColorblindMode() == true) {
+                                textureMap = {
+                                    {2, "enemy_lvl_1-colorblind"},
+                                    {3, "enemy_lvl_2"},
+                                    {4, "enemy_lvl_3"}
+                                };
+                            } else {
+                                textureMap = {
+                                    {2, "enemy_lvl_1"},
+                                    {3, "enemy_lvl_2"},
+                                    {4, "enemy_lvl_3"}
+                                };
+                            }
 
                             entities.addComponent(entity, Enemy{1, true, 1, 1.0f});
 

@@ -10,7 +10,7 @@ namespace rtype {
     public:
        explicit RenderSystem(sf::RenderWindow& window) : window(window) {
            auto& resources = ResourceManager::getInstance();
-           resources.loadTexture("player", "assets/sprites/ship.gif");
+           resources.loadTexture("player", "./client/assets/sprites/ship.gif");
        }
 
        void update(EntityManager& manager, float dt) override;
