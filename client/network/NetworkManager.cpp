@@ -19,7 +19,6 @@ namespace rtype::network {
 
         try {
             socket.open(asio::ip::udp::v4());
-            socket.set_option(asio::socket_base::reuse_address(true));
 
             // Bind to any available port
             socket.bind(asio::ip::udp::endpoint(asio::ip::address_v4::any(), 0));
