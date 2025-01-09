@@ -14,6 +14,7 @@
 #include "systems/AnimationSystem.hpp"
 #include "gameComponents/backgroundComponent.hpp"
 #include "systems/BackgroundSystem.hpp"
+#include "menu/Menu.hpp"
 
 namespace rtype {
     /**
@@ -52,6 +53,9 @@ namespace rtype {
 
         void render();
 
+        void displayMenu();
+        Menu menu;
+        sf::Event event;
         EntityID myPlayerId = 0;
     };
 }

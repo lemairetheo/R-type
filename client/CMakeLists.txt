@@ -17,6 +17,11 @@ set(CLIENT_SOURCES
         systems/AnimationSystem.hpp
         systems/BackgroundSystem.cpp
         systems/BackgroundSystem.hpp
+        menu/Menu.cpp
+        menu/Menu.hpp
+        menu/Inputs.hpp
+        menu/button/Button.cpp
+        menu/button/Button.hpp
 )
 
 add_executable(r-type_client WIN32 ${CLIENT_SOURCES})
