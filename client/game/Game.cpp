@@ -5,7 +5,7 @@
 #include "Game.hpp"
 
 namespace rtype {
-    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242) {
+    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(4242), menu(800, 600) {
         std::cout << "Game: Initializing..." << std::endl;
         lifeText.setFont(font);
         lifeText.setCharacterSize(20);
@@ -32,6 +32,12 @@ namespace rtype {
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
         resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
+        resources.loadTexture("bg-colorblind", "assets/background/Nebula Red.png");
+        resources.loadTexture("sheet-colorblind", "assets/sprites/r-typesheet1-2.png");
+        resources.loadTexture("enemy_lvl_1-colorblind", "assets/sprites/r-typesheet7-2.png");
+        resources.loadTexture("player-colorblind", "assets/sprites/ship2.png");
+        resources.loadTexture("ultimate-colorblind", "assets/sprites/r-typesheet2-2.png");
+
         {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
@@ -125,17 +131,26 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                     RenderComponent renderComp;
                     if (entityUpdate->type == 0) {
                         std::cout << "player created" << std::endl;
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                        if (menu.getColorblindMode() == true)
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player-colorblind"));
+                        else
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
                     } else if (entityUpdate->type == 1) {
                         entities.addComponent(entity, Projectile{10.0f, true, false, false});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                        if (menu.getColorblindMode() == true)
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet-colorblind"));
+                        else
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type == 5) {
                         entities.addComponent(entity, Projectile{10.0f, true, false, false});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
+                        if (menu.getColorblindMode() == true)
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate-colorblind"));
+                        else
+                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
                         renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                         renderComp.frameWidth = 37;
@@ -151,11 +166,20 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                         renderComp.frameCount = 1;
                         renderComp.sprite.setScale(0.3f, 0.3f);
                     } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
-                        static const std::unordered_map<int, std::string> textureMap = {
-                            {2, "enemy_lvl_1"},
-                            {3, "enemy_lvl_2"},
-                            {4, "enemy_lvl_3"}
-                        };
+                        static std::unordered_map<int, std::string> textureMap;
+                        if (menu.getColorblindMode() == true) {
+                            textureMap = {
+                                {2, "enemy_lvl_1-colorblind"},
+                                {3, "enemy_lvl_2"},
+                                {4, "enemy_lvl_3"}
+                            };
+                        } else {
+                            textureMap = {
+                                {2, "enemy_lvl_1"},
+                                {3, "enemy_lvl_2"},
+                                {4, "enemy_lvl_3"}
+                            };
+                        }
 
                         entities.addComponent(entity, Enemy{1, true, false, false});
 
@@ -224,7 +248,51 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
         }
     }
 
+    void Game::displayMenu() {
+        while (!menu.getIsPlaying()) {
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed) {
+                    window.close();
+                    exit(0);
+                }
+            }
+
+            window.clear();
+
+            if (menu.getColorblindMode()) {
+                auto& bgComponents = entities.getComponents<BackgroundComponent>();
+
+                for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                    if (bgComponents[entity].has_value() && bgComponents[entity]->layer == 0) {
+                        auto& bgComp = bgComponents[entity].value();
+                        bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-colorblind"));
+                        break;
+                    }
+                }
+            } else {
+                auto& bgComponents = entities.getComponents<BackgroundComponent>();
+
+                for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+                    if (bgComponents[entity].has_value() && bgComponents[entity]->layer == 0) {
+                        auto& bgComp = bgComponents[entity].value();
+                        bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-blue"));
+                        break;
+                    }
+                }
+            }
+
+            update();
+            for (auto& system : systems) {
+                system->update(entities, 0);
+            }
+            menu.render(window, event);
+            window.display();
+        }
+    }
+
+
     void Game::run() {
+        displayMenu();
         network.start();
         std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
         auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());
@@ -274,12 +342,21 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
         }
 
         InputComponent input;
-        input.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
-        input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
-        input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Q);
-        input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
-        input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
-        input.Ultimate = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
+        if (menu.getRightMode()) {
+            input.up = sf::Keyboard::isKeyPressed(sf::Keyboard::I);
+            input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::K);
+            input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::J);
+            input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::L);
+            input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+            input.Ultimate = sf::Keyboard::isKeyPressed(sf::Keyboard::N);
+        } else {
+            input.up = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
+            input.down = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+            input.left = sf::Keyboard::isKeyPressed(sf::Keyboard::Q);
+            input.right = sf::Keyboard::isKeyPressed(sf::Keyboard::D);
+            input.space = sf::Keyboard::isKeyPressed(sf::Keyboard::Space);
+            input.Ultimate = sf::Keyboard::isKeyPressed(sf::Keyboard::X);
+        }
 
         if (input.up || input.down || input.left || input.right || input.space || input.Ultimate) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));
