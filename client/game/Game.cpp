@@ -21,44 +21,45 @@ namespace rtype {
         levelText.setFillColor(sf::Color::White);
         levelText.setPosition(700, 10); // En dessous du score
         levelText.setString("Level: 1");
+        gameOverText.setFont(font);
+        gameOverText.setString("Game Over");
+        gameOverText.setCharacterSize(50);
+        gameOverText.setFillColor(sf::Color::Red);
+        gameOverText.setStyle(sf::Text::Bold);
+        sf::FloatRect textRect = gameOverText.getLocalBounds();
+        gameOverText.setOrigin(textRect.left + textRect.width / 2.0f,
+                               textRect.top + textRect.height / 2.0f);
+        gameOverText.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
 
-        auto& resources = ResourceManager::getInstance();
+        auto &resources = ResourceManager::getInstance();
+        resources.loadTexture("player", "assets/sprites/ship.gif");
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
-        resources.loadTexture("player", "assets/sprites/ship.gif");
         resources.loadTexture("healthPack", "assets/sprites/heal.png");
         resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
         resources.loadTexture("ultimate", "assets/sprites/r-typesheet2.gif");
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
-        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
-        {
+        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif"); {
             EntityID bgDeep = entities.createEntity();
             BackgroundComponent bgComp;
             bgComp.scrollSpeed = 20.0f;
             bgComp.layer = 0;
             bgComp.sprite.setTexture(*resources.getTexture("bg-blue"));
             auto textureSize = bgComp.sprite.getTexture()->getSize();
-            bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
+            bgComp.sprite.setScale(800.0f / textureSize.x, 600.0f / textureSize.y);
             entities.addComponent(bgDeep, bgComp);
             if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
                 std::cerr << "Error loading font" << std::endl;
             }
-            endGameText.setFont(font);
-            endGameText.setString("GG Bro");
-            endGameText.setCharacterSize(50);
-            endGameText.setFillColor(sf::Color::White);
-            endGameText.setStyle(sf::Text::Bold);
-            endGameText.setPosition(200, 250);
-        }
-        {
+        } {
             EntityID bgStars = entities.createEntity();
             BackgroundComponent bgComp;
             bgComp.scrollSpeed = 40.0f;
             bgComp.layer = 1;
             bgComp.sprite.setTexture(*resources.getTexture("bg-stars"));
             auto textureSize = bgComp.sprite.getTexture()->getSize();
-            bgComp.sprite.setScale(800.0f / textureSize.x,600.0f / textureSize.y);
+            bgComp.sprite.setScale(800.0f / textureSize.x, 600.0f / textureSize.y);
             bgComp.sprite.setColor(sf::Color(255, 255, 255, 180));
             entities.addComponent(bgStars, bgComp);
         }
@@ -66,20 +67,22 @@ namespace rtype {
         systems.push_back(std::make_unique<MovementSystem>());
         systems.push_back(std::make_unique<AnimationSystem>());
         systems.push_back(std::make_unique<RenderSystem>(window));
-        network.setMessageCallback([this](const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
+        network.setMessageCallback([this](const std::vector<uint8_t> &data, const asio::ip::udp::endpoint &sender) {
             handleNetworkMessage(data, sender);
         });
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
-void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const asio::ip::udp::endpoint& sender) {
+    void Game::handleNetworkMessage(const std::vector<uint8_t> &data,
+                                    [[maybe_unused]] const asio::ip::udp::endpoint &sender) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
-        const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
+        const auto *header = reinterpret_cast<const network::PacketHeader *>(data.data());
 
-        switch(static_cast<network::PacketType>(header->type)) {
+        switch (static_cast<network::PacketType>(header->type)) {
             case network::PacketType::CONNECT_RESPONSE: {
-                const auto* response = reinterpret_cast<const network::ConnectResponsePacket*>(data.data() + sizeof(network::PacketHeader));
+                const auto *response = reinterpret_cast<const network::ConnectResponsePacket *>(
+                    data.data() + sizeof(network::PacketHeader));
                 if (response->success) {
                     myPlayerId = response->playerId;
                     std::cout << "Game: Connected with ID " << myPlayerId << std::endl;
@@ -87,7 +90,11 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                 break;
             }
             case network::PacketType::ENTITY_DEATH: {
-                const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
+                const auto *response = reinterpret_cast<const network::EntityUpdatePacket *>(
+                    data.data() + sizeof(network::PacketHeader));
+
+                if (playerLife <= 0)
+                    playerIsDead = true;
                 if (response->entityId != -1) {
                     if (entities.hasComponent<Enemy>(response->entityId))
                         entities.getComponents<Enemy>().erase(response->entityId);
@@ -106,7 +113,8 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                 break;
             }
             case network::PacketType::ENTITY_UPDATE: {
-                const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + sizeof(network::PacketHeader));
+                const auto *entityUpdate = reinterpret_cast<const network::EntityUpdatePacket *>(
+                    data.data() + sizeof(network::PacketHeader));
                 EntityID entity = entityUpdate->entityId;
 
                 if (entityUpdate->type == 0 && entity == myPlayerId) {
@@ -168,15 +176,13 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                                 renderComp.Y = 0;
                                 renderComp.frameCount = 3;
                                 renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
-                            }
-                            else if (it->first == 3) {
+                            } else if (it->first == 3) {
                                 renderComp.frameWidth = 53;
                                 renderComp.frameHeight = 54;
                                 renderComp.Y = 0;
                                 renderComp.frameCount = 3;
                                 renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
-                            }
-                            else if (it->first == 4) {
+                            } else if (it->first == 4) {
                                 renderComp.frameWidth = 49;
                                 renderComp.frameHeight = 52;
                                 renderComp.Y = 0;
@@ -184,7 +190,6 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                                 renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
                             }
                             renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
-
                         }
                     }
 
@@ -202,10 +207,10 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                         std::cout << entities.hasComponent<Enemy>(entity) << std::endl;
                     }
-                    auto& pos = entities.getComponent<Position>(entity);
-                    auto& vel = entities.getComponent<Velocity>(entity);
+                    auto &pos = entities.getComponent<Position>(entity);
+                    auto &vel = entities.getComponent<Velocity>(entity);
                     //zif (entityUpdate->type == 0)
-                        //std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
+                    //std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
 
                     pos.x = entityUpdate->x;
                     pos.y = entityUpdate->y;
@@ -215,7 +220,8 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
                 break;
             }
             case network::PacketType::END_GAME_STATE: {
-                endGame = true;
+                playerIsDead = true;
+                gameOverText.setString("Ta Gagner PD");
                 std::cout << "Game: End game state received. You won!" << std::endl;
                 break;
             }
@@ -227,7 +233,7 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
     void Game::run() {
         network.start();
         std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
-        auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());
+        auto *header = reinterpret_cast<network::PacketHeader *>(connectPacket.data());
         header->magic[0] = 'R';
         header->magic[1] = 'T';
         header->version = 1;
@@ -248,13 +254,12 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
 
         std::cout << "Game: Successfully connected with ID: " << myPlayerId << std::endl;
         while (window.isOpen()) {
-
             handleEvents();
             update();
             render();
         }
         std::vector<uint8_t> disconnectPacket(sizeof(network::PacketHeader));
-        header = reinterpret_cast<network::PacketHeader*>(disconnectPacket.data());
+        header = reinterpret_cast<network::PacketHeader *>(disconnectPacket.data());
         header->magic[0] = 'R';
         header->magic[1] = 'T';
         header->version = 1;
@@ -283,8 +288,9 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
 
         if (input.up || input.down || input.left || input.right || input.space || input.Ultimate) {
             std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::PlayerInputPacket));
-            auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
-            auto* inputPacket = reinterpret_cast<network::PlayerInputPacket*>(packet.data() + sizeof(network::PacketHeader));
+            auto *header = reinterpret_cast<network::PacketHeader *>(packet.data());
+            auto *inputPacket = reinterpret_cast<network::PlayerInputPacket *>(
+                packet.data() + sizeof(network::PacketHeader));
             header->magic[0] = 'R';
             header->magic[1] = 'T';
             header->version = 1;
@@ -315,7 +321,7 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
         for (size_t i = 0; i < systems.size(); ++i) {
             try {
                 systems[i]->update(entities, dt);
-            } catch (const std::exception& e) {
+            } catch (const std::exception &e) {
                 std::cerr << "Exception in system " << i << ": " << e.what() << std::endl;
             } catch (...) {
                 std::cerr << "Unknown exception in system " << i << std::endl;
@@ -326,17 +332,15 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused
     void Game::render() {
         window.clear();
 
-        if (!endGame) {
-            for (auto& system : systems) {
+        if (!endGame && !playerIsDead) {
+            for (auto &system: systems) {
                 system->update(entities, 0);
             }
             window.draw(lifeText);
             window.draw(scoreText);
             window.draw(levelText);
-        }
-
-        if (endGame) {
-            window.draw(endGameText);
+        } else if (playerIsDead) {
+            window.draw(gameOverText);
         }
         window.display();
     }

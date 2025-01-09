@@ -9,10 +9,7 @@ namespace rtype {
    class RenderSystem : public ISystem {
     public:
        explicit RenderSystem(sf::RenderWindow& window) : window(window) {
-           auto& resources = ResourceManager::getInstance();
-           resources.loadTexture("player", "assets/sprites/ship.gif");
        }
-
        void update(EntityManager& manager, float dt) override;
    private:
         sf::RenderWindow& window;

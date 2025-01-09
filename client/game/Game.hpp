@@ -23,8 +23,12 @@ namespace rtype {
     class Game {
     public:
         Game();
+
         void run();
+
     private:
+        sf::Text gameOverText;
+        bool playerIsDead = false;
         int playerLife = 3;
         sf::Text lifeText;
         bool endGame = false;
@@ -36,12 +40,18 @@ namespace rtype {
         int currentLevel = 1;
         sf::RenderWindow window;
         EntityManager entities;
-        std::vector<std::unique_ptr<ISystem>> systems;
+        std::vector<std::unique_ptr<ISystem> > systems;
         network::NetworkClient network;
         std::chrono::steady_clock::time_point lastUpdate = std::chrono::steady_clock::now();
-void handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender);        void handleEvents();
+
+        void handleNetworkMessage(const std::vector<uint8_t> &data, const asio::ip::udp::endpoint &sender);
+
+        void handleEvents();
+
         void update();
+
         void render();
+
         EntityID myPlayerId = 0;
     };
 }
