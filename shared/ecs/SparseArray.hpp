@@ -25,10 +25,6 @@ namespace rtype {
             return _data[idx];
         }
 
-        const_reference_type operator[](std::size_t idx) const {
-            return _data[idx];
-        }
-
         void insert_at(std::size_t idx, Component const& component) {
             if (idx >= _data.size())
                 _data.resize(idx + 1);
@@ -36,7 +32,15 @@ namespace rtype {
         }
 
         void erase(EntityID entity) override {
-            _data[entity].reset();
+            if (entity < _data.size()) {
+                _data[entity].reset();
+            }
+        }
+
+        const_reference_type operator[](std::size_t idx) const {
+            // if (idx >= _data.size())
+            //     return std::nullopt;
+            return _data[idx];
         }
 
         container_t& getData() { return _data; }

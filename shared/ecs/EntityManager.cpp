@@ -16,7 +16,7 @@ namespace rtype {
 
     EntityID EntityManager::createEntity() {
         if (availableEntities.empty()) {
-            throw std::runtime_error("Maximum number of entities reached");
+                throw std::runtime_error("Maximum number of entities reached");
         }
         EntityID id = availableEntities.back();
         availableEntities.pop_back();

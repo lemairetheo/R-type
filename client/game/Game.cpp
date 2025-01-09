@@ -72,7 +72,7 @@ namespace rtype {
         std::cout << "Game: Initialization complete" << std::endl;
     }
 
-void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
+void Game::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const asio::ip::udp::endpoint& sender) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
@@ -129,12 +129,12 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
                         renderComp.sprite.setOrigin(16.5f, 8.5f);
                     } else if (entityUpdate->type == 1) {
-                        entities.addComponent(entity, Projectile{10.0f, true});
+                        entities.addComponent(entity, Projectile{10.0f, true, false, false});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
                     } else if (entityUpdate->type == 5) {
-                        entities.addComponent(entity, Projectile{10.0f, true});
+                        entities.addComponent(entity, Projectile{10.0f, true, false, false});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
                         renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
@@ -157,7 +157,7 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                             {4, "enemy_lvl_3"}
                         };
 
-                        entities.addComponent(entity, Enemy{1, true});
+                        entities.addComponent(entity, Enemy{1, true, false, false});
 
                         auto it = textureMap.find(entityUpdate->type);
                         if (it != textureMap.end()) {
@@ -194,9 +194,9 @@ void Game::handleNetworkMessage(const std::vector<uint8_t>& data, const asio::ip
                         std::cout << "la ça bug" << std::endl;
                         entities.getComponents<Enemy>().erase(entity);
                         entities.getComponents<Position>().erase(entity);
-                        break;
+                        // break;
                         RenderComponent renderComp = entities.getComponent<RenderComponent>(entity);
-                        entities.addComponent(entity, Projectile{10.0f, true});
+                        entities.addComponent(entity, Projectile{10.0f, true, false, false});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
                         renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
                         renderComp.sprite.setOrigin(8.0f, 8.0f);
