@@ -15,6 +15,7 @@ namespace rtype::game {
     }
 
     void GameEngine::broadcastWorldState() {
+        auto walls = entities.getEntitiesWithComponents<Wall>();
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
             if (entities.hasComponent<Position>(entity) && entities.hasComponent<Velocity>(entity)) {
                 const auto& pos = entities.getComponent<Position>(entity);
@@ -54,6 +55,8 @@ namespace rtype::game {
                 } else if (entities.hasComponent<HealthBonus>(entity)) {
                     std::cout << "HealthBonus" << std::endl;
                     update->type = 6;
+                } else if (entities.hasComponent<Wall>(entity)) {
+                    update->type = 7;
                 } else
                     update->type = 0;
                 network.broadcast(packet);
@@ -81,7 +84,6 @@ namespace rtype::game {
         return distanceSquared <= (radiusSum * radiusSum);
     }
 
-
     void GameEngine::update() {
         auto currentTime = std::chrono::steady_clock::now();
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
@@ -98,6 +100,7 @@ namespace rtype::game {
         handleEnemySpawns(dt);
         handleEnemyShoot();
         handleCollisions();
+        handleWallSpawns();
 
         for (auto& system : systems) {
             system->update(entities, dt);
@@ -114,6 +117,17 @@ namespace rtype::game {
         entities.addComponent(healthPackEntity, Position{x, y});
         entities.addComponent(healthPackEntity, HealthBonus{3});
         entities.addComponent(healthPackEntity, Velocity{0.0f, 0.0f});
+    }
+
+    void GameEngine::handleWallSpawns() {
+        auto currentTime = std::chrono::steady_clock::now();
+        float dt = std::chrono::duration<float>(currentTime - lastUpdateWallShoot).count();
+
+        if (dt >= 1.2f)
+            lastUpdateWallShoot = currentTime;
+        else
+            return;
+        spawnWall(250, 100, 1);
     }
 
     void GameEngine::handleEnemySpawns(float dt) {
@@ -147,6 +161,7 @@ namespace rtype::game {
     void GameEngine::handleCollisions() {
         auto missiles = entities.getEntitiesWithComponents<Projectile>();
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        auto walls = entities.getEntitiesWithComponents<Wall>();
         auto players = entities.getEntitiesWithComponents<Player>();
         auto healthPacks = entities.getEntitiesWithComponents<HealthBonus>();
 
@@ -173,6 +188,15 @@ namespace rtype::game {
 
                 if (checkCollision(missilePos, missileRadius, playerPos, 20.0f) && entities.getComponent<Projectile>(missile).lunchByType != 0) {
                     handleCollisionPlayer(missile, player);
+                    break;
+                }
+            }
+            // Handle collision with wall for all missiles
+            for (EntityID wall : walls) {
+                const auto& wallPos = entities.getComponent<Position>(wall);
+
+                if (checkCollisionRect(missilePos, missileRadius, wallPos, 20.0f, 60.0f) ) {
+                    handleCollisionPlayer(missile, wall);
                     break;
                 }
             }
@@ -270,6 +294,14 @@ namespace rtype::game {
         entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
     }
 
+    void GameEngine::spawnWall(float x, float y, int level) {
+        EntityID wallEntity = entities.createEntity();
+        entities.addComponent(wallEntity, Position{x, y});
+        entities.addComponent(wallEntity, Velocity{0.0f, 0.0f});
+
+        entities.addComponent(wallEntity, Wall{1});
+    }
+s
     bool GameEngine::checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
         float dx = pos1.x - pos2.x;
         float dy = pos1.y - pos2.y;
@@ -277,6 +309,17 @@ namespace rtype::game {
         float radiusSum = radius1 + radius2;
         return distanceSquared <= (radiusSum * radiusSum);
     }
+
+    bool GameEngine::checkCollisionRect(const Position& circlePos, float radius, const Position& rectPos, float rectWidth, float rectHeight) {
+        float closestX = std::max(rectPos.x, std::min(circlePos.x, rectPos.x + rectWidth));
+        float closestY = std::max(rectPos.y, std::min(circlePos.y, rectPos.y + rectHeight));
+
+        float dx = circlePos.x - closestX;
+        float dy = circlePos.y - closestY;
+
+        return (dx * dx + dy * dy) <= (radius * radius);
+    }
+
 
     std::vector<uint8_t> GameEngine::createEntityDeathPacket(EntityID missile, EntityID enemy) const {
         std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));

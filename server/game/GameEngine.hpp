@@ -37,6 +37,7 @@ namespace rtype::game {
             // Gestion du temps et de la vitesse
             std::chrono::steady_clock::time_point lastUpdate;
             std::chrono::steady_clock::time_point lastUpdateEnemiesShoot;
+            std::chrono::steady_clock::time_point lastUpdateWallShoot;
             float speed = 200.0f;
 
             // File d'attente pour les spawns d'ennemis
@@ -73,6 +74,7 @@ namespace rtype::game {
 
             // Méthodes de mise à jour du jeu
             void handleEnemySpawns(float dt);
+            void handleWallSpawns();
             void handleEnemyShoot();
             void handleCollisions();
             void handleCollision(EntityID missile, EntityID enemy);
@@ -82,9 +84,11 @@ namespace rtype::game {
 
             // Méthodes utilitaires
             bool checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2);
+            bool checkCollisionRect(const Position& circlePos, float radius, const Position& rectPos, float rectWidth, float rectHeight);
             std::vector<uint8_t> createEndGamePacket() const;
             static std::tuple<float, int, float> getEnemyAttributes(int level);
             void spawnEnemy(float x, float y, int level);
+            void spawnWall(float x, float y, int level);
             std::string formatClientId(const sockaddr_in& client) const;
 
             // Méthodes de gestion des paquets
