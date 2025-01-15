@@ -42,12 +42,12 @@ namespace rtype {
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
         resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif"); {
-            resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
-            resources.loadTexture("bg-colorblind", "assets/background/Nebula Red.png");
-            resources.loadTexture("sheet-colorblind", "assets/sprites/r-typesheet1-2.png");
-            resources.loadTexture("enemy_lvl_1-colorblind", "assets/sprites/r-typesheet7-2.png");
-            resources.loadTexture("player-colorblind", "assets/sprites/ship2.png");
-            resources.loadTexture("ultimate-colorblind", "assets/sprites/r-typesheet2-2.png");
+        resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
+        resources.loadTexture("bg-colorblind", "assets/background/Nebula Red.png");
+        resources.loadTexture("sheet-colorblind", "assets/sprites/r-typesheet1-2.png");
+        resources.loadTexture("enemy_lvl_1-colorblind", "assets/sprites/r-typesheet7-2.png");
+        resources.loadTexture("player-colorblind", "assets/sprites/ship2.png");
+        resources.loadTexture("ultimate-colorblind", "assets/sprites/r-typesheet2-2.png");
 
             {
                 EntityID bgDeep = entities.createEntity();
@@ -71,6 +71,21 @@ namespace rtype {
                 bgComp.sprite.setScale(800.0f / textureSize.x, 600.0f / textureSize.y);
                 bgComp.sprite.setColor(sf::Color(255, 255, 255, 180));
                 entities.addComponent(bgStars, bgComp);
+            } {
+                if (!musicGame.openFromFile("assets/audio/415384_Nyan.mp3")) {
+                    std::cerr << "Error loading audio" << std::endl;
+                } else {
+                    musicGame.setLoop(true);
+                    musicGame.setVolume(10.0f);
+                    musicGame.play();
+                }
+            } {
+                if (!weaponSong.openFromFile("assets/audio/poum.mp3")) {
+                    std::cerr << "Error loading audio" << std::endl;
+                } else {
+                    weaponSong.setLoop(false);
+                    weaponSong.setVolume(50.0f);
+                }
             }
             systems.push_back(std::make_unique<BackgroundSystem>(window));
             systems.push_back(std::make_unique<MovementSystem>());
@@ -390,6 +405,8 @@ namespace rtype {
             inputPacket->right = input.right;
             inputPacket->space = input.space;
             inputPacket->ultimate = input.Ultimate;
+            if (input.space)
+                weaponSong.play();
             network.sendTo(packet);
 
             if (input.space)

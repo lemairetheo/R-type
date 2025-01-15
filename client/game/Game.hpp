@@ -5,6 +5,7 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "shared/ecs/EntityManager.hpp"
 #include "shared/systems/System.hpp"
 #include "shared/systems/MouvementSystem.hpp"
@@ -34,6 +35,8 @@ namespace rtype {
         sf::Text lifeText;
         bool endGame = false;
         sf::Text endGameText;
+        sf::Music musicGame;
+        sf::Music weaponSong;
         sf::Font font;
         sf::Text scoreText;
         int playerScore = 0;
