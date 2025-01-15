@@ -52,6 +52,10 @@ namespace rtype {
         float speedShoot; // Velocity
     };
 
+    struct Wall {
+        int color; // 1 or 2
+    };
+
     struct HealthBonus {
         int healthAmount = 3;
     };

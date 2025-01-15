@@ -36,6 +36,7 @@ namespace rtype {
         resources.loadTexture("bg-blue", "assets/background/bg-blue.png");
         resources.loadTexture("bg-stars", "assets/background/bg-stars.png");
         resources.loadTexture("healthPack", "assets/sprites/heal.png");
+        resources.loadTexture("wall", "assets/sprites/wall.jpg");
         resources.loadTexture("sheet", "assets/sprites/r-typesheet1.gif");
         resources.loadTexture("ultimate", "assets/sprites/r-typesheet2.gif");
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
@@ -217,15 +218,22 @@ namespace rtype {
                             }
                             renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
                         }
+                    } else if (entityUpdate->type == 7) {
+                        entities.addComponent(entity, Wall{3});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("wall"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 167, 587));
+                        renderComp.sprite.setOrigin(10.0f, 8.0f);
+                        renderComp.frameWidth = 165;
+                        renderComp.frameHeight = 590;
+                        renderComp.frameCount = 1;
+                        renderComp.sprite.setScale(0.1f, 0.1f);
                     }
 
                     entities.addComponent(entity, renderComp);
                 } else {
                     if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
-                        std::cout << "la ça bug" << std::endl;
                         entities.getComponents<Enemy>().erase(entity);
                         entities.getComponents<Position>().erase(entity);
-                        // break;
                         RenderComponent renderComp = entities.getComponent<RenderComponent>(entity);
                         entities.addComponent(entity, Projectile{10.0f, true, false, false});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
@@ -235,8 +243,8 @@ namespace rtype {
                     }
                     auto &pos = entities.getComponent<Position>(entity);
                     auto &vel = entities.getComponent<Velocity>(entity);
-                    //zif (entityUpdate->type == 0)
-                    //std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
+                    // if (entityUpdate->type == 0)
+                    // std::cout << "player update posx" << pos.x << "pos y" << pos.y << std::endl;
 
                     pos.x = entityUpdate->x;
                     pos.y = entityUpdate->y;

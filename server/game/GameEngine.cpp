@@ -15,6 +15,7 @@ namespace rtype::game {
     }
 
     void GameEngine::broadcastWorldState() {
+        auto walls = entities.getEntitiesWithComponents<Wall>();
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
             if (entities.hasComponent<Position>(entity) && entities.hasComponent<Velocity>(entity)) {
                 const auto& pos = entities.getComponent<Position>(entity);
@@ -52,8 +53,9 @@ namespace rtype::game {
                     auto it = entities.hasTypeEnemy<Enemy>(entity);
                     update->type = it;
                 } else if (entities.hasComponent<HealthBonus>(entity)) {
-                    std::cout << "HealthBonus" << std::endl;
                     update->type = 6;
+                } else if (entities.hasComponent<Wall>(entity)) {
+                    update->type = 7;
                 } else
                     update->type = 0;
                 network.broadcast(packet);
@@ -81,23 +83,16 @@ namespace rtype::game {
         return distanceSquared <= (radiusSum * radiusSum);
     }
 
-
     void GameEngine::update() {
         auto currentTime = std::chrono::steady_clock::now();
         float dt = std::chrono::duration<float>(currentTime - lastUpdate).count();
         lastUpdate = currentTime;
 
-        static float spawnTimer = 0.0f;
-        spawnTimer += dt;
-
-        if (spawnTimer >= 10.0f) {
-            spawnHealthPack();
-            spawnTimer = 0.0f;
-        }
-
+        handleHealthPackSpawns();
         handleEnemySpawns(dt);
         handleEnemyShoot();
         handleCollisions();
+        handleWallSpawns();
 
         for (auto& system : systems) {
             system->update(entities, dt);
@@ -106,14 +101,78 @@ namespace rtype::game {
         broadcastWorldState();
     }
 
-    void GameEngine::spawnHealthPack() {
+    /**
+     * @brief Handles the spawning of health packs in the game world.
+     *
+     * This function is responsible for periodically spawning health packs at random positions
+     * within the game area. The logic ensures that health packs do not spawn on top of walls and others health packs.
+     *
+     * @details
+     * - Spawning frequency is controlled by a timer, with a delay of 10.2 seconds between spawns.
+     * - Health packs are assigned random x and y coordinates within the boundaries of the game area:
+     *   - x: [0, 800]
+     *   - y: [0, 600]
+     * - A check is performed to ensure that health packs do not overlap with any wall entity
+     *   by using the `checkCollisionRect` function.
+     * - Once a valid position is found, a new entity is created with the following components:
+     *   - `Position`: The randomly generated position.
+     *   - `HealthBonus`: A bonus value of 3.
+     *   - `Velocity`: Set to zero as health packs do not move.
+     *
+     * @note The function ensures that health packs are spawned in valid locations and with appropriate attributes.
+     */
+    void GameEngine::handleHealthPackSpawns() {
+        auto currentTime = std::chrono::steady_clock::now();
+        float dt = std::chrono::duration<float>(currentTime - lastUpdateHealthPack).count();
+
+        if (dt >= 10.2f) // Frequency spawn HealthPack
+            lastUpdateHealthPack = currentTime;
+        else
+            return;
         float x = static_cast<float>(rand() % 800); // Position X aléatoire
         float y = static_cast<float>(rand() % 600); // Position Y aléatoire
+
+        auto walls = entities.getEntitiesWithComponents<Wall>();
+        auto HealthPacks = entities.getEntitiesWithComponents<HealthBonus>();
+        bool stopLoop = false;
+
+        while (stopLoop != true) { // Check not possibility spawn HealPack at the top of the wall
+            for (EntityID wall : walls) {
+                const auto& wallPos = entities.getComponent<Position>(wall);
+                if (!checkCollisionRect({x, y}, 25, wallPos, 20, 60)) {
+                    stopLoop = true;
+                    break;
+                }
+            }
+            for (EntityID HealthPack : HealthPacks) {
+                const auto& HealthPackPos = entities.getComponent<Position>(HealthPack);
+                if (!checkCollisionRect({x, y}, 25, HealthPackPos, 20, 60)) {
+                    stopLoop = true;
+                    break;
+                }
+            }
+            if (stopLoop == false)
+                break;
+            x = static_cast<float>(rand() % 800);
+            y = static_cast<float>(rand() % 600);
+        }
 
         EntityID healthPackEntity = entities.createEntity();
         entities.addComponent(healthPackEntity, Position{x, y});
         entities.addComponent(healthPackEntity, HealthBonus{3});
         entities.addComponent(healthPackEntity, Velocity{0.0f, 0.0f});
+    }
+
+    void GameEngine::handleWallSpawns() {
+        auto currentTime = std::chrono::steady_clock::now();
+        float dt = std::chrono::duration<float>(currentTime - lastUpdateWallShoot).count();
+
+        if (dt >= 1.2f)
+            lastUpdateWallShoot = currentTime;
+        else
+            return;
+        spawnWall(250, 100);
+        spawnWall(250, 450);
     }
 
     void GameEngine::handleEnemySpawns(float dt) {
@@ -147,6 +206,7 @@ namespace rtype::game {
     void GameEngine::handleCollisions() {
         auto missiles = entities.getEntitiesWithComponents<Projectile>();
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        auto walls = entities.getEntitiesWithComponents<Wall>();
         auto players = entities.getEntitiesWithComponents<Player>();
         auto healthPacks = entities.getEntitiesWithComponents<HealthBonus>();
 
@@ -176,6 +236,15 @@ namespace rtype::game {
                     break;
                 }
             }
+            // Handle collision with wall for all missiles
+            for (EntityID wall : walls) {
+                const auto& wallPos = entities.getComponent<Position>(wall);
+
+                if (checkCollisionRect(missilePos, missileRadius, wallPos, 20.0f, 60.0f) ) {
+                    handleCollisionPlayer(missile, wall);
+                    break;
+                }
+            }
         }
 
         for (EntityID player : players) {
@@ -184,7 +253,7 @@ namespace rtype::game {
             for (EntityID healthPack : healthPacks) {
                 const auto& healthPackPos = entities.getComponent<Position>(healthPack);
 
-                if (checkCollision(playerPos, 20.0f, healthPackPos, 10.0f)) {
+                if (checkCollisionRect(playerPos, 20.0f, healthPackPos, 20.0f, 20.0f)) {
                     auto& playerComp = entities.getComponent<Player>(player);
                     playerComp.life += entities.getComponent<HealthBonus>(healthPack).healthAmount;
 
@@ -270,6 +339,14 @@ namespace rtype::game {
         entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
     }
 
+    void GameEngine::spawnWall(float x, float y) {
+        EntityID wallEntity = entities.createEntity();
+        entities.addComponent(wallEntity, Position{x, y});
+        entities.addComponent(wallEntity, Velocity{0.0f, 0.0f});
+
+        entities.addComponent(wallEntity, Wall{1});
+    }
+
     bool GameEngine::checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
         float dx = pos1.x - pos2.x;
         float dy = pos1.y - pos2.y;
@@ -277,6 +354,17 @@ namespace rtype::game {
         float radiusSum = radius1 + radius2;
         return distanceSquared <= (radiusSum * radiusSum);
     }
+
+    bool GameEngine::checkCollisionRect(const Position& circlePos, float radius, const Position& rectPos, float rectWidth, float rectHeight) {
+        float closestX = std::max(rectPos.x, std::min(circlePos.x, rectPos.x + rectWidth));
+        float closestY = std::max(rectPos.y, std::min(circlePos.y, rectPos.y + rectHeight));
+
+        float dx = circlePos.x - closestX;
+        float dy = circlePos.y - closestY;
+
+        return (dx * dx + dy * dy) <= (radius * radius);
+    }
+
 
     std::vector<uint8_t> GameEngine::createEntityDeathPacket(EntityID missile, EntityID enemy) const {
         std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));
