@@ -108,7 +108,7 @@ namespace rtype::game {
      * within the game area. The logic ensures that health packs do not spawn on top of walls and others health packs.
      *
      * @details
-     * - Spawning frequency is controlled by a timer, with a delay of 10.2 seconds between spawns.
+     * - Spawning frequency is controlled by a timer, with a delay of 10.2 seconds between spawns and 4 max has spawn in map.
      * - Health packs are assigned random x and y coordinates within the boundaries of the game area:
      *   - x: [0, 800]
      *   - y: [0, 600]
@@ -129,8 +129,12 @@ namespace rtype::game {
             lastUpdateHealthPack = currentTime;
         else
             return;
-        float x = static_cast<float>(rand() % 800); // Position X aléatoire
-        float y = static_cast<float>(rand() % 600); // Position Y aléatoire
+        if (entities.getEntitiesWithComponents<HealthBonus>().size() > 3) {
+            lastUpdateHealthPack = currentTime;
+            return;
+        }
+        float x = static_cast<float>(rand() % 760); // Position X aléatoire
+        float y = static_cast<float>(rand() % 560); // Position Y aléatoire
 
         auto walls = entities.getEntitiesWithComponents<Wall>();
         auto HealthPacks = entities.getEntitiesWithComponents<HealthBonus>();
@@ -153,8 +157,8 @@ namespace rtype::game {
             }
             if (stopLoop == false)
                 break;
-            x = static_cast<float>(rand() % 800);
-            y = static_cast<float>(rand() % 600);
+            x = static_cast<float>(rand() % 760);
+            y = static_cast<float>(rand() % 560);
         }
 
         EntityID healthPackEntity = entities.createEntity();
