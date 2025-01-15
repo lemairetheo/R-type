@@ -60,6 +60,8 @@ namespace rtype {
                         else
                             pos.x = std::clamp(pos.x, 0.0f, 795.0f);
                         pos.y = std::clamp(pos.y, 0.0f, 590.0f);
+                        if (manager.hasComponent<Enemy>(entity) && manager.getComponent<Position>(entity).x < -15) // Destroy enemies has finish the map
+                            manager.destroyEntity(entity);
                     }
                 }
             }

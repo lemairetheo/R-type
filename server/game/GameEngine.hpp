@@ -38,6 +38,7 @@ namespace rtype::game {
             std::chrono::steady_clock::time_point lastUpdate;
             std::chrono::steady_clock::time_point lastUpdateEnemiesShoot;
             std::chrono::steady_clock::time_point lastUpdateWallShoot;
+            std::chrono::steady_clock::time_point lastUpdateHealthPack;
             float speed = 200.0f;
 
             // File d'attente pour les spawns d'ennemis
@@ -59,7 +60,7 @@ namespace rtype::game {
             int currentLevel = 1;
             void switchToNextLevel();
             void spawnEnemiesForLevel(int level);
-            void spawnHealthPack();
+            void handleHealthPackSpawns();
 
             const std::map<int, int> SCORE_THRESHOLDS = {
                 {1, 10},  // Score 10 pour passer au niveau 2
