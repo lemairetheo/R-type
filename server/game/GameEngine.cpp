@@ -113,6 +113,21 @@ namespace rtype::game {
         float x = static_cast<float>(rand() % 800); // Position X aléatoire
         float y = static_cast<float>(rand() % 600); // Position Y aléatoire
 
+        auto walls = entities.getEntitiesWithComponents<Wall>();
+        bool stopLoop = false;
+
+        while (stopLoop != true) {
+            for (EntityID wall : walls) {
+                const auto& wallPos = entities.getComponent<Position>(wall);
+                if (!checkCollisionRect({x, y}, 25, wallPos, 20, 60)) {
+                    stopLoop = true;
+                    break;
+                }
+            }
+            x = static_cast<float>(rand() % 800);
+            y = static_cast<float>(rand() % 600);
+        }
+
         EntityID healthPackEntity = entities.createEntity();
         entities.addComponent(healthPackEntity, Position{x, y});
         entities.addComponent(healthPackEntity, HealthBonus{3});
@@ -301,7 +316,7 @@ namespace rtype::game {
 
         entities.addComponent(wallEntity, Wall{1});
     }
-s
+
     bool GameEngine::checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
         float dx = pos1.x - pos2.x;
         float dy = pos1.y - pos2.y;
