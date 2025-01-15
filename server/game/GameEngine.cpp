@@ -105,7 +105,7 @@ namespace rtype::game {
      * @brief Handles the spawning of health packs in the game world.
      *
      * This function is responsible for periodically spawning health packs at random positions
-     * within the game area. The logic ensures that health packs do not spawn on top of walls.
+     * within the game area. The logic ensures that health packs do not spawn on top of walls and others health packs.
      *
      * @details
      * - Spawning frequency is controlled by a timer, with a delay of 10.2 seconds between spawns.
@@ -133,12 +133,20 @@ namespace rtype::game {
         float y = static_cast<float>(rand() % 600); // Position Y aléatoire
 
         auto walls = entities.getEntitiesWithComponents<Wall>();
+        auto HealthPacks = entities.getEntitiesWithComponents<HealthBonus>();
         bool stopLoop = false;
 
         while (stopLoop != true) { // Check not possibility spawn HealPack at the top of the wall
             for (EntityID wall : walls) {
                 const auto& wallPos = entities.getComponent<Position>(wall);
                 if (!checkCollisionRect({x, y}, 25, wallPos, 20, 60)) {
+                    stopLoop = true;
+                    break;
+                }
+            }
+            for (EntityID HealthPack : HealthPacks) {
+                const auto& HealthPackPos = entities.getComponent<Position>(HealthPack);
+                if (!checkCollisionRect({x, y}, 25, HealthPackPos, 20, 60)) {
                     stopLoop = true;
                     break;
                 }
