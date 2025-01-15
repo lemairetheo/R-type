@@ -3,7 +3,7 @@ set(SFML_STATIC_LIBRARIES TRUE)
 set(BUILD_SHARED_LIBS FALSE)
 
 # Recherche de SFML avec configuration spécifique
-find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
+find_package(SFML COMPONENTS system window graphics audio CONFIG REQUIRED)
 
 # Sources du client
 set(CLIENT_SOURCES
@@ -52,6 +52,7 @@ if(WIN32)
             sfml-system
             sfml-window
             sfml-graphics
+            sfml-audio
             sfml-main
             r-type-shared
             asio::asio
@@ -67,10 +68,18 @@ else()
             sfml-system
             sfml-window
             sfml-graphics
+            sfml-audio
             r-type-shared
             asio::asio
+
+            # Ajout explicite des frameworks Apple pour OpenAL
+            "-framework CoreAudio"
+            "-framework AudioToolbox"
+            "-framework CoreFoundation"   # Souvent utile
+            # "-framework CoreServices"   # Ajoutez au besoin
     )
 endif()
+
 
 # Options de compilation
 if(MSVC)
