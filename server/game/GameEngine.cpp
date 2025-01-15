@@ -53,7 +53,6 @@ namespace rtype::game {
                     auto it = entities.hasTypeEnemy<Enemy>(entity);
                     update->type = it;
                 } else if (entities.hasComponent<HealthBonus>(entity)) {
-                    std::cout << "HealthBonus" << std::endl;
                     update->type = 6;
                 } else if (entities.hasComponent<Wall>(entity)) {
                     update->type = 7;
@@ -142,7 +141,8 @@ namespace rtype::game {
             lastUpdateWallShoot = currentTime;
         else
             return;
-        spawnWall(250, 100, 1);
+        spawnWall(250, 100);
+        spawnWall(250, 450);
     }
 
     void GameEngine::handleEnemySpawns(float dt) {
@@ -309,7 +309,7 @@ namespace rtype::game {
         entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
     }
 
-    void GameEngine::spawnWall(float x, float y, int level) {
+    void GameEngine::spawnWall(float x, float y) {
         EntityID wallEntity = entities.createEntity();
         entities.addComponent(wallEntity, Position{x, y});
         entities.addComponent(wallEntity, Velocity{0.0f, 0.0f});

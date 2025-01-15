@@ -88,7 +88,7 @@ namespace rtype::game {
             std::vector<uint8_t> createEndGamePacket() const;
             static std::tuple<float, int, float> getEnemyAttributes(int level);
             void spawnEnemy(float x, float y, int level);
-            void spawnWall(float x, float y, int level);
+            void spawnWall(float x, float y);
             std::string formatClientId(const sockaddr_in& client) const;
 
             // Méthodes de gestion des paquets

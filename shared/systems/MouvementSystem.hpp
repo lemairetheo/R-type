@@ -16,17 +16,22 @@ namespace rtype {
                     if (manager.hasComponent<Projectile>(entity)) {
                         pos.x += vel.dx * dt;
                         pos.y += vel.dy * dt;
-                    } else {
+                    } else if (!manager.hasComponent<Wall>(entity)) {
+                        bool hasCollided = false;
                         for (EntityID wall : walls) {
                             const auto& wallPos = manager.getComponent<Position>(wall);
+                            if (manager.hasComponent<Enemy>(entity) && checkCollisionRect({pos.x + (vel.dx * dt), pos.y + (vel.dy * dt)}, 25.0f, wallPos, 80.0f, 80.0f)) {
+                                pos.y += 5 * dt;
+                            }
 
-                            if (manager.hasComponent<Enemy>(entity) && checkCollisionRect({pos.x + (vel.dx * dt), pos.y + (vel.dy * dt)}, 25.0f, wallPos, 40.0f, 80.0f))
-                                pos.y += 50 * dt;
-                            if (!checkCollisionRect({pos.x + (vel.dx * dt), pos.y + (vel.dy * dt)}, 13.0f, wallPos, 20.0f, 60.0f)) {
-                                pos.x += vel.dx * dt;
-                                pos.y += vel.dy * dt;
+                            if (checkCollisionRect({pos.x + (vel.dx * dt), pos.y + (vel.dy * dt)}, 13.0f, wallPos, 20.0f, 60.0f)) {
+                                hasCollided = true;
                                 break;
                             }
+                        }
+                        if (!hasCollided) {
+                            pos.x += vel.dx * dt;
+                            pos.y += vel.dy * dt;
                         }
                     }
 
@@ -53,5 +58,7 @@ namespace rtype {
 
             return (dx * dx + dy * dy) <= (radius * radius);
         }
+
+
     };
 }
