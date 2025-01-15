@@ -72,12 +72,19 @@ namespace rtype {
                 bgComp.sprite.setColor(sf::Color(255, 255, 255, 180));
                 entities.addComponent(bgStars, bgComp);
             } {
-                if (!musicGame.openFromFile("assets/music/415384_Nyan.mp3")) {
-                    std::cerr << "Error loading music" << std::endl;
+                if (!musicGame.openFromFile("assets/audio/415384_Nyan.mp3")) {
+                    std::cerr << "Error loading audio" << std::endl;
                 } else {
                     musicGame.setLoop(true);
-                    musicGame.setVolume(50.0f);
+                    musicGame.setVolume(10.0f);
                     musicGame.play();
+                }
+            } {
+                if (!weaponSong.openFromFile("assets/audio/poum.mp3")) {
+                    std::cerr << "Error loading audio" << std::endl;
+                } else {
+                    weaponSong.setLoop(false);
+                    weaponSong.setVolume(50.0f);
                 }
             }
             systems.push_back(std::make_unique<BackgroundSystem>(window));
@@ -398,6 +405,8 @@ namespace rtype {
             inputPacket->right = input.right;
             inputPacket->space = input.space;
             inputPacket->ultimate = input.Ultimate;
+            if (input.space)
+                weaponSong.play();
             network.sendTo(packet);
 
             if (input.space)

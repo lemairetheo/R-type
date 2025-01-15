@@ -36,6 +36,7 @@ namespace rtype {
         bool endGame = false;
         sf::Text endGameText;
         sf::Music musicGame;
+        sf::Music weaponSong;
         sf::Font font;
         sf::Text scoreText;
         int playerScore = 0;

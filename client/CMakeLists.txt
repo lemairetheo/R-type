@@ -72,10 +72,9 @@ else()
             r-type-shared
             asio::asio
 
-            # Ajout explicite des frameworks Apple pour OpenAL
             "-framework CoreAudio"
             "-framework AudioToolbox"
-            "-framework CoreFoundation"   # Souvent utile
+            "-framework CoreFoundation"
             # "-framework CoreServices"   # Ajoutez au besoin
     )
 endif()
