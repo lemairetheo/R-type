@@ -15,6 +15,9 @@ namespace rtype {
         help_button = new Button({150, 500}, {200, 50}, "HELP", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         normal_mode_button = new Button({550, 300}, {200, 50}, "NORMAL MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
 
+        ip_input = new TextInput({300, 300}, {200, 40}, "Enter IP", font);
+        port_input = new TextInput({300, 350}, {200, 40}, "Enter Port", font);
+
 
         if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Erreur : Impossible de charger la police !\n";
@@ -27,6 +30,18 @@ namespace rtype {
         help_text.setFillColor(sf::Color::White);
         help_text.setStyle(sf::Text::Bold | sf::Text::Italic);
         help_text.setPosition(350.f, 50.f);
+
+        ip_label.setFont(font);
+        ip_label.setString("Server IP:");
+        ip_label.setCharacterSize(24);
+        ip_label.setFillColor(sf::Color::White);
+        ip_label.setPosition(190, 310);
+
+        port_label.setFont(font);
+        port_label.setString("Port:");
+        port_label.setCharacterSize(24);
+        port_label.setFillColor(sf::Color::White);
+        port_label.setPosition(190, 360);
 
         title_text.setFont(font);
         title_text.setString("R-Type");
@@ -49,6 +64,19 @@ namespace rtype {
         help_description_text.setStyle(sf::Text::Bold | sf::Text::Italic);
         help_description_text.setPosition(100.f, 150.f);
     };
+
+    Menu::~Menu() {
+        delete play_button;
+        delete settings_button;
+        delete exit_settings_button;
+        delete left_mode_button;
+        delete right_mode_button;
+        delete colorblind_mode_button;
+        delete help_button;
+        delete normal_mode_button;
+        delete ip_input;
+        delete port_input;
+    }
 
     const Button &Menu::getPlayButton() {
         return *play_button;
@@ -73,9 +101,19 @@ namespace rtype {
                 inMenu = false;
             }
             help_button->render(window, "help");
-            std::cout << "avant le draw" << std::endl;
             window.draw(title_text);
-            std::cout << "apres le draw" << std::endl;
+            window.draw(ip_label);
+            window.draw(port_label);
+            ip_input->handleEvent(event, window);
+            port_input->handleEvent(event, window);
+            ip_input->render(window, "ip");
+            port_input->render(window, "port");
+            if (play_button->handleEvent(event, window) == true) {
+                if (!ip_input->getValue().empty() && !port_input->getValue().empty()) {
+                    isPlaying = true;
+                    inMenu = false;
+                }
+            }
         }
         if (isInSettings) {
             if (exit_settings_button->handleEvent(event, window) == true) {
@@ -139,19 +177,28 @@ namespace rtype {
         }
     }
 
-    bool Menu::getIsPlaying() {
+    bool Menu::getIsPlaying() const {
         return isPlaying;
     }
 
-    bool Menu::getRightMode() {
+    bool Menu::getRightMode() const {
         return right_mode;
     }
 
-    bool Menu::getColorblindMode() {
+    bool Menu::getColorblindMode() const {
         return colorblind_mode;
     }
 
+    std::string Menu::getServerIP() const {
+        return ip_input->getValue();
+    }
 
-
+    uint16_t Menu::getServerPort() const {
+        try {
+            return static_cast<uint16_t>(std::stoi(port_input->getValue()));
+        } catch (const std::exception& e) {
+            return 0;
+        }
+    }
 
 }

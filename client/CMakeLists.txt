@@ -22,6 +22,8 @@ set(CLIENT_SOURCES
         menu/Inputs.hpp
         menu/button/Button.cpp
         menu/button/Button.hpp
+        menu/TextInput.cpp
+        menu/TextInput.hpp
 )
 
 add_executable(r-type_client WIN32 ${CLIENT_SOURCES})

@@ -16,6 +16,7 @@
 #include "gameComponents/backgroundComponent.hpp"
 #include "systems/BackgroundSystem.hpp"
 #include "menu/Menu.hpp"
+#include "utils/GameState.hpp"
 
 namespace rtype {
     /**
@@ -45,20 +46,24 @@ namespace rtype {
         sf::RenderWindow window;
         EntityManager entities;
         std::vector<std::unique_ptr<ISystem> > systems;
-        network::NetworkClient network;
+        std::unique_ptr<network::NetworkClient> network;
         std::chrono::steady_clock::time_point lastUpdate = std::chrono::steady_clock::now();
 
+        void initGame();
+        void initGameTexts();
+        void loadResources();
+        void setupSystems();
+        void initAudio();
+        void createBackgroundEntities();
         void handleNetworkMessage(const std::vector<uint8_t> &data, const asio::ip::udp::endpoint &sender);
-
+        void initMenuBackground();
         void handleEvents();
-
         void update();
-
         void render();
-
         void displayMenu();
         Menu menu;
         sf::Event event;
         EntityID myPlayerId = 0;
+        GameState currentState = GameState::MENU;
     };
 }

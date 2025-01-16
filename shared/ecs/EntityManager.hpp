@@ -19,6 +19,7 @@ namespace rtype {
         ~EntityManager() = default;
 
         EntityID createEntity();
+        void reset();
         void destroyEntity(EntityID entity);
 
         template<typename Component>

@@ -27,4 +27,15 @@ namespace rtype {
         resetEntityComponents(entity);
         availableEntities.push_back(entity);
     }
+
+    void EntityManager::reset() {
+        _components.clear();
+        availableEntities.clear();
+        availableEntities.reserve(MAX_ENTITIES);
+        for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
+            availableEntities.push_back(entity);
+        }
+        nextEntity = 1;
+        NbEntities = 1;
+    }
 }

@@ -455,49 +455,40 @@ namespace rtype::game {
         const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
 
         if (header->type == static_cast<uint8_t>(network::PacketType::PLAYER_INPUT)) {
-            // Trouver l'entité correspondant au client
             auto it = playerEntities.find(clientId);
             if (it == playerEntities.end()) return;
 
             EntityID playerEntity = it->second;
-            // Nous ne vérifions que cette entité spécifique
             if (entities.hasComponent<Position>(playerEntity) &&
                 entities.hasComponent<Velocity>(playerEntity)) {
                 auto& vel = entities.getComponent<Velocity>(playerEntity);
                 auto& input = entities.getComponent<InputComponent>(playerEntity);
                 const auto* inputPacket = reinterpret_cast<const network::PlayerInputPacket*>(
                     data.data() + sizeof(network::PacketHeader));
-
-                if (inputPacket->space && !entities.hasComponent<Projectile>(playerEntity)) {
+                if (inputPacket->space) {
                     input.space = true;
                 }
-
-                if (inputPacket->ultimate && !entities.hasComponent<Projectile>(playerEntity)) {
+                if (inputPacket->ultimate) {
                     input.Ultimate = true;
                 }
-
                 if (input.space) {
-                    shoot_system_.update(entities, playerEntity, false );
+                    shoot_system_.update(entities, playerEntity, false);
                     input.space = false;
                 }
-
                 if (input.Ultimate) {
-                    shoot_system_.update(entities, playerEntity, true );
+                    shoot_system_.update(entities, playerEntity, true);
                     input.Ultimate = false;
                 }
 
-                if (!entities.hasComponent<Projectile>(playerEntity) && !inputPacket->space && !inputPacket->ultimate) {
-                    vel.dx = 0.0f;
-                    vel.dy = 0.0f;
-                    if (inputPacket->left) vel.dx = -speed;
-                    if (inputPacket->right) vel.dx = speed;
-                    if (inputPacket->up) vel.dy = -speed;
-                    if (inputPacket->down) vel.dy = speed;
-                }
-                }
+                vel.dx = 0.0f;
+                vel.dy = 0.0f;
+                if (inputPacket->left) vel.dx = -speed;
+                if (inputPacket->right) vel.dx = speed;
+                if (inputPacket->up) vel.dy = -speed;
+                if (inputPacket->down) vel.dy = speed;
+            }
         }
     }
-
 
     void GameEngine::handleMessage(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& sender) {
         sockaddr_in addr{};
