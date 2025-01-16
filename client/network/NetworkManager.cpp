@@ -7,32 +7,27 @@
 
 namespace rtype::network {
 
-    NetworkClient::NetworkClient(uint16_t port)
-        : ANetwork(port)
-        , socket(io_context)
-        , running(false)
-        , receive_buffer(1024) {
-    }
+    NetworkClient::NetworkClient(const std::string& serverIP, uint16_t serverPort):
+        ANetwork(serverPort),
+        io_context(),
+        serverIP(serverIP),
+        socket(io_context),
+        running(false),
+        receive_buffer(1024)
+    {}
 
     void NetworkClient::start() {
         if (running) return;
 
         try {
             socket.open(asio::ip::udp::v4());
-
-            // Bind to any available port
             socket.bind(asio::ip::udp::endpoint(asio::ip::address_v4::any(), 0));
-
-            // Set up server endpoint
             server_endpoint = asio::ip::udp::endpoint(
-                asio::ip::address::from_string("127.0.0.1"),
+                asio::ip::address::from_string(serverIP),
                 port
             );
-
             running = true;
             startReceive();
-
-            // Start the io_context in a separate thread
             io_thread = std::thread([this]() {
                 try {
                     io_context.run();
@@ -40,8 +35,7 @@ namespace rtype::network {
                     std::cout << "Client: Network error: " << e.what() << std::endl;
                 }
             });
-
-            std::cout << "Client: Network initialized and running" << std::endl;
+            std::cout << "Client: Connected to " << serverIP << ":" << port << std::endl;
         } catch (const std::exception& e) {
             std::cout << "Client: Failed to start network: " << e.what() << std::endl;
             throw;

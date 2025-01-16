@@ -2,22 +2,22 @@
 #define MENU_HPP
 
 #include "./button/Button.hpp"
+#include "./TextInput.hpp"
 #include <iostream>
 
 namespace rtype {
     class Menu {
     public:
         Menu(unsigned int width, unsigned int height);
+        ~Menu();
 
         const Button &getPlayButton();
-
         void render(sf::RenderWindow &window, sf::Event &event);
-
-        bool getIsPlaying();
-
-        bool getRightMode();
-
-        bool getColorblindMode();
+        bool getIsPlaying() const;
+        bool getRightMode() const;
+        bool getColorblindMode() const;
+        std::string getServerIP() const;
+        uint16_t getServerPort() const;
 
     private:
         bool isPlaying = false;
@@ -35,14 +35,17 @@ namespace rtype {
         Button *colorblind_mode_button;
         Button *help_button;
         Button *normal_mode_button;
+        TextInput *ip_input;
+        TextInput *port_input;
         unsigned int _width;
         unsigned int _height;
         sf::Text help_text;
         sf::Text title_text;
         sf::Text settings_text;
         sf::Text help_description_text;
+        sf::Text ip_label;
+        sf::Text port_label;
         sf::Font font;
-
     };
 }
 #endif //MENU_HPP

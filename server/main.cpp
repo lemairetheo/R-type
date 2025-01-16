@@ -3,7 +3,7 @@
 
 int main(int argc, char** argv) {
     try {
-        uint16_t port = 4242;
+        uint16_t port = std::atoi(argv[1]);
         if (argc > 1) {
             port = static_cast<uint16_t>(std::stoi(argv[1]));
         }

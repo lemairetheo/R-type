@@ -16,7 +16,7 @@ namespace rtype::network {
      */
     class NetworkClient : public ANetwork {
     public:
-        explicit NetworkClient(uint16_t port);
+        explicit NetworkClient(const std::string& serverIP, uint16_t serverPort);
         void start() override;
         void stop() override;
         void sendTo(const std::vector<uint8_t>& data);
@@ -28,6 +28,7 @@ namespace rtype::network {
         void handleReceive(const asio::error_code& error, std::size_t bytes_transferred);
 
         asio::io_context io_context;
+        std::string serverIP;
         asio::ip::udp::socket socket;
         asio::ip::udp::endpoint server_endpoint;
         std::thread io_thread;
