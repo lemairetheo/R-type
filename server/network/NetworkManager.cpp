@@ -15,14 +15,11 @@ namespace rtype::network {
 
     void NetworkManager::start() {
         if (running) return;
-
         try {
             socket.open(asio::ip::udp::v4());
             socket.bind(asio::ip::udp::endpoint(asio::ip::address_v4::any(), port));
-
             running = true;
             startReceive();
-
             io_thread = std::thread([this]() {
                 try {
                     io_context.run();
@@ -30,7 +27,6 @@ namespace rtype::network {
                     std::cout << "Network error: " << e.what() << std::endl;
                 }
             });
-
             std::cout << "Network Manager started on port " << port << std::endl;
         } catch (const std::exception& e) {
             throw std::runtime_error("Failed to start network: " + std::string(e.what()));

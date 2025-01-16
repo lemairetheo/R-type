@@ -54,6 +54,9 @@ namespace rtype {
         void loadResources();
         void setupSystems();
         void initAudio();
+        void cleanupNetwork();
+        bool handleRetry();
+        void connectToServer();
         void createBackgroundEntities();
         void handleNetworkMessage(const std::vector<uint8_t> &data, const asio::ip::udp::endpoint &sender);
         void initMenuBackground();

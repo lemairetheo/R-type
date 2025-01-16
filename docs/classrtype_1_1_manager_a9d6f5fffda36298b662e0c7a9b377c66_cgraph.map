@@ -1,5 +1,5 @@
 <map id="rtype::Manager::stop" name="rtype::Manager::stop">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,147,38"/>
+<area shape="rect" id="Node000001" title="Stops the server and terminates all connections." alt="" coords="5,13,147,38"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#abc7450fad96ed2a82b7fd63550b09272" title=" " alt="" coords="195,5,406,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,23,179,23,179,28,147,28"/>
 </map>

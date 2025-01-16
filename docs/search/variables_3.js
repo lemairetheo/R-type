@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['damage_0',['damage',['../structrtype_1_1_player.html#ad6093526e8f450a4e0b68db03b0f81ba',1,'rtype::Player::damage'],['../structrtype_1_1_projectile.html#a0a9f63ebea2076f0f82271bcaae1f049',1,'rtype::Projectile::damage'],['../structrtype_1_1_enemy.html#acd9f8e80f35e9234ea53d8a42633bb89',1,'rtype::Enemy::damage']]],
-  ['delay_1',['delay',['../structrtype_1_1_pending_spawn.html#acf0f03825157189d535221ba74f2d35c',1,'rtype::PendingSpawn']]],
-  ['down_2',['down',['../structrtype_1_1_input_component.html#ad5ad4bc76c7ca3127f9f76f432102794',1,'rtype::InputComponent::down'],['../structrtype_1_1network_1_1_player_input_packet.html#a763343aa973a47395dde8934566234e8',1,'rtype::network::PlayerInputPacket::down']]],
-  ['dx_3',['dx',['../structrtype_1_1_velocity.html#a5620c738ba6cc4ada4b52aeb258e98e8',1,'rtype::Velocity::dx'],['../structrtype_1_1network_1_1_entity_update_packet.html#a030feda22a2b7b88cc47c6f5d0d25906',1,'rtype::network::EntityUpdatePacket::dx']]],
-  ['dy_4',['dy',['../structrtype_1_1_velocity.html#a8f1e0c76dc940e76196035b61552609e',1,'rtype::Velocity::dy'],['../structrtype_1_1network_1_1_entity_update_packet.html#a08f7ec5bfeb1c52ec0fe9e67e83a7799',1,'rtype::network::EntityUpdatePacket::dy']]]
+  ['clientid_0',['clientId',['../struct_player_info.html#a050e7b12a9cf2424f64e11b349b075a1',1,'PlayerInfo']]],
+  ['clientlastseen_1',['clientLastSeen',['../classrtype_1_1network_1_1_network_manager.html#a12ed50c5c5e57345cb0d9119c15db842',1,'rtype::network::NetworkManager']]],
+  ['clients_2',['clients',['../classrtype_1_1network_1_1_network_manager.html#a1ec84d070369df0e951de868d83cfd4a',1,'rtype::network::NetworkManager']]],
+  ['color_3',['color',['../structrtype_1_1_wall.html#a0627f97103ea7ffb4885d89b1d212df6',1,'rtype::Wall']]],
+  ['colorblind_5fmode_4',['colorblind_mode',['../classrtype_1_1_menu.html#a2c98468e8f80fb41065352ba61e8e1e1',1,'rtype::Menu']]],
+  ['colorblind_5fmode_5fbutton_5',['colorblind_mode_button',['../classrtype_1_1_menu.html#aa6a0fcd6ec66481a3ba24a3d7aa39129',1,'rtype::Menu']]],
+  ['currentframe_6',['currentFrame',['../struct_render_component.html#a8347cb6e2246fc641178ffc1e4fe31cb',1,'RenderComponent']]],
+  ['currentlevel_7',['currentLevel',['../classrtype_1_1game_1_1_game_engine.html#a683e6af24c63d625386d0a00b00fa33d',1,'rtype::game::GameEngine::currentLevel'],['../classrtype_1_1_game.html#a67e0ae8121d940dfd3910156388dca2e',1,'rtype::Game::currentLevel']]],
+  ['currentscale_8',['currentScale',['../classrtype_1_1_button.html#aa5f75037a58bf5fac5356bb06848d9b4',1,'rtype::Button']]],
+  ['currentstate_9',['currentState',['../classrtype_1_1_game.html#a348a60f44ab471416dae46d5eeeeb2e2',1,'rtype::Game']]],
+  ['cursorblinktime_10',['cursorBlinkTime',['../classrtype_1_1_text_input.html#a7ecd916290dd6595c779618b3ba734ae',1,'rtype::TextInput']]]
 ];

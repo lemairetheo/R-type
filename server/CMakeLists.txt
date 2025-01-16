@@ -6,6 +6,10 @@ add_executable(r-type_server
         game/GameEngine.cpp
         manager/Manager.cpp
         manager/Manager.hpp
+        database/DatabaseManager.cpp
+        database/DatabaseManager.hpp
+        database/ScoreRepository.cpp
+        database/ScoreRepository.hpp
 )
 
 target_include_directories(r-type_server

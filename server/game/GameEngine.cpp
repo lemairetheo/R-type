@@ -11,7 +11,24 @@ namespace rtype::game {
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         systems.push_back(std::make_unique<MovementSystem>());
-        spawnEnemiesForLevel(1);
+    }
+
+    void GameEngine::initializeLevel() {
+        auto enemies = entities.getEntitiesWithComponents<Enemy>();
+        for (EntityID enemy : enemies) {
+            entities.destroyEntity(enemy);
+        }
+        enemySpawnQueue.clear();
+        currentLevel = 1;
+        const int ENEMIES_PER_LEVEL[] = {15, 15, 15};
+        int nbEnemies = ENEMIES_PER_LEVEL[currentLevel - 1];
+
+        for (int i = 0; i < nbEnemies; i++) {
+            float delay = static_cast<float>(i) * 2.0f;
+            float x = 800.0f + (i * 50.0f);
+            float y = static_cast<float>(100 + (rand() % 400));
+            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, currentLevel});
+        }
     }
 
     void GameEngine::broadcastWorldState() {
@@ -160,7 +177,6 @@ namespace rtype::game {
             x = static_cast<float>(rand() % 760);
             y = static_cast<float>(rand() % 560);
         }
-
         EntityID healthPackEntity = entities.createEntity();
         entities.addComponent(healthPackEntity, Position{x, y});
         entities.addComponent(healthPackEntity, HealthBonus{3});
@@ -424,8 +440,8 @@ namespace rtype::game {
 
         for (int i = 0; i < nbEnemies; i++) {
             float delay = static_cast<float>(i) * 2.0f;
-            auto x = static_cast<float>(800);
-            auto y = static_cast<float>(rand() % 600);
+            float x = 800.0f + (i * 50.0f);
+            float y = static_cast<float>(100 + (rand() % 400));
             enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level});
         }
     }
@@ -486,6 +502,11 @@ namespace rtype::game {
                 if (inputPacket->right) vel.dx = speed;
                 if (inputPacket->up) vel.dy = -speed;
                 if (inputPacket->down) vel.dy = speed;
+            }
+        }
+        if (header->type == static_cast<uint8_t>(network::PacketType::CONNECT_REQUEST)) {
+            if (playerEntities.empty()) {
+                initializeLevel();
             }
         }
     }

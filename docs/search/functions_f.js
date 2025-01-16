@@ -1,9 +1,8 @@
 var searchData=
 [
-  ['_7eaengine_0',['~AEngine',['../classrtype_1_1engine_1_1_a_engine.html#a34876e8423d63b02d4da67b9f41854e4',1,'rtype::engine::AEngine']]],
-  ['_7eanetwork_1',['~ANetwork',['../classrtype_1_1_a_network.html#a2eb6e493d104e74975eb0f27816cf2f5',1,'rtype::ANetwork']]],
-  ['_7eentitymanager_2',['~EntityManager',['../classrtype_1_1_entity_manager.html#a5489d61f06f3c66bd038144607d02ec3',1,'rtype::EntityManager']]],
-  ['_7eicomponent_3',['~IComponent',['../classrtype_1_1_i_component.html#a627e61e9ec8ade26f49ff02282e24927',1,'rtype::IComponent']]],
-  ['_7eisystem_4',['~ISystem',['../classrtype_1_1_i_system.html#a66c3c8ed394729b704ecdecdcd6291ea',1,'rtype::ISystem']]],
-  ['_7enetworkmanager_5',['~NetworkManager',['../classrtype_1_1network_1_1_network_manager.html#a312940f6e87896165affc77e4d7523c4',1,'rtype::network::NetworkManager']]]
+  ['update_0',['update',['../classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f',1,'rtype::game::GameEngine::update()'],['../classrtype_1_1network_1_1_network_manager.html#a28da6ce1b4c8ea0ac8b4ba16d65986f5',1,'rtype::network::NetworkManager::update()'],['../classrtype_1_1_game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4',1,'rtype::Game::update()'],['../classrtype_1_1_animation_system.html#acab14e30c094486383751facd6a89054',1,'rtype::AnimationSystem::update()'],['../classrtype_1_1_background_system.html#a7f5ae1b1a5f76f612b2be7bf699d8301',1,'rtype::BackgroundSystem::update()'],['../classrtype_1_1_render_system.html#a75bca3319d467e61dd994c9b30c8fc91',1,'rtype::RenderSystem::update()'],['../classrtype_1_1engine_1_1_a_engine.html#ae48856a6db863ea71d6bda8ce49a89c9',1,'rtype::engine::AEngine::update()'],['../classrtype_1_1_movement_system.html#adc06e298d259d7c04dbb0aad11ff786c',1,'rtype::MovementSystem::update()'],['../classrtype_1_1_shoot_system.html#a334ca10e166e6e15cd8b66216bc6d606',1,'rtype::ShootSystem::update()'],['../classrtype_1_1_i_system.html#ae1acf4a9697891852b209a2d3853e84e',1,'rtype::ISystem::update()']]],
+  ['updateclientactivity_1',['updateClientActivity',['../classrtype_1_1network_1_1_network_manager.html#a0f062b5fcc6f0b4ea23280b36fc45e2e',1,'rtype::network::NetworkManager']]],
+  ['updateloop_2',['updateLoop',['../classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1',1,'rtype::Manager']]],
+  ['updateplayerscore_3',['updatePlayerScore',['../classrtype_1_1game_1_1_game_engine.html#a13ee19466f4ac2361f431b9d29b91ea9',1,'rtype::game::GameEngine']]],
+  ['updatetextposition_4',['updateTextPosition',['../classrtype_1_1_button.html#aa44cb205334262986516a35aae935aa2',1,'rtype::Button']]]
 ];

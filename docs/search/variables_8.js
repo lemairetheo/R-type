@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['magic_0',['magic',['../structrtype_1_1network_1_1_packet_header.html#a2260494767f824a095d66f90d1c1e133',1,'rtype::network::PacketHeader']]],
-  ['max_5fentities_1',['MAX_ENTITIES',['../namespacertype.html#a9e9b8157af6ff13d1108f57516924d26',1,'rtype']]],
-  ['messagecallback_2',['messageCallback',['../classrtype_1_1network_1_1_network_manager.html#abacac6acf0159253b2ca5386b23c8527',1,'rtype::network::NetworkManager::messageCallback'],['../classrtype_1_1network_1_1_network_client.html#a3e2647dd110d156dfe671a4b1a98e5b2',1,'rtype::network::NetworkClient::messageCallback']]],
-  ['myplayerid_3',['myPlayerId',['../classrtype_1_1_game.html#af3cab02528d4585ed2886115645c9053',1,'rtype::Game']]]
+  ['healthamount_0',['healthAmount',['../structrtype_1_1_health_bonus.html#a18cc0c5b6d148f5724efe5f06e15f9a2',1,'rtype::HealthBonus']]],
+  ['help_5fbutton_1',['help_button',['../classrtype_1_1_menu.html#a4934c1bee79a831de2d9865dfcec946d',1,'rtype::Menu']]],
+  ['help_5fdescription_5ftext_2',['help_description_text',['../classrtype_1_1_menu.html#a88f3ce4074cac0467f121dbbbafa6356',1,'rtype::Menu']]],
+  ['help_5ftext_3',['help_text',['../classrtype_1_1_menu.html#a1bbf276eca7f6dd9de76ca608595fca2',1,'rtype::Menu']]],
+  ['hovercolor_4',['hoverColor',['../classrtype_1_1_button.html#aaa019b3a0f0a24472d591260810d35d2',1,'rtype::Button']]]
 ];

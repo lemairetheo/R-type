@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['receivethread_0',['receiveThread',['../classrtype_1_1network_1_1_network_manager.html#a38aa40c0044b48b4687d926232773415',1,'rtype::network::NetworkManager::receiveThread'],['../classrtype_1_1network_1_1_network_client.html#abf61864f85dff6fd5c44af51d8b701af',1,'rtype::network::NetworkClient::receiveThread']]],
-  ['right_1',['right',['../structrtype_1_1_input_component.html#a5ac97a79032185b14819196c42dbf8af',1,'rtype::InputComponent::right'],['../structrtype_1_1network_1_1_player_input_packet.html#a5cadd613d94e5a374d569a3aa82fb574',1,'rtype::network::PlayerInputPacket::right']]],
-  ['running_2',['running',['../classrtype_1_1_manager.html#aa415df93976fc7dc961f34a2bded4a4a',1,'rtype::Manager::running'],['../classrtype_1_1network_1_1_network_manager.html#aa3560baea4c23ef8816cdd5770e77373',1,'rtype::network::NetworkManager::running'],['../classrtype_1_1network_1_1_network_client.html#a54f25aad066c264a50a13c66497b8695',1,'rtype::network::NetworkClient::running']]]
+  ['magic_0',['magic',['../structrtype_1_1network_1_1_packet_header.html#a2260494767f824a095d66f90d1c1e133',1,'rtype::network::PacketHeader']]],
+  ['max_5fentities_1',['MAX_ENTITIES',['../namespacertype.html#a9e9b8157af6ff13d1108f57516924d26',1,'rtype']]],
+  ['menu_2',['menu',['../classrtype_1_1_game.html#ae09f25a9edf2b438329e264ffea62b0a',1,'rtype::Game']]],
+  ['messagecallback_3',['messageCallback',['../classrtype_1_1network_1_1_network_manager.html#aacf431c983b4fa2338c45cdb25441f17',1,'rtype::network::NetworkManager::messageCallback'],['../classrtype_1_1network_1_1_network_client.html#a8300dcf949283c9c033c0a97bf2d3b83',1,'rtype::network::NetworkClient::messageCallback']]],
+  ['musicgame_4',['musicGame',['../classrtype_1_1_game.html#a0fb100c57e75f20ea6625d69e304808c',1,'rtype::Game']]],
+  ['myplayerid_5',['myPlayerId',['../classrtype_1_1_game.html#af3cab02528d4585ed2886115645c9053',1,'rtype::Game']]]
 ];
