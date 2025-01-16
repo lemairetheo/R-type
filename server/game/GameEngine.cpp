@@ -11,7 +11,7 @@ namespace rtype::game {
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         systems.push_back(std::make_unique<MovementSystem>());
-        spawnEnemiesForLevel(1);
+
     }
 
     void GameEngine::broadcastWorldState() {
@@ -66,6 +66,7 @@ namespace rtype::game {
     EntityID GameEngine::createNewPlayer(const asio::ip::udp::endpoint& sender) {
         std::string clientId = sender.address().to_string() + ":" + std::to_string(sender.port());
         EntityID playerEntity = entities.createEntity();
+        spawnEnemiesForLevel(1);
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
         entities.addComponent(playerEntity, Player{0, 10, 0});
