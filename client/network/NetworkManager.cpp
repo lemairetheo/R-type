@@ -23,7 +23,7 @@ namespace rtype::network {
             socket.open(asio::ip::udp::v4());
             socket.bind(asio::ip::udp::endpoint(asio::ip::address_v4::any(), 0));
             server_endpoint = asio::ip::udp::endpoint(
-                asio::ip::address::from_string(serverIP),
+                asio::ip::address::from_string(serverIP == "localhost" ? "127.0.0.1" : serverIP),
                 port
             );
             running = true;
