@@ -50,8 +50,12 @@ namespace rtype::game {
                     else
                         update->type = 1;
                 } else if (entities.hasComponent<Enemy>(entity)) {
-                    auto it = entities.hasTypeEnemy<Enemy>(entity);
-                    update->type = it;
+                    if (!entities.getComponent<Enemy>(entity).isBoss) {
+                        auto it = entities.hasTypeEnemy<Enemy>(entity);
+                        update->type = it;
+                    } else {
+                        update->type = 8;
+                    }
                 } else if (entities.hasComponent<HealthBonus>(entity)) {
                     update->type = 6;
                 } else if (entities.hasComponent<Wall>(entity)) {
@@ -318,7 +322,7 @@ namespace rtype::game {
     void GameEngine::spawnEnemy(float x, float y, int level, bool isBoss) {
         EntityID enemyEntity = entities.createEntity();
         entities.addComponent(enemyEntity, Position{x, y});
-        entities.addComponent(enemyEntity, Velocity{-50.0f, 0.0f});
+        entities.addComponent(enemyEntity, Velocity{(isBoss ? -5.0f : -50.0f), 0.0f});
 
         int enemyLevel;
 

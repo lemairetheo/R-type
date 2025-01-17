@@ -20,3 +20,4 @@ CMakeDoxygenDefaults.cmake
 CMakeFiles/*
 cmake_install.cmake
 Makefile
+*.cpp.o

@@ -145,10 +145,19 @@ namespace rtype {
                             renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
                         }
                     } else if (entityUpdate->type == 7) {
-                        entities.addComponent(entity, Wall{3});
+                        entities.addComponent(entity, Enemy{10, true, false, false});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("wall"));
                         renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 167, 587));
                         renderComp.sprite.setOrigin(10.0f, 8.0f);
+                        renderComp.frameWidth = 165;
+                        renderComp.frameHeight = 590;
+                        renderComp.frameCount = 1;
+                        renderComp.sprite.setScale(0.1f, 0.1f);
+                    } else if (entityUpdate->type == 8) {
+                        entities.addComponent(entity, Enemy{3});
+                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("boss"));
+                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 167, 587));
+                        renderComp.sprite.setOrigin(10.0f, 0.0f);
                         renderComp.frameWidth = 165;
                         renderComp.frameHeight = 590;
                         renderComp.frameCount = 1;
@@ -502,6 +511,7 @@ namespace rtype {
         resources.loadTexture("enemy_lvl_1", "assets/sprites/r-typesheet7.gif");
         resources.loadTexture("enemy_lvl_2", "assets/sprites/r-typesheet9.gif");
         resources.loadTexture("enemy_lvl_3", "assets/sprites/r-typesheet14.gif");
+        resources.loadTexture("boss", "assets/sprites/r-typesheet11.gif");
         resources.loadTexture("bg-colorblind", "assets/background/Nebula Red.png");
         resources.loadTexture("sheet-colorblind", "assets/sprites/r-typesheet1-2.png");
         resources.loadTexture("enemy_lvl_1-colorblind", "assets/sprites/r-typesheet7-2.png");
