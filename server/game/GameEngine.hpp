@@ -88,7 +88,7 @@ namespace rtype::game {
             bool checkCollisionRect(const Position& circlePos, float radius, const Position& rectPos, float rectWidth, float rectHeight);
             std::vector<uint8_t> createEndGamePacket() const;
             static std::tuple<float, int, float> getEnemyAttributes(int level);
-            void spawnEnemy(float x, float y, int level);
+            void spawnEnemy(float x, float y, int level, bool isBoss);
             void spawnWall(float x, float y);
             std::string formatClientId(const sockaddr_in& client) const;
 

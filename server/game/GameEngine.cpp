@@ -184,7 +184,7 @@ namespace rtype::game {
         for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end();) {
             it->delay -= dt;
             if (it->delay <= 0) {
-                spawnEnemy(it->x, it->y, it->level);
+                spawnEnemy(it->x, it->y, it->level, it->isBoss);
                 it = enemySpawnQueue.erase(it);
             } else {
                 ++it;
@@ -315,7 +315,7 @@ namespace rtype::game {
         return {10.0f, 5, -30.0}; // Default
     }
 
-    void GameEngine::spawnEnemy(float x, float y, int level) {
+    void GameEngine::spawnEnemy(float x, float y, int level, bool isBoss) {
         EntityID enemyEntity = entities.createEntity();
         entities.addComponent(enemyEntity, Position{x, y});
         entities.addComponent(enemyEntity, Velocity{-50.0f, 0.0f});
@@ -341,7 +341,14 @@ namespace rtype::game {
         }
         auto [life, damage, speedShoot] = getEnemyAttributes(enemyLevel);
 
-        entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
+        entities.addComponent(enemyEntity, Enemy{
+                isBoss ? (damage * 3) : damage,
+                isBoss ? (life * 3) : life,
+                level,
+                isBoss ? (speedShoot * 3) : speedShoot,
+                isBoss
+            }
+        );
     }
 
     void GameEngine::spawnWall(float x, float y) {
@@ -425,10 +432,11 @@ namespace rtype::game {
 
         for (int i = 0; i < nbEnemies; i++) {
             float delay = static_cast<float>(i) * 2.0f;
-            auto x = static_cast<float>(800);
-            auto y = static_cast<float>(rand() % 600);
-            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level});
+            auto x = static_cast<float>(760);
+            auto y = static_cast<float>(rand() % 560);
+            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level, false});
         }
+        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(nbEnemies) * 2.0f, static_cast<float>(760), static_cast<float>(rand() % 560), level, true});
     }
 
     void GameEngine::broadcastEndGameState() {
