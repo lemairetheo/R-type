@@ -10,180 +10,269 @@ namespace rtype {
             std::cerr << "Error loading font" << std::endl;
             throw std::runtime_error("Failed to load font");
         }
+        initPacketHandlers();
     }
 
-    void Game::handleNetworkMessage(const std::vector<uint8_t> &data,
-                                    [[maybe_unused]] const asio::ip::udp::endpoint &sender) {
+    void Game::handleNetworkMessage(const std::vector<uint8_t>& data,
+        [[maybe_unused]] const asio::ip::udp::endpoint& sender)
+    {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
-        const auto *header = reinterpret_cast<const network::PacketHeader *>(data.data());
+        const auto* header = reinterpret_cast<const network::PacketHeader*>(data.data());
+        auto type = static_cast<network::PacketType>(header->type);
 
-        switch (static_cast<network::PacketType>(header->type)) {
-            case network::PacketType::CONNECT_RESPONSE: {
-                const auto *response = reinterpret_cast<const network::ConnectResponsePacket *>(
-                    data.data() + sizeof(network::PacketHeader));
-                if (response->success)
-                    myPlayerId = response->playerId;
-                break;
-            }
-            case network::PacketType::ENTITY_DEATH: {
-                const auto *response = reinterpret_cast<const network::EntityUpdatePacket *>(
-                    data.data() + sizeof(network::PacketHeader));
-
-                if (playerLife <= 0)
-                    playerIsDead = true;
-                if (response->entityId != static_cast<uint32_t>(-1)) {
-                    if (entities.hasComponent<Enemy>(response->entityId))
-                        entities.getComponents<Enemy>().erase(response->entityId);
-                    if (entities.hasComponent<Player>(response->entityId))
-                        entities.getComponents<Player>().erase(response->entityId);
-                    if (entities.hasComponent<Position>(response->entityId))
-                        entities.getComponents<Position>().erase(response->entityId);
-                    if (entities.hasComponent<Velocity>(response->entityId))
-                        entities.getComponents<Velocity>().erase(response->entityId);
-                    entities.destroyEntity(response->entityId);
-                }
-                if (response->entityId2 != static_cast<uint32_t>(-1)) {
-                    entities.getComponents<Projectile>().erase(response->entityId2);
-                    entities.destroyEntity(response->entityId2);
-                }
-                break;
-            }
-            case network::PacketType::ENTITY_UPDATE: {
-                const auto *entityUpdate = reinterpret_cast<const network::EntityUpdatePacket *>(
-                    data.data() + sizeof(network::PacketHeader));
-                EntityID entity = entityUpdate->entityId;
-
-                if (entityUpdate->type == 0 && entity == myPlayerId) {
-                    playerScore = entityUpdate->score;
-                    currentLevel = entityUpdate->level;
-                    playerLife = entityUpdate->life;
-                    lifeText.setString("Life: " + std::to_string(playerLife));
-                    scoreText.setString("Score: " + std::to_string(playerScore));
-                    levelText.setString("Level: " + std::to_string(currentLevel));
-                }
-
-                if (!entities.hasComponent<Position>(entity)) {
-                    entities.createEntity();
-                    entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
-                    entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
-                    RenderComponent renderComp;
-                    if (entityUpdate->type == 0) {
-                        if (menu.getColorblindMode() == true)
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player-colorblind"));
-                        else
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
-                        renderComp.sprite.setOrigin(16.5f, 8.5f);
-                    } else if (entityUpdate->type == 1) {
-                        entities.addComponent(entity, Projectile{10.0f, true, false, false});
-                        if (menu.getColorblindMode() == true)
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet-colorblind"));
-                        else
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                    } else if (entityUpdate->type == 5) {
-                        entities.addComponent(entity, Projectile{10.0f, true, false, false});
-                        if (menu.getColorblindMode() == true)
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate-colorblind"));
-                        else
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                        renderComp.frameWidth = 37;
-                        renderComp.frameHeight = 31;
-                        renderComp.frameCount = 3;
-                    } else if (entityUpdate->type == 6) {
-                        entities.addComponent(entity, HealthBonus{3});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("healthPack"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(7, 11, 130, 130));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                        renderComp.frameWidth = 130;
-                        renderComp.frameHeight = 130;
-                        renderComp.frameCount = 1;
-                        renderComp.sprite.setScale(0.3f, 0.3f);
-                    } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
-                        static std::unordered_map<int, std::string> textureMap;
-                        if (menu.getColorblindMode() == true) {
-                            textureMap = {
-                                {2, "enemy_lvl_1-colorblind"},
-                                {3, "enemy_lvl_2"},
-                                {4, "enemy_lvl_3"}
-                            };
-                        } else {
-                            textureMap = {
-                                {2, "enemy_lvl_1"},
-                                {3, "enemy_lvl_2"},
-                                {4, "enemy_lvl_3"}
-                            };
-                        }
-                        entities.addComponent(entity, Enemy{1, true, false, false});
-                        auto it = textureMap.find(entityUpdate->type);
-                        if (it != textureMap.end()) {
-                            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
-                            if (it->first == 2) {
-                                renderComp.frameWidth = 33;
-                                renderComp.frameHeight = 34;
-                                renderComp.Y = 0;
-                                renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
-                            } else if (it->first == 3) {
-                                renderComp.frameWidth = 53;
-                                renderComp.frameHeight = 54;
-                                renderComp.Y = 0;
-                                renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
-                            } else if (it->first == 4) {
-                                renderComp.frameWidth = 49;
-                                renderComp.frameHeight = 52;
-                                renderComp.Y = 0;
-                                renderComp.frameCount = 3;
-                                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
-                            }
-                            renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
-                        }
-                    } else if (entityUpdate->type == 7) {
-                        entities.addComponent(entity, Wall{3});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("wall"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 167, 587));
-                        renderComp.sprite.setOrigin(10.0f, 8.0f);
-                        renderComp.frameWidth = 165;
-                        renderComp.frameHeight = 590;
-                        renderComp.frameCount = 1;
-                        renderComp.sprite.setScale(0.1f, 0.1f);
-                    }
-                    entities.addComponent(entity, renderComp);
-                } else {
-                    if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
-                        entities.getComponents<Enemy>().erase(entity);
-                        entities.getComponents<Position>().erase(entity);
-                        RenderComponent renderComp = entities.getComponent<RenderComponent>(entity);
-                        entities.addComponent(entity, Projectile{10.0f, true, false, false});
-                        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
-                        renderComp.sprite.setOrigin(8.0f, 8.0f);
-                    }
-                    auto &pos = entities.getComponent<Position>(entity);
-                    auto &vel = entities.getComponent<Velocity>(entity);
-                    pos.x = entityUpdate->x;
-                    pos.y = entityUpdate->y;
-                    vel.dx = entityUpdate->dx;
-                    vel.dy = entityUpdate->dy;
-                }
-                break;
-            }
-            case network::PacketType::END_GAME_STATE: {
-                currentState = GameState::VICTORY;
-                gameOverText.setString("Victory!");
-                gameOverText.setFillColor(sf::Color::Green);
-                musicGame.stop();
-                std::cout << "Game: Victory achieved!" << std::endl;
-                break;
-            }
-            default:
-                break;
+        auto it = packetHandlers.find(type);
+        if (it != packetHandlers.end()) {
+            it->second(data, sizeof(network::PacketHeader));
         }
+    }
+
+    void Game::handleEntityUpdate(const std::vector<uint8_t>& data, size_t offset) {
+        const auto* entityUpdate = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + offset);
+        EntityID entity = entityUpdate->entityId;
+
+        if (entityUpdate->type == 0 && entity == myPlayerId) {
+            playerScore = entityUpdate->score;
+            currentLevel = entityUpdate->level;
+            playerLife = entityUpdate->life;
+            lifeText.setString("Life: " + std::to_string(playerLife));
+            scoreText.setString("Score: " + std::to_string(playerScore));
+            levelText.setString("Level: " + std::to_string(currentLevel));
+        }
+
+        if (!entities.hasComponent<Position>(entity)) {
+            entities.createEntity();
+            entities.addComponent(entity, Position{entityUpdate->x, entityUpdate->y});
+            entities.addComponent(entity, Velocity{entityUpdate->dx, entityUpdate->dy});
+            RenderComponent renderComp;
+            if (entityUpdate->type == 0) {
+                if (menu.getColorblindMode())
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player-colorblind"));
+                else
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("player"));
+                renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 33, 17));
+                renderComp.sprite.setOrigin(16.5f, 8.5f);
+            } else if (entityUpdate->type == 1) {
+                entities.addComponent(entity, Projectile{10.0f, true, false, false});
+                if (menu.getColorblindMode())
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet-colorblind"));
+                else
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+                renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
+                renderComp.sprite.setOrigin(8.0f, 8.0f);
+            } else if (entityUpdate->type == 5) {
+                entities.addComponent(entity, Projectile{10.0f, true, false, false});
+                if (menu.getColorblindMode())
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate-colorblind"));
+                else
+                    renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("ultimate"));
+                renderComp.sprite.setTextureRect(sf::IntRect(168, 342, 37, 31));
+                renderComp.sprite.setOrigin(8.0f, 8.0f);
+                renderComp.frameWidth = 37;
+                renderComp.frameHeight = 31;
+                renderComp.frameCount = 3;
+            } else if (entityUpdate->type == 6) {
+                entities.addComponent(entity, HealthBonus{3});
+                renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("healthPack"));
+                renderComp.sprite.setTextureRect(sf::IntRect(7, 11, 130, 130));
+                renderComp.sprite.setOrigin(8.0f, 8.0f);
+                renderComp.frameWidth = 130;
+                renderComp.frameHeight = 130;
+                renderComp.frameCount = 1;
+                renderComp.sprite.setScale(0.3f, 0.3f);
+            } else if (entityUpdate->type >= 2 && entityUpdate->type <= 4) {
+                setupEnemyRenderComponent(entity, entityUpdate->type, renderComp);
+            } else if (entityUpdate->type == 7) {
+                setupWallRenderComponent(entity, renderComp);
+            }
+            entities.addComponent(entity, renderComp);
+        } else {
+            updateExistingEntity(entity, entityUpdate);
+        }
+    }
+
+    void Game::handleBestScore(const std::vector<uint8_t>& data, size_t offset) {
+        const auto* bestScore = reinterpret_cast<const network::BestScorePacket*>(data.data() + offset);
+        playerStats.best_time = bestScore->best_time;
+        playerStats.total_games = bestScore->games_won;
+        playerStats.total_playtime = bestScore->total_playtime;
+        playerStats.avg_score = bestScore->avg_score;
+        updateStatsDisplay();
+    }
+
+    void Game::handleGameStats(const std::vector<uint8_t>& data, size_t offset) {
+        const auto* gameStats = reinterpret_cast<const network::GameStatsPacket*>(data.data() + offset);
+        playerStats.current_level = gameStats->current_level;
+        playerStats.enemies_killed = gameStats->enemies_killed;
+        currentLevel = gameStats->current_level;
+        playerScore = gameStats->current_score;
+        playerLife = gameStats->life_remaining;
+        updateStatsDisplay();
+    }
+
+    void Game::handleEndGame(const std::vector<uint8_t>& data, size_t offset) {
+        currentState = GameState::VICTORY;
+        gameOverText.setString("Victory!");
+        gameOverText.setFillColor(sf::Color::Green);
+        displayFinalStats();
+        musicGame.stop();
+    }
+
+    void Game::setupEnemyRenderComponent(EntityID entity, int type, RenderComponent& renderComp) {
+        static std::unordered_map<int, std::string> textureMap;
+        if (menu.getColorblindMode()) {
+            textureMap = {
+                {2, "enemy_lvl_1-colorblind"},
+                {3, "enemy_lvl_2"},
+                {4, "enemy_lvl_3"}
+            };
+        } else {
+            textureMap = {
+                {2, "enemy_lvl_1"},
+                {3, "enemy_lvl_2"},
+                {4, "enemy_lvl_3"}
+            };
+        }
+        entities.addComponent(entity, Enemy{1, true, false, false});
+        auto it = textureMap.find(type);
+        if (it != textureMap.end()) {
+            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
+            setupEnemyAnimation(type, renderComp);
+        }
+    }
+
+    void Game::setupEnemyAnimation(int type, RenderComponent& renderComp) {
+        if (type == 2) {
+            renderComp.frameWidth = 33;
+            renderComp.frameHeight = 34;
+            renderComp.Y = 0;
+            renderComp.frameCount = 3;
+            renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 36, 34));
+        } else if (type == 3) {
+            renderComp.frameWidth = 53;
+            renderComp.frameHeight = 54;
+            renderComp.Y = 0;
+            renderComp.frameCount = 3;
+            renderComp.sprite.setTextureRect(sf::IntRect(33, 1, 34, 28));
+        } else if (type == 4) {
+            renderComp.frameWidth = 49;
+            renderComp.frameHeight = 52;
+            renderComp.Y = 0;
+            renderComp.frameCount = 3;
+            renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 49, 52));
+        }
+        renderComp.sprite.setOrigin(renderComp.frameWidth / 2.0f, renderComp.frameHeight / 2.0f);
+    }
+
+    void Game::setupWallRenderComponent(EntityID entity, RenderComponent& renderComp) {
+        entities.addComponent(entity, Wall{3});
+        renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("wall"));
+        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 167, 587));
+        renderComp.sprite.setOrigin(10.0f, 8.0f);
+        renderComp.frameWidth = 165;
+        renderComp.frameHeight = 590;
+        renderComp.frameCount = 1;
+        renderComp.sprite.setScale(0.1f, 0.1f);
+    }
+
+    void Game::updateExistingEntity(EntityID entity, const network::EntityUpdatePacket* entityUpdate) {
+        if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity)) {
+            entities.getComponents<Enemy>().erase(entity);
+            entities.getComponents<Position>().erase(entity);
+            RenderComponent renderComp = entities.getComponent<RenderComponent>(entity);
+            entities.addComponent(entity, Projectile{10.0f, true, false, false});
+            renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("sheet"));
+            renderComp.sprite.setTextureRect(sf::IntRect(232, 58, 16, 16));
+            renderComp.sprite.setOrigin(8.0f, 8.0f);
+        }
+        auto& pos = entities.getComponent<Position>(entity);
+        auto& vel = entities.getComponent<Velocity>(entity);
+        pos.x = entityUpdate->x;
+        pos.y = entityUpdate->y;
+        vel.dx = entityUpdate->dx;
+        vel.dy = entityUpdate->dy;
+    }
+
+    void Game::handleConnectResponse(const std::vector<uint8_t>& data, size_t offset) {
+        const auto* response = reinterpret_cast<const network::ConnectResponsePacket*>(data.data() + offset);
+        if (response->success)
+            myPlayerId = response->playerId;
+    }
+
+    void Game::handleEntityDeath(const std::vector<uint8_t>& data, size_t offset) {
+        const auto* response = reinterpret_cast<const network::EntityUpdatePacket*>(data.data() + offset);
+
+        if (playerLife <= 0)
+            playerIsDead = true;
+
+        if (response->entityId != static_cast<uint32_t>(-1)) {
+            if (entities.hasComponent<Enemy>(response->entityId))
+                entities.getComponents<Enemy>().erase(response->entityId);
+            if (entities.hasComponent<Player>(response->entityId))
+                entities.getComponents<Player>().erase(response->entityId);
+            if (entities.hasComponent<Position>(response->entityId))
+                entities.getComponents<Position>().erase(response->entityId);
+            if (entities.hasComponent<Velocity>(response->entityId))
+                entities.getComponents<Velocity>().erase(response->entityId);
+            entities.destroyEntity(response->entityId);
+        }
+
+        if (response->entityId2 != static_cast<uint32_t>(-1)) {
+            entities.getComponents<Projectile>().erase(response->entityId2);
+            entities.destroyEntity(response->entityId2);
+        }
+    }
+
+    void Game::initPacketHandlers() {
+        packetHandlers[network::PacketType::CONNECT_RESPONSE] =
+            [this](const auto& data, size_t offset) { handleConnectResponse(data, offset); };
+
+        packetHandlers[network::PacketType::ENTITY_DEATH] =
+            [this](const auto& data, size_t offset) { handleEntityDeath(data, offset); };
+
+        packetHandlers[network::PacketType::ENTITY_UPDATE] =
+            [this](const auto& data, size_t offset) { handleEntityUpdate(data, offset); };
+
+        packetHandlers[network::PacketType::BEST_SCORE] =
+            [this](const auto& data, size_t offset) { handleBestScore(data, offset); };
+
+        packetHandlers[network::PacketType::GAME_STATS] =
+            [this](const auto& data, size_t offset) { handleGameStats(data, offset); };
+
+        packetHandlers[network::PacketType::END_GAME_STATE] =
+            [this](const auto& data, size_t offset) { handleEndGame(data, offset); };
+    }
+
+    void Game::updateStatsDisplay() {
+        lifeText.setString("Life: " + std::to_string(playerLife));
+        scoreText.setString("Score: " + std::to_string(playerScore));
+        levelText.setString("Level: " + std::to_string(currentLevel));
+        statsText.setString("Enemies Killed: " + std::to_string(playerStats.enemies_killed));
+        bestScoreText.setString("Best Time: " + std::to_string(playerStats.best_time) + "s");
+        auto currentTime = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - gameStartTime).count();
+        timeText.setString("Time: " + std::to_string(elapsed) + "s");
+    }
+
+    void Game::displayFinalStats() {
+        std::string statsStr =
+            "Final Score: " + std::to_string(playerScore) + "\n" +
+            "Level Reached: " + std::to_string(currentLevel) + "\n" +
+            "Enemies Killed: " + std::to_string(playerStats.enemies_killed) + "\n" +
+            "Best Time: " + std::to_string(playerStats.best_time) + "s\n" +
+            "Total Games: " + std::to_string(playerStats.total_games);
+
+        sf::Text statsText = UiHelpers::createText(
+            statsStr,
+            font,
+            sf::Color::White,
+            {400, 400},
+            20,
+            sf::Text::Bold
+        );
+        sf::FloatRect textRect = statsText.getLocalBounds();
+        statsText.setOrigin(textRect.width / 2.0f, textRect.height / 2.0f);
+        endGameText = statsText;
     }
 
     void Game::displayMenu() {
@@ -413,8 +502,7 @@ namespace rtype {
         }
     }
 
-    void Game::render()
-    {
+    void Game::render() {
         window.clear();
         if (currentState == GameState::PLAYING || currentState == GameState::MENU ||
             currentState == GameState::VICTORY || currentState == GameState::GAME_OVER) {
@@ -430,12 +518,16 @@ namespace rtype {
             window.draw(lifeText);
             window.draw(scoreText);
             window.draw(levelText);
+            window.draw(statsText);
+            window.draw(bestScoreText);
+            window.draw(timeText);
         } else if (currentState == GameState::GAME_OVER) {
             window.draw(gameOverText);
         } else if (currentState == GameState::VICTORY) {
             window.draw(gameOverText);
             sf::Text finalScoreText = UiHelpers::createText("Final score: " + std::to_string(playerScore), font, sf::Color::White, {400, 350}, 20, sf::Text::Bold);
             window.draw(finalScoreText);
+            window.draw(endGameText);
         }
         window.display();
     }
@@ -463,6 +555,10 @@ namespace rtype {
         gameOverText.setOrigin(textRect.left + textRect.width / 2.0f,
                               textRect.top + textRect.height / 2.0f);
         gameOverText.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
+        statsText = UiHelpers::createText("Enemies Killed: 0", font, sf::Color::White, {10, 100}, 20, sf::Text::Bold);
+        bestScoreText = UiHelpers::createText("Best Time: --", font, sf::Color::White, {10, 130}, 20, sf::Text::Bold);
+        timeText = UiHelpers::createText("Time: 0s", font, sf::Color::White, {10, 160}, 20, sf::Text::Bold);
+        gameStartTime = std::chrono::steady_clock::now();
     }
 
     void Game::loadResources() {

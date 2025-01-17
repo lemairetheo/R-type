@@ -8,6 +8,8 @@
 #include "network/packetType.hpp"
 #include "../shared/ecs/Component.hpp"
 #include "../shared/ecs/Entity.hpp"
+#include "../database/DatabaseManager.hpp"
+#include "../database/UserRepository.hpp"
 
 namespace rtype::network {
     /**
@@ -56,6 +58,11 @@ namespace rtype::network {
         std::vector<uint8_t> createBestScorePacket(const std::string& username, int32_t bestTime, int32_t gamesWon);
         std::vector<uint8_t> createEntityDeathPacket(EntityID missile, EntityID enemy);
         std::vector<uint8_t> createEndGamePacket();
+        std::vector<uint8_t> createScoreUpdatePacket(const std::string& username, int time, int score, int levelReached, int enemiesKilled);
+        std::vector<uint8_t> createBestScorePacket(const std::string& username, int bestTime, int gamesWon, int totalPlaytime, float avgScore);
+        std::vector<uint8_t> createPlayerStatsPacket(const database::User& user);
+        std::vector<uint8_t> createGameStatsPacket(int level, int enemiesKilled, int score,
+            int timeElapsed, int lifeRemaining);
         std::vector<uint8_t> createEntityUpdatePacket(EntityID entityId, int type, const Position& pos, const Velocity& vel,int life, int score, int level);
         const asio::ip::udp::endpoint& getClientEndpoint(const std::string& clientId) const;
     private:

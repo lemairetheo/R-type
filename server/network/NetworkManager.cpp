@@ -167,6 +167,99 @@ namespace rtype::network {
         }
     }
 
+    std::vector<uint8_t> NetworkManager::createPlayerStatsPacket(const database::User& user)
+    {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(PlayerStatsPacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* stats = reinterpret_cast<PlayerStatsPacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::PLAYER_STATS);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        std::strncpy(stats->username, user.username.c_str(), sizeof(stats->username) - 1);
+        stats->username[sizeof(stats->username) - 1] = '\0';
+        stats->total_games_played = user.total_games_played;
+        stats->total_playtime = user.total_playtime;
+        // Les autres champs devront être ajoutés à la structure User ou récupérés d'une autre manière
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createBestScorePacket(
+    const std::string& username, int bestTime, int gamesWon, int totalPlaytime, float avgScore)
+    {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(BestScorePacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* bestScore = reinterpret_cast<BestScorePacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::BEST_SCORE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        std::strncpy(bestScore->username, username.c_str(), sizeof(bestScore->username) - 1);
+        bestScore->username[sizeof(bestScore->username) - 1] = '\0';
+        bestScore->best_time = bestTime;
+        bestScore->games_won = gamesWon;
+        bestScore->total_playtime = totalPlaytime;
+        bestScore->avg_score = avgScore;
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createGameStatsPacket(
+    int level, int enemiesKilled, int score, int timeElapsed, int lifeRemaining)
+    {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(GameStatsPacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* stats = reinterpret_cast<GameStatsPacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::GAME_STATS);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        stats->current_level = level;
+        stats->enemies_killed = enemiesKilled;
+        stats->current_score = score;
+        stats->time_elapsed = timeElapsed;
+        stats->life_remaining = lifeRemaining;
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createScoreUpdatePacket(
+    const std::string& username, int time, int score, int levelReached, int enemiesKilled)
+    {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(ScoreUpdatePacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* scoreUpdate = reinterpret_cast<ScoreUpdatePacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::SCORE_UPDATE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        std::strncpy(scoreUpdate->username, username.c_str(), sizeof(scoreUpdate->username) - 1);
+        scoreUpdate->username[sizeof(scoreUpdate->username) - 1] = '\0';
+        scoreUpdate->time = time;
+        scoreUpdate->score = score;
+        scoreUpdate->level_reached = levelReached;
+        scoreUpdate->enemies_killed = enemiesKilled;
+
+        return packet;
+    }
+
     void NetworkManager::sendTo(const std::vector<uint8_t>& data, const asio::ip::udp::endpoint& client) {
         socket.async_send_to(
             asio::buffer(data),

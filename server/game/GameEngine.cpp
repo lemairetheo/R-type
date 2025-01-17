@@ -10,6 +10,7 @@ namespace rtype::game {
         try {
             dbManager = std::make_unique<database::DatabaseManager>("rtype_scores.db");
             scoreRepository = std::make_unique<database::ScoreRepository>(*dbManager);
+            userRepository = std::make_unique<database::UserRepository>(*dbManager);
             EntityID playerEntity = entities.createEntity();
             entities.addComponent(playerEntity, Position{400.0f, 300.0f});
             entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
@@ -77,26 +78,41 @@ namespace rtype::game {
 
     void GameEngine::handleGameCompletion(const std::string& clientId) {
         auto gameStartIt = gameStartTimes.find(clientId);
-        auto usernameIt = playerUsernames.find(clientId);
-        if (gameStartIt != gameStartTimes.end() && usernameIt != playerUsernames.end()) {
+        auto userIt = connectedUsers.find(clientId);
+        if (gameStartIt != gameStartTimes.end() && userIt != connectedUsers.end()) {
             auto endTime = std::chrono::steady_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::seconds>(
                 endTime - gameStartIt->second).count();
+
+            int enemiesKilled = 0;
             int score = 0;
             if (auto playerEntityIt = playerEntities.find(clientId);
                 playerEntityIt != playerEntities.end()) {
-                score = entities.getComponent<Player>(playerEntityIt->second).score;
+                auto& player = entities.getComponent<Player>(playerEntityIt->second);
+                score = player.score;
+                enemiesKilled = score;
             }
+
             try {
-                scoreRepository->updatePlayerScore(usernameIt->second, duration);
-                auto bestScore = scoreRepository->getPlayerBestScore(usernameIt->second);
-                auto scorePacket = network.createScoreUpdatePacket(usernameIt->second, duration, score);
+                scoreRepository->updatePlayerScore(
+                    userIt->second.username,
+                    duration,
+                    currentLevel,
+                    enemiesKilled
+                );
+                userRepository->updateUserStats(userIt->second.username, duration);
+                auto scorePacket = network.createScoreUpdatePacket(
+                    userIt->second.username,
+                    duration,
+                    score
+                );
                 network.sendTo(scorePacket, network.getClientEndpoint(clientId));
+                auto bestScore = scoreRepository->getPlayerBestScore(userIt->second.username);  // au lieu de userIt->second.id
                 if (bestScore) {
                     auto bestScorePacket = network.createBestScorePacket(
-                        usernameIt->second,
-                        bestScore->best_time,
-                        bestScore->games_won
+                        userIt->second.username,
+                        bestScore->score_time,
+                        userIt->second.total_games_played
                     );
                     network.sendTo(bestScorePacket, network.getClientEndpoint(clientId));
                 }
@@ -463,19 +479,45 @@ namespace rtype::game {
             const auto* connectRequest = reinterpret_cast<const network::ConnectRequestPacket*>(
                 data.data() + sizeof(network::PacketHeader));
             std::string username(connectRequest->username);
-            playerUsernames[clientId] = username;
+            std::cerr << "Received connection request for username: '" << username << "'" << std::endl;
 
-            if (playerEntities.empty()) {
-                initializeLevel();
-            }
             try {
-                auto bestScore = scoreRepository->getPlayerBestScore(username);
+                auto user = userRepository->getUser(username);
+                if (!user) {
+                    std::cerr << "User not found, creating new user..." << std::endl;
+                    user = userRepository->createUser(username);
+                    if (!user) {
+                        std::cerr << "Failed to create user" << std::endl;
+                        throw std::runtime_error("Failed to create user");
+                    }
+                }
+                std::cerr << "User successfully found/created: " << user->username << std::endl;
+
+                playerUsernames[clientId] = username;
+                connectedUsers[clientId] = *user;
+                userRepository->updateLastConnection(username);
+                std::cerr << "Last connection updated for user: " << username << std::endl;
+
+                auto bestScore = scoreRepository->getPlayerBestScore(user->username);
                 if (bestScore) {
-                    // TODO: Envoyer le meilleur score au client
-                    // Nous implémenterons cela dans la prochaine étape
+                    std::cerr << "Found best score for user: " << bestScore->score_time << std::endl;
+                    auto bestScorePacket = network.createBestScorePacket(
+                        username,
+                        bestScore->score_time,
+                        user->total_games_played
+                    );
+                    network.sendTo(bestScorePacket, network.getClientEndpoint(clientId));
+                } else {
+                    std::cerr << "No best score found for user" << std::endl;
+                }
+
+                if (playerEntities.empty()) {
+                    std::cerr << "Initializing first level..." << std::endl;
+                    initializeLevel();
                 }
             } catch (const std::exception& e) {
-                std::cerr << "Failed to get best score: " << e.what() << std::endl;
+                std::cerr << "Failed to handle user connection: " << e.what() << std::endl;
+                std::cerr << "User that caused error: " << username << std::endl;
             }
         }
     }

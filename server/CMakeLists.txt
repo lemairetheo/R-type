@@ -10,6 +10,8 @@ add_executable(r-type_server
         database/DatabaseManager.hpp
         database/ScoreRepository.cpp
         database/ScoreRepository.hpp
+        database/UserRepository.cpp
+        database/UserRepository.hpp
 )
 
 target_include_directories(r-type_server

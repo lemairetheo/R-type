@@ -13,18 +13,23 @@
 namespace rtype::database {
     struct PlayerScore {
         int id;
-        std::string username;
-        int best_time;
-        int games_won;
-        std::string last_game_time;
+        std::string username;  // Changé de int à string
+        int score_time;
+        int level_reached;
+        int enemies_killed;
+        std::string game_date;
     };
+
     class ScoreRepository {
-        public:
-            explicit ScoreRepository(DatabaseManager& dbManager) : db(dbManager) {}
-            void updatePlayerScore(const std::string& username, int time) const;
-            [[nodiscard]] std::optional<PlayerScore> getPlayerBestScore(const std::string& username) const;
-            [[nodiscard]] std::vector<PlayerScore> getTopScores(int limit = 10) const;
-        private:
-            DatabaseManager& db;
+    public:
+        explicit ScoreRepository(DatabaseManager& dbManager) : db(dbManager) {}
+
+        void updatePlayerScore(const std::string& username, int time, int level, int enemiesKilled);
+        std::optional<PlayerScore> getPlayerBestScore(const std::string& username);
+        std::vector<PlayerScore> getTopScores(int limit = 10);
+        std::vector<PlayerScore> getUserScores(int userId, int limit = 10);
+
+    private:
+        DatabaseManager& db;
     };
 } // namespace rtype::database

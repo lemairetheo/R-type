@@ -21,6 +21,7 @@
 #include <chrono>
 #include <random>
 #include <map>
+#include "../database/UserRepository.hpp"
 
 
 namespace rtype::game {
@@ -80,6 +81,8 @@ namespace rtype::game {
         std::unordered_map<std::string, std::string> playerUsernames;
         std::unordered_map<std::string, std::chrono::steady_clock::time_point> gameStartTimes;
         void handleGameCompletion(const std::string& clientId);
+        std::unique_ptr<database::UserRepository> userRepository;
+        std::unordered_map<std::string, database::User> connectedUsers;
         static inline const std::unordered_map<int, std::tuple<float, int, float>> enemyAttributes = {
             {1, {1, 5, 100.0f}},
             {2, {3, 5, 300.0f}},

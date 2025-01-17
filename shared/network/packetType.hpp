@@ -49,7 +49,9 @@ namespace rtype::network {
         ENTITY_DEATH = 0x21, //< Information sur une entité morte
         END_GAME_STATE = 0x22,
         SCORE_UPDATE = 0x30,    ///< Mise à jour d'un score
-        BEST_SCORE = 0x31,
+        BEST_SCORE = 0x31,      ///< Meilleur score
+        PLAYER_STATS = 0x32,    ///< Nouveau type pour les statistiques complètes
+        GAME_STATS = 0x33       ///< Nouveau type pour les statistiques de la partie
     };
 
     struct EntityUpdatePacket {
@@ -76,15 +78,34 @@ namespace rtype::network {
     };
 
     struct ScoreUpdatePacket {
-        char username[32];      ///< Username du joueur
-        int32_t time;          ///< Temps en secondes
-        int32_t score;         ///< Score du joueur
+        char username[32];
+        int32_t time;           // Temps total de la partie
+        int32_t score;          // Score final
+        int32_t level_reached;  // Niveau atteint
+        int32_t enemies_killed; // Nombre d'ennemis tués
     };
 
     struct BestScorePacket {
-        char username[32];      ///< Username du joueur
-        int32_t best_time;     ///< Meilleur temps
-        int32_t games_won;     ///< Nombre de parties gagnées
+        char username[32];
+        int32_t best_time;      // Meilleur temps
+        int32_t games_won;      // Nombre de parties gagnées
+        int32_t total_playtime; // Temps de jeu total
+        float avg_score;        // Score moyen
+    };
+    struct PlayerStatsPacket {
+        char username[32];
+        int32_t total_games_played;
+        int32_t total_playtime;
+        int32_t best_level_reached;
+        int32_t total_enemies_killed;
+        int32_t highest_score;
+    };
+    struct GameStatsPacket {
+        int32_t current_level;
+        int32_t enemies_killed;
+        int32_t current_score;
+        int32_t time_elapsed;
+        int32_t life_remaining;
     };
 
 #pragma pack(pop)
