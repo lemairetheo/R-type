@@ -258,32 +258,20 @@ namespace rtype {
                         throw std::runtime_error("Connection timeout");
                     }
                     window.clear();
-                    sf::Text connectingText;
-                    connectingText.setFont(font);
-                    connectingText.setString("Connecting...");
-                    connectingText.setCharacterSize(30);
-                    connectingText.setFillColor(sf::Color::White);
-                    connectingText.setPosition(window.getSize().x / 2.0f - 100, window.getSize().y / 2.0f);
+                    sf::Text connectingText = UiHelpers::createText("Connecting to server...", font, sf::Color::White, {10, 10}, 20, sf::Text::Bold);
                     window.draw(connectingText);
                     window.display();
-
                     std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 }
-
                 createBackgroundEntities();
                 currentState = GameState::PLAYING;
                 retry = false;
-
                 while (window.isOpen() && currentState == GameState::PLAYING && !playerIsDead) {
                     handleEvents();
                     update();
                     render();
                 }
-
-                // Phase de fin (victoire ou défaite)
                 currentState = playerIsDead ? GameState::GAME_OVER : GameState::VICTORY;
-
-                // Déconnexion propre
                 if (network) {
                     std::vector<uint8_t> disconnectPacket(sizeof(network::PacketHeader));
                     header = reinterpret_cast<network::PacketHeader*>(disconnectPacket.data());
@@ -305,15 +293,7 @@ namespace rtype {
                     network->stop();
                     network = nullptr;
                 }
-
-                // Affichage de l'erreur et options de retry
-                sf::Text errorText;
-                errorText.setFont(font);
-                errorText.setString("Connection failed: " + std::string(e.what()) + "\nPress SPACE to retry or ESC to quit");
-                errorText.setCharacterSize(20);
-                errorText.setFillColor(sf::Color::Red);
-                errorText.setPosition(window.getSize().x / 2.0f - 200, window.getSize().y / 2.0f);
-
+                sf::Text errorText = UiHelpers::createText("Error: " + std::string(e.what()) + "\nPress Space to retry or Escape to quit", font, sf::Color::Red, {10, 10}, 20, sf::Text::Bold);
                 while (window.isOpen()) {
                     sf::Event event;
                     while (window.pollEvent(event)) {
@@ -433,7 +413,8 @@ namespace rtype {
         }
     }
 
-    void Game::render() {
+    void Game::render()
+    {
         window.clear();
         if (currentState == GameState::PLAYING || currentState == GameState::MENU ||
             currentState == GameState::VICTORY || currentState == GameState::GAME_OVER) {
@@ -453,16 +434,9 @@ namespace rtype {
             window.draw(gameOverText);
         } else if (currentState == GameState::VICTORY) {
             window.draw(gameOverText);
-            sf::Text finalScoreText;
-            finalScoreText.setFont(font);
-            finalScoreText.setString("Final Score: " + std::to_string(playerScore));
-            finalScoreText.setCharacterSize(30);
-            finalScoreText.setFillColor(sf::Color::White);
-            finalScoreText.setPosition(window.getSize().x / 2.0f - 100,
-                                     window.getSize().y / 2.0f + 50);
+            sf::Text finalScoreText = UiHelpers::createText("Final score: " + std::to_string(playerScore), font, sf::Color::White, {400, 350}, 20, sf::Text::Bold);
             window.draw(finalScoreText);
         }
-
         window.display();
     }
 
@@ -481,28 +455,10 @@ namespace rtype {
     }
 
     void Game::initGameTexts() {
-        lifeText.setFont(font);
-        lifeText.setCharacterSize(20);
-        lifeText.setFillColor(sf::Color::White);
-        lifeText.setPosition(10, 10);
-
-        scoreText.setFont(font);
-        scoreText.setCharacterSize(20);
-        scoreText.setFillColor(sf::Color::White);
-        scoreText.setPosition(10, 40);
-        scoreText.setString("Score: 0");
-
-        levelText.setFont(font);
-        levelText.setCharacterSize(20);
-        levelText.setFillColor(sf::Color::White);
-        levelText.setPosition(700, 10);
-        levelText.setString("Level: 1");
-
-        gameOverText.setFont(font);
-        gameOverText.setString("Game Over");
-        gameOverText.setCharacterSize(50);
-        gameOverText.setFillColor(sf::Color::Red);
-        gameOverText.setStyle(sf::Text::Bold);
+        lifeText = UiHelpers::createText("Life: 3", font, sf::Color::White, {10, 10}, 20, sf::Text::Bold);
+        scoreText = UiHelpers::createText("Score: 0", font, sf::Color::White, {10, 40}, 20, sf::Text::Bold);
+        levelText = UiHelpers::createText("Level: 1", font, sf::Color::White, {10, 70}, 20, sf::Text::Bold);
+        gameOverText = UiHelpers::createText("Game Over", font, sf::Color::Red, {400, 300}, 50, sf::Text::Bold);
         sf::FloatRect textRect = gameOverText.getLocalBounds();
         gameOverText.setOrigin(textRect.left + textRect.width / 2.0f,
                               textRect.top + textRect.height / 2.0f);
@@ -601,16 +557,12 @@ namespace rtype {
 
             bgComp.sprite.setPosition(0, 0);
             entities.addComponent(bgDeep, bgComp);
-
-            // Créer un second sprite de fond pour le défilement continu
             EntityID bgDeep2 = entities.createEntity();
-            BackgroundComponent bgComp2 = bgComp;  // Copier les propriétés
-            bgComp2.sprite.setPosition(800.0f, 0);  // Positionner juste après le premier
+            BackgroundComponent bgComp2 = bgComp;
+            bgComp2.sprite.setPosition(800.0f, 0);
             entities.addComponent(bgDeep2, bgComp2);
         }
-
         {
-            // Étoiles (même principe)
             EntityID bgStars = entities.createEntity();
             BackgroundComponent bgComp;
             bgComp.scrollSpeed = 40.0f;

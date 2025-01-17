@@ -14,13 +14,13 @@ namespace rtype {
         colorblind_mode_button = new Button({250, 300}, {200, 50}, "COLORBLIND MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         help_button = new Button({150, 500}, {200, 50}, "HELP", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
         normal_mode_button = new Button({550, 300}, {200, 50}, "NORMAL MODE", sf::Color::Black, sf::Color::White, sf::Color::Yellow, sf::Color::Red);
-        ip_input = new TextInput({300, 300}, {200, 40}, "Enter IP", font);
-        port_input = new TextInput({300, 350}, {200, 40}, "Enter Port", font);
-        username_input = new TextInput({300, 400}, {200, 40}, "Enter Username", font);
         if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Erreur : Impossible de charger la police !\n";
             exit(84);
         }
+        ip_input = new TextInput({300, 300}, {200, 40}, "Enter IP", font);
+        port_input = new TextInput({300, 350}, {200, 40}, "Enter Port", font);
+        username_input = new TextInput({300, 400}, {200, 40}, "Enter Username", font);
         help_text = UiHelpers::createText("HELP", font, sf::Color::White, {350.f, 50.f}, 55, static_cast<sf::Text::Style>(sf::Text::Bold | sf::Text::Italic));
         ip_label = UiHelpers::createText("Server IP:", font, sf::Color::White, {190, 310}, 24, sf::Text::Bold);
         port_label = UiHelpers::createText("Port:", font, sf::Color::White, {190, 360}, 24, sf::Text::Bold);

@@ -13,14 +13,13 @@ void signalHandler(int signum) {
 }
 
 int main(int argc, char** argv) {
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <port>" << std::endl;
+        return 1;
+    }
     try {
         uint16_t port = std::atoi(argv[1]);
-        if (argc > 1) {
-            port = static_cast<uint16_t>(std::stoi(argv[1]));
-        }
-
         std::cout << "Starting R-Type server on port " << port << std::endl;
-
         rtype::Manager manager(port);
         manager.start();
         std::signal(SIGINT, signalHandler);

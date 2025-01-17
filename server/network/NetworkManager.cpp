@@ -246,7 +246,6 @@ namespace rtype::network {
         if (auto it = clients.find(clientId); it != clients.end()) {
             clients.erase(it);
             clientLastSeen.erase(clientId);
-
             std::vector<uint8_t> packet(sizeof(PacketHeader));
             auto* header = reinterpret_cast<PacketHeader*>(packet.data());
             header->magic[0] = 'R';
