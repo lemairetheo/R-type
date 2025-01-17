@@ -477,6 +477,7 @@ namespace rtype {
         loadResources();
         setupSystems();
         initAudio();
+        createBackgroundEntities();
     }
 
     void Game::initGameTexts() {
