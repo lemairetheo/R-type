@@ -1,16 +1,7 @@
 <map id="rtype::Manager" name="rtype::Manager">
-<area shape="rect" id="Node000001" title=" " alt="" coords="466,990,629,1178"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html" title=" " alt="" coords="542,202,742,594"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="618,594,565,973,560,973,612,593"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html" title=" " alt="" coords="326,657,516,927"/>
-<area shape="poly" id="edge7_Node000004_Node000002" title=" " alt="" coords="544,578,507,644,502,641,539,575"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_a_network.html" title=" " alt="" coords="565,5,719,153"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="645,168,645,202,639,202,639,168"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="481,925,503,973,498,976,477,927"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1engine_1_1_a_engine.html" title=" " alt="" coords="5,345,148,452"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="98,464,124,529,142,562,163,592,200,634,242,672,328,734,325,738,238,676,196,637,159,596,138,565,120,532,93,466"/>
-<area shape="rect" id="Node000006" href="$classrtype_1_1_shoot_system.html" title=" " alt="" coords="172,345,299,452"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="252,451,281,537,321,632,325,641,321,643,316,634,276,539,247,452"/>
-<area shape="rect" id="Node000007" href="$classrtype_1_1_entity_manager.html" title=" " alt="" coords="323,243,518,553"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="423,553,423,640,418,640,418,553"/>
+<area shape="rect" id="Node000001" title="Manages the server operations including network communication and game state." alt="" coords="24,738,187,947"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html" title=" " alt="" coords="5,202,206,675"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,675,108,722,103,722,103,675"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_a_network.html" title=" " alt="" coords="29,5,183,153"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="108,168,108,203,103,203,103,168"/>
 </map>

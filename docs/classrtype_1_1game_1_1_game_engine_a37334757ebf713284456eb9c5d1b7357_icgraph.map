@@ -1,0 +1,17 @@
+<map id="rtype::game::GameEngine::createEntityDeathPacket" name="rtype::game::GameEngine::createEntityDeathPacket">
+<area shape="rect" id="Node000001" title="Creates a packet for entity death." alt="" coords="891,92,1066,133"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="669,5,843,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="909,88,809,49,811,44,911,83"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="448,92,621,133"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="875,112,843,111,669,111,622,112,622,107,669,106,843,106,875,106"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="669,120,843,161"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="875,128,843,132,843,127,875,123"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="689,55,590,94,588,89,687,50"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="227,149,400,190"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="440,140,395,151,394,146,438,134"/>
+<area shape="poly" id="edge6_Node000004_Node000001" title=" " alt="" coords="415,180,507,188,614,191,729,186,842,170,894,153,940,131,943,136,896,158,843,175,729,191,614,196,506,193,415,185"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="5,149,179,190"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="211,181,179,181,179,176,211,176"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="194,158,226,158,226,164,194,163"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="654,130,622,126,622,121,654,125"/>
+</map>

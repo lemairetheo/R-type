@@ -1,0 +1,12 @@
+<map id="client/menu/button/Button.hpp" name="client/menu/button/Button.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="94,5,222,46"/>
+<area shape="rect" id="Node000002" href="$_inputs_8hpp.html" title=" " alt="" coords="111,94,205,120"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,46,161,78,155,78,155,46"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,168,143,193"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="139,48,119,70,102,95,89,125,81,154,76,152,84,123,97,93,115,67,135,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="229,94,306,120"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="187,44,240,82,237,87,183,49"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,122,101,159,98,155,142,118"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="167,168,221,193"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="166,119,184,153,179,155,162,121"/>
+</map>

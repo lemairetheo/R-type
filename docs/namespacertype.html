@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -88,6 +89,7 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">rtype Namespace Reference</div></div>
 </div><!--header-->
@@ -113,6 +115,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_background_system.html">BackgroundSystem</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_button.html">Button</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_enemy.html">Enemy</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a></td></tr>
@@ -120,13 +124,20 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_game.html">Game</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class representing the game itself in the client side of the projet.  <a href="classrtype_1_1_game.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_health_bonus.html">HealthBonus</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_i_component.html">IComponent</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_input_component.html">InputComponent</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_inputs.html">Inputs</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_i_system.html">ISystem</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_manager.html">Manager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages the server operations including network communication and game state.  <a href="classrtype_1_1_manager.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_menu.html">Menu</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_movement_system.html">MovementSystem</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,16 +160,63 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_sparse_array.html">SparseArray</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_text_input.html">TextInput</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_velocity.html">Velocity</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_wall.html">Wall</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:af4f6a51b206f4e1b610ebd2306080de9" id="r_af4f6a51b206f4e1b610ebd2306080de9"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9">GameState</a> { <br />
+&#160;&#160;<a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9a3ed53fbeb1eab0443561b68ca0c0b5cf">MENU</a>
+, <a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9a9a14f95e151eec641316e7c784ce832d">CONNECTING</a>
+, <a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9a50366a49630a416ab3ccaa004196027e">PLAYING</a>
+, <a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b">GAME_OVER</a>
+, <br />
+&#160;&#160;<a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9ae0651864a549515538cb104b7b32e75d">VICTORY</a>
+<br />
+ }</td></tr>
+<tr class="separator:af4f6a51b206f4e1b610ebd2306080de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a9e9b8157af6ff13d1108f57516924d26" id="r_a9e9b8157af6ff13d1108f57516924d26"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e9b8157af6ff13d1108f57516924d26">MAX_ENTITIES</a> = 1000</td></tr>
 <tr class="separator:a9e9b8157af6ff13d1108f57516924d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a888d32f7b15a010cdff3d347c91149ec" id="r_a888d32f7b15a010cdff3d347c91149ec"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a888d32f7b15a010cdff3d347c91149ec">NB_ENEMIES</a> = 20</td></tr>
+<tr class="memitem:a888d32f7b15a010cdff3d347c91149ec" id="r_a888d32f7b15a010cdff3d347c91149ec"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a888d32f7b15a010cdff3d347c91149ec">NB_ENEMIES</a> = 50</td></tr>
 <tr class="separator:a888d32f7b15a010cdff3d347c91149ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="af4f6a51b206f4e1b610ebd2306080de9" name="af4f6a51b206f4e1b610ebd2306080de9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4f6a51b206f4e1b610ebd2306080de9">&#9670;&#160;</a></span>GameState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9">rtype::GameState</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9a3ed53fbeb1eab0443561b68ca0c0b5cf" name="af4f6a51b206f4e1b610ebd2306080de9a3ed53fbeb1eab0443561b68ca0c0b5cf"></a>MENU&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9a9a14f95e151eec641316e7c784ce832d" name="af4f6a51b206f4e1b610ebd2306080de9a9a14f95e151eec641316e7c784ce832d"></a>CONNECTING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9a50366a49630a416ab3ccaa004196027e" name="af4f6a51b206f4e1b610ebd2306080de9a50366a49630a416ab3ccaa004196027e"></a>PLAYING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b" name="af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b"></a>GAME_OVER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9ae0651864a549515538cb104b7b32e75d" name="af4f6a51b206f4e1b610ebd2306080de9ae0651864a549515538cb104b7b32e75d"></a>VICTORY&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a9e9b8157af6ff13d1108f57516924d26" name="a9e9b8157af6ff13d1108f57516924d26"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9e9b8157af6ff13d1108f57516924d26">&#9670;&#160;</a></span>MAX_ENTITIES</h2>
@@ -192,7 +250,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">size_t rtype::NB_ENEMIES = 20</td>
+          <td class="memname">size_t rtype::NB_ENEMIES = 50</td>
         </tr>
       </table>
   </td>

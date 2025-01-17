@@ -1,9 +1,10 @@
 var searchData=
 [
-  ['endgame_0',['endGame',['../classrtype_1_1_game.html#affeafa2030fa8561e9405d86b903d150',1,'rtype::Game']]],
-  ['endgametext_1',['endGameText',['../classrtype_1_1_game.html#a5c256829615c585c60f09a015ea5b7bb',1,'rtype::Game']]],
-  ['enemyspawnqueue_2',['enemySpawnQueue',['../classrtype_1_1game_1_1_game_engine.html#a07a60bf1c19ff553f7c142658228d2a1',1,'rtype::game::GameEngine']]],
-  ['entities_3',['entities',['../classrtype_1_1game_1_1_game_engine.html#a23068f07f6c41310acf2594019fc7243',1,'rtype::game::GameEngine::entities'],['../classrtype_1_1_game.html#a0ffca39187d4d07eaead367c0b5a0347',1,'rtype::Game::entities']]],
-  ['entityid_4',['entityId',['../struct_player_info.html#a31689046cf3a3afa3b4f1d006cc50724',1,'PlayerInfo::entityId'],['../structrtype_1_1network_1_1_connect_response_packet.html#ae07813a34b2354127527c86c1f7c4793',1,'rtype::network::ConnectResponsePacket::entityId'],['../structrtype_1_1network_1_1_entity_update_packet.html#a8cc8abc15aeab377ee34f5a8db3247c0',1,'rtype::network::EntityUpdatePacket::entityId']]],
-  ['entityid2_5',['entityId2',['../structrtype_1_1network_1_1_entity_update_packet.html#af95a97de8015a987ab5690c113818748',1,'rtype::network::EntityUpdatePacket']]]
+  ['damage_0',['damage',['../structrtype_1_1_player.html#ad6093526e8f450a4e0b68db03b0f81ba',1,'rtype::Player::damage'],['../structrtype_1_1_projectile.html#a0a9f63ebea2076f0f82271bcaae1f049',1,'rtype::Projectile::damage'],['../structrtype_1_1_enemy.html#acd9f8e80f35e9234ea53d8a42633bb89',1,'rtype::Enemy::damage']]],
+  ['delay_1',['delay',['../structrtype_1_1_pending_spawn.html#acf0f03825157189d535221ba74f2d35c',1,'rtype::PendingSpawn']]],
+  ['dis_2',['dis',['../classrtype_1_1game_1_1_game_engine.html#a8d71373a43242d65c3cfea7c5804860e',1,'rtype::game::GameEngine']]],
+  ['displaytext_3',['displayText',['../classrtype_1_1_text_input.html#a407e70db2ae06d8593563c9ceb48d515',1,'rtype::TextInput']]],
+  ['down_4',['down',['../structrtype_1_1_input_component.html#ad5ad4bc76c7ca3127f9f76f432102794',1,'rtype::InputComponent::down'],['../structrtype_1_1network_1_1_player_input_packet.html#a763343aa973a47395dde8934566234e8',1,'rtype::network::PlayerInputPacket::down']]],
+  ['dx_5',['dx',['../structrtype_1_1_velocity.html#a5620c738ba6cc4ada4b52aeb258e98e8',1,'rtype::Velocity::dx'],['../structrtype_1_1network_1_1_entity_update_packet.html#a030feda22a2b7b88cc47c6f5d0d25906',1,'rtype::network::EntityUpdatePacket::dx']]],
+  ['dy_6',['dy',['../structrtype_1_1_velocity.html#a8f1e0c76dc940e76196035b61552609e',1,'rtype::Velocity::dy'],['../structrtype_1_1network_1_1_entity_update_packet.html#a08f7ec5bfeb1c52ec0fe9e67e83a7799',1,'rtype::network::EntityUpdatePacket::dy']]]
 ];

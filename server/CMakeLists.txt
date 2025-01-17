@@ -6,6 +6,10 @@ add_executable(r-type_server
         game/GameEngine.cpp
         manager/Manager.cpp
         manager/Manager.hpp
+        database/DatabaseManager.cpp
+        database/DatabaseManager.hpp
+        database/ScoreRepository.cpp
+        database/ScoreRepository.hpp
 )
 
 target_include_directories(r-type_server
@@ -16,8 +20,9 @@ target_include_directories(r-type_server
 target_link_libraries(r-type_server
         PRIVATE
         r-type-shared
+        asio::asio
+        sqlite3
 )
-target_link_libraries(r-type_server PRIVATE asio::asio)
 
 # Platform specific configurations
 if(WIN32)

@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -103,7 +104,7 @@ Collaboration diagram for rtype::ShootSystem:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_shoot_system__coll__graph.png" border="0" usemap="#artype_1_1_shoot_system_coll__map" alt="Collaboration graph"/></div>
 <map name="artype_1_1_shoot_system_coll__map" id="artype_1_1_shoot_system_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,132,112"/>
+<area shape="rect" title=" " alt="" coords="5,5,132,133"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -111,15 +112,17 @@ Collaboration diagram for rtype::ShootSystem:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac94dfc2688c93235ebc4bcd5d4bf121f" id="r_ac94dfc2688c93235ebc4bcd5d4bf121f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac94dfc2688c93235ebc4bcd5d4bf121f">ShootSystem</a> ()</td></tr>
 <tr class="separator:ac94dfc2688c93235ebc4bcd5d4bf121f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a559d2628d6e75ff8b1e88f1eb8b5621a" id="r_a559d2628d6e75ff8b1e88f1eb8b5621a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a559d2628d6e75ff8b1e88f1eb8b5621a">update</a> (<a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a> &amp;entities, <a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity)</td></tr>
-<tr class="separator:a559d2628d6e75ff8b1e88f1eb8b5621a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9089147158b465d011e330c4b0405430" id="r_a9089147158b465d011e330c4b0405430"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9089147158b465d011e330c4b0405430">handleShoot</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity, <a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a> &amp;entities)</td></tr>
-<tr class="separator:a9089147158b465d011e330c4b0405430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a334ca10e166e6e15cd8b66216bc6d606" id="r_a334ca10e166e6e15cd8b66216bc6d606"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a334ca10e166e6e15cd8b66216bc6d606">update</a> (<a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a> &amp;entities, <a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity, bool ultimate)</td></tr>
+<tr class="separator:a334ca10e166e6e15cd8b66216bc6d606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a413a664af24582506dfb61968139ee8e" id="r_a413a664af24582506dfb61968139ee8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a413a664af24582506dfb61968139ee8e">handleShoot</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity, <a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a> &amp;entities, bool ultimate)</td></tr>
+<tr class="separator:a413a664af24582506dfb61968139ee8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a2221523028acdf60294af37e03f065b9" id="r_a2221523028acdf60294af37e03f065b9"><td class="memItemLeft" align="right" valign="top">std::chrono::steady_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2221523028acdf60294af37e03f065b9">lastShootTime</a></td></tr>
 <tr class="separator:a2221523028acdf60294af37e03f065b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ba500648c9f57e69298d16f79d62cff" id="r_a8ba500648c9f57e69298d16f79d62cff"><td class="memItemLeft" align="right" valign="top">std::chrono::steady_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ba500648c9f57e69298d16f79d62cff">lastUltimateTime</a></td></tr>
+<tr class="separator:a8ba500648c9f57e69298d16f79d62cff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ac94dfc2688c93235ebc4bcd5d4bf121f" name="ac94dfc2688c93235ebc4bcd5d4bf121f"></a>
@@ -148,8 +151,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a9089147158b465d011e330c4b0405430" name="a9089147158b465d011e330c4b0405430"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9089147158b465d011e330c4b0405430">&#9670;&#160;</a></span>handleShoot()</h2>
+<a id="a413a664af24582506dfb61968139ee8e" name="a413a664af24582506dfb61968139ee8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a413a664af24582506dfb61968139ee8e">&#9670;&#160;</a></span>handleShoot()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,7 +168,12 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>entities</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>entities</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>ultimate</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -177,8 +185,8 @@ Private Attributes</h2></td></tr>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_cgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_cgraph" alt=""/></div>
-<map name="aclassrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_cgraph" id="aclassrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_cgraph">
+<div class="center"><img src="classrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_cgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_cgraph" id="aclassrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_cgraph">
 <area shape="rect" title=" " alt="" coords="5,104,143,145"/>
 <area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="191,5,333,46"/>
 <area shape="poly" title=" " alt="" coords="110,101,189,57,201,51,203,56,192,61,112,106"/>
@@ -196,24 +204,40 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_icgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_icgraph" alt=""/></div>
-<map name="aclassrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_icgraph" id="aclassrtype_1_1_shoot_system_a9089147158b465d011e330c4b0405430_icgraph">
-<area shape="rect" title=" " alt="" coords="848,5,985,46"/>
-<area shape="rect" href="classrtype_1_1_shoot_system.html#a559d2628d6e75ff8b1e88f1eb8b5621a" title=" " alt="" coords="662,5,800,46"/>
-<area shape="poly" title=" " alt="" coords="832,28,800,28,800,23,832,23"/>
-<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a5168be8faa9170f68487689fa4bdf930" title=" " alt="" coords="441,5,614,46"/>
-<area shape="poly" title=" " alt="" coords="647,28,615,28,615,23,647,23"/>
-<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a325cae01a9ba6cd3646590495c940a3d" title=" " alt="" coords="220,5,393,46"/>
-<area shape="poly" title=" " alt="" coords="426,28,394,28,394,23,426,23"/>
-<area shape="rect" href="classrtype_1_1_manager.html#acf575011ce5a468d91af7dec28a0ab81" title=" " alt="" coords="5,13,172,38"/>
-<area shape="poly" title=" " alt="" coords="204,28,172,28,172,23,204,23"/>
+<div class="center"><img src="classrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_icgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_icgraph" id="aclassrtype_1_1_shoot_system_a413a664af24582506dfb61968139ee8e_icgraph">
+<area shape="rect" title=" " alt="" coords="1299,93,1437,134"/>
+<area shape="rect" href="classrtype_1_1_shoot_system.html#a334ca10e166e6e15cd8b66216bc6d606" title=" " alt="" coords="1114,93,1251,134"/>
+<area shape="poly" title=" " alt="" coords="1284,116,1252,116,1252,111,1284,111"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#ab260b5c0bd4c8a2a4ebf709bc81c8537" title="Handles enemy shooting." alt="" coords="893,60,1066,101"/>
+<area shape="poly" title=" " alt="" coords="1098,103,1066,97,1067,92,1099,97"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a1530cb97e98345b3c8fda869015515f5" title="Handles incoming network messages." alt="" coords="893,125,1066,166"/>
+<area shape="poly" title=" " alt="" coords="1099,129,1067,135,1066,129,1098,124"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="671,60,845,101"/>
+<area shape="poly" title=" " alt="" coords="877,83,845,83,845,78,877,78"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="449,27,622,67"/>
+<area shape="poly" title=" " alt="" coords="656,77,617,71,618,65,657,71"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a37334757ebf713284456eb9c5d1b7357" title="Creates a packet for entity death." alt="" coords="448,92,623,133"/>
+<area shape="poly" title=" " alt="" coords="656,98,624,102,623,97,656,92"/>
+<area shape="poly" title=" " alt="" coords="638,51,677,57,676,62,637,56"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="227,5,400,46"/>
+<area shape="poly" title=" " alt="" coords="465,88,447,81,366,49,368,44,449,77,467,84"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="5,92,179,133"/>
+<area shape="poly" title=" " alt="" coords="432,112,400,111,227,111,179,112,179,107,227,106,400,106,432,106"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="227,120,400,161"/>
+<area shape="poly" title=" " alt="" coords="433,128,401,132,400,127,432,123"/>
+<area shape="poly" title=" " alt="" coords="246,55,147,94,145,89,244,50"/>
+<area shape="poly" title=" " alt="" coords="143,138,183,156,227,170,339,189,384,193,427,192,470,187,515,177,622,142,646,128,670,111,698,99,700,104,673,116,649,132,624,147,516,182,471,192,428,197,384,198,338,195,226,175,182,161,141,143"/>
+<area shape="poly" title=" " alt="" coords="211,130,179,126,180,121,212,125"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#ac418c4d40ad2161b226d5d9185428205" title="Handles incoming messages." alt="" coords="671,125,845,166"/>
+<area shape="poly" title=" " alt="" coords="877,148,845,148,845,143,877,143"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a559d2628d6e75ff8b1e88f1eb8b5621a" name="a559d2628d6e75ff8b1e88f1eb8b5621a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a559d2628d6e75ff8b1e88f1eb8b5621a">&#9670;&#160;</a></span>update()</h2>
+<a id="a334ca10e166e6e15cd8b66216bc6d606" name="a334ca10e166e6e15cd8b66216bc6d606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a334ca10e166e6e15cd8b66216bc6d606">&#9670;&#160;</a></span>update()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,7 +253,12 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a></td>          <td class="paramname"><span class="paramname"><em>entity</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a></td>          <td class="paramname"><span class="paramname"><em>entity</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>ultimate</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -241,10 +270,10 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_cgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_cgraph" alt=""/></div>
-<map name="aclassrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_cgraph" id="aclassrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_cgraph">
+<div class="center"><img src="classrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_cgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_cgraph" id="aclassrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_cgraph">
 <area shape="rect" title=" " alt="" coords="5,104,143,145"/>
-<area shape="rect" href="classrtype_1_1_shoot_system.html#a9089147158b465d011e330c4b0405430" title=" " alt="" coords="191,104,328,145"/>
+<area shape="rect" href="classrtype_1_1_shoot_system.html#a413a664af24582506dfb61968139ee8e" title=" " alt="" coords="191,104,328,145"/>
 <area shape="poly" title=" " alt="" coords="143,122,175,122,175,127,143,127"/>
 <area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="376,5,518,46"/>
 <area shape="poly" title=" " alt="" coords="295,101,375,57,386,51,388,56,377,61,297,106"/>
@@ -262,15 +291,31 @@ Here is the call graph for this function:</div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_icgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_icgraph" alt=""/></div>
-<map name="aclassrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_icgraph" id="aclassrtype_1_1_shoot_system_a559d2628d6e75ff8b1e88f1eb8b5621a_icgraph">
-<area shape="rect" title=" " alt="" coords="662,5,800,46"/>
-<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a5168be8faa9170f68487689fa4bdf930" title=" " alt="" coords="441,5,614,46"/>
-<area shape="poly" title=" " alt="" coords="647,28,615,28,615,23,647,23"/>
-<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a325cae01a9ba6cd3646590495c940a3d" title=" " alt="" coords="220,5,393,46"/>
-<area shape="poly" title=" " alt="" coords="426,28,394,28,394,23,426,23"/>
-<area shape="rect" href="classrtype_1_1_manager.html#acf575011ce5a468d91af7dec28a0ab81" title=" " alt="" coords="5,13,172,38"/>
-<area shape="poly" title=" " alt="" coords="204,28,172,28,172,23,204,23"/>
+<div class="center"><img src="classrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_icgraph.png" border="0" usemap="#aclassrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_icgraph" id="aclassrtype_1_1_shoot_system_a334ca10e166e6e15cd8b66216bc6d606_icgraph">
+<area shape="rect" title=" " alt="" coords="1114,93,1251,134"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#ab260b5c0bd4c8a2a4ebf709bc81c8537" title="Handles enemy shooting." alt="" coords="893,60,1066,101"/>
+<area shape="poly" title=" " alt="" coords="1098,103,1066,97,1067,92,1099,97"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a1530cb97e98345b3c8fda869015515f5" title="Handles incoming network messages." alt="" coords="893,125,1066,166"/>
+<area shape="poly" title=" " alt="" coords="1099,129,1067,135,1066,129,1098,124"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="671,60,845,101"/>
+<area shape="poly" title=" " alt="" coords="877,83,845,83,845,78,877,78"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="449,27,622,67"/>
+<area shape="poly" title=" " alt="" coords="656,77,617,71,618,65,657,71"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a37334757ebf713284456eb9c5d1b7357" title="Creates a packet for entity death." alt="" coords="448,92,623,133"/>
+<area shape="poly" title=" " alt="" coords="656,98,624,102,623,97,656,92"/>
+<area shape="poly" title=" " alt="" coords="638,51,677,57,676,62,637,56"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="227,5,400,46"/>
+<area shape="poly" title=" " alt="" coords="465,88,447,81,366,49,368,44,449,77,467,84"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="5,92,179,133"/>
+<area shape="poly" title=" " alt="" coords="432,112,400,111,227,111,179,112,179,107,227,106,400,106,432,106"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="227,120,400,161"/>
+<area shape="poly" title=" " alt="" coords="433,128,401,132,400,127,432,123"/>
+<area shape="poly" title=" " alt="" coords="246,55,147,94,145,89,244,50"/>
+<area shape="poly" title=" " alt="" coords="143,138,183,156,227,170,339,189,384,193,427,192,470,187,515,177,622,142,646,128,670,111,698,99,700,104,673,116,649,132,624,147,516,182,471,192,428,197,384,198,338,195,226,175,182,161,141,143"/>
+<area shape="poly" title=" " alt="" coords="211,130,179,126,180,121,212,125"/>
+<area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#ac418c4d40ad2161b226d5d9185428205" title="Handles incoming messages." alt="" coords="671,125,845,166"/>
+<area shape="poly" title=" " alt="" coords="877,148,845,148,845,143,877,143"/>
 </map>
 </div>
 
@@ -288,6 +333,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">std::chrono::steady_clock::time_point rtype::ShootSystem::lastShootTime</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ba500648c9f57e69298d16f79d62cff" name="a8ba500648c9f57e69298d16f79d62cff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ba500648c9f57e69298d16f79d62cff">&#9670;&#160;</a></span>lastUltimateTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::chrono::steady_clock::time_point rtype::ShootSystem::lastUltimateTime</td>
         </tr>
       </table>
   </td>

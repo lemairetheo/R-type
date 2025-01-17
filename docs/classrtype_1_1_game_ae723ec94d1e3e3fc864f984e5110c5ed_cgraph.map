@@ -1,5 +1,5 @@
 <map id="rtype::Game::handleEvents" name="rtype::Game::handleEvents">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,186,38"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_client.html#ab7237d5109d0b6e895a9e1012949a45f" title=" " alt="" coords="234,5,429,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,23,218,23,218,28,186,28"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,186,31"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_menu.html#afceec91506a672ca69c41b922296bf5b" title=" " alt="" coords="234,5,413,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="186,16,218,16,218,21,186,21"/>
 </map>

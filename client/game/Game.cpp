@@ -12,7 +12,6 @@ namespace rtype {
         }
     }
 
-
     void Game::handleNetworkMessage(const std::vector<uint8_t> &data,
                                     [[maybe_unused]] const asio::ip::udp::endpoint &sender) {
         if (data.size() < sizeof(network::PacketHeader)) return;
@@ -178,6 +177,7 @@ namespace rtype {
                 currentState = GameState::VICTORY;
                 gameOverText.setString("Victory!");
                 gameOverText.setFillColor(sf::Color::Green);
+                musicGame.stop();
                 std::cout << "Game: Victory achieved!" << std::endl;
                 break;
             }
@@ -237,14 +237,18 @@ namespace rtype {
                 currentState = GameState::CONNECTING;
                 initGame();
                 network->start();
-                std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
+                std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader) + sizeof(network::ConnectRequestPacket));
                 auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());
+                auto* request = reinterpret_cast<network::ConnectRequestPacket*>(connectPacket.data() + sizeof(network::PacketHeader));
                 header->magic[0] = 'R';
                 header->magic[1] = 'T';
                 header->version = 1;
                 header->type = static_cast<uint8_t>(network::PacketType::CONNECT_REQUEST);
                 header->length = connectPacket.size();
                 header->sequence = 0;
+                std::string username = menu.getUsername();
+                std::strncpy(request->username, username.c_str(), sizeof(request->username) - 1);
+                request->username[sizeof(request->username) - 1] = '\0';
                 network->sendTo(connectPacket);
                 std::cout << "Attempting to connect to " << menu.getServerIP() << ":" << menu.getServerPort() << std::endl;
                 auto startTime = std::chrono::steady_clock::now();
@@ -266,9 +270,9 @@ namespace rtype {
                     std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 }
 
-                // Phase de jeu
+                createBackgroundEntities();
                 currentState = GameState::PLAYING;
-                retry = false;  // Connexion réussie
+                retry = false;
 
                 while (window.isOpen() && currentState == GameState::PLAYING && !playerIsDead) {
                     handleEvents();
@@ -431,17 +435,32 @@ namespace rtype {
 
     void Game::render() {
         window.clear();
-        if (auto renderSystem = dynamic_cast<RenderSystem*>(systems.back().get())) {
-            renderSystem->update(entities, 0);
-        }
+        if (currentState == GameState::PLAYING || currentState == GameState::MENU ||
+            currentState == GameState::VICTORY || currentState == GameState::GAME_OVER) {
+            for (auto& system : systems) {
+                system->update(entities, 0);
+            }
+            } else if (currentState == GameState::CONNECTING) {
+                if (auto renderSystem = dynamic_cast<RenderSystem*>(systems.back().get())) {
+                    renderSystem->update(entities, 0);
+                }
+            }
         if (currentState == GameState::PLAYING) {
             window.draw(lifeText);
             window.draw(scoreText);
             window.draw(levelText);
         } else if (currentState == GameState::GAME_OVER) {
-            window.draw(gameOverText);  // "Game Over" en rouge (déjà configuré)
+            window.draw(gameOverText);
         } else if (currentState == GameState::VICTORY) {
-            window.draw(gameOverText);  // "Victory!" en vert
+            window.draw(gameOverText);
+            sf::Text finalScoreText;
+            finalScoreText.setFont(font);
+            finalScoreText.setString("Final Score: " + std::to_string(playerScore));
+            finalScoreText.setCharacterSize(30);
+            finalScoreText.setFillColor(sf::Color::White);
+            finalScoreText.setPosition(window.getSize().x / 2.0f - 100,
+                                     window.getSize().y / 2.0f + 50);
+            window.draw(finalScoreText);
         }
 
         window.display();
@@ -458,7 +477,6 @@ namespace rtype {
         loadResources();
         setupSystems();
         initAudio();
-        createBackgroundEntities();
     }
 
     void Game::initGameTexts() {
@@ -570,21 +588,47 @@ namespace rtype {
             BackgroundComponent bgComp;
             bgComp.scrollSpeed = 20.0f;
             bgComp.layer = 0;
-            bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-blue"));
+            if (menu.getColorblindMode()) {
+                bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-colorblind"));
+            } else {
+                bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-blue"));
+            }
             auto textureSize = bgComp.sprite.getTexture()->getSize();
-            bgComp.sprite.setScale(800.0f / textureSize.x, 600.0f / textureSize.y);
+            float scaleX = (800.0f + bgComp.scrollSpeed) / textureSize.x;
+            float scaleY = 600.0f / textureSize.y;
+            bgComp.sprite.setScale(scaleX, scaleY);
+
+            bgComp.sprite.setPosition(0, 0);
             entities.addComponent(bgDeep, bgComp);
+
+            // Créer un second sprite de fond pour le défilement continu
+            EntityID bgDeep2 = entities.createEntity();
+            BackgroundComponent bgComp2 = bgComp;  // Copier les propriétés
+            bgComp2.sprite.setPosition(800.0f, 0);  // Positionner juste après le premier
+            entities.addComponent(bgDeep2, bgComp2);
         }
+
         {
+            // Étoiles (même principe)
             EntityID bgStars = entities.createEntity();
             BackgroundComponent bgComp;
             bgComp.scrollSpeed = 40.0f;
             bgComp.layer = 1;
             bgComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("bg-stars"));
+
             auto textureSize = bgComp.sprite.getTexture()->getSize();
-            bgComp.sprite.setScale(800.0f / textureSize.x, 600.0f / textureSize.y);
+            float scaleX = (800.0f + bgComp.scrollSpeed) / textureSize.x;
+            float scaleY = 600.0f / textureSize.y;
+            bgComp.sprite.setScale(scaleX, scaleY);
+            bgComp.sprite.setPosition(0, 0);
             bgComp.sprite.setColor(sf::Color(255, 255, 255, 180));
             entities.addComponent(bgStars, bgComp);
+
+            // Second sprite d'étoiles
+            EntityID bgStars2 = entities.createEntity();
+            BackgroundComponent bgComp2 = bgComp;
+            bgComp2.sprite.setPosition(800.0f, 0);
+            entities.addComponent(bgStars2, bgComp2);
         }
     }
 }

@@ -2,10 +2,20 @@ var searchData=
 [
   ['game_0',['Game',['../classrtype_1_1_game.html#a6027026389f41d188620b99bbeb0d34f',1,'rtype::Game']]],
   ['gameengine_1',['GameEngine',['../classrtype_1_1game_1_1_game_engine.html#a8fc65ea9c7557d8647d5f29a08739422',1,'rtype::game::GameEngine']]],
-  ['getcomponent_2',['getComponent',['../classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e',1,'rtype::EntityManager']]],
-  ['getcomponents_3',['getComponents',['../classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c',1,'rtype::EntityManager']]],
-  ['getdata_4',['getData',['../classrtype_1_1_sparse_array.html#afcca30836e659d6a8840c8f54e3c8952',1,'rtype::SparseArray']]],
-  ['getentitieswithcomponents_5',['getEntitiesWithComponents',['../classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88',1,'rtype::EntityManager']]],
-  ['getinstance_6',['getInstance',['../classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44',1,'rtype::ResourceManager']]],
-  ['gettexture_7',['getTexture',['../classrtype_1_1_resource_manager.html#aa8001e0d4dc2d3ddff70c77caa6c451d',1,'rtype::ResourceManager']]]
+  ['getbuttontext_2',['getButtonText',['../classrtype_1_1_button.html#a32f838bce60137e19b91ad8ef8aa3045',1,'rtype::Button']]],
+  ['getcolorblindmode_3',['getColorblindMode',['../classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb',1,'rtype::Menu']]],
+  ['getcomponent_4',['getComponent',['../classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e',1,'rtype::EntityManager']]],
+  ['getcomponents_5',['getComponents',['../classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c',1,'rtype::EntityManager']]],
+  ['getdata_6',['getData',['../classrtype_1_1_sparse_array.html#afcca30836e659d6a8840c8f54e3c8952',1,'rtype::SparseArray']]],
+  ['getenemyattributes_7',['getEnemyAttributes',['../classrtype_1_1game_1_1_game_engine.html#a47f13fad43470cdfb4aef5ab68514ca6',1,'rtype::game::GameEngine']]],
+  ['getentitieswithcomponents_8',['getEntitiesWithComponents',['../classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88',1,'rtype::EntityManager']]],
+  ['getinstance_9',['getInstance',['../classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44',1,'rtype::ResourceManager']]],
+  ['getisplaying_10',['getIsPlaying',['../classrtype_1_1_menu.html#a2a193f46cc33796afd858ce6236e5625',1,'rtype::Menu']]],
+  ['getplaybutton_11',['getPlayButton',['../classrtype_1_1_menu.html#a19c92dccf1941610620994d72d7ec534',1,'rtype::Menu']]],
+  ['getrectangleshape_12',['getRectangleShape',['../classrtype_1_1_button.html#a7133f258699f7576d01983bc76c6f5e3',1,'rtype::Button']]],
+  ['getrightmode_13',['getRightMode',['../classrtype_1_1_menu.html#afceec91506a672ca69c41b922296bf5b',1,'rtype::Menu']]],
+  ['getserverip_14',['getServerIP',['../classrtype_1_1_menu.html#a123ad929960dfbad2a86c139dc612d6a',1,'rtype::Menu']]],
+  ['getserverport_15',['getServerPort',['../classrtype_1_1_menu.html#a6dc05d70bf75bcda47e35cfb8c04a890',1,'rtype::Menu']]],
+  ['gettexture_16',['getTexture',['../classrtype_1_1_resource_manager.html#aa8001e0d4dc2d3ddff70c77caa6c451d',1,'rtype::ResourceManager']]],
+  ['getvalue_17',['getValue',['../classrtype_1_1_button.html#a29f4beec6cb69566bf6975c2c1c7d94a',1,'rtype::Button::getValue()'],['../classrtype_1_1_inputs.html#ae11cac9253137b466daf32a3231242aa',1,'rtype::Inputs::getValue()'],['../classrtype_1_1_text_input.html#a895fbd1639ffe9fbdf258c7f88017cf1',1,'rtype::TextInput::getValue()']]]
 ];

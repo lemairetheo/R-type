@@ -11,7 +11,7 @@
 namespace rtype::network {
 
     struct ConnectRequestPacket {
-        char playerName[32];
+        char username[32];
     };
     struct ConnectResponsePacket {
         uint32_t playerId;    ///< ID unique du joueur
@@ -48,6 +48,8 @@ namespace rtype::network {
         ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
         ENTITY_DEATH = 0x21, //< Information sur une entité morte
         END_GAME_STATE = 0x22,
+        SCORE_UPDATE = 0x30,    ///< Mise à jour d'un score
+        BEST_SCORE = 0x31,
     };
 
     struct EntityUpdatePacket {
@@ -71,6 +73,18 @@ namespace rtype::network {
         bool right;
         bool space;
         bool ultimate;
+    };
+
+    struct ScoreUpdatePacket {
+        char username[32];      ///< Username du joueur
+        int32_t time;          ///< Temps en secondes
+        int32_t score;         ///< Score du joueur
+    };
+
+    struct BestScorePacket {
+        char username[32];      ///< Username du joueur
+        int32_t best_time;     ///< Meilleur temps
+        int32_t games_won;     ///< Nombre de parties gagnées
     };
 
 #pragma pack(pop)

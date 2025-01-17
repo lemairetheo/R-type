@@ -1,13 +1,17 @@
 <map id="rtype::game::GameEngine::broadcastWorldState" name="rtype::game::GameEngine::broadcastWorldState">
-<area shape="rect" id="Node000001" title=" " alt="" coords="746,29,919,70"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title=" " alt="" coords="524,29,698,70"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="730,61,698,61,698,56,730,56"/>
-<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="713,38,745,38,745,44,713,43"/>
-<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="647,16,634,10,611,8,590,10,577,15,572,21,574,28,569,29,567,19,574,10,589,5,611,3,635,5,649,11"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1" title=" " alt="" coords="293,37,476,62"/>
-<area shape="poly" id="edge4_Node000002_Node000003" title=" " alt="" coords="508,52,477,52,477,47,508,47"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title=" " alt="" coords="103,37,245,62"/>
-<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="277,52,246,52,246,47,277,47"/>
-<area shape="rect" id="Node000005" href="$server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,37,55,62"/>
-<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="87,52,55,52,55,47,87,47"/>
+<area shape="rect" id="Node000001" title="Broadcasts the current world state to all clients." alt="" coords="893,149,1066,190"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="671,149,845,190"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="877,181,845,181,845,176,877,176"/>
+<area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="860,158,892,158,892,164,860,163"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1game_1_1_game_engine.html#a37334757ebf713284456eb9c5d1b7357" title="Creates a packet for entity death." alt="" coords="448,92,623,133"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="661,148,617,136,618,131,663,142"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="227,5,400,46"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="466,88,367,49,369,44,468,83"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="5,92,179,133"/>
+<area shape="poly" id="edge9_Node000003_Node000005" title=" " alt="" coords="432,112,400,111,227,111,179,112,179,107,227,106,400,106,432,106"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="227,120,400,161"/>
+<area shape="poly" id="edge7_Node000003_Node000006" title=" " alt="" coords="433,128,401,132,400,127,432,123"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="246,55,147,94,145,89,244,50"/>
+<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="143,138,183,156,227,170,286,180,346,187,467,191,578,187,671,179,671,184,579,192,467,196,346,192,285,185,226,175,182,161,141,143"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="211,130,179,126,180,121,212,125"/>
 </map>
