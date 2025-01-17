@@ -237,14 +237,18 @@ namespace rtype {
                 currentState = GameState::CONNECTING;
                 initGame();
                 network->start();
-                std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader));
+                std::vector<uint8_t> connectPacket(sizeof(network::PacketHeader) + sizeof(network::ConnectRequestPacket));
                 auto* header = reinterpret_cast<network::PacketHeader*>(connectPacket.data());
+                auto* request = reinterpret_cast<network::ConnectRequestPacket*>(connectPacket.data() + sizeof(network::PacketHeader));
                 header->magic[0] = 'R';
                 header->magic[1] = 'T';
                 header->version = 1;
                 header->type = static_cast<uint8_t>(network::PacketType::CONNECT_REQUEST);
                 header->length = connectPacket.size();
                 header->sequence = 0;
+                std::string username = menu.getUsername();
+                std::strncpy(request->username, username.c_str(), sizeof(request->username) - 1);
+                request->username[sizeof(request->username) - 1] = '\0';
                 network->sendTo(connectPacket);
                 std::cout << "Attempting to connect to " << menu.getServerIP() << ":" << menu.getServerPort() << std::endl;
                 auto startTime = std::chrono::steady_clock::now();
@@ -473,7 +477,6 @@ namespace rtype {
         loadResources();
         setupSystems();
         initAudio();
-        createBackgroundEntities();
     }
 
     void Game::initGameTexts() {
@@ -595,7 +598,6 @@ namespace rtype {
             float scaleY = 600.0f / textureSize.y;
             bgComp.sprite.setScale(scaleX, scaleY);
 
-            // Positionner le sprite pour couvrir toute la fenêtre dès le départ
             bgComp.sprite.setPosition(0, 0);
             entities.addComponent(bgDeep, bgComp);
 

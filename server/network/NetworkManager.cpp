@@ -33,6 +33,112 @@ namespace rtype::network {
         }
     }
 
+    std::vector<uint8_t> NetworkManager::createScoreUpdatePacket(const std::string& username, int time, int score) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(ScoreUpdatePacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* scoreUpdate = reinterpret_cast<ScoreUpdatePacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::SCORE_UPDATE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        std::strncpy(scoreUpdate->username, username.c_str(), sizeof(scoreUpdate->username) - 1);
+        scoreUpdate->username[sizeof(scoreUpdate->username) - 1] = '\0';
+        scoreUpdate->time = time;
+        scoreUpdate->score = score;
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createBestScorePacket(const std::string& username, int bestTime, int gamesWon) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(BestScorePacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* bestScore = reinterpret_cast<BestScorePacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::BEST_SCORE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        std::strncpy(bestScore->username, username.c_str(), sizeof(bestScore->username) - 1);
+        bestScore->username[sizeof(bestScore->username) - 1] = '\0';
+        bestScore->best_time = bestTime;
+        bestScore->games_won = gamesWon;
+
+        return packet;
+    }
+
+    const asio::ip::udp::endpoint& NetworkManager::getClientEndpoint(const std::string& clientId) const {
+        auto it = clients.find(clientId);
+        if (it == clients.end()) {
+            throw std::runtime_error("Client not found: " + clientId);
+        }
+        return it->second;
+    }
+
+    std::vector<uint8_t> NetworkManager::createEntityUpdatePacket(EntityID entityId, int type, const Position& pos, const Velocity& vel,
+    int life, int score, int level) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(EntityUpdatePacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* update = reinterpret_cast<EntityUpdatePacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::ENTITY_UPDATE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        update->entityId = entityId;
+        update->type = type;
+        update->x = pos.x;
+        update->y = pos.y;
+        update->dx = vel.dx;
+        update->dy = vel.dy;
+        update->life = life;
+        update->score = score;
+        update->level = level;
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createEntityDeathPacket(EntityID entity, EntityID missile) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(EntityUpdatePacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* update = reinterpret_cast<EntityUpdatePacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::ENTITY_DEATH);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        update->entityId = entity;
+        update->entityId2 = missile;
+        update->type = 0;
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createEndGamePacket() {
+        std::vector<uint8_t> packet(sizeof(PacketHeader));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::END_GAME_STATE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        return packet;
+    }
+
     void NetworkManager::stop() {
         if (!running) return;
 

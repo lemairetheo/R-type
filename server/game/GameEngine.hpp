@@ -190,20 +190,6 @@ namespace rtype::game {
         bool checkCollisionRect(const Position& circlePos, float radius, const Position& rectPos, float rectWidth, float rectHeight);
 
         /**
-         * @brief Creates a packet for entity death.
-         * @param missile The ID of the missile entity.
-         * @param enemy The ID of the enemy entity.
-         * @return The created packet.
-         */
-        [[nodiscard]] std::vector<uint8_t> createEntityDeathPacket(EntityID missile, EntityID enemy) const;
-
-        /**
-         * @brief Creates a packet for the end game state.
-         * @return The created packet.
-         */
-        [[nodiscard]] std::vector<uint8_t> createEndGamePacket() const;
-
-        /**
          * @brief Gets the attributes of an enemy based on its level.
          * @param level The level of the enemy.
          * @return A tuple containing the attributes of the enemy.

@@ -162,6 +162,10 @@ namespace rtype {
         return ip_input->getValue();
     }
 
+    std::string Menu::getUsername() const {
+        return username_input->getValue();
+    }
+
     uint16_t Menu::getServerPort() const {
         try {
             return static_cast<uint16_t>(std::stoi(port_input->getValue()));

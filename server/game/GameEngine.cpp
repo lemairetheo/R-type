@@ -10,15 +10,14 @@ namespace rtype::game {
         try {
             dbManager = std::make_unique<database::DatabaseManager>("rtype_scores.db");
             scoreRepository = std::make_unique<database::ScoreRepository>(*dbManager);
+            EntityID playerEntity = entities.createEntity();
+            entities.addComponent(playerEntity, Position{400.0f, 300.0f});
+            entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
+            systems.push_back(std::make_unique<MovementSystem>());
         } catch (const std::exception& e) {
-            std::cerr << "Failed to initialize database: " << e.what() << std::endl;
+            std::cerr << "Failed to initialize: " << e.what() << std::endl;
             throw;
         }
-
-        EntityID playerEntity = entities.createEntity();
-        entities.addComponent(playerEntity, Position{400.0f, 300.0f});
-        entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
-        systems.push_back(std::make_unique<MovementSystem>());
     }
 
     void GameEngine::initializeLevel() {
@@ -28,63 +27,37 @@ namespace rtype::game {
         }
         enemySpawnQueue.clear();
         currentLevel = 1;
-        const int ENEMIES_PER_LEVEL[] = {15, 15, 15};
-        int nbEnemies = ENEMIES_PER_LEVEL[currentLevel - 1];
-
-        for (int i = 0; i < nbEnemies; i++) {
-            float delay = static_cast<float>(i) * 2.0f;
-            float x = 800.0f + (i * 50.0f);
-            float y = static_cast<float>(100 + (rand() % 400));
-            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, currentLevel});
-        }
+        spawnEnemiesForLevel(currentLevel);
     }
 
     void GameEngine::broadcastWorldState() {
-        auto walls = entities.getEntitiesWithComponents<Wall>();
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
-            if (entities.hasComponent<Position>(entity) && entities.hasComponent<Velocity>(entity)) {
-                const auto& pos = entities.getComponent<Position>(entity);
-                const auto& vel = entities.getComponent<Velocity>(entity);
+            if (!entities.hasComponent<Position>(entity) || !entities.hasComponent<Velocity>(entity))
+                continue;
 
-                std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));
-                auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
-                auto* update = reinterpret_cast<network::EntityUpdatePacket*>(packet.data() + sizeof(network::PacketHeader));
-                header->magic[0] = 'R';
-                header->magic[1] = 'T';
-                header->version = 1;
-                header->type = static_cast<uint8_t>(network::PacketType::ENTITY_UPDATE);
-                header->length = packet.size();
-                header->sequence = 0;
-                update->entityId = entity;
-                update->x = pos.x;
-                update->y = pos.y;
-                update->dx = vel.dx;
-                update->dy = vel.dy;
-                update->life = 0;
-                update->score = 0;
-                update->level = 0;
+            const auto& pos = entities.getComponent<Position>(entity);
+            const auto& vel = entities.getComponent<Velocity>(entity);
 
-                if (entities.hasComponent<Player>(entity)) {
-                    update->type = 0;
-                    update->life = entities.getComponent<Player>(entity).life;
-                    update->score = entities.getComponent<Player>(entity).score;
-                    update->level = currentLevel;
-                } if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
-                    if (entities.getComponent<Projectile>(entity).isUltimate)
-                        update->type = 5;
-                    else
-                        update->type = 1;
-                } else if (entities.hasComponent<Enemy>(entity)) {
-                    auto it = entities.hasTypeEnemy<Enemy>(entity);
-                    update->type = it;
-                } else if (entities.hasComponent<HealthBonus>(entity)) {
-                    update->type = 6;
-                } else if (entities.hasComponent<Wall>(entity)) {
-                    update->type = 7;
-                } else
-                    update->type = 0;
-                network.broadcast(packet);
+            int type = 0;
+            int life = 0;
+            int score = 0;
+
+            if (entities.hasComponent<Player>(entity)) {
+                const auto& player = entities.getComponent<Player>(entity);
+                type = 0;
+                life = player.life;
+                score = player.score;
+            } else if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
+                type = entities.getComponent<Projectile>(entity).isUltimate ? 5 : 1;
+            } else if (entities.hasComponent<Enemy>(entity)) {
+                type = entities.hasTypeEnemy<Enemy>(entity);
+            } else if (entities.hasComponent<HealthBonus>(entity)) {
+                type = 6;
+            } else if (entities.hasComponent<Wall>(entity)) {
+                type = 7;
             }
+
+            network.broadcast(network.createEntityUpdatePacket(entity, type, pos, vel, life, score, currentLevel));
         }
     }
 
@@ -104,20 +77,27 @@ namespace rtype::game {
     void GameEngine::handleGameCompletion(const std::string& clientId) {
         auto gameStartIt = gameStartTimes.find(clientId);
         auto usernameIt = playerUsernames.find(clientId);
-
         if (gameStartIt != gameStartTimes.end() && usernameIt != playerUsernames.end()) {
             auto endTime = std::chrono::steady_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::seconds>(
                 endTime - gameStartIt->second).count();
-
+            int score = 0;
+            if (auto playerEntityIt = playerEntities.find(clientId);
+                playerEntityIt != playerEntities.end()) {
+                score = entities.getComponent<Player>(playerEntityIt->second).score;
+            }
             try {
                 scoreRepository->updatePlayerScore(usernameIt->second, duration);
                 auto bestScore = scoreRepository->getPlayerBestScore(usernameIt->second);
+                auto scorePacket = network.createScoreUpdatePacket(usernameIt->second, duration, score);
+                network.sendTo(scorePacket, network.getClientEndpoint(clientId));
                 if (bestScore) {
-                    // Créer et envoyer un paquet avec le meilleur score
-                    // Note: nous implémenterons cette partie dans la prochaine étape
-                    // quand nous modifierons le protocole réseau
-                    //TODO
+                    auto bestScorePacket = network.createBestScorePacket(
+                        usernameIt->second,
+                        bestScore->best_time,
+                        bestScore->games_won
+                    );
+                    network.sendTo(bestScorePacket, network.getClientEndpoint(clientId));
                 }
             } catch (const std::exception& e) {
                 std::cerr << "Failed to update score: " << e.what() << std::endl;
@@ -155,7 +135,7 @@ namespace rtype::game {
         auto currentTime = std::chrono::steady_clock::now();
         float dt = std::chrono::duration<float>(currentTime - lastUpdateHealthPack).count();
 
-        if (dt >= 10.2f) // Frequency spawn HealthPack
+        if (dt >= 10.2f)
             lastUpdateHealthPack = currentTime;
         else
             return;
@@ -163,14 +143,12 @@ namespace rtype::game {
             lastUpdateHealthPack = currentTime;
             return;
         }
-        float x = static_cast<float>(rand() % 760); // Position X aléatoire
-        float y = static_cast<float>(rand() % 560); // Position Y aléatoire
-
+        float x = static_cast<float>(rand() % 760);
+        float y = static_cast<float>(rand() % 560);
         auto walls = entities.getEntitiesWithComponents<Wall>();
         auto HealthPacks = entities.getEntitiesWithComponents<HealthBonus>();
         bool stopLoop = false;
-
-        while (stopLoop != true) { // Check not possibility spawn HealPack at the top of the wall
+        while (stopLoop != true) {
             for (EntityID wall : walls) {
                 const auto& wallPos = entities.getComponent<Position>(wall);
                 if (!checkCollisionRect({x, y}, 25, wallPos, 20, 60)) {
@@ -287,7 +265,7 @@ namespace rtype::game {
                 if (checkCollisionRect(playerPos, 20.0f, healthPackPos, 20.0f, 20.0f)) {
                     auto& playerComp = entities.getComponent<Player>(player);
                     playerComp.life += entities.getComponent<HealthBonus>(healthPack).healthAmount;
-                    auto packet = createEntityDeathPacket(-1, healthPack);
+                    auto packet = network.createEntityDeathPacket(-1, healthPack);
                     network.broadcast(packet);
                     entities.destroyEntity(healthPack);
                 }
@@ -302,17 +280,17 @@ namespace rtype::game {
         if (entities.getComponent<Enemy>(enemy).life <= 0) {
             updatePlayerScore();
             if (projectile.isUltimate) {
-                auto packet = createEntityDeathPacket(-1, enemy);
+                auto packet = network.createEntityDeathPacket(-1, enemy);
                 network.broadcast(packet);
                 entities.destroyEntity(enemy);
             } else {
-                auto packet = createEntityDeathPacket(missile, enemy);
+                auto packet = network.createEntityDeathPacket(missile, enemy);
                 network.broadcast(packet);
                 entities.destroyEntity(enemy);
                 entities.destroyEntity(missile);
             }
         } else if (!projectile.isUltimate) {
-            auto packet = createEntityDeathPacket(missile, -1);
+            auto packet = network.createEntityDeathPacket(missile, -1);
             network.broadcast(packet);
             entities.destroyEntity(missile);
         }
@@ -320,12 +298,12 @@ namespace rtype::game {
 
     void GameEngine::handleCollisionPlayer(EntityID missile, EntityID player) {
         entities.getComponent<Player>(player).life--;
-        auto packet = createEntityDeathPacket(missile, -1);
+        auto packet = network.createEntityDeathPacket(missile, -1);
         network.broadcast(packet);
         entities.destroyEntity(missile);
 
         if (entities.getComponent<Player>(player).life <= 0) {
-            packet = createEntityDeathPacket(-1, player);
+            packet = network.createEntityDeathPacket(-1, player);
             network.broadcast(packet);
         }
     }
@@ -394,25 +372,6 @@ namespace rtype::game {
         return (dx * dx + dy * dy) <= (radius * radius);
     }
 
-    std::vector<uint8_t> GameEngine::createEntityDeathPacket(EntityID missile, EntityID enemy) const {
-        std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));
-        auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
-        auto* update = reinterpret_cast<network::EntityUpdatePacket*>(packet.data() + sizeof(network::PacketHeader));
-
-        header->magic[0] = 'R';
-        header->magic[1] = 'T';
-        header->version = 1;
-        header->type = static_cast<uint8_t>(network::PacketType::ENTITY_DEATH);
-        header->length = packet.size();
-        header->sequence = 0;
-
-        update->entityId = enemy;
-        update->entityId2 = missile;
-        update->type = 0;
-
-        return packet;
-    }
-
     void GameEngine::updatePlayerScore() {
         for (EntityID entity : entities.getEntitiesWithComponents<Player>()) {
             auto& player = entities.getComponent<Player>(entity);
@@ -455,23 +414,10 @@ namespace rtype::game {
         for (const auto& [clientId, entityId] : playerEntities) {
             handleGameCompletion(clientId);
         }
-        auto packet = createEndGamePacket();
+        auto packet = network.createEndGamePacket();
         network.broadcast(packet);
     }
 
-    std::vector<uint8_t> GameEngine::createEndGamePacket() const {
-        std::vector<uint8_t> packet(sizeof(network::PacketHeader));
-        auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
-
-        header->magic[0] = 'R';
-        header->magic[1] = 'T';
-        header->version = 1;
-        header->type = static_cast<uint8_t>(network::PacketType::END_GAME_STATE);
-        header->length = packet.size();
-        header->sequence = 0;
-
-        return packet;
-    }
 
     void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const sockaddr_in& sender, const std::string& clientId) {
         if (data.size() < sizeof(network::PacketHeader)) return;

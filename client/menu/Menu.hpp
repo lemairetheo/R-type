@@ -19,7 +19,7 @@ namespace rtype {
         bool getColorblindMode() const;
         std::string getServerIP() const;
         uint16_t getServerPort() const;
-
+        std::string getUsername() const;
     private:
         bool isPlaying = false;
         bool isInSettings = false;
