@@ -11,7 +11,7 @@
 namespace rtype::network {
 
     struct ConnectRequestPacket {
-        char playerName[32];
+        char username[32];
     };
     struct ConnectResponsePacket {
         uint32_t playerId;    ///< ID unique du joueur

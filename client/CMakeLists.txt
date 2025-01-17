@@ -24,6 +24,7 @@ set(CLIENT_SOURCES
         menu/button/Button.hpp
         menu/TextInput.cpp
         menu/TextInput.hpp
+        utils/UiHelpers.hpp
 )
 
 add_executable(r-type_client WIN32 ${CLIENT_SOURCES})

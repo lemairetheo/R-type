@@ -5,8 +5,16 @@ namespace rtype::game {
 
     GameEngine::GameEngine(network::NetworkManager& networkManager)
         : network(networkManager),
-    lastUpdate(std::chrono::steady_clock::now())
+          lastUpdate(std::chrono::steady_clock::now())
     {
+        try {
+            dbManager = std::make_unique<database::DatabaseManager>("rtype_scores.db");
+            scoreRepository = std::make_unique<database::ScoreRepository>(*dbManager);
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to initialize database: " << e.what() << std::endl;
+            throw;
+        }
+
         EntityID playerEntity = entities.createEntity();
         entities.addComponent(playerEntity, Position{400.0f, 300.0f});
         entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
@@ -89,7 +97,32 @@ namespace rtype::game {
         entities.addComponent(playerEntity, InputComponent{});
         entities.addComponent(playerEntity, NetworkComponent{static_cast<uint32_t>(playerEntity)});
         playerEntities[clientId] = playerEntity;
+        gameStartTimes[clientId] = std::chrono::steady_clock::now();
         return playerEntity;
+    }
+
+    void GameEngine::handleGameCompletion(const std::string& clientId) {
+        auto gameStartIt = gameStartTimes.find(clientId);
+        auto usernameIt = playerUsernames.find(clientId);
+
+        if (gameStartIt != gameStartTimes.end() && usernameIt != playerUsernames.end()) {
+            auto endTime = std::chrono::steady_clock::now();
+            auto duration = std::chrono::duration_cast<std::chrono::seconds>(
+                endTime - gameStartIt->second).count();
+
+            try {
+                scoreRepository->updatePlayerScore(usernameIt->second, duration);
+                auto bestScore = scoreRepository->getPlayerBestScore(usernameIt->second);
+                if (bestScore) {
+                    // Créer et envoyer un paquet avec le meilleur score
+                    // Note: nous implémenterons cette partie dans la prochaine étape
+                    // quand nous modifierons le protocole réseau
+                    //TODO
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "Failed to update score: " << e.what() << std::endl;
+            }
+        }
     }
 
     bool checkCollision(const Position& pos1, float radius1, const Position& pos2, float radius2) {
@@ -118,26 +151,6 @@ namespace rtype::game {
         broadcastWorldState();
     }
 
-    /**
-     * @brief Handles the spawning of health packs in the game world.
-     *
-     * This function is responsible for periodically spawning health packs at random positions
-     * within the game area. The logic ensures that health packs do not spawn on top of walls and others health packs.
-     *
-     * @details
-     * - Spawning frequency is controlled by a timer, with a delay of 10.2 seconds between spawns and 4 max has spawn in map.
-     * - Health packs are assigned random x and y coordinates within the boundaries of the game area:
-     *   - x: [0, 800]
-     *   - y: [0, 600]
-     * - A check is performed to ensure that health packs do not overlap with any wall entity
-     *   by using the `checkCollisionRect` function.
-     * - Once a valid position is found, a new entity is created with the following components:
-     *   - `Position`: The randomly generated position.
-     *   - `HealthBonus`: A bonus value of 3.
-     *   - `Velocity`: Set to zero as health packs do not move.
-     *
-     * @note The function ensures that health packs are spawned in valid locations and with appropriate attributes.
-     */
     void GameEngine::handleHealthPackSpawns() {
         auto currentTime = std::chrono::steady_clock::now();
         float dt = std::chrono::duration<float>(currentTime - lastUpdateHealthPack).count();
@@ -247,7 +260,6 @@ namespace rtype::game {
                     handleCollision(missile, enemy);
                 }
             }
-            // Handle collision with players
             for (EntityID player : players) {
                 const auto& playerPos = entities.getComponent<Position>(player);
 
@@ -256,7 +268,6 @@ namespace rtype::game {
                     break;
                 }
             }
-            // Handle collision with wall for all missiles
             for (EntityID wall : walls) {
                 const auto& wallPos = entities.getComponent<Position>(wall);
 
@@ -276,8 +287,6 @@ namespace rtype::game {
                 if (checkCollisionRect(playerPos, 20.0f, healthPackPos, 20.0f, 20.0f)) {
                     auto& playerComp = entities.getComponent<Player>(player);
                     playerComp.life += entities.getComponent<HealthBonus>(healthPack).healthAmount;
-
-                    // Détruire le sprite de vie après la collision
                     auto packet = createEntityDeathPacket(-1, healthPack);
                     network.broadcast(packet);
                     entities.destroyEntity(healthPack);
@@ -385,7 +394,6 @@ namespace rtype::game {
         return (dx * dx + dy * dy) <= (radius * radius);
     }
 
-
     std::vector<uint8_t> GameEngine::createEntityDeathPacket(EntityID missile, EntityID enemy) const {
         std::vector<uint8_t> packet(sizeof(network::PacketHeader) + sizeof(network::EntityUpdatePacket));
         auto* header = reinterpret_cast<network::PacketHeader*>(packet.data());
@@ -400,7 +408,7 @@ namespace rtype::game {
 
         update->entityId = enemy;
         update->entityId2 = missile;
-        update->type = 0;  // Vous pouvez ajuster ce type si nécessaire
+        update->type = 0;
 
         return packet;
     }
@@ -409,8 +417,6 @@ namespace rtype::game {
         for (EntityID entity : entities.getEntitiesWithComponents<Player>()) {
             auto& player = entities.getComponent<Player>(entity);
             player.score++;
-
-            // Vérification du changement de niveau
             auto threshold = SCORE_THRESHOLDS.find(currentLevel);
             if (threshold != SCORE_THRESHOLDS.end() && player.score >= threshold->second) {
                 if (currentLevel < 3) {
@@ -424,7 +430,6 @@ namespace rtype::game {
     }
 
     void GameEngine::switchToNextLevel() {
-        // Suppression des ennemis existants
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
         for (EntityID enemy : enemies) {
             entities.destroyEntity(enemy);
@@ -447,6 +452,9 @@ namespace rtype::game {
     }
 
     void GameEngine::broadcastEndGameState() {
+        for (const auto& [clientId, entityId] : playerEntities) {
+            handleGameCompletion(clientId);
+        }
         auto packet = createEndGamePacket();
         network.broadcast(packet);
     }
@@ -505,8 +513,22 @@ namespace rtype::game {
             }
         }
         if (header->type == static_cast<uint8_t>(network::PacketType::CONNECT_REQUEST)) {
+            const auto* connectRequest = reinterpret_cast<const network::ConnectRequestPacket*>(
+                data.data() + sizeof(network::PacketHeader));
+            std::string username(connectRequest->username);
+            playerUsernames[clientId] = username;
+
             if (playerEntities.empty()) {
                 initializeLevel();
+            }
+            try {
+                auto bestScore = scoreRepository->getPlayerBestScore(username);
+                if (bestScore) {
+                    // TODO: Envoyer le meilleur score au client
+                    // Nous implémenterons cela dans la prochaine étape
+                }
+            } catch (const std::exception& e) {
+                std::cerr << "Failed to get best score: " << e.what() << std::endl;
             }
         }
     }
@@ -516,13 +538,9 @@ namespace rtype::game {
         addr.sin_family = AF_INET;
         addr.sin_port = htons(sender.port());
         addr.sin_addr.s_addr = sender.address().to_v4().to_ulong();
-
-        // Créez un identifiant client à partir de l'IP et du port
         std::string clientId = sender.address().to_string() + ":" + std::to_string(sender.port());
-
         handleNetworkMessage(data, addr, clientId);
     }
-
 
     void GameEngine::handlePlayerDisconnection(const std::string& clientId) {
         if (auto it = playerEntities.find(clientId); it != playerEntities.end()) {

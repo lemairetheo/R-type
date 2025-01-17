@@ -20,14 +20,10 @@ namespace rtype::database {
         DatabaseManager& operator=(const DatabaseManager&) = delete;
         void execute(const std::string& sql) const;
         void query(const std::string& sql, std::function<void(sqlite3_stmt*)> callback) const;
-
-        void initializeDatabase() const;
-
+        void initializeDatabase();
         sqlite3* getHandle() { return db; }
     private:
         sqlite3* db;
-        void initializeDatabase();
     };
-    };
-}
+};
 

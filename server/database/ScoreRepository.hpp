@@ -20,10 +20,10 @@ namespace rtype::database {
     };
     class ScoreRepository {
         public:
-            explicit ScoreRepository(DatabaseManager& dbManager);
+            explicit ScoreRepository(DatabaseManager& dbManager) : db(dbManager) {}
             void updatePlayerScore(const std::string& username, int time) const;
-            std::optional<PlayerScore> getPlayerBestScore(const std::string& username) const;
-            std::vector<PlayerScore> getTopScores(int limit = 10) const;
+            [[nodiscard]] std::optional<PlayerScore> getPlayerBestScore(const std::string& username) const;
+            [[nodiscard]] std::vector<PlayerScore> getTopScores(int limit = 10) const;
         private:
             DatabaseManager& db;
     };

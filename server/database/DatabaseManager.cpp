@@ -47,7 +47,7 @@ namespace rtype::database {
         sqlite3_finalize(stmt);
     }
 
-    void DatabaseManager::initializeDatabase() const {
+    void DatabaseManager::initializeDatabase() {
         const char* sql = R"(
         CREATE TABLE IF NOT EXISTS player_scores (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

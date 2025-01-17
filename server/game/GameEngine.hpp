@@ -13,12 +13,15 @@
 #include "../shared/network/packetType.hpp"
 #include "../network/NetworkManager.hpp"
 #include "../shared/systems/MouvementSystem.hpp"
+#include "../database/ScoreRepository.hpp"
+#include "../database/DatabaseManager.hpp"
 #include <unordered_map>
 #include <vector>
 #include <string>
 #include <chrono>
 #include <random>
 #include <map>
+
 
 namespace rtype::game {
 
@@ -72,6 +75,11 @@ namespace rtype::game {
         std::random_device rd; ///< Random device for generating random numbers.
         std::mt19937 gen; ///< Mersenne Twister random number generator.
         std::uniform_real_distribution<float> dis; ///< Uniform real distribution for random numbers.
+        std::unique_ptr<database::DatabaseManager> dbManager;
+        std::unique_ptr<database::ScoreRepository> scoreRepository;
+        std::unordered_map<std::string, std::string> playerUsernames;
+        std::unordered_map<std::string, std::chrono::steady_clock::time_point> gameStartTimes;
+        void handleGameCompletion(const std::string& clientId);
         static inline const std::unordered_map<int, std::tuple<float, int, float>> enemyAttributes = {
             {1, {1, 5, 100.0f}},
             {2, {3, 5, 300.0f}},

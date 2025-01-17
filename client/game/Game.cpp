@@ -234,7 +234,6 @@ namespace rtype {
                 if (!window.isOpen()) return;
                 systems.clear();
                 entities.reset();
-                createBackgroundEntities();
                 currentState = GameState::CONNECTING;
                 initGame();
                 network->start();
@@ -267,9 +266,9 @@ namespace rtype {
                     std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 }
 
-                // Phase de jeu
+                createBackgroundEntities();
                 currentState = GameState::PLAYING;
-                retry = false;  // Connexion réussie
+                retry = false;
 
                 while (window.isOpen() && currentState == GameState::PLAYING && !playerIsDead) {
                     handleEvents();

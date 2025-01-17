@@ -3,6 +3,7 @@
 
 #include "./button/Button.hpp"
 #include "./TextInput.hpp"
+#include "utils/UiHelpers.hpp"
 #include <iostream>
 
 namespace rtype {
@@ -46,6 +47,8 @@ namespace rtype {
         sf::Text ip_label;
         sf::Text port_label;
         sf::Font font;
+        sf::Text username_label;
+        TextInput *username_input;
     };
 }
 #endif //MENU_HPP
