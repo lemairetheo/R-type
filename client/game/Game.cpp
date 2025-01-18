@@ -156,12 +156,12 @@ namespace rtype {
                     } else if (entityUpdate->type == 8) {
                         entities.addComponent(entity, Enemy{3});
                         renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture("boss"));
-                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 167, 587));
-                        renderComp.sprite.setOrigin(10.0f, 0.0f);
-                        renderComp.frameWidth = 165;
-                        renderComp.frameHeight = 590;
-                        renderComp.frameCount = 1;
-                        renderComp.sprite.setScale(0.1f, 0.1f);
+                        renderComp.sprite.setTextureRect(sf::IntRect(0, 0, 100, 34));
+                        renderComp.sprite.setOrigin(15.0f, 23.0f);
+                        renderComp.frameWidth = 33;
+                        renderComp.frameHeight = 34;
+                        renderComp.frameCount = 3;
+                        renderComp.sprite.setScale(2.5f, 2.5f);
                     }
                     entities.addComponent(entity, renderComp);
                 } else {
