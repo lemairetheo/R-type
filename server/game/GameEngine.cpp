@@ -52,9 +52,9 @@ namespace rtype::game {
                 type = entities.getComponent<Projectile>(entity).isUltimate ? 5 : 1;
             } else if (entities.hasComponent<Enemy>(entity)) {
                 if (!entities.getComponent<Enemy>(entity).isBoss)
-                    update->type = entities.hasTypeEnemy<Enemy>(entity);
+                    type = entities.hasTypeEnemy<Enemy>(entity);
                 else
-                    update->type = 8;
+                    type = 8;
             } else if (entities.hasComponent<HealthBonus>(entity)) {
                 type = 6;
             } else if (entities.hasComponent<Wall>(entity)) {
