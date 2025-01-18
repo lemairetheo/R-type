@@ -51,7 +51,10 @@ namespace rtype::game {
             } else if (entities.hasComponent<Projectile>(entity) && !entities.hasComponent<Enemy>(entity)) {
                 type = entities.getComponent<Projectile>(entity).isUltimate ? 5 : 1;
             } else if (entities.hasComponent<Enemy>(entity)) {
-                type = entities.hasTypeEnemy<Enemy>(entity);
+                if (!entities.getComponent<Enemy>(entity).isBoss)
+                    update->type = entities.hasTypeEnemy<Enemy>(entity);
+                else
+                    update->type = 8;
             } else if (entities.hasComponent<HealthBonus>(entity)) {
                 type = 6;
             } else if (entities.hasComponent<Wall>(entity)) {
@@ -207,7 +210,7 @@ namespace rtype::game {
         for (auto it = enemySpawnQueue.begin(); it != enemySpawnQueue.end();) {
             it->delay -= dt;
             if (it->delay <= 0) {
-                spawnEnemy(it->x, it->y, it->level);
+                spawnEnemy(it->x, it->y, it->level, it->isBoss);
                 it = enemySpawnQueue.erase(it);
             } else {
                 ++it;
@@ -334,10 +337,10 @@ namespace rtype::game {
         return {10.0f, 5, -30.0}; // Default
     }
 
-    void GameEngine::spawnEnemy(float x, float y, int level) {
+    void GameEngine::spawnEnemy(float x, float y, int level, bool isBoss) {
         EntityID enemyEntity = entities.createEntity();
         entities.addComponent(enemyEntity, Position{x, y});
-        entities.addComponent(enemyEntity, Velocity{-50.0f, 0.0f});
+        entities.addComponent(enemyEntity, Velocity{(isBoss ? -5.0f : -50.0f), 0.0f});
 
         int enemyLevel;
 
@@ -360,7 +363,14 @@ namespace rtype::game {
         }
         auto [life, damage, speedShoot] = getEnemyAttributes(enemyLevel);
 
-        entities.addComponent(enemyEntity, Enemy{damage, life, enemyLevel, speedShoot});
+        entities.addComponent(enemyEntity, Enemy{
+                isBoss ? (damage * 3) : damage,
+                isBoss ? (life * 3) : life,
+                level,
+                isBoss ? (speedShoot * 3) : speedShoot,
+                isBoss
+            }
+        );
     }
 
     void GameEngine::spawnWall(float x, float y) {
@@ -421,10 +431,11 @@ namespace rtype::game {
 
         for (int i = 0; i < nbEnemies; i++) {
             float delay = static_cast<float>(i) * 2.0f;
-            float x = 800.0f + (i * 50.0f);
-            float y = static_cast<float>(100 + (rand() % 400));
-            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level});
+            auto x = static_cast<float>(760);
+            auto y = static_cast<float>(rand() % 560);
+            enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level, false});
         }
+        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(nbEnemies) * 2.0f, static_cast<float>(760), static_cast<float>(rand() % 560), level, true});
     }
 
     void GameEngine::broadcastEndGameState() {

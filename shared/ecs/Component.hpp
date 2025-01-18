@@ -32,6 +32,7 @@ namespace rtype {
         float x;
         float y;
         int level;
+        bool isBoss;
     };
 
     struct NetworkComponent {
@@ -50,6 +51,7 @@ namespace rtype {
         float life;
         int level;
         float speedShoot; // Velocity
+        bool isBoss;
     };
 
     struct Wall {
