@@ -70,6 +70,7 @@ namespace rtype::game {
           std::unordered_map<std::string, EntityID> playerEntities; ///< Maps player IDs to entity IDs.
           std::chrono::steady_clock::time_point lastUpdate; ///< Time point of the last update.
           std::chrono::steady_clock::time_point lastUpdateEnemiesShoot; ///< Time point of the last enemy shoot update.
+          std::chrono::steady_clock::time_point lastUpdateBossShoot; ///< Time point of the last boss shoot update.
           std::chrono::steady_clock::time_point lastUpdateWallShoot; ///< Time point of the last wall shoot update.
           std::chrono::steady_clock::time_point lastUpdateHealthPack; ///< Time point of the last health pack update.
           float speed = 200.0f; ///< Speed of the entities.

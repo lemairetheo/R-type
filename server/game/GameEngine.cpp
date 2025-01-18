@@ -220,17 +220,31 @@ namespace rtype::game {
 
     void GameEngine::handleEnemyShoot() {
         auto currentTime = std::chrono::steady_clock::now();
+        if ( std::chrono::duration<float>(currentTime - lastUpdateBossShoot).count() >= 1.9f) { // shoot boss
+            auto enemies = entities.getEntitiesWithComponents<Enemy>();
+            lastUpdateBossShoot = currentTime;
+
+            for (EntityID enemy : enemies) {
+                if (entities.getComponent<Enemy>(enemy).isBoss == true) {
+                    shoot_system_.update(entities, enemy, true, 50);
+                    shoot_system_.update(entities, enemy, true, 0);
+                    shoot_system_.update(entities, enemy, true, -50);
+                }
+            }
+        }
+
         float dt = std::chrono::duration<float>(currentTime - lastUpdateEnemiesShoot).count();
 
-        if (dt >= 1.2f)
+        if (dt >= 1.2f) { // shoot enemy
             lastUpdateEnemiesShoot = currentTime;
-        else
+        } else {
             return;
+        }
 
         auto enemies = entities.getEntitiesWithComponents<Enemy>();
 
         for (EntityID enemy : enemies) {
-            shoot_system_.update(entities, enemy, false);
+            shoot_system_.update(entities, enemy, false, 0);
         }
     }
 
@@ -343,7 +357,6 @@ namespace rtype::game {
         entities.addComponent(enemyEntity, Velocity{(isBoss ? -5.0f : -50.0f), 0.0f});
 
         int enemyLevel;
-
         float randValue = dis(gen);
 
         if (level == 1) {
@@ -365,9 +378,9 @@ namespace rtype::game {
 
         entities.addComponent(enemyEntity, Enemy{
                 isBoss ? (damage * 3) : damage,
-                isBoss ? (life * 3) : life,
+                isBoss ? (life * 5) : life,
                 level,
-                isBoss ? (speedShoot * 3) : speedShoot,
+                isBoss ? (speedShoot * 2) : speedShoot,
                 isBoss
             }
         );
@@ -431,11 +444,11 @@ namespace rtype::game {
 
         for (int i = 0; i < nbEnemies; i++) {
             float delay = static_cast<float>(i) * 2.0f;
-            auto x = static_cast<float>(760);
+            auto x = static_cast<float>(820);
             auto y = static_cast<float>(rand() % 560);
             enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level, false});
         }
-        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(nbEnemies) * 2.0f, static_cast<float>(760), static_cast<float>(rand() % 560), level, true});
+        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(nbEnemies) * 2.0f, static_cast<float>(820), static_cast<float>(rand() % 560), level, true});
     }
 
     void GameEngine::broadcastEndGameState() {
@@ -470,11 +483,11 @@ namespace rtype::game {
                     input.Ultimate = true;
                 }
                 if (input.space) {
-                    shoot_system_.update(entities, playerEntity, false);
+                    shoot_system_.update(entities, playerEntity, false, 0);
                     input.space = false;
                 }
                 if (input.Ultimate) {
-                    shoot_system_.update(entities, playerEntity, true);
+                    shoot_system_.update(entities, playerEntity, true, 0);
                     input.Ultimate = false;
                 }
 
@@ -520,11 +533,6 @@ namespace rtype::game {
                     network.sendTo(bestScorePacket, network.getClientEndpoint(clientId));
                 } else {
                     std::cerr << "No best score found for user" << std::endl;
-                }
-
-                if (playerEntities.empty()) {
-                    std::cerr << "Initializing first level..." << std::endl;
-                    initializeLevel();
                 }
             } catch (const std::exception& e) {
                 std::cerr << "Failed to handle user connection: " << e.what() << std::endl;
