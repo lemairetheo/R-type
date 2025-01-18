@@ -1,5 +1,8 @@
 <map id="rtype::network::NetworkClient::start" name="rtype::network::NetworkClient::start">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,201,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_client.html#a421721d823ac5209b9011e1e8ec84f5c" title=" " alt="" coords="249,5,444,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_client.html#a8663f4dd01b1f82c63496d832935ec5b" title=" " alt="" coords="249,5,444,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,23,233,23,233,28,201,28"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_client.html#afa570ad76117143bf5dc662d634fcad1" title=" " alt="" coords="492,5,687,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="445,32,477,32,477,37,445,37"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="492,19,460,19,460,14,492,14"/>
 </map>

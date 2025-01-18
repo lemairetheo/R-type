@@ -3,6 +3,7 @@
 
 #include "./button/Button.hpp"
 #include "./TextInput.hpp"
+#include "utils/UiHelpers.hpp"
 #include <iostream>
 
 namespace rtype {
@@ -18,7 +19,7 @@ namespace rtype {
         bool getColorblindMode() const;
         std::string getServerIP() const;
         uint16_t getServerPort() const;
-
+        std::string getUsername() const;
     private:
         bool isPlaying = false;
         bool isInSettings = false;
@@ -46,6 +47,8 @@ namespace rtype {
         sf::Text ip_label;
         sf::Text port_label;
         sf::Font font;
+        sf::Text username_label;
+        TextInput *username_input;
     };
 }
 #endif //MENU_HPP

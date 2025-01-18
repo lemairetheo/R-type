@@ -1,9 +1,18 @@
 <map id="rtype::MovementSystem::update" name="rtype::MovementSystem::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,170,79"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="218,5,360,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,43,202,37,203,43,171,48"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="218,71,360,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="171,69,203,75,202,80,170,75"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="408,5,550,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="361,23,393,23,393,28,361,28"/>
+<area shape="rect" id="Node000001" title="Updates the position of entities based on their velocity and handles collisions (+ auto move of enemi..." alt="" coords="5,136,170,177"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_movement_system.html#a1ad5bd2773774f79bb44e814b9bd1c46" title="Checks if a circle and a rectangle are colliding." alt="" coords="232,5,396,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,134,157,95,216,57,230,50,232,55,219,61,160,100,113,138"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="243,71,385,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,133,227,113,229,118,161,138"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="243,136,385,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="170,154,227,154,227,159,170,159"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="218,201,410,242"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="161,175,227,194,226,199,159,180"/>
+<area shape="rect" id="Node000008" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="470,229,612,270"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="110,175,156,217,186,236,219,251,278,265,340,270,401,269,455,263,455,268,401,274,340,275,278,270,217,256,184,241,153,221,106,179"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="458,71,624,111"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="386,88,442,88,442,94,386,94"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="470,136,612,177"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="386,154,455,154,455,159,386,159"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="411,231,455,236,454,242,410,236"/>
 </map>

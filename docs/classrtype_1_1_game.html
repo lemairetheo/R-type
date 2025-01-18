@@ -17,6 +17,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -107,13 +108,18 @@ Collaboration diagram for rtype::Game:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_game__coll__graph.png" border="0" usemap="#artype_1_1_game_coll__map" alt="Collaboration graph"/></div>
 <map name="artype_1_1_game_coll__map" id="artype_1_1_game_coll__map">
-<area shape="rect" title="Class representing the game itself in the client side of the projet." alt="" coords="57,576,229,866"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html" title=" " alt="" coords="5,202,200,513"/>
-<area shape="poly" title=" " alt="" coords="123,512,128,558,122,559,117,513"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html" title="Class that manages the network for the client side." alt="" coords="224,233,408,482"/>
-<area shape="poly" title=" " alt="" coords="259,483,222,561,217,559,255,481"/>
-<area shape="rect" href="classrtype_1_1_a_network.html" title=" " alt="" coords="239,5,393,153"/>
-<area shape="poly" title=" " alt="" coords="319,168,319,233,314,233,314,168"/>
+<area shape="rect" title="Class representing the game itself in the client side of the projet." alt="" coords="52,1461,233,1995"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html" title=" " alt="" coords="5,1006,200,1357"/>
+<area shape="poly" title=" " alt="" coords="118,1356,125,1444,119,1444,113,1357"/>
+<area shape="rect" href="classrtype_1_1_menu.html" title=" " alt="" coords="225,965,365,1398"/>
+<area shape="poly" title=" " alt="" coords="237,1398,224,1445,219,1444,232,1397"/>
+<area shape="rect" href="classrtype_1_1_button.html" title=" " alt="" coords="140,223,286,797"/>
+<area shape="poly" title=" " alt="" coords="198,797,202,870,211,941,223,992,218,993,206,942,197,870,193,797"/>
+<area shape="rect" href="classrtype_1_1_inputs.html" title=" " alt="" coords="242,5,346,173"/>
+<area shape="poly" title=" " alt="" coords="277,189,271,224,266,223,272,188"/>
+<area shape="rect" href="classrtype_1_1_text_input.html" title=" " alt="" coords="314,294,444,726"/>
+<area shape="poly" title=" " alt="" coords="316,188,338,294,332,295,311,189"/>
+<area shape="poly" title=" " alt="" coords="377,726,369,834,356,942,355,949,350,948,351,941,364,833,371,726"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -126,35 +132,77 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a075b3431446746571cc4af17a25f2a16" id="r_a075b3431446746571cc4af17a25f2a16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a075b3431446746571cc4af17a25f2a16">handleNetworkMessage</a> (const std::vector&lt; uint8_t &gt; &amp;data, const sockaddr_in &amp;sender)</td></tr>
-<tr class="separator:a075b3431446746571cc4af17a25f2a16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a783aaa87f2124457c034fb4992254e63" id="r_a783aaa87f2124457c034fb4992254e63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a783aaa87f2124457c034fb4992254e63">initGame</a> ()</td></tr>
+<tr class="separator:a783aaa87f2124457c034fb4992254e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7f0a6a34267170940a9f1a002de4659" id="r_ad7f0a6a34267170940a9f1a002de4659"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7f0a6a34267170940a9f1a002de4659">initGameTexts</a> ()</td></tr>
+<tr class="separator:ad7f0a6a34267170940a9f1a002de4659"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47325aeb720489db2e8501c466d20ea0" id="r_a47325aeb720489db2e8501c466d20ea0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47325aeb720489db2e8501c466d20ea0">loadResources</a> ()</td></tr>
+<tr class="separator:a47325aeb720489db2e8501c466d20ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43303148190e5ba8815875b4fbda0068" id="r_a43303148190e5ba8815875b4fbda0068"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43303148190e5ba8815875b4fbda0068">setupSystems</a> ()</td></tr>
+<tr class="separator:a43303148190e5ba8815875b4fbda0068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada75e2ffd83431ffa5537ca8d04ce638" id="r_ada75e2ffd83431ffa5537ca8d04ce638"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada75e2ffd83431ffa5537ca8d04ce638">initAudio</a> ()</td></tr>
+<tr class="separator:ada75e2ffd83431ffa5537ca8d04ce638"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2aa06ae350235f608db9acdf7737e40" id="r_ae2aa06ae350235f608db9acdf7737e40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2aa06ae350235f608db9acdf7737e40">createBackgroundEntities</a> ()</td></tr>
+<tr class="separator:ae2aa06ae350235f608db9acdf7737e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaab204748650e99c51e3ef2f99e640a3" id="r_aaab204748650e99c51e3ef2f99e640a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaab204748650e99c51e3ef2f99e640a3">handleNetworkMessage</a> (const std::vector&lt; uint8_t &gt; &amp;data, const asio::ip::udp::endpoint &amp;sender)</td></tr>
+<tr class="separator:aaab204748650e99c51e3ef2f99e640a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2379ffcb2a6052549717918c76b2d04" id="r_af2379ffcb2a6052549717918c76b2d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2379ffcb2a6052549717918c76b2d04">initMenuBackground</a> ()</td></tr>
+<tr class="separator:af2379ffcb2a6052549717918c76b2d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae723ec94d1e3e3fc864f984e5110c5ed" id="r_ae723ec94d1e3e3fc864f984e5110c5ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae723ec94d1e3e3fc864f984e5110c5ed">handleEvents</a> ()</td></tr>
 <tr class="separator:ae723ec94d1e3e3fc864f984e5110c5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50e6dd7c1cb4f316ef99cafc2b6651a4" id="r_a50e6dd7c1cb4f316ef99cafc2b6651a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50e6dd7c1cb4f316ef99cafc2b6651a4">update</a> ()</td></tr>
 <tr class="separator:a50e6dd7c1cb4f316ef99cafc2b6651a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ffc1327f3ebe7ed2a9b39dbc9132939" id="r_a6ffc1327f3ebe7ed2a9b39dbc9132939"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ffc1327f3ebe7ed2a9b39dbc9132939">render</a> ()</td></tr>
 <tr class="separator:a6ffc1327f3ebe7ed2a9b39dbc9132939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25f3e467b2f2e8cbf8f7598c682330f6" id="r_a25f3e467b2f2e8cbf8f7598c682330f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25f3e467b2f2e8cbf8f7598c682330f6">displayMenu</a> ()</td></tr>
+<tr class="separator:a25f3e467b2f2e8cbf8f7598c682330f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a978bb36b993276f5b5bbdec6944c9c55" id="r_a978bb36b993276f5b5bbdec6944c9c55"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a978bb36b993276f5b5bbdec6944c9c55">gameOverText</a></td></tr>
+<tr class="separator:a978bb36b993276f5b5bbdec6944c9c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b906b83b3f5d3372cabe119a6e8de0e" id="r_a1b906b83b3f5d3372cabe119a6e8de0e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b906b83b3f5d3372cabe119a6e8de0e">playerIsDead</a> = false</td></tr>
+<tr class="separator:a1b906b83b3f5d3372cabe119a6e8de0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdfbab7432b12f9f1aaf9cade451be6a" id="r_afdfbab7432b12f9f1aaf9cade451be6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdfbab7432b12f9f1aaf9cade451be6a">playerLife</a> = 3</td></tr>
+<tr class="separator:afdfbab7432b12f9f1aaf9cade451be6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a643827baa3518f66a1a3ee3333d7fc68" id="r_a643827baa3518f66a1a3ee3333d7fc68"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a643827baa3518f66a1a3ee3333d7fc68">lifeText</a></td></tr>
+<tr class="separator:a643827baa3518f66a1a3ee3333d7fc68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affeafa2030fa8561e9405d86b903d150" id="r_affeafa2030fa8561e9405d86b903d150"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affeafa2030fa8561e9405d86b903d150">endGame</a> = false</td></tr>
 <tr class="separator:affeafa2030fa8561e9405d86b903d150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c256829615c585c60f09a015ea5b7bb" id="r_a5c256829615c585c60f09a015ea5b7bb"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c256829615c585c60f09a015ea5b7bb">endGameText</a></td></tr>
 <tr class="separator:a5c256829615c585c60f09a015ea5b7bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb100c57e75f20ea6625d69e304808c" id="r_a0fb100c57e75f20ea6625d69e304808c"><td class="memItemLeft" align="right" valign="top">sf::Music&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fb100c57e75f20ea6625d69e304808c">musicGame</a></td></tr>
+<tr class="separator:a0fb100c57e75f20ea6625d69e304808c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e3edab687632b0cd5514cfbf7f21294" id="r_a2e3edab687632b0cd5514cfbf7f21294"><td class="memItemLeft" align="right" valign="top">sf::Music&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e3edab687632b0cd5514cfbf7f21294">weaponSong</a></td></tr>
+<tr class="separator:a2e3edab687632b0cd5514cfbf7f21294"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6314401df5675060a635ef735b403dd4" id="r_a6314401df5675060a635ef735b403dd4"><td class="memItemLeft" align="right" valign="top">sf::Font&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6314401df5675060a635ef735b403dd4">font</a></td></tr>
 <tr class="separator:a6314401df5675060a635ef735b403dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fcbfbfd593f58a06982e61c52ca2313" id="r_a1fcbfbfd593f58a06982e61c52ca2313"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fcbfbfd593f58a06982e61c52ca2313">scoreText</a></td></tr>
+<tr class="separator:a1fcbfbfd593f58a06982e61c52ca2313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2668cb9ca085ac84e8979ef2d1e211" id="r_aca2668cb9ca085ac84e8979ef2d1e211"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca2668cb9ca085ac84e8979ef2d1e211">playerScore</a> = 0</td></tr>
+<tr class="separator:aca2668cb9ca085ac84e8979ef2d1e211"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc384241e2a82e9b337a12cd622b28da" id="r_afc384241e2a82e9b337a12cd622b28da"><td class="memItemLeft" align="right" valign="top">sf::Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc384241e2a82e9b337a12cd622b28da">levelText</a></td></tr>
+<tr class="separator:afc384241e2a82e9b337a12cd622b28da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67e0ae8121d940dfd3910156388dca2e" id="r_a67e0ae8121d940dfd3910156388dca2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67e0ae8121d940dfd3910156388dca2e">currentLevel</a> = 1</td></tr>
+<tr class="separator:a67e0ae8121d940dfd3910156388dca2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a027ee34d6234287a17352317ccb8b8d7" id="r_a027ee34d6234287a17352317ccb8b8d7"><td class="memItemLeft" align="right" valign="top">sf::RenderWindow&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a027ee34d6234287a17352317ccb8b8d7">window</a></td></tr>
 <tr class="separator:a027ee34d6234287a17352317ccb8b8d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ffca39187d4d07eaead367c0b5a0347" id="r_a0ffca39187d4d07eaead367c0b5a0347"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1_entity_manager.html">EntityManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ffca39187d4d07eaead367c0b5a0347">entities</a></td></tr>
 <tr class="separator:a0ffca39187d4d07eaead367c0b5a0347"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ba3aadcfb283182c725eebef9710957" id="r_a8ba3aadcfb283182c725eebef9710957"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="classrtype_1_1_i_system.html">ISystem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ba3aadcfb283182c725eebef9710957">systems</a></td></tr>
 <tr class="separator:a8ba3aadcfb283182c725eebef9710957"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bef8df046cc4a2d2f874cb95d1637aa" id="r_a6bef8df046cc4a2d2f874cb95d1637aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1network_1_1_network_client.html">network::NetworkClient</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bef8df046cc4a2d2f874cb95d1637aa">network</a></td></tr>
-<tr class="separator:a6bef8df046cc4a2d2f874cb95d1637aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a431824f1ed73f9718c2770c4d8c9b40f" id="r_a431824f1ed73f9718c2770c4d8c9b40f"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classrtype_1_1network_1_1_network_client.html">network::NetworkClient</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a431824f1ed73f9718c2770c4d8c9b40f">network</a></td></tr>
+<tr class="separator:a431824f1ed73f9718c2770c4d8c9b40f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a661192ad74910f8d25f30b2538b337b1" id="r_a661192ad74910f8d25f30b2538b337b1"><td class="memItemLeft" align="right" valign="top">std::chrono::steady_clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a661192ad74910f8d25f30b2538b337b1">lastUpdate</a> = std::chrono::steady_clock::now()</td></tr>
 <tr class="separator:a661192ad74910f8d25f30b2538b337b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae09f25a9edf2b438329e264ffea62b0a" id="r_ae09f25a9edf2b438329e264ffea62b0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1_menu.html">Menu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae09f25a9edf2b438329e264ffea62b0a">menu</a></td></tr>
+<tr class="separator:ae09f25a9edf2b438329e264ffea62b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5907812822c89208d71d10e02e41629a" id="r_a5907812822c89208d71d10e02e41629a"><td class="memItemLeft" align="right" valign="top">sf::Event&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5907812822c89208d71d10e02e41629a">event</a></td></tr>
+<tr class="separator:a5907812822c89208d71d10e02e41629a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3cab02528d4585ed2886115645c9053" id="r_af3cab02528d4585ed2886115645c9053"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3cab02528d4585ed2886115645c9053">myPlayerId</a> = 0</td></tr>
 <tr class="separator:af3cab02528d4585ed2886115645c9053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a348a60f44ab471416dae46d5eeeeb2e2" id="r_a348a60f44ab471416dae46d5eeeeb2e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacertype.html#af4f6a51b206f4e1b610ebd2306080de9">GameState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a348a60f44ab471416dae46d5eeeeb2e2">currentState</a> = <a class="el" href="namespacertype.html#af4f6a51b206f4e1b610ebd2306080de9a3ed53fbeb1eab0443561b68ca0c0b5cf">GameState::MENU</a></td></tr>
+<tr class="separator:a348a60f44ab471416dae46d5eeeeb2e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class representing the game itself in the client side of the projet. </p>
@@ -173,43 +221,138 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae2aa06ae350235f608db9acdf7737e40" name="ae2aa06ae350235f608db9acdf7737e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2aa06ae350235f608db9acdf7737e40">&#9670;&#160;</a></span>createBackgroundEntities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::createBackgroundEntities </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_game_a6027026389f41d188620b99bbeb0d34f_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_a6027026389f41d188620b99bbeb0d34f_cgraph" alt=""/></div>
-<map name="aclassrtype_1_1_game_a6027026389f41d188620b99bbeb0d34f_cgraph" id="aclassrtype_1_1_game_a6027026389f41d188620b99bbeb0d34f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,305,142,330"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="444,5,586,46"/>
-<area shape="poly" title=" " alt="" coords="82,303,125,250,155,219,188,190,253,146,321,108,444,50,446,55,323,112,255,151,191,194,159,223,129,254,86,306"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="444,316,586,357"/>
-<area shape="poly" title=" " alt="" coords="142,318,428,330,428,335,142,323"/>
-<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="433,381,597,422"/>
-<area shape="poly" title=" " alt="" coords="142,328,418,381,417,386,141,333"/>
-<area shape="rect" href="classrtype_1_1_game.html#a075b3431446746571cc4af17a25f2a16" title=" " alt="" coords="193,204,382,245"/>
-<area shape="poly" title=" " alt="" coords="104,302,224,249,226,254,106,307"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html#a5be684cd2216b68742a41ace40e6b4b5" title=" " alt="" coords="190,405,385,446"/>
-<area shape="poly" title=" " alt="" coords="96,329,139,356,191,385,217,397,214,401,188,389,136,360,93,333"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="657,63,800,103"/>
-<area shape="poly" title=" " alt="" coords="587,42,643,57,642,62,586,47"/>
-<area shape="poly" title=" " alt="" coords="308,202,383,123,405,91,415,77,431,62,446,52,450,56,435,66,419,81,410,94,387,126,312,205"/>
-<area shape="poly" title=" " alt="" coords="305,202,358,152,393,126,432,106,485,90,539,80,593,75,641,75,642,80,593,81,540,85,486,95,434,111,396,131,361,156,309,206"/>
-<area shape="poly" title=" " alt="" coords="326,243,434,301,448,307,446,312,432,305,323,248"/>
-<area shape="poly" title=" " alt="" coords="307,243,360,303,396,336,435,366,444,372,441,376,431,371,392,340,356,307,303,247"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="444,251,586,291"/>
-<area shape="poly" title=" " alt="" coords="382,241,429,251,428,256,381,246"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="444,185,586,226"/>
-<area shape="poly" title=" " alt="" coords="381,214,428,210,429,215,382,219"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="444,120,586,161"/>
-<area shape="poly" title=" " alt="" coords="344,201,443,164,445,169,346,206"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="645,251,812,291"/>
-<area shape="poly" title=" " alt="" coords="587,268,630,268,630,274,587,274"/>
-<area shape="poly" title=" " alt="" coords="570,182,596,170,644,141,687,111,690,115,647,145,599,175,573,187"/>
+<div class="center"><img src="classrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_cgraph" id="aclassrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_cgraph">
+<area shape="rect" title=" " alt="" coords="5,71,212,111"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="271,5,413,46"/>
+<area shape="poly" title=" " alt="" coords="183,68,255,47,257,52,184,73"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="271,71,413,111"/>
+<area shape="poly" title=" " alt="" coords="212,88,255,88,255,94,212,94"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="260,136,424,177"/>
+<area shape="poly" title=" " alt="" coords="184,109,253,129,251,134,183,114"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="472,5,614,46"/>
+<area shape="poly" title=" " alt="" coords="413,23,456,23,456,28,413,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_icgraph" id="aclassrtype_1_1_game_ae2aa06ae350235f608db9acdf7737e40_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,678,46"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,13,423,38"/>
+<area shape="poly" title=" " alt="" coords="456,28,423,28,423,23,456,23"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,13,222,38"/>
+<area shape="poly" title=" " alt="" coords="254,28,222,28,222,23,254,23"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,55,38"/>
+<area shape="poly" title=" " alt="" coords="87,28,55,28,55,23,87,23"/>
 </map>
 </div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a25f3e467b2f2e8cbf8f7598c682330f6" name="a25f3e467b2f2e8cbf8f7598c682330f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f3e467b2f2e8cbf8f7598c682330f6">&#9670;&#160;</a></span>displayMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::displayMenu </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_cgraph" id="aclassrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,180,183"/>
+<area shape="rect" href="classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb" title=" " alt="" coords="228,5,434,31"/>
+<area shape="poly" title=" " alt="" coords="102,155,151,100,187,68,226,41,241,34,243,39,229,46,190,72,155,103,106,158"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="260,55,402,96"/>
+<area shape="poly" title=" " alt="" coords="120,154,227,106,247,99,249,104,229,111,122,159"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="249,120,413,161"/>
+<area shape="poly" title=" " alt="" coords="180,157,233,150,233,155,181,162"/>
+<area shape="rect" href="classrtype_1_1_menu.html#a2a193f46cc33796afd858ce6236e5625" title=" " alt="" coords="246,185,416,211"/>
+<area shape="poly" title=" " alt="" coords="181,178,230,184,230,189,180,183"/>
+<area shape="rect" href="classrtype_1_1_menu.html#ac8af2b2b313f2640db6f1db5dd3c7cce" title=" " alt="" coords="264,235,398,260"/>
+<area shape="poly" title=" " alt="" coords="125,181,229,221,252,228,251,233,227,226,123,186"/>
+<area shape="rect" href="classrtype_1_1_game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4" title=" " alt="" coords="261,284,401,310"/>
+<area shape="poly" title=" " alt="" coords="109,181,159,225,193,250,229,270,247,278,245,283,227,275,190,254,156,230,105,185"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#a895fbd1639ffe9fbdf258c7f88017cf1" title=" " alt="" coords="488,99,658,124"/>
+<area shape="poly" title=" " alt="" coords="397,238,416,231,432,221,449,201,456,179,462,156,480,134,485,130,488,134,484,137,467,158,461,180,454,203,436,226,418,236,399,243"/>
+<area shape="rect" href="classrtype_1_1_button.html#a797aaf4cbfb05d3f505794cdf0006cbd" title=" " alt="" coords="484,148,661,174"/>
+<area shape="poly" title=" " alt="" coords="397,234,433,221,447,212,456,203,466,193,481,184,497,177,499,182,483,189,469,198,460,207,450,217,435,226,399,239"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#a233da1d55ed46324811acb16d0006251" title=" " alt="" coords="494,198,652,238"/>
+<area shape="poly" title=" " alt="" coords="398,237,478,227,479,232,398,242"/>
+<area shape="rect" href="classrtype_1_1_button.html#abe27946e689ae52159e05e4e43d672a1" title=" " alt="" coords="502,263,643,288"/>
+<area shape="poly" title=" " alt="" coords="398,253,488,263,487,268,398,258"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#aae2ce0dd375982cc469b6ab846d7ee17" title=" " alt="" coords="494,312,651,338"/>
+<area shape="poly" title=" " alt="" coords="399,257,435,269,459,284,483,298,499,304,497,309,481,303,457,288,433,274,397,262"/>
+<area shape="rect" href="classrtype_1_1_button.html#aa0a209bc3ff14dbfdbc66bfd42a9bfac" title=" " alt="" coords="482,362,663,402"/>
+<area shape="poly" title=" " alt="" coords="400,253,436,269,453,289,461,309,468,329,484,348,488,352,485,356,480,352,463,332,456,311,449,292,432,274,397,258"/>
+<area shape="rect" href="classrtype_1_1_button.html#af4a0e5090a878518a46a1b0664dad71d" title=" " alt="" coords="711,148,893,174"/>
+<area shape="poly" title=" " alt="" coords="661,158,696,158,696,164,661,164"/>
+<area shape="rect" href="classrtype_1_1_button.html#aa44cb205334262986516a35aae935aa2" title=" " alt="" coords="718,255,886,296"/>
+<area shape="poly" title=" " alt="" coords="643,273,702,273,702,278,643,278"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_icgraph" id="aclassrtype_1_1_game_a25f3e467b2f2e8cbf8f7598c682330f6_icgraph">
+<area shape="rect" title=" " alt="" coords="270,5,444,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="255,21,223,21,223,16,255,16"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="ae723ec94d1e3e3fc864f984e5110c5ed" name="ae723ec94d1e3e3fc864f984e5110c5ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae723ec94d1e3e3fc864f984e5110c5ed">&#9670;&#160;</a></span>handleEvents()</h2>
 
@@ -237,9 +380,9 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_game_ae723ec94d1e3e3fc864f984e5110c5ed_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_ae723ec94d1e3e3fc864f984e5110c5ed_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1_game_ae723ec94d1e3e3fc864f984e5110c5ed_cgraph" id="aclassrtype_1_1_game_ae723ec94d1e3e3fc864f984e5110c5ed_cgraph">
-<area shape="rect" title=" " alt="" coords="5,13,186,38"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html#ab7237d5109d0b6e895a9e1012949a45f" title=" " alt="" coords="234,5,429,46"/>
-<area shape="poly" title=" " alt="" coords="186,23,218,23,218,28,186,28"/>
+<area shape="rect" title=" " alt="" coords="5,5,186,31"/>
+<area shape="rect" href="classrtype_1_1_menu.html#afceec91506a672ca69c41b922296bf5b" title=" " alt="" coords="234,5,413,31"/>
+<area shape="poly" title=" " alt="" coords="186,16,218,16,218,21,186,21"/>
 </map>
 </div>
 <div class="dynheader">
@@ -257,8 +400,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a075b3431446746571cc4af17a25f2a16" name="a075b3431446746571cc4af17a25f2a16"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a075b3431446746571cc4af17a25f2a16">&#9670;&#160;</a></span>handleNetworkMessage()</h2>
+<a id="aaab204748650e99c51e3ef2f99e640a3" name="aaab204748650e99c51e3ef2f99e640a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab204748650e99c51e3ef2f99e640a3">&#9670;&#160;</a></span>handleNetworkMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,7 +417,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const sockaddr_in &amp;</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>&#160;)</td>
+          <td class="paramtype">const asio::ip::udp::endpoint &amp;</td>          <td class="paramname"><span class="paramname"><em>sender</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -286,37 +429,311 @@ Here is the caller graph for this function:</div>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_cgraph" alt=""/></div>
-<map name="aclassrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_cgraph" id="aclassrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_cgraph">
-<area shape="rect" title=" " alt="" coords="5,185,194,226"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="253,5,395,46"/>
-<area shape="poly" title=" " alt="" coords="116,183,168,125,203,92,240,62,257,51,260,56,243,67,206,96,172,129,120,187"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="466,63,608,103"/>
-<area shape="poly" title=" " alt="" coords="121,183,173,142,206,122,241,106,294,91,349,82,451,76,451,82,349,87,295,96,243,111,208,127,176,147,124,187"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="253,120,395,161"/>
-<area shape="poly" title=" " alt="" coords="171,182,237,163,239,168,172,187"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="253,251,395,291"/>
-<area shape="poly" title=" " alt="" coords="172,224,239,244,237,249,171,229"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="253,185,395,226"/>
-<area shape="poly" title=" " alt="" coords="194,203,237,203,237,208,194,208"/>
-<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="242,316,406,357"/>
-<area shape="poly" title=" " alt="" coords="129,224,180,262,243,301,255,307,252,311,240,305,178,266,126,229"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="253,381,395,422"/>
-<area shape="poly" title=" " alt="" coords="116,225,167,293,203,332,243,366,251,371,248,376,240,370,199,336,163,297,112,228"/>
-<area shape="poly" title=" " alt="" coords="396,42,452,57,450,62,395,47"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="454,251,620,291"/>
-<area shape="poly" title=" " alt="" coords="395,268,439,268,439,274,395,274"/>
-<area shape="poly" title=" " alt="" coords="379,182,405,170,453,141,495,111,498,115,455,145,407,175,381,187"/>
+<div class="center"><img src="classrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_cgraph" id="aclassrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_cgraph">
+<area shape="rect" title=" " alt="" coords="5,201,194,241"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="274,171,416,212"/>
+<area shape="poly" title=" " alt="" coords="194,207,258,199,259,205,195,212"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="508,41,650,81"/>
+<area shape="poly" title=" " alt="" coords="106,199,124,160,152,111,191,64,214,43,240,27,274,13,310,6,347,3,383,4,454,15,514,33,512,38,452,21,383,9,347,8,311,11,276,18,243,31,217,47,195,67,156,114,129,162,111,202"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="274,106,416,147"/>
+<area shape="poly" title=" " alt="" coords="145,198,241,157,261,150,263,155,243,162,147,203"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="274,286,416,327"/>
+<area shape="poly" title=" " alt="" coords="155,240,243,272,262,278,260,283,241,277,153,245"/>
+<area shape="rect" href="classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb" title=" " alt="" coords="242,236,448,262"/>
+<area shape="poly" title=" " alt="" coords="195,229,226,233,226,238,194,235"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="274,41,416,81"/>
+<area shape="poly" title=" " alt="" coords="117,198,169,146,203,117,240,92,258,83,261,88,243,97,206,121,173,150,121,202"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="263,351,427,392"/>
+<area shape="poly" title=" " alt="" coords="122,240,174,288,208,314,243,336,256,343,254,347,240,341,204,318,171,292,119,244"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="274,417,416,457"/>
+<area shape="poly" title=" " alt="" coords="114,241,134,276,163,319,200,363,243,402,261,412,258,417,240,406,196,367,159,322,129,278,109,243"/>
+<area shape="poly" title=" " alt="" coords="415,170,447,156,498,124,542,90,545,94,501,128,449,161,417,175"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="496,286,662,327"/>
+<area shape="poly" title=" " alt="" coords="416,304,481,304,481,309,416,309"/>
+<area shape="poly" title=" " alt="" coords="416,58,492,58,492,64,416,64"/>
 </map>
 </div>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_icgraph" alt=""/></div>
-<map name="aclassrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_icgraph" id="aclassrtype_1_1_game_a075b3431446746571cc4af17a25f2a16_icgraph">
-<area shape="rect" title=" " alt="" coords="190,5,378,46"/>
-<area shape="rect" href="classrtype_1_1_game.html#a6027026389f41d188620b99bbeb0d34f" title=" " alt="" coords="5,13,142,38"/>
-<area shape="poly" title=" " alt="" coords="175,28,142,28,142,23,175,23"/>
+<div class="center"><img src="classrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_icgraph" id="aclassrtype_1_1_game_aaab204748650e99c51e3ef2f99e640a3_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,660,46"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,13,423,38"/>
+<area shape="poly" title=" " alt="" coords="456,28,424,28,424,23,456,23"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,13,222,38"/>
+<area shape="poly" title=" " alt="" coords="254,28,222,28,222,23,254,23"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,55,38"/>
+<area shape="poly" title=" " alt="" coords="87,28,55,28,55,23,87,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ada75e2ffd83431ffa5537ca8d04ce638" name="ada75e2ffd83431ffa5537ca8d04ce638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada75e2ffd83431ffa5537ca8d04ce638">&#9670;&#160;</a></span>initAudio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::initAudio </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_ada75e2ffd83431ffa5537ca8d04ce638_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_ada75e2ffd83431ffa5537ca8d04ce638_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_ada75e2ffd83431ffa5537ca8d04ce638_icgraph" id="aclassrtype_1_1_game_ada75e2ffd83431ffa5537ca8d04ce638_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,623,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,5,423,31"/>
+<area shape="poly" title=" " alt="" coords="456,21,423,21,423,16,456,16"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a783aaa87f2124457c034fb4992254e63" name="a783aaa87f2124457c034fb4992254e63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783aaa87f2124457c034fb4992254e63">&#9670;&#160;</a></span>initGame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::initGame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_cgraph" id="aclassrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_cgraph">
+<area shape="rect" title=" " alt="" coords="5,505,159,531"/>
+<area shape="rect" href="classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="207,366,413,406"/>
+<area shape="poly" title=" " alt="" coords="94,503,141,461,172,437,205,416,216,411,218,415,208,420,175,441,144,465,98,507"/>
+<area shape="rect" href="classrtype_1_1_menu.html#a123ad929960dfbad2a86c139dc612d6a" title=" " alt="" coords="226,480,394,506"/>
+<area shape="poly" title=" " alt="" coords="159,507,210,501,211,506,159,512"/>
+<area shape="rect" href="classrtype_1_1_menu.html#a6dc05d70bf75bcda47e35cfb8c04a890" title=" " alt="" coords="221,529,399,555"/>
+<area shape="poly" title=" " alt="" coords="159,524,206,529,205,534,159,529"/>
+<area shape="rect" href="classrtype_1_1_game.html#aaab204748650e99c51e3ef2f99e640a3" title=" " alt="" coords="216,235,404,276"/>
+<area shape="poly" title=" " alt="" coords="90,503,137,437,205,352,272,285,275,289,209,356,141,440,94,506"/>
+<area shape="rect" href="classrtype_1_1_game.html#ada75e2ffd83431ffa5537ca8d04ce638" title=" " alt="" coords="234,579,386,604"/>
+<area shape="poly" title=" " alt="" coords="114,529,208,565,231,572,230,577,206,570,112,534"/>
+<area shape="rect" href="classrtype_1_1_game.html#ad7f0a6a34267170940a9f1a002de4659" title=" " alt="" coords="217,628,402,654"/>
+<area shape="poly" title=" " alt="" coords="98,530,144,572,175,595,208,614,221,620,219,625,205,619,172,599,140,576,94,534"/>
+<area shape="rect" href="classrtype_1_1_game.html#a47325aeb720489db2e8501c466d20ea0" title=" " alt="" coords="216,431,404,456"/>
+<area shape="poly" title=" " alt="" coords="111,502,206,465,229,458,231,463,208,470,113,507"/>
+<area shape="rect" href="classrtype_1_1_game.html#a43303148190e5ba8815875b4fbda0068" title=" " alt="" coords="217,677,402,703"/>
+<area shape="poly" title=" " alt="" coords="93,530,135,595,169,632,208,664,216,668,213,673,205,668,165,636,131,598,88,533"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="493,300,635,341"/>
+<area shape="poly" title=" " alt="" coords="391,363,477,340,478,346,393,368"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="493,366,635,406"/>
+<area shape="poly" title=" " alt="" coords="414,384,477,384,477,389,414,389"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="482,431,646,472"/>
+<area shape="poly" title=" " alt="" coords="393,405,468,424,467,429,391,410"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="727,235,870,276"/>
+<area shape="poly" title=" " alt="" coords="635,298,712,277,713,282,636,304"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#a895fbd1639ffe9fbdf258c7f88017cf1" title=" " alt="" coords="479,512,649,538"/>
+<area shape="poly" title=" " alt="" coords="394,501,464,510,463,515,394,506"/>
+<area shape="poly" title=" " alt="" coords="399,533,463,529,464,534,400,539"/>
+<area shape="poly" title=" " alt="" coords="393,274,478,296,477,301,391,279"/>
+<area shape="poly" title=" " alt="" coords="394,232,461,221,564,213,668,221,713,229,712,234,667,226,564,218,461,226,395,237"/>
+<area shape="poly" title=" " alt="" coords="340,274,395,312,462,350,480,358,478,363,460,355,392,317,337,279"/>
+<area shape="poly" title=" " alt="" coords="337,275,415,352,429,371,437,387,447,401,463,416,471,421,468,426,459,420,443,405,433,390,424,374,411,356,333,278"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="493,120,635,161"/>
+<area shape="poly" title=" " alt="" coords="348,232,460,177,490,165,492,170,462,182,351,237"/>
+<area shape="rect" href="classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb" title=" " alt="" coords="461,5,667,31"/>
+<area shape="poly" title=" " alt="" coords="317,234,337,193,368,140,409,87,433,62,459,41,469,36,472,40,463,46,436,66,413,90,372,143,342,195,322,236"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="493,235,635,276"/>
+<area shape="poly" title=" " alt="" coords="405,253,477,253,477,258,405,258"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="493,55,635,96"/>
+<area shape="poly" title=" " alt="" coords="325,233,380,171,418,137,460,107,478,97,480,102,462,111,421,141,384,175,329,237"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="715,120,882,161"/>
+<area shape="poly" title=" " alt="" coords="636,138,700,138,700,144,636,144"/>
+<area shape="poly" title=" " alt="" coords="636,253,712,253,712,258,636,258"/>
+<area shape="poly" title=" " alt="" coords="405,444,466,446,466,451,404,449"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_icgraph" id="aclassrtype_1_1_game_a783aaa87f2124457c034fb4992254e63_icgraph">
+<area shape="rect" title=" " alt="" coords="270,5,423,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad7f0a6a34267170940a9f1a002de4659" name="ad7f0a6a34267170940a9f1a002de4659"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7f0a6a34267170940a9f1a002de4659">&#9670;&#160;</a></span>initGameTexts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::initGameTexts </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_ad7f0a6a34267170940a9f1a002de4659_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_ad7f0a6a34267170940a9f1a002de4659_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_ad7f0a6a34267170940a9f1a002de4659_icgraph" id="aclassrtype_1_1_game_ad7f0a6a34267170940a9f1a002de4659_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,657,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,5,423,31"/>
+<area shape="poly" title=" " alt="" coords="456,21,424,21,424,16,456,16"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af2379ffcb2a6052549717918c76b2d04" name="af2379ffcb2a6052549717918c76b2d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2379ffcb2a6052549717918c76b2d04">&#9670;&#160;</a></span>initMenuBackground()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::initMenuBackground </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_cgraph" id="aclassrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_cgraph">
+<area shape="rect" title=" " alt="" coords="5,78,225,104"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="284,5,426,46"/>
+<area shape="poly" title=" " alt="" coords="164,75,268,46,269,52,166,80"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="284,71,426,111"/>
+<area shape="poly" title=" " alt="" coords="225,88,268,88,268,94,225,94"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="273,136,437,177"/>
+<area shape="poly" title=" " alt="" coords="166,102,264,129,262,134,164,107"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="485,5,627,46"/>
+<area shape="poly" title=" " alt="" coords="426,23,469,23,469,28,426,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_icgraph" id="aclassrtype_1_1_game_af2379ffcb2a6052549717918c76b2d04_icgraph">
+<area shape="rect" title=" " alt="" coords="270,5,489,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a47325aeb720489db2e8501c466d20ea0" name="a47325aeb720489db2e8501c466d20ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47325aeb720489db2e8501c466d20ea0">&#9670;&#160;</a></span>loadResources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::loadResources </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_cgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_cgraph" id="aclassrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,13,194,38"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="242,5,406,46"/>
+<area shape="poly" title=" " alt="" coords="194,23,226,23,226,28,194,28"/>
+</map>
+</div>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_icgraph" id="aclassrtype_1_1_game_a47325aeb720489db2e8501c466d20ea0_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,660,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,5,423,31"/>
+<area shape="poly" title=" " alt="" coords="456,21,424,21,424,16,456,16"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
 </div>
 
@@ -378,22 +795,94 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_game_a126327dd15f70e456c37228ef964400f_cgraph.png" border="0" usemap="#aclassrtype_1_1_game_a126327dd15f70e456c37228ef964400f_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1_game_a126327dd15f70e456c37228ef964400f_cgraph" id="aclassrtype_1_1_game_a126327dd15f70e456c37228ef964400f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,136,125,162"/>
-<area shape="rect" href="classrtype_1_1_game.html#ae723ec94d1e3e3fc864f984e5110c5ed" title=" " alt="" coords="180,5,360,31"/>
-<area shape="poly" title=" " alt="" coords="75,134,115,92,142,68,171,48,200,34,202,39,174,52,145,73,119,96,79,137"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html#ab7237d5109d0b6e895a9e1012949a45f" title=" " alt="" coords="416,23,611,64"/>
-<area shape="poly" title=" " alt="" coords="86,133,125,111,172,92,229,76,289,64,400,48,401,54,290,69,231,81,174,97,127,116,89,138"/>
-<area shape="rect" href="classrtype_1_1_game.html#a6ffc1327f3ebe7ed2a9b39dbc9132939" title=" " alt="" coords="202,107,339,132"/>
-<area shape="poly" title=" " alt="" coords="125,138,186,129,187,134,125,143"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html#a1e529ea82cb757527e3e110689635d76" title=" " alt="" coords="173,156,368,197"/>
-<area shape="poly" title=" " alt="" coords="125,154,158,159,157,164,125,160"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html#abc517240ef1500b1e04651f054564e92" title=" " alt="" coords="173,222,368,262"/>
-<area shape="poly" title=" " alt="" coords="89,160,174,206,190,213,188,218,172,211,86,165"/>
-<area shape="rect" href="classrtype_1_1_game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4" title=" " alt="" coords="200,287,340,312"/>
-<area shape="poly" title=" " alt="" coords="76,161,113,215,141,246,174,272,187,279,185,284,171,276,138,250,109,218,72,164"/>
-<area shape="poly" title=" " alt="" coords="361,25,401,29,400,34,361,30"/>
-<area shape="rect" href="classrtype_1_1network_1_1_network_client.html#a421721d823ac5209b9011e1e8ec84f5c" title=" " alt="" coords="416,156,611,197"/>
-<area shape="poly" title=" " alt="" coords="369,174,401,174,401,180,369,180"/>
+<area shape="rect" title=" " alt="" coords="5,561,125,587"/>
+<area shape="rect" href="classrtype_1_1_game.html#a25f3e467b2f2e8cbf8f7598c682330f6" title=" " alt="" coords="176,308,350,334"/>
+<area shape="poly" title=" " alt="" coords="71,560,110,490,138,445,171,402,201,370,231,342,235,346,204,373,175,405,143,448,114,493,75,562"/>
+<area shape="rect" href="classrtype_1_1_game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4" title=" " alt="" coords="440,409,581,435"/>
+<area shape="poly" title=" " alt="" coords="71,559,107,502,136,470,171,445,234,421,301,409,366,406,425,408,425,414,366,411,302,415,236,427,174,450,140,474,111,505,75,562"/>
+<area shape="rect" href="classrtype_1_1_menu.html#a123ad929960dfbad2a86c139dc612d6a" title=" " alt="" coords="427,508,594,534"/>
+<area shape="poly" title=" " alt="" coords="125,560,172,552,296,536,411,526,411,531,297,542,173,557,126,565"/>
+<area shape="rect" href="classrtype_1_1_menu.html#a6dc05d70bf75bcda47e35cfb8c04a890" title=" " alt="" coords="422,557,600,583"/>
+<area shape="poly" title=" " alt="" coords="125,571,406,568,406,574,125,576"/>
+<area shape="rect" href="classrtype_1_1_game.html#ae723ec94d1e3e3fc864f984e5110c5ed" title=" " alt="" coords="173,460,353,486"/>
+<area shape="poly" title=" " alt="" coords="82,559,122,531,171,502,203,489,205,494,174,507,125,536,86,563"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="186,615,340,640"/>
+<area shape="poly" title=" " alt="" coords="116,585,198,607,197,613,115,590"/>
+<area shape="rect" href="classrtype_1_1_game.html#af2379ffcb2a6052549717918c76b2d04" title=" " alt="" coords="401,935,620,960"/>
+<area shape="poly" title=" " alt="" coords="82,585,122,618,174,650,200,660,225,665,270,667,291,668,312,673,333,683,355,702,374,730,382,758,382,787,379,815,376,842,376,869,384,896,403,922,405,924,401,927,399,925,379,898,371,870,370,842,374,814,377,786,377,759,369,732,351,705,330,688,310,678,290,673,269,672,224,670,199,666,171,655,119,622,79,590"/>
+<area shape="rect" href="classrtype_1_1_game.html#a6ffc1327f3ebe7ed2a9b39dbc9132939" title=" " alt="" coords="194,716,332,742"/>
+<area shape="poly" title=" " alt="" coords="77,586,115,638,143,668,174,695,198,707,195,712,171,699,139,672,111,642,72,589"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a47427faf7781047d4efc42ee398935e2" title=" " alt="" coords="192,766,334,806"/>
+<area shape="poly" title=" " alt="" coords="73,587,86,620,107,664,136,711,174,752,180,756,176,760,171,756,132,714,102,667,81,622,68,589"/>
+<area shape="rect" href="classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb" title=" " alt="" coords="668,411,875,436"/>
+<area shape="poly" title=" " alt="" coords="351,310,412,310,482,314,553,327,622,350,637,361,647,374,656,386,670,397,680,402,678,407,667,402,652,390,643,377,634,365,619,355,552,332,481,320,412,315,351,316"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="942,554,1084,594"/>
+<area shape="poly" title=" " alt="" coords="350,310,484,301,640,298,715,302,782,311,837,325,876,347,894,366,903,386,906,426,907,468,913,489,925,511,940,528,959,543,955,547,937,532,920,514,908,491,902,469,901,426,898,387,889,369,873,351,835,330,781,316,714,308,640,304,485,306,351,315"/>
+<area shape="rect" href="classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="689,706,854,746"/>
+<area shape="poly" title=" " alt="" coords="321,332,401,350,436,355,467,356,521,353,547,354,572,360,597,373,622,395,648,432,657,469,656,506,649,543,642,580,640,617,648,654,670,691,678,699,675,703,666,694,643,656,635,618,637,580,644,542,651,506,652,470,643,434,618,399,594,377,570,365,546,360,521,359,467,361,435,361,401,355,319,337"/>
+<area shape="rect" href="classrtype_1_1_menu.html#a2a193f46cc33796afd858ce6236e5625" title=" " alt="" coords="426,139,596,164"/>
+<area shape="poly" title=" " alt="" coords="270,306,319,242,357,204,400,173,410,168,412,173,402,178,360,208,323,245,275,309"/>
+<area shape="rect" href="classrtype_1_1_menu.html#ac8af2b2b313f2640db6f1db5dd3c7cce" title=" " alt="" coords="444,188,578,214"/>
+<area shape="poly" title=" " alt="" coords="289,305,400,249,465,218,468,223,402,254,291,310"/>
+<area shape="poly" title=" " alt="" coords="289,332,340,359,402,388,443,402,441,407,400,393,337,364,286,337"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#a895fbd1639ffe9fbdf258c7f88017cf1" title=" " alt="" coords="686,361,857,387"/>
+<area shape="poly" title=" " alt="" coords="533,212,739,350,736,355,530,216"/>
+<area shape="rect" href="classrtype_1_1_button.html#a797aaf4cbfb05d3f505794cdf0006cbd" title=" " alt="" coords="683,5,860,31"/>
+<area shape="poly" title=" " alt="" coords="577,194,599,187,619,175,632,159,639,144,642,110,645,76,653,58,666,42,672,37,675,41,670,45,657,61,650,77,647,111,644,145,636,162,622,179,602,192,579,199"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#a233da1d55ed46324811acb16d0006251" title=" " alt="" coords="692,55,851,96"/>
+<area shape="poly" title=" " alt="" coords="577,192,599,185,619,175,635,159,642,142,650,123,667,105,677,99,680,103,670,110,655,126,647,144,639,162,622,179,601,190,579,197"/>
+<area shape="rect" href="classrtype_1_1_button.html#abe27946e689ae52159e05e4e43d672a1" title=" " alt="" coords="701,120,842,146"/>
+<area shape="poly" title=" " alt="" coords="578,186,619,174,667,154,691,147,693,152,669,159,621,179,579,191"/>
+<area shape="rect" href="classrtype_1_1_text_input.html#aae2ce0dd375982cc469b6ab846d7ee17" title=" " alt="" coords="693,169,850,195"/>
+<area shape="poly" title=" " alt="" coords="578,193,677,186,678,192,579,199"/>
+<area shape="rect" href="classrtype_1_1_button.html#aa0a209bc3ff14dbfdbc66bfd42a9bfac" title=" " alt="" coords="681,219,862,260"/>
+<area shape="poly" title=" " alt="" coords="579,208,666,221,665,226,578,213"/>
+<area shape="rect" href="classrtype_1_1_button.html#af4a0e5090a878518a46a1b0664dad71d" title=" " alt="" coords="923,5,1104,31"/>
+<area shape="poly" title=" " alt="" coords="860,16,907,16,907,21,860,21"/>
+<area shape="rect" href="classrtype_1_1_button.html#aa44cb205334262986516a35aae935aa2" title=" " alt="" coords="929,112,1098,153"/>
+<area shape="poly" title=" " alt="" coords="842,130,913,130,913,136,842,136"/>
+<area shape="poly" title=" " alt="" coords="594,508,619,495,630,484,636,472,642,447,648,421,655,408,667,396,671,393,675,397,670,400,659,412,653,423,647,448,641,474,634,487,622,499,596,513"/>
+<area shape="poly" title=" " alt="" coords="599,557,619,544,633,527,640,509,642,472,644,434,651,415,666,396,671,392,675,396,670,400,656,417,649,435,647,472,645,511,637,530,622,548,601,562"/>
+<area shape="rect" href="classrtype_1_1_menu.html#afceec91506a672ca69c41b922296bf5b" title=" " alt="" coords="421,459,600,484"/>
+<area shape="poly" title=" " alt="" coords="353,470,406,469,406,475,353,475"/>
+<area shape="poly" title=" " alt="" coords="280,612,332,577,400,542,418,536,420,541,402,547,335,582,283,616"/>
+<area shape="poly" title=" " alt="" coords="321,611,436,584,438,590,322,617"/>
+<area shape="rect" href="classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="408,771,614,812"/>
+<area shape="poly" title=" " alt="" coords="323,639,355,657,366,670,373,684,379,709,385,734,392,746,403,758,406,760,403,764,399,761,388,749,380,736,374,711,368,686,362,673,351,662,320,643"/>
+<area shape="rect" href="classrtype_1_1_game.html#aaab204748650e99c51e3ef2f99e640a3" title=" " alt="" coords="416,607,605,648"/>
+<area shape="poly" title=" " alt="" coords="340,625,401,625,401,630,340,630"/>
+<area shape="rect" href="classrtype_1_1_game.html#ada75e2ffd83431ffa5537ca8d04ce638" title=" " alt="" coords="435,836,586,862"/>
+<area shape="poly" title=" " alt="" coords="327,639,355,658,370,679,377,701,378,743,380,783,388,802,403,822,422,835,419,839,399,825,383,805,375,784,373,743,372,702,365,681,351,661,324,643"/>
+<area shape="rect" href="classrtype_1_1_game.html#ad7f0a6a34267170940a9f1a002de4659" title=" " alt="" coords="418,885,603,911"/>
+<area shape="poly" title=" " alt="" coords="328,639,355,658,373,686,381,714,381,742,378,769,375,795,376,821,384,847,403,872,407,876,404,880,399,876,379,849,371,822,370,795,373,768,376,741,375,715,368,688,351,661,325,643"/>
+<area shape="rect" href="classrtype_1_1_game.html#a47325aeb720489db2e8501c466d20ea0" title=" " alt="" coords="416,672,605,698"/>
+<area shape="poly" title=" " alt="" coords="322,638,438,665,436,671,321,644"/>
+<area shape="rect" href="classrtype_1_1_game.html#a43303148190e5ba8815875b4fbda0068" title=" " alt="" coords="418,721,603,747"/>
+<area shape="poly" title=" " alt="" coords="315,638,354,657,370,671,379,684,388,696,402,708,412,713,410,718,400,712,384,700,374,687,366,674,352,662,313,643"/>
+<area shape="poly" title=" " alt="" coords="594,768,673,748,675,753,595,773"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="700,771,843,812"/>
+<area shape="poly" title=" " alt="" coords="614,789,684,789,684,794,614,794"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="700,836,843,877"/>
+<area shape="poly" title=" " alt="" coords="595,810,686,833,685,838,594,815"/>
+<area shape="poly" title=" " alt="" coords="842,773,873,756,912,722,945,682,993,607,997,610,949,685,916,726,876,760,844,777"/>
+<area shape="poly" title=" " alt="" coords="604,605,618,594,632,576,639,558,641,522,644,484,652,465,666,447,672,443,675,447,670,451,656,468,649,485,647,522,644,560,637,579,622,597,607,609"/>
+<area shape="poly" title=" " alt="" coords="605,615,926,581,927,586,606,620"/>
+<area shape="poly" title=" " alt="" coords="595,646,622,657,646,674,670,691,685,697,682,702,667,695,643,678,619,662,593,651"/>
+<area shape="poly" title=" " alt="" coords="605,646,622,657,634,670,641,683,647,708,653,733,659,744,670,756,688,768,685,773,667,760,655,748,648,735,642,709,636,685,629,673,619,662,602,650"/>
+<area shape="poly" title=" " alt="" coords="607,646,622,658,638,678,646,700,647,741,649,782,656,802,670,822,688,835,685,839,666,825,651,804,643,783,642,741,640,701,633,681,618,661,604,650"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="700,460,843,501"/>
+<area shape="poly" title=" " alt="" coords="601,604,619,593,635,574,642,554,649,533,667,512,685,500,688,505,670,516,654,536,647,556,640,577,622,598,604,609"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="700,526,843,566"/>
+<area shape="poly" title=" " alt="" coords="583,604,620,593,693,569,695,574,621,598,585,609"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="700,640,843,681"/>
+<area shape="poly" title=" " alt="" coords="606,637,685,647,684,652,605,642"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="930,460,1096,501"/>
+<area shape="poly" title=" " alt="" coords="843,478,915,478,915,484,843,484"/>
+<area shape="poly" title=" " alt="" coords="844,552,927,562,926,567,843,557"/>
+<area shape="poly" title=" " alt="" coords="597,696,674,708,673,713,596,701"/>
+<area shape="poly" title=" " alt="" coords="604,932,619,922,634,902,641,883,643,842,644,800,651,779,666,758,675,750,679,754,670,761,656,781,649,801,648,843,646,884,638,905,622,925,607,936"/>
+<area shape="poly" title=" " alt="" coords="602,932,619,921,630,910,636,899,642,874,648,849,655,836,667,823,685,810,688,815,670,827,659,839,653,850,648,875,641,901,634,914,622,926,604,936"/>
+<area shape="poly" title=" " alt="" coords="582,931,619,921,715,882,717,887,621,926,583,937"/>
 </map>
 </div>
 <div class="dynheader">
@@ -402,6 +891,45 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classrtype_1_1_game_a126327dd15f70e456c37228ef964400f_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a126327dd15f70e456c37228ef964400f_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_game_a126327dd15f70e456c37228ef964400f_icgraph" id="aclassrtype_1_1_game_a126327dd15f70e456c37228ef964400f_icgraph">
 <area shape="rect" title=" " alt="" coords="103,5,222,31"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a43303148190e5ba8815875b4fbda0068" name="a43303148190e5ba8815875b4fbda0068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43303148190e5ba8815875b4fbda0068">&#9670;&#160;</a></span>setupSystems()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rtype::Game::setupSystems </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classrtype_1_1_game_a43303148190e5ba8815875b4fbda0068_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a43303148190e5ba8815875b4fbda0068_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1_game_a43303148190e5ba8815875b4fbda0068_icgraph" id="aclassrtype_1_1_game_a43303148190e5ba8815875b4fbda0068_icgraph">
+<area shape="rect" title=" " alt="" coords="471,5,657,31"/>
+<area shape="rect" href="classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,5,423,31"/>
+<area shape="poly" title=" " alt="" coords="456,21,424,21,424,16,456,16"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
+<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
 <area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
 <area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
 </map>
@@ -436,17 +964,64 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_game_a50e6dd7c1cb4f316ef99cafc2b6651a4_icgraph.png" border="0" usemap="#aclassrtype_1_1_game_a50e6dd7c1cb4f316ef99cafc2b6651a4_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_game_a50e6dd7c1cb4f316ef99cafc2b6651a4_icgraph" id="aclassrtype_1_1_game_a50e6dd7c1cb4f316ef99cafc2b6651a4_icgraph">
-<area shape="rect" title=" " alt="" coords="270,5,410,31"/>
-<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,5,222,31"/>
-<area shape="poly" title=" " alt="" coords="254,21,222,21,222,16,254,16"/>
-<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,5,55,31"/>
-<area shape="poly" title=" " alt="" coords="87,21,55,21,55,16,87,16"/>
+<area shape="rect" title=" " alt="" coords="492,31,633,56"/>
+<area shape="rect" href="classrtype_1_1_game.html#a25f3e467b2f2e8cbf8f7598c682330f6" title=" " alt="" coords="270,5,444,31"/>
+<area shape="poly" title=" " alt="" coords="476,36,445,32,445,26,477,30"/>
+<area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,31,222,56"/>
+<area shape="poly" title=" " alt="" coords="477,46,222,46,222,41,477,41"/>
+<area shape="poly" title=" " alt="" coords="255,34,223,38,222,33,254,29"/>
+<area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,55,56"/>
+<area shape="poly" title=" " alt="" coords="87,46,55,46,55,41,87,41"/>
 </map>
 </div>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a67e0ae8121d940dfd3910156388dca2e" name="a67e0ae8121d940dfd3910156388dca2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67e0ae8121d940dfd3910156388dca2e">&#9670;&#160;</a></span>currentLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rtype::Game::currentLevel = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a348a60f44ab471416dae46d5eeeeb2e2" name="a348a60f44ab471416dae46d5eeeeb2e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348a60f44ab471416dae46d5eeeeb2e2">&#9670;&#160;</a></span>currentState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacertype.html#af4f6a51b206f4e1b610ebd2306080de9">GameState</a> rtype::Game::currentState = <a class="el" href="namespacertype.html#af4f6a51b206f4e1b610ebd2306080de9a3ed53fbeb1eab0443561b68ca0c0b5cf">GameState::MENU</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="affeafa2030fa8561e9405d86b903d150" name="affeafa2030fa8561e9405d86b903d150"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#affeafa2030fa8561e9405d86b903d150">&#9670;&#160;</a></span>endGame</h2>
 
@@ -513,6 +1088,28 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="a5907812822c89208d71d10e02e41629a" name="a5907812822c89208d71d10e02e41629a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5907812822c89208d71d10e02e41629a">&#9670;&#160;</a></span>event</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Event rtype::Game::event</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a6314401df5675060a635ef735b403dd4" name="a6314401df5675060a635ef735b403dd4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6314401df5675060a635ef735b403dd4">&#9670;&#160;</a></span>font</h2>
 
@@ -524,6 +1121,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">sf::Font rtype::Game::font</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a978bb36b993276f5b5bbdec6944c9c55" name="a978bb36b993276f5b5bbdec6944c9c55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a978bb36b993276f5b5bbdec6944c9c55">&#9670;&#160;</a></span>gameOverText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text rtype::Game::gameOverText</td>
         </tr>
       </table>
   </td>
@@ -557,6 +1176,94 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
+<a id="afc384241e2a82e9b337a12cd622b28da" name="afc384241e2a82e9b337a12cd622b28da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc384241e2a82e9b337a12cd622b28da">&#9670;&#160;</a></span>levelText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text rtype::Game::levelText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a643827baa3518f66a1a3ee3333d7fc68" name="a643827baa3518f66a1a3ee3333d7fc68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a643827baa3518f66a1a3ee3333d7fc68">&#9670;&#160;</a></span>lifeText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text rtype::Game::lifeText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae09f25a9edf2b438329e264ffea62b0a" name="ae09f25a9edf2b438329e264ffea62b0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae09f25a9edf2b438329e264ffea62b0a">&#9670;&#160;</a></span>menu</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrtype_1_1_menu.html">Menu</a> rtype::Game::menu</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0fb100c57e75f20ea6625d69e304808c" name="a0fb100c57e75f20ea6625d69e304808c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fb100c57e75f20ea6625d69e304808c">&#9670;&#160;</a></span>musicGame</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Music rtype::Game::musicGame</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="af3cab02528d4585ed2886115645c9053" name="af3cab02528d4585ed2886115645c9053"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af3cab02528d4585ed2886115645c9053">&#9670;&#160;</a></span>myPlayerId</h2>
 
@@ -579,8 +1286,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="a6bef8df046cc4a2d2f874cb95d1637aa" name="a6bef8df046cc4a2d2f874cb95d1637aa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6bef8df046cc4a2d2f874cb95d1637aa">&#9670;&#160;</a></span>network</h2>
+<a id="a431824f1ed73f9718c2770c4d8c9b40f" name="a431824f1ed73f9718c2770c4d8c9b40f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a431824f1ed73f9718c2770c4d8c9b40f">&#9670;&#160;</a></span>network</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -589,7 +1296,95 @@ Here is the caller graph for this function:</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classrtype_1_1network_1_1_network_client.html">network::NetworkClient</a> rtype::Game::network</td>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classrtype_1_1network_1_1_network_client.html">network::NetworkClient</a>&gt; rtype::Game::network</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b906b83b3f5d3372cabe119a6e8de0e" name="a1b906b83b3f5d3372cabe119a6e8de0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b906b83b3f5d3372cabe119a6e8de0e">&#9670;&#160;</a></span>playerIsDead</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool rtype::Game::playerIsDead = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afdfbab7432b12f9f1aaf9cade451be6a" name="afdfbab7432b12f9f1aaf9cade451be6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdfbab7432b12f9f1aaf9cade451be6a">&#9670;&#160;</a></span>playerLife</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rtype::Game::playerLife = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca2668cb9ca085ac84e8979ef2d1e211" name="aca2668cb9ca085ac84e8979ef2d1e211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca2668cb9ca085ac84e8979ef2d1e211">&#9670;&#160;</a></span>playerScore</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rtype::Game::playerScore = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1fcbfbfd593f58a06982e61c52ca2313" name="a1fcbfbfd593f58a06982e61c52ca2313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fcbfbfd593f58a06982e61c52ca2313">&#9670;&#160;</a></span>scoreText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Text rtype::Game::scoreText</td>
         </tr>
       </table>
   </td>
@@ -612,6 +1407,28 @@ Here is the caller graph for this function:</div>
       <table class="memname">
         <tr>
           <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="classrtype_1_1_i_system.html">ISystem</a>&gt; &gt; rtype::Game::systems</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2e3edab687632b0cd5514cfbf7f21294" name="a2e3edab687632b0cd5514cfbf7f21294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e3edab687632b0cd5514cfbf7f21294">&#9670;&#160;</a></span>weaponSong</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">sf::Music rtype::Game::weaponSong</td>
         </tr>
       </table>
   </td>

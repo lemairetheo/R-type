@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['packettype_0',['PacketType',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286',1,'rtype::network']]]
+  ['gamestate_0',['GameState',['../namespacertype.html#af4f6a51b206f4e1b610ebd2306080de9',1,'rtype']]]
 ];

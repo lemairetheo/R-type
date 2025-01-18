@@ -1,0 +1,10 @@
+<map id="rtype::Menu::getServerPort" name="rtype::Menu::getServerPort">
+<area shape="rect" id="Node000001" title=" " alt="" coords="471,31,650,56"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="270,5,423,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="455,34,424,30,424,25,456,28"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,31,222,56"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="456,46,222,46,222,41,456,41"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="255,33,223,38,222,33,254,28"/>
+<area shape="rect" id="Node000004" href="$client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,55,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="87,46,55,46,55,41,87,41"/>
+</map>

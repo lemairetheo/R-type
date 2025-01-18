@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['window_0',['window',['../classrtype_1_1_game.html#a027ee34d6234287a17352317ccb8b8d7',1,'rtype::Game::window'],['../classrtype_1_1_background_system.html#a5e53d7607b278135087b3b4874bf0019',1,'rtype::BackgroundSystem::window'],['../classrtype_1_1_render_system.html#a844c69607b268e72743989a117bb3499',1,'rtype::RenderSystem::window']]]
+  ['score_0',['score',['../structrtype_1_1_player.html#a2a046b6cfdc04cd2d7ee5d574b619e15',1,'rtype::Player::score'],['../structrtype_1_1network_1_1_entity_update_packet.html#a05fffc995ffade797450016e1463e50f',1,'rtype::network::EntityUpdatePacket::score']]],
+  ['score_5fthresholds_1',['SCORE_THRESHOLDS',['../classrtype_1_1game_1_1_game_engine.html#a02ba65725e458ab543403f329aa69887',1,'rtype::game::GameEngine']]],
+  ['scoretext_2',['scoreText',['../classrtype_1_1_game.html#a1fcbfbfd593f58a06982e61c52ca2313',1,'rtype::Game']]],
+  ['scrollspeed_3',['scrollSpeed',['../structrtype_1_1_background_component.html#a19ed2073753a5744e00c5e22e5ded6fa',1,'rtype::BackgroundComponent']]],
+  ['sender_5fendpoint_4',['sender_endpoint',['../classrtype_1_1network_1_1_network_manager.html#a22697eb39eb62db226e7fd12d33ba4ec',1,'rtype::network::NetworkManager']]],
+  ['sequence_5',['sequence',['../structrtype_1_1network_1_1_packet_header.html#a034ddada769e5e9456483db427d8c630',1,'rtype::network::PacketHeader']]],
+  ['server_5fendpoint_6',['server_endpoint',['../classrtype_1_1network_1_1_network_client.html#a4aa0874b11b8a292db9b51cb6db85b7c',1,'rtype::network::NetworkClient']]],
+  ['serverip_7',['serverIP',['../classrtype_1_1network_1_1_network_client.html#aa7e3e1d826dc6e01396c5948f81d84ce',1,'rtype::network::NetworkClient']]],
+  ['settings_5fbutton_8',['settings_button',['../classrtype_1_1_menu.html#a20c41128bb457cadc9bfeb016fde65b8',1,'rtype::Menu']]],
+  ['settings_5ftext_9',['settings_text',['../classrtype_1_1_menu.html#a923b476e1ff9b3920c158a9af4af4849',1,'rtype::Menu']]],
+  ['shoot_5fsystem_5f_10',['shoot_system_',['../classrtype_1_1game_1_1_game_engine.html#acfeabc454ac57f43498bd32d5036c68b',1,'rtype::game::GameEngine']]],
+  ['showcursor_11',['showCursor',['../classrtype_1_1_text_input.html#a27ec81f5a8abf3675be2c6bafa252903',1,'rtype::TextInput']]],
+  ['socket_12',['socket',['../classrtype_1_1network_1_1_network_manager.html#af7047d4521711c96ca9c792fae20fa23',1,'rtype::network::NetworkManager::socket'],['../classrtype_1_1network_1_1_network_client.html#a1cdc52421004ae7a5e6721f09d03a5ad',1,'rtype::network::NetworkClient::socket']]],
+  ['space_13',['space',['../structrtype_1_1_input_component.html#a09756671eb10faa2a24a1fde3297b500',1,'rtype::InputComponent::space'],['../structrtype_1_1network_1_1_player_input_packet.html#afcc0faa5d94b7cd9e0488498b6067069',1,'rtype::network::PlayerInputPacket::space']]],
+  ['speed_14',['speed',['../classrtype_1_1game_1_1_game_engine.html#a26cf82b5d834b9d49cc1a9505818a533',1,'rtype::game::GameEngine']]],
+  ['speedshoot_15',['speedShoot',['../structrtype_1_1_enemy.html#a3bb5cc5b5cc13cda4cc9c93507ac4e27',1,'rtype::Enemy']]],
+  ['sprite_16',['sprite',['../structrtype_1_1_background_component.html#a77ca7d5d25cf8c12bac14823076a9c34',1,'rtype::BackgroundComponent::sprite'],['../struct_render_component.html#a71d2bd50fe986ac4125d978ab660055c',1,'RenderComponent::sprite']]],
+  ['success_17',['success',['../structrtype_1_1network_1_1_connect_response_packet.html#a3d71cd7685c80184e104eeea39c385db',1,'rtype::network::ConnectResponsePacket']]],
+  ['systems_18',['systems',['../classrtype_1_1game_1_1_game_engine.html#a0704f092ac4a82feaa4c9f6e2cb98a57',1,'rtype::game::GameEngine::systems'],['../classrtype_1_1_game.html#a8ba3aadcfb283182c725eebef9710957',1,'rtype::Game::systems']]]
 ];

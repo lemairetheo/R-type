@@ -1,8 +1,8 @@
 <map id="rtype::network::NetworkManager::update" name="rtype::network::NetworkManager::update">
 <area shape="rect" id="Node000001" title=" " alt="" coords="524,5,736,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1" title=" " alt="" coords="293,13,476,38"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1" title="The main loop for updating the game state." alt="" coords="293,13,476,38"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="509,28,477,28,477,23,509,23"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title=" " alt="" coords="103,13,245,38"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title="Starts the server and begins handling connections." alt="" coords="103,13,245,38"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,28,246,28,246,23,277,23"/>
 <area shape="rect" id="Node000004" href="$server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,55,38"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="87,28,55,28,55,23,87,23"/>

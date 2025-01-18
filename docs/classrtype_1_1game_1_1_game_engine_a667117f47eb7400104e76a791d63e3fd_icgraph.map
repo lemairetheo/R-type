@@ -1,0 +1,17 @@
+<map id="rtype::game::GameEngine::handleCollision" name="rtype::game::GameEngine::handleCollision">
+<area shape="rect" id="Node000001" title="Handles collision between a missile and an enemy." alt="" coords="893,120,1066,160"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="671,65,845,106"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="879,118,842,109,844,104,880,113"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="450,40,623,80"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="656,76,624,73,624,67,656,71"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="228,40,401,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="435,72,401,72,401,66,435,66"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#a37334757ebf713284456eb9c5d1b7357" title="Creates a packet for entity death." alt="" coords="227,105,402,146"/>
+<area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="451,88,387,107,385,102,450,83"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="416,48,450,49,450,54,416,54"/>
+<area shape="poly" id="edge6_Node000005_Node000001" title=" " alt="" coords="418,125,892,136,892,141,417,130"/>
+<area shape="poly" id="edge9_Node000005_Node000002" title=" " alt="" coords="417,114,671,91,671,96,418,119"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="5,44,179,84"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="223,103,168,88,169,83,224,98"/>
+<area shape="poly" id="edge8_Node000006_Node000002" title=" " alt="" coords="171,37,226,26,338,11,426,3,513,7,624,26,675,42,721,62,718,67,673,46,623,31,513,13,426,9,338,16,227,31,173,42"/>
+</map>

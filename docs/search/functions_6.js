@@ -1,11 +1,21 @@
 var searchData=
 [
   ['handleclientdisconnection_0',['handleClientDisconnection',['../classrtype_1_1network_1_1_network_manager.html#adce48804829a866d24563466fe2cd2a2',1,'rtype::network::NetworkManager']]],
-  ['handleevents_1',['handleEvents',['../classrtype_1_1_game.html#ae723ec94d1e3e3fc864f984e5110c5ed',1,'rtype::Game']]],
-  ['handlemessage_2',['handleMessage',['../classrtype_1_1game_1_1_game_engine.html#a325cae01a9ba6cd3646590495c940a3d',1,'rtype::game::GameEngine::handleMessage()'],['../classrtype_1_1engine_1_1_a_engine.html#a254d46486c38c894483517b90272f7f8',1,'rtype::engine::AEngine::handleMessage()']]],
-  ['handlenetworkmessage_3',['handleNetworkMessage',['../classrtype_1_1game_1_1_game_engine.html#a5168be8faa9170f68487689fa4bdf930',1,'rtype::game::GameEngine::handleNetworkMessage()'],['../classrtype_1_1_game.html#a075b3431446746571cc4af17a25f2a16',1,'rtype::Game::handleNetworkMessage()']]],
-  ['handlenewconnection_4',['handleNewConnection',['../classrtype_1_1_manager.html#a4edd9765a09b55fdf0ab45ef1024766a',1,'rtype::Manager']]],
-  ['handleplayerdisconnection_5',['handlePlayerDisconnection',['../classrtype_1_1game_1_1_game_engine.html#a2f9581dda9c830ed9024e08c8b29850b',1,'rtype::game::GameEngine']]],
-  ['handleshoot_6',['handleShoot',['../classrtype_1_1_shoot_system.html#a9089147158b465d011e330c4b0405430',1,'rtype::ShootSystem']]],
-  ['hascomponent_7',['hasComponent',['../classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa',1,'rtype::EntityManager']]]
+  ['handlecollision_1',['handleCollision',['../classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd',1,'rtype::game::GameEngine']]],
+  ['handlecollisionplayer_2',['handleCollisionPlayer',['../classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d',1,'rtype::game::GameEngine']]],
+  ['handlecollisions_3',['handleCollisions',['../classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0',1,'rtype::game::GameEngine']]],
+  ['handleenemyshoot_4',['handleEnemyShoot',['../classrtype_1_1game_1_1_game_engine.html#ab260b5c0bd4c8a2a4ebf709bc81c8537',1,'rtype::game::GameEngine']]],
+  ['handleenemyspawns_5',['handleEnemySpawns',['../classrtype_1_1game_1_1_game_engine.html#a97db2a1ca4d19765d50b205048a57db1',1,'rtype::game::GameEngine']]],
+  ['handleevent_6',['handleEvent',['../classrtype_1_1_button.html#a797aaf4cbfb05d3f505794cdf0006cbd',1,'rtype::Button::handleEvent()'],['../classrtype_1_1_inputs.html#a0a14bdcdca0cb4326827ad6315f776ab',1,'rtype::Inputs::handleEvent()'],['../classrtype_1_1_text_input.html#a233da1d55ed46324811acb16d0006251',1,'rtype::TextInput::handleEvent()']]],
+  ['handleevents_7',['handleEvents',['../classrtype_1_1_game.html#ae723ec94d1e3e3fc864f984e5110c5ed',1,'rtype::Game']]],
+  ['handlehealthpackspawns_8',['handleHealthPackSpawns',['../classrtype_1_1game_1_1_game_engine.html#a8119c4338c128d37dab97943d54a6138',1,'rtype::game::GameEngine']]],
+  ['handlemessage_9',['handleMessage',['../classrtype_1_1game_1_1_game_engine.html#ac418c4d40ad2161b226d5d9185428205',1,'rtype::game::GameEngine::handleMessage()'],['../classrtype_1_1engine_1_1_a_engine.html#a39998182aab459452d58870bb367a864',1,'rtype::engine::AEngine::handleMessage()']]],
+  ['handlenetworkmessage_10',['handleNetworkMessage',['../classrtype_1_1game_1_1_game_engine.html#a1530cb97e98345b3c8fda869015515f5',1,'rtype::game::GameEngine::handleNetworkMessage()'],['../classrtype_1_1_game.html#aaab204748650e99c51e3ef2f99e640a3',1,'rtype::Game::handleNetworkMessage()']]],
+  ['handlenewconnection_11',['handleNewConnection',['../classrtype_1_1_manager.html#aa2a6b8e2fa4290d74b9c7a09af8313d2',1,'rtype::Manager']]],
+  ['handleplayerdisconnection_12',['handlePlayerDisconnection',['../classrtype_1_1game_1_1_game_engine.html#a2f9581dda9c830ed9024e08c8b29850b',1,'rtype::game::GameEngine']]],
+  ['handlereceive_13',['handleReceive',['../classrtype_1_1network_1_1_network_manager.html#acef401cf41d2b7c5fd61bb90f0f3069d',1,'rtype::network::NetworkManager::handleReceive()'],['../classrtype_1_1network_1_1_network_client.html#afa570ad76117143bf5dc662d634fcad1',1,'rtype::network::NetworkClient::handleReceive()']]],
+  ['handleshoot_14',['handleShoot',['../classrtype_1_1_shoot_system.html#a413a664af24582506dfb61968139ee8e',1,'rtype::ShootSystem']]],
+  ['handlewallspawns_15',['handleWallSpawns',['../classrtype_1_1game_1_1_game_engine.html#a96d3bab930d110fed42b7e1b12c19b6a',1,'rtype::game::GameEngine']]],
+  ['hascomponent_16',['hasComponent',['../classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa',1,'rtype::EntityManager']]],
+  ['hastypeenemy_17',['hasTypeEnemy',['../classrtype_1_1_entity_manager.html#ad72a1c7d4c9776a265b7e5c60d4cb5ae',1,'rtype::EntityManager']]]
 ];

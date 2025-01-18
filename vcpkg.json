@@ -8,6 +8,9 @@
     {
       "name": "sfml",
       "features": ["graphics"]
+    },
+    {
+      "name": "sqlite3"
     }
   ],
   "builtin-baseline": "4b3b6201414638abfcd8ef4629dfbd958985667e"

@@ -1,7 +1,0 @@
-<map id="rtype::game::GameEngine::createNewPlayer" name="rtype::game::GameEngine::createNewPlayer">
-<area shape="rect" id="Node000001" title=" " alt="" coords="449,5,622,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_manager.html#a4edd9765a09b55fdf0ab45ef1024766a" title=" " alt="" coords="220,5,401,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="434,28,401,28,401,23,434,23"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_manager.html#acf575011ce5a468d91af7dec28a0ab81" title=" " alt="" coords="5,13,172,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="204,28,172,28,172,23,204,23"/>
-</map>
