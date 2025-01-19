@@ -1,44 +1,42 @@
 <map id="rtype::EntityManager::createEntity" name="rtype::EntityManager::createEntity">
-<area shape="rect" id="Node000001" title=" " alt="" coords="979,223,1121,263"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="724,63,931,103"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1024,212,983,164,957,139,929,118,906,106,908,101,932,114,961,135,987,160,1028,208"/>
-<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#af03aa744bf91fce869fdbf149a2909a1" title="Creates a new player entity." alt="" coords="741,128,914,169"/>
-<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="998,217,930,184,897,172,899,167,932,179,1000,212"/>
-<area shape="rect" id="Node000007" href="$classrtype_1_1game_1_1_game_engine.html#a8fc65ea9c7557d8647d5f29a08739422" title="Constructs a new GameEngine object." alt="" coords="741,193,914,234"/>
-<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="963,234,914,228,915,222,964,229"/>
-<area shape="rect" id="Node000008" href="$classrtype_1_1game_1_1_game_engine.html#a8119c4338c128d37dab97943d54a6138" title="Handles the spawning of health packs." alt="" coords="227,251,409,291"/>
-<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="964,249,409,270,409,265,963,244"/>
-<area shape="rect" id="Node000010" href="$classrtype_1_1_shoot_system.html#ab2a1a587a4db176535469808a2fb25a6" title=" " alt="" coords="759,439,896,479"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="1037,279,1020,314,997,354,968,393,932,428,898,446,895,442,929,423,964,390,993,351,1016,311,1032,276"/>
-<area shape="rect" id="Node000015" href="$classrtype_1_1_game.html#af2379ffcb2a6052549717918c76b2d04" title=" " alt="" coords="457,13,676,38"/>
-<area shape="poly" id="edge16_Node000001_Node000015" title=" " alt="" coords="1036,209,1020,170,998,127,968,86,929,53,895,36,859,23,782,10,707,9,642,15,641,9,707,4,782,5,860,18,897,31,932,49,972,82,1003,124,1025,168,1040,207"/>
-<area shape="rect" id="Node000016" href="$classrtype_1_1game_1_1_game_engine.html#aa5dca188c216bb3ef12918def5ad5c39" title="Spawns an enemy at the given position and level." alt="" coords="741,373,914,414"/>
-<area shape="poly" id="edge18_Node000001_Node000016" title=" " alt="" coords="1025,277,984,321,932,362,907,375,904,370,929,358,981,317,1021,273"/>
-<area shape="rect" id="Node000018" href="$classrtype_1_1game_1_1_game_engine.html#a275df6449e6a88d2a8b4516663b9aa4b" title="Spawns a wall at the given position." alt="" coords="741,308,914,349"/>
-<area shape="poly" id="edge21_Node000001_Node000018" title=" " alt="" coords="983,272,932,292,885,310,883,305,930,287,982,267"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="490,62,643,88"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="709,82,644,80,644,75,709,77"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="258,62,378,88"/>
-<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="709,100,676,103,567,108,457,103,377,91,378,85,457,98,567,103,676,98,709,95"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="474,78,378,78,378,72,474,72"/>
-<area shape="rect" id="Node000005" href="$client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="67,62,117,88"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="243,78,117,78,117,72,243,72"/>
-<area shape="rect" id="Node000009" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="5,345,179,386"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="245,300,228,307,137,347,135,342,226,302,243,295"/>
-<area shape="rect" id="Node000011" href="$classrtype_1_1_shoot_system.html#a64f78e84d716c4be6212bb29cbf6d6d9" title=" " alt="" coords="498,439,635,479"/>
-<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="743,462,636,462,636,456,743,456"/>
-<area shape="rect" id="Node000012" href="$classrtype_1_1game_1_1_game_engine.html#ab260b5c0bd4c8a2a4ebf709bc81c8537" title="Handles enemy shooting." alt="" coords="231,431,404,471"/>
-<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="482,459,405,456,405,451,482,454"/>
-<area shape="rect" id="Node000013" href="$classrtype_1_1game_1_1_game_engine.html#a1530cb97e98345b3c8fda869015515f5" title="Handles incoming network messages." alt="" coords="231,496,404,537"/>
-<area shape="poly" id="edge14_Node000011_Node000013" title=" " alt="" coords="483,481,406,499,404,494,482,476"/>
-<area shape="poly" id="edge13_Node000012_Node000009" title=" " alt="" coords="247,427,147,389,149,384,249,422"/>
-<area shape="rect" id="Node000014" href="$classrtype_1_1game_1_1_game_engine.html#ac418c4d40ad2161b226d5d9185428205" title="Handles incoming messages." alt="" coords="5,496,179,537"/>
-<area shape="poly" id="edge15_Node000013_Node000014" title=" " alt="" coords="216,519,179,519,179,514,216,514"/>
-<area shape="poly" id="edge17_Node000015_Node000004" title=" " alt="" coords="484,45,378,66,377,61,483,39"/>
-<area shape="rect" id="Node000017" href="$classrtype_1_1game_1_1_game_engine.html#a97db2a1ca4d19765d50b205048a57db1" title="Handles the spawning of enemies." alt="" coords="480,373,653,414"/>
-<area shape="poly" id="edge19_Node000016_Node000017" title=" " alt="" coords="725,396,654,396,654,391,725,391"/>
-<area shape="poly" id="edge20_Node000017_Node000009" title=" " alt="" coords="465,390,179,373,179,368,465,385"/>
-<area shape="rect" id="Node000019" href="$classrtype_1_1game_1_1_game_engine.html#a96d3bab930d110fed42b7e1b12c19b6a" title="Handles the spawning of walls." alt="" coords="231,316,404,357"/>
-<area shape="poly" id="edge22_Node000018_Node000019" title=" " alt="" coords="726,332,405,338,405,332,725,327"/>
-<area shape="poly" id="edge23_Node000019_Node000009" title=" " alt="" coords="216,352,179,357,179,352,216,347"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="979,214,1121,254"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="724,42,931,82"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1024,203,983,152,957,126,929,103,896,85,899,81,932,99,961,122,987,148,1028,199"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#af03aa744bf91fce869fdbf149a2909a1" title="Creates a new player entity." alt="" coords="741,156,914,197"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="963,215,908,200,910,195,964,209"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1game_1_1_game_engine.html#a8119c4338c128d37dab97943d54a6138" title="Handles the spawning of health packs." alt="" coords="227,214,409,254"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="964,237,409,237,409,232,964,232"/>
+<area shape="rect" id="Node000009" href="$classrtype_1_1_shoot_system.html#ab2a1a587a4db176535469808a2fb25a6" title=" " alt="" coords="759,402,896,442"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="1033,270,992,331,964,363,932,391,898,409,896,404,929,387,960,360,988,328,1029,267"/>
+<area shape="rect" id="Node000014" href="$classrtype_1_1_game.html#af2379ffcb2a6052549717918c76b2d04" title=" " alt="" coords="457,107,676,132"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="1016,205,977,173,930,147,867,129,801,118,736,114,677,114,677,108,736,109,801,113,868,124,932,142,980,169,1020,201"/>
+<area shape="rect" id="Node000015" href="$classrtype_1_1game_1_1_game_engine.html#aa5dca188c216bb3ef12918def5ad5c39" title="Spawns an enemy at the given position and level." alt="" coords="741,336,914,377"/>
+<area shape="poly" id="edge17_Node000001_Node000015" title=" " alt="" coords="1016,267,977,298,932,326,903,338,901,334,929,321,974,293,1012,263"/>
+<area shape="rect" id="Node000017" href="$classrtype_1_1game_1_1_game_engine.html#a275df6449e6a88d2a8b4516663b9aa4b" title="Spawns a wall at the given position." alt="" coords="741,271,914,312"/>
+<area shape="poly" id="edge20_Node000001_Node000017" title=" " alt="" coords="964,259,910,273,908,268,963,254"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a783aaa87f2124457c034fb4992254e63" title=" " alt="" coords="490,5,643,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="708,45,644,34,644,28,709,40"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="258,56,378,82"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="709,66,378,71,378,65,709,61"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="486,37,379,59,378,54,485,32"/>
+<area shape="rect" id="Node000005" href="$client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="67,56,117,82"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="243,72,117,72,117,66,243,66"/>
+<area shape="rect" id="Node000008" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="5,300,179,341"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="249,263,148,302,146,297,248,258"/>
+<area shape="rect" id="Node000010" href="$classrtype_1_1_shoot_system.html#a64f78e84d716c4be6212bb29cbf6d6d9" title=" " alt="" coords="498,402,635,442"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="743,425,636,425,636,420,743,420"/>
+<area shape="rect" id="Node000011" href="$classrtype_1_1game_1_1_game_engine.html#ab260b5c0bd4c8a2a4ebf709bc81c8537" title="Handles enemy shooting." alt="" coords="231,394,404,434"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="482,422,405,420,405,414,482,417"/>
+<area shape="rect" id="Node000012" href="$classrtype_1_1game_1_1_game_engine.html#a1530cb97e98345b3c8fda869015515f5" title="Handles incoming network messages." alt="" coords="231,459,404,500"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="483,444,406,462,404,457,482,439"/>
+<area shape="poly" id="edge12_Node000011_Node000008" title=" " alt="" coords="243,390,226,383,136,344,139,339,228,378,245,385"/>
+<area shape="rect" id="Node000013" href="$classrtype_1_1game_1_1_game_engine.html#ac418c4d40ad2161b226d5d9185428205" title="Handles incoming messages." alt="" coords="5,459,179,500"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="216,482,179,482,179,477,216,477"/>
+<area shape="poly" id="edge16_Node000014_Node000004" title=" " alt="" coords="485,106,378,84,379,78,486,100"/>
+<area shape="rect" id="Node000016" href="$classrtype_1_1game_1_1_game_engine.html#a97db2a1ca4d19765d50b205048a57db1" title="Handles the spawning of enemies." alt="" coords="231,328,404,369"/>
+<area shape="poly" id="edge18_Node000015_Node000016" title=" " alt="" coords="725,358,405,353,405,348,726,353"/>
+<area shape="poly" id="edge19_Node000016_Node000008" title=" " alt="" coords="216,339,179,334,179,329,216,334"/>
+<area shape="rect" id="Node000018" href="$classrtype_1_1game_1_1_game_engine.html#a96d3bab930d110fed42b7e1b12c19b6a" title="Handles the spawning of walls." alt="" coords="480,271,653,312"/>
+<area shape="poly" id="edge21_Node000017_Node000018" title=" " alt="" coords="725,294,654,294,654,289,725,289"/>
+<area shape="poly" id="edge22_Node000018_Node000008" title=" " alt="" coords="465,300,179,318,179,313,465,295"/>
 </map>

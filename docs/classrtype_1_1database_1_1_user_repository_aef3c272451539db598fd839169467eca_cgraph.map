@@ -1,8 +1,8 @@
 <map id="rtype::database::UserRepository::createUser" name="rtype::database::UserRepository::createUser">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,216,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_database_manager.html#ae405c700b13fd0dabd79154a9e1d0785" title=" " alt="" coords="522,5,697,46"/>
+<area shape="rect" id="Node000001" title="Creates a new user." alt="" coords="5,5,216,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_database_manager.html#aa7c6edc7ff9ac9178f19c3496dcdb463" title="Gets the SQLite handle." alt="" coords="522,5,697,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,20,264,19,474,19,506,20,506,25,474,24,264,24,216,25"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1database_1_1_user_repository.html#aa188faa63e4c061903401df3598ab645" title=" " alt="" coords="264,33,474,74"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1database_1_1_user_repository.html#aa188faa63e4c061903401df3598ab645" title="Gets a user by their username." alt="" coords="264,33,474,74"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,34,248,38,248,43,216,40"/>
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="474,39,506,35,507,40,475,44"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="rtype::database::UserRepository" name="rtype::database::UserRepository">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,312,205,480"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_database_manager.html" title=" " alt="" coords="23,5,188,249"/>
+<area shape="rect" id="Node000001" title="Repository for user data." alt="" coords="5,312,205,480"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_database_manager.html" title="Manages the SQLite database." alt="" coords="23,5,188,249"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,249,108,295,102,295,102,249"/>
 </map>

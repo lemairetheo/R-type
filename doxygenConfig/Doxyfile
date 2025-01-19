@@ -30,7 +30,7 @@ UML_LOOK              = YES
 CALL_GRAPH            = YES
 CALLER_GRAPH          = YES
 
-USE_MDFILE_AS_MAINPAGE = mainPage.md
+USE_MDFILE_AS_MAINPAGE = doxygenConfig/mainPage.md
 HTML_EXTRA_STYLESHEET = doxygenConfig/doxygen-awesome.css
 
 # Types de fichiers à documenter

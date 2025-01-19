@@ -100,19 +100,23 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>Manages the SQLite database.  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_database_manager_8hpp_source.html">DatabaseManager.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for rtype::database::DatabaseManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1database_1_1_database_manager__coll__graph.png" border="0" usemap="#artype_1_1database_1_1_database_manager_coll__map" alt="Collaboration graph"/></div>
 <map name="artype_1_1database_1_1_database_manager_coll__map" id="artype_1_1database_1_1_database_manager_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,170,249"/>
+<area shape="rect" title="Manages the SQLite database." alt="" coords="5,5,170,249"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1database_1_1_database_manager_1_1_statement.html">Statement</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Represents a prepared statement.  <a href="classrtype_1_1database_1_1_database_manager_1_1_statement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -124,19 +128,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a536010629fadb4b80cc9dc5ed3c1df89" id="r_a536010629fadb4b80cc9dc5ed3c1df89"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a536010629fadb4b80cc9dc5ed3c1df89">DatabaseManager</a> (const <a class="el" href="classrtype_1_1database_1_1_database_manager.html">DatabaseManager</a> &amp;)=delete</td></tr>
 <tr class="separator:a536010629fadb4b80cc9dc5ed3c1df89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae36f91ac2e19fcccea3e28ee9508522c" id="r_ae36f91ac2e19fcccea3e28ee9508522c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1database_1_1_database_manager.html">DatabaseManager</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae36f91ac2e19fcccea3e28ee9508522c">operator=</a> (const <a class="el" href="classrtype_1_1database_1_1_database_manager.html">DatabaseManager</a> &amp;)=delete</td></tr>
+<tr class="memdesc:ae36f91ac2e19fcccea3e28ee9508522c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes an SQL query.  <br /></td></tr>
 <tr class="separator:ae36f91ac2e19fcccea3e28ee9508522c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a228ce99e106afd69ff455bf035dcb8cf" id="r_a228ce99e106afd69ff455bf035dcb8cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a228ce99e106afd69ff455bf035dcb8cf">execute</a> (const std::string &amp;sql) const</td></tr>
+<tr class="memdesc:a228ce99e106afd69ff455bf035dcb8cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes an SQL query.  <br /></td></tr>
 <tr class="separator:a228ce99e106afd69ff455bf035dcb8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cf0eccca73b85ffc93ff556a6dc8654" id="r_a3cf0eccca73b85ffc93ff556a6dc8654"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cf0eccca73b85ffc93ff556a6dc8654">query</a> (const std::string &amp;sql, std::function&lt; void(sqlite3_stmt *)&gt; callback) const</td></tr>
+<tr class="memdesc:a3cf0eccca73b85ffc93ff556a6dc8654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes an SQL query with a callback.  <br /></td></tr>
 <tr class="separator:a3cf0eccca73b85ffc93ff556a6dc8654"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69dc58b82b01108d8b89ca684784d85f" id="r_a69dc58b82b01108d8b89ca684784d85f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69dc58b82b01108d8b89ca684784d85f">initializeDatabase</a> ()</td></tr>
+<tr class="memdesc:a69dc58b82b01108d8b89ca684784d85f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the database.  <br /></td></tr>
 <tr class="separator:a69dc58b82b01108d8b89ca684784d85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae405c700b13fd0dabd79154a9e1d0785" id="r_ae405c700b13fd0dabd79154a9e1d0785"><td class="memItemLeft" align="right" valign="top">sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae405c700b13fd0dabd79154a9e1d0785">getHandle</a> ()</td></tr>
-<tr class="separator:ae405c700b13fd0dabd79154a9e1d0785"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7c6edc7ff9ac9178f19c3496dcdb463" id="r_aa7c6edc7ff9ac9178f19c3496dcdb463"><td class="memItemLeft" align="right" valign="top">sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7c6edc7ff9ac9178f19c3496dcdb463">getHandle</a> () const</td></tr>
+<tr class="memdesc:aa7c6edc7ff9ac9178f19c3496dcdb463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the SQLite handle.  <br /></td></tr>
+<tr class="separator:aa7c6edc7ff9ac9178f19c3496dcdb463"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:ac21f3ecf9c6c250ad7445dba8b1fd300" id="r_ac21f3ecf9c6c250ad7445dba8b1fd300"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1database_1_1_database_manager_1_1_statement.html">Statement</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac21f3ecf9c6c250ad7445dba8b1fd300">prepare</a> (const std::string &amp;sql) const</td></tr>
+<tr class="memdesc:ac21f3ecf9c6c250ad7445dba8b1fd300"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares a statement.  <br /></td></tr>
 <tr class="separator:ac21f3ecf9c6c250ad7445dba8b1fd300"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -144,7 +154,9 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:abac64c3b0ec77f71dd191941172ebdc4" id="r_abac64c3b0ec77f71dd191941172ebdc4"><td class="memItemLeft" align="right" valign="top">sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abac64c3b0ec77f71dd191941172ebdc4">db</a></td></tr>
 <tr class="separator:abac64c3b0ec77f71dd191941172ebdc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages the SQLite database. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa8e755e4a84ca7720ce2dfc132718b17" name="aa8e755e4a84ca7720ce2dfc132718b17"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa8e755e4a84ca7720ce2dfc132718b17">&#9670;&#160;</a></span>DatabaseManager() <span class="overload">[1/2]</span></h2>
 
@@ -173,9 +185,9 @@ Here is the call graph for this function:</div>
 <div class="center"><img src="classrtype_1_1database_1_1_database_manager_aa8e755e4a84ca7720ce2dfc132718b17_cgraph.png" border="0" usemap="#aclassrtype_1_1database_1_1_database_manager_aa8e755e4a84ca7720ce2dfc132718b17_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1database_1_1_database_manager_aa8e755e4a84ca7720ce2dfc132718b17_cgraph" id="aclassrtype_1_1database_1_1_database_manager_aa8e755e4a84ca7720ce2dfc132718b17_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,191,46"/>
-<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a69dc58b82b01108d8b89ca684784d85f" title=" " alt="" coords="239,5,421,46"/>
+<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a69dc58b82b01108d8b89ca684784d85f" title="Initializes the database." alt="" coords="239,5,421,46"/>
 <area shape="poly" title=" " alt="" coords="191,23,223,23,223,28,191,28"/>
-<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a228ce99e106afd69ff455bf035dcb8cf" title=" " alt="" coords="469,5,644,46"/>
+<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a228ce99e106afd69ff455bf035dcb8cf" title="Executes an SQL query." alt="" coords="469,5,644,46"/>
 <area shape="poly" title=" " alt="" coords="421,23,453,23,453,28,421,28"/>
 </map>
 </div>
@@ -239,13 +251,21 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Executes an SQL query. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>The SQL query. </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1database_1_1_database_manager_a228ce99e106afd69ff455bf035dcb8cf_icgraph.png" border="0" usemap="#aclassrtype_1_1database_1_1_database_manager_a228ce99e106afd69ff455bf035dcb8cf_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1database_1_1_database_manager_a228ce99e106afd69ff455bf035dcb8cf_icgraph" id="aclassrtype_1_1database_1_1_database_manager_a228ce99e106afd69ff455bf035dcb8cf_icgraph">
-<area shape="rect" title=" " alt="" coords="469,5,644,46"/>
-<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a69dc58b82b01108d8b89ca684784d85f" title=" " alt="" coords="239,5,421,46"/>
+<area shape="rect" title="Executes an SQL query." alt="" coords="469,5,644,46"/>
+<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a69dc58b82b01108d8b89ca684784d85f" title="Initializes the database." alt="" coords="239,5,421,46"/>
 <area shape="poly" title=" " alt="" coords="454,28,421,28,421,23,454,23"/>
 <area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#aa8e755e4a84ca7720ce2dfc132718b17" title=" " alt="" coords="5,5,191,46"/>
 <area shape="poly" title=" " alt="" coords="223,28,191,28,191,23,223,23"/>
@@ -254,8 +274,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ae405c700b13fd0dabd79154a9e1d0785" name="ae405c700b13fd0dabd79154a9e1d0785"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae405c700b13fd0dabd79154a9e1d0785">&#9670;&#160;</a></span>getHandle()</h2>
+<a id="aa7c6edc7ff9ac9178f19c3496dcdb463" name="aa7c6edc7ff9ac9178f19c3496dcdb463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7c6edc7ff9ac9178f19c3496dcdb463">&#9670;&#160;</a></span>getHandle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,38 +287,41 @@ Here is the caller graph for this function:</div>
           <td class="memname">sqlite3 * rtype::database::DatabaseManager::getHandle </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the SQLite handle. </p>
+<dl class="section return"><dt>Returns</dt><dd>The SQLite handle. </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classrtype_1_1database_1_1_database_manager_ae405c700b13fd0dabd79154a9e1d0785_icgraph.png" border="0" usemap="#aclassrtype_1_1database_1_1_database_manager_ae405c700b13fd0dabd79154a9e1d0785_icgraph" alt=""/></div>
-<map name="aclassrtype_1_1database_1_1_database_manager_ae405c700b13fd0dabd79154a9e1d0785_icgraph" id="aclassrtype_1_1database_1_1_database_manager_ae405c700b13fd0dabd79154a9e1d0785_icgraph">
-<area shape="rect" title=" " alt="" coords="528,242,703,283"/>
-<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#aef3c272451539db598fd839169467eca" title=" " alt="" coords="5,115,216,156"/>
+<div class="center"><img src="classrtype_1_1database_1_1_database_manager_aa7c6edc7ff9ac9178f19c3496dcdb463_icgraph.png" border="0" usemap="#aclassrtype_1_1database_1_1_database_manager_aa7c6edc7ff9ac9178f19c3496dcdb463_icgraph" alt=""/></div>
+<map name="aclassrtype_1_1database_1_1_database_manager_aa7c6edc7ff9ac9178f19c3496dcdb463_icgraph" id="aclassrtype_1_1database_1_1_database_manager_aa7c6edc7ff9ac9178f19c3496dcdb463_icgraph">
+<area shape="rect" title="Gets the SQLite handle." alt="" coords="528,242,703,283"/>
+<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#aef3c272451539db598fd839169467eca" title="Creates a new user." alt="" coords="5,115,216,156"/>
 <area shape="poly" title=" " alt="" coords="603,228,587,181,562,128,526,76,504,54,479,37,449,22,423,13,399,9,375,9,325,18,265,37,227,52,191,73,135,117,132,113,188,69,224,48,263,32,324,13,375,3,399,3,425,8,452,17,481,32,507,50,530,73,567,125,592,179,608,226"/>
-<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#a16a0abdc1e7e1bd7849c563997d884c5" title=" " alt="" coords="264,46,480,87"/>
+<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#a16a0abdc1e7e1bd7849c563997d884c5" title="Gets the player&#39;s best score." alt="" coords="264,46,480,87"/>
 <area shape="poly" title=" " alt="" coords="593,230,546,165,514,131,479,102,456,90,458,85,481,97,518,127,550,161,597,227"/>
-<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#a346c9dd16e4fee60816b6e175818220e" title=" " alt="" coords="267,111,477,152"/>
+<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#a346c9dd16e4fee60816b6e175818220e" title="Gets the top players." alt="" coords="267,111,477,152"/>
 <area shape="poly" title=" " alt="" coords="578,234,532,200,479,167,450,155,452,150,481,163,535,195,581,230"/>
-<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#a637b27b50a15349a3ada17326e9ee253" title=" " alt="" coords="264,177,480,217"/>
+<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#a637b27b50a15349a3ada17326e9ee253" title="Gets the top scores." alt="" coords="264,177,480,217"/>
 <area shape="poly" title=" " alt="" coords="522,240,450,221,451,215,523,235"/>
-<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#aa188faa63e4c061903401df3598ab645" title=" " alt="" coords="267,242,477,283"/>
+<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#aa188faa63e4c061903401df3598ab645" title="Gets a user by their username." alt="" coords="267,242,477,283"/>
 <area shape="poly" title=" " alt="" coords="513,265,478,265,478,260,513,260"/>
-<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#a56caa8fda6889badc25d521e042d90e6" title=" " alt="" coords="264,307,480,348"/>
+<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#a56caa8fda6889badc25d521e042d90e6" title="Gets the scores of a user." alt="" coords="264,307,480,348"/>
 <area shape="poly" title=" " alt="" coords="523,290,451,309,450,304,522,285"/>
-<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#a646a4a7f2a4c37a3e0151a32641012cf" title=" " alt="" coords="267,373,477,413"/>
+<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#a646a4a7f2a4c37a3e0151a32641012cf" title="Updates the user&#39;s last connection time." alt="" coords="267,373,477,413"/>
 <area shape="poly" title=" " alt="" coords="581,295,535,330,481,362,452,375,450,370,479,357,532,325,578,291"/>
-<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#ac048d94d3f32b11be1660f8d90b7248b" title=" " alt="" coords="264,438,480,479"/>
+<area shape="rect" href="classrtype_1_1database_1_1_score_repository.html#ac048d94d3f32b11be1660f8d90b7248b" title="Updates the player&#39;s score." alt="" coords="264,438,480,479"/>
 <area shape="poly" title=" " alt="" coords="597,298,550,363,518,398,481,427,458,440,456,435,479,423,514,394,546,360,593,295"/>
-<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#a678fecb4a212caec04dff3a569d84ed9" title=" " alt="" coords="267,503,477,544"/>
+<area shape="rect" href="classrtype_1_1database_1_1_user_repository.html#a678fecb4a212caec04dff3a569d84ed9" title="Updates the user&#39;s stats." alt="" coords="267,503,477,544"/>
 <area shape="poly" title=" " alt="" coords="605,298,588,342,561,395,526,447,482,492,461,505,459,501,478,488,522,444,557,392,583,340,600,296"/>
 <area shape="poly" title=" " alt="" coords="280,239,263,231,195,195,139,159,142,154,198,191,265,227,282,234"/>
 </map>
@@ -320,13 +343,15 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Initializes the database. </p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_cgraph.png" border="0" usemap="#aclassrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_cgraph" id="aclassrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,188,46"/>
-<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a228ce99e106afd69ff455bf035dcb8cf" title=" " alt="" coords="236,5,411,46"/>
+<area shape="rect" title="Initializes the database." alt="" coords="5,5,188,46"/>
+<area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#a228ce99e106afd69ff455bf035dcb8cf" title="Executes an SQL query." alt="" coords="236,5,411,46"/>
 <area shape="poly" title=" " alt="" coords="188,23,220,23,220,28,188,28"/>
 </map>
 </div>
@@ -335,7 +360,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_icgraph.png" border="0" usemap="#aclassrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_icgraph" id="aclassrtype_1_1database_1_1_database_manager_a69dc58b82b01108d8b89ca684784d85f_icgraph">
-<area shape="rect" title=" " alt="" coords="239,5,421,46"/>
+<area shape="rect" title="Initializes the database." alt="" coords="239,5,421,46"/>
 <area shape="rect" href="classrtype_1_1database_1_1_database_manager.html#aa8e755e4a84ca7720ce2dfc132718b17" title=" " alt="" coords="5,5,191,46"/>
 <area shape="poly" title=" " alt="" coords="223,28,191,28,191,23,223,23"/>
 </map>
@@ -366,6 +391,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Executes an SQL query. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>The SQL query. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="ac21f3ecf9c6c250ad7445dba8b1fd300" name="ac21f3ecf9c6c250ad7445dba8b1fd300"></a>
@@ -391,6 +424,15 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
+<p>Prepares a statement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>The SQL query. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The prepared statement. </dd></dl>
+
 </div>
 </div>
 <a id="a3cf0eccca73b85ffc93ff556a6dc8654" name="a3cf0eccca73b85ffc93ff556a6dc8654"></a>
@@ -411,6 +453,15 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Executes an SQL query with a callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sql</td><td>The SQL query. </td></tr>
+    <tr><td class="paramname">callback</td><td>The callback to execute. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

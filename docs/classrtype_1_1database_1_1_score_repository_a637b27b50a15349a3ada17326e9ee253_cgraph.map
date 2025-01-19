@@ -1,5 +1,5 @@
 <map id="rtype::database::ScoreRepository::getTopScores" name="rtype::database::ScoreRepository::getTopScores">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,222,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_database_manager.html#ae405c700b13fd0dabd79154a9e1d0785" title=" " alt="" coords="270,5,445,46"/>
+<area shape="rect" id="Node000001" title="Gets the top scores." alt="" coords="5,5,222,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_database_manager.html#aa7c6edc7ff9ac9178f19c3496dcdb463" title="Gets the SQLite handle." alt="" coords="270,5,445,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,23,254,23,254,28,222,28"/>
 </map>

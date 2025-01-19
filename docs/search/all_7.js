@@ -27,7 +27,7 @@ var searchData=
   ['getdata_24',['getData',['../classrtype_1_1_sparse_array.html#afcca30836e659d6a8840c8f54e3c8952',1,'rtype::SparseArray']]],
   ['getenemyattributes_25',['getEnemyAttributes',['../classrtype_1_1game_1_1_game_engine.html#a47f13fad43470cdfb4aef5ab68514ca6',1,'rtype::game::GameEngine']]],
   ['getentitieswithcomponents_26',['getEntitiesWithComponents',['../classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88',1,'rtype::EntityManager']]],
-  ['gethandle_27',['getHandle',['../classrtype_1_1database_1_1_database_manager.html#ae405c700b13fd0dabd79154a9e1d0785',1,'rtype::database::DatabaseManager']]],
+  ['gethandle_27',['getHandle',['../classrtype_1_1database_1_1_database_manager.html#aa7c6edc7ff9ac9178f19c3496dcdb463',1,'rtype::database::DatabaseManager']]],
   ['getinstance_28',['getInstance',['../classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44',1,'rtype::ResourceManager']]],
   ['getisplaying_29',['getIsPlaying',['../classrtype_1_1_menu.html#a2a193f46cc33796afd858ce6236e5625',1,'rtype::Menu']]],
   ['getplaybutton_30',['getPlayButton',['../classrtype_1_1_menu.html#a19c92dccf1941610620994d72d7ec534',1,'rtype::Menu']]],

@@ -14,12 +14,13 @@ var searchData=
   ['bestscorepacket_11',['BestScorePacket',['../structrtype_1_1network_1_1_best_score_packet.html',1,'rtype::network']]],
   ['bestscoretext_12',['bestScoreText',['../classrtype_1_1_game.html#aa68d11d961ec2b24e8b1dcec598dc293',1,'rtype::Game']]],
   ['bind_13',['bind',['../classrtype_1_1database_1_1_database_manager_1_1_statement.html#a2b2b49f209995ef4f6e70c041701140e',1,'rtype::database::DatabaseManager::Statement::bind(int idx, int value)'],['../classrtype_1_1database_1_1_database_manager_1_1_statement.html#a259447cb2d977b428f11f91c932e3e20',1,'rtype::database::DatabaseManager::Statement::bind(int idx, const std::string &amp;value)']]],
-  ['broadcast_14',['broadcast',['../classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1',1,'rtype::network::NetworkManager']]],
-  ['broadcastendgamestate_15',['broadcastEndGameState',['../classrtype_1_1game_1_1_game_engine.html#aeb126ba10faa6f3f177151c904e14216',1,'rtype::game::GameEngine']]],
-  ['broadcastworldstate_16',['broadcastWorldState',['../classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5',1,'rtype::game::GameEngine']]],
-  ['button_17',['Button',['../classrtype_1_1_button.html',1,'rtype::Button'],['../classrtype_1_1_button.html#af26dba52692465a859a7320c82c75372',1,'rtype::Button::Button()']]],
-  ['button_2ecpp_18',['Button.cpp',['../_button_8cpp.html',1,'']]],
-  ['button_2ehpp_19',['Button.hpp',['../_button_8hpp.html',1,'']]],
-  ['buttonshape_20',['buttonShape',['../classrtype_1_1_button.html#a511ebbbfcc33a006c203141b8980bb51',1,'rtype::Button']]],
-  ['buttontext_21',['buttonText',['../classrtype_1_1_button.html#a39a9739eeefc278415476d3560dcab70',1,'rtype::Button']]]
+  ['bossoflevelisdead_14',['bossOfLevelIsDead',['../classrtype_1_1game_1_1_game_engine.html#a9268997ac283f24944e77cf7bc74997b',1,'rtype::game::GameEngine']]],
+  ['broadcast_15',['broadcast',['../classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1',1,'rtype::network::NetworkManager']]],
+  ['broadcastendgamestate_16',['broadcastEndGameState',['../classrtype_1_1game_1_1_game_engine.html#aeb126ba10faa6f3f177151c904e14216',1,'rtype::game::GameEngine']]],
+  ['broadcastworldstate_17',['broadcastWorldState',['../classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5',1,'rtype::game::GameEngine']]],
+  ['button_18',['Button',['../classrtype_1_1_button.html',1,'rtype::Button'],['../classrtype_1_1_button.html#af26dba52692465a859a7320c82c75372',1,'rtype::Button::Button()']]],
+  ['button_2ecpp_19',['Button.cpp',['../_button_8cpp.html',1,'']]],
+  ['button_2ehpp_20',['Button.hpp',['../_button_8hpp.html',1,'']]],
+  ['buttonshape_21',['buttonShape',['../classrtype_1_1_button.html#a511ebbbfcc33a006c203141b8980bb51',1,'rtype::Button']]],
+  ['buttontext_22',['buttonText',['../classrtype_1_1_button.html#a39a9739eeefc278415476d3560dcab70',1,'rtype::Button']]]
 ];

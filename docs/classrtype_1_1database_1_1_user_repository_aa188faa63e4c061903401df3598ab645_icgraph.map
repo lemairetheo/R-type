@@ -1,5 +1,5 @@
 <map id="rtype::database::UserRepository::getUser" name="rtype::database::UserRepository::getUser">
-<area shape="rect" id="Node000001" title=" " alt="" coords="264,5,474,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_user_repository.html#aef3c272451539db598fd839169467eca" title=" " alt="" coords="5,5,216,46"/>
+<area shape="rect" id="Node000001" title="Gets a user by their username." alt="" coords="264,5,474,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1database_1_1_user_repository.html#aef3c272451539db598fd839169467eca" title="Creates a new user." alt="" coords="5,5,216,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,28,216,28,216,23,248,23"/>
 </map>
