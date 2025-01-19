@@ -9,6 +9,8 @@
 #include <thread>
 #include <atomic>
 
+#include "ecs/Component.hpp"
+
 namespace rtype::network {
     /**
      * \class NetworkClient
@@ -21,6 +23,9 @@ namespace rtype::network {
         void stop() override;
         void sendTo(const std::vector<uint8_t>& data);
         void setMessageCallback(std::function<void(const std::vector<uint8_t>&, const asio::ip::udp::endpoint&)> callback) override;
+        std::vector<uint8_t> createConnectRequest(const std::string& username);
+        std::vector<uint8_t> createDisconnectRequest();
+        std::vector<uint8_t> createPlayerInputPacket(const InputComponent& input);
 
     private:
         void receiveLoop();

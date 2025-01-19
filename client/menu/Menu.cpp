@@ -80,7 +80,8 @@ namespace rtype {
                 if (!ip_input->getValue().empty() && !port_input->getValue().empty() && !username_input->getValue().empty()) {
                     isPlaying = true;
                     inMenu = false;
-                }
+                } else
+                    std::cerr << "Please fill all fields" << std::endl;
             }
         }
         if (isInSettings) {

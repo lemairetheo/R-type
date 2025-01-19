@@ -11,7 +11,7 @@
 #include "shared/systems/MouvementSystem.hpp"
 #include "network/NetworkManager.hpp"
 #include <systems/RenderSystem.hpp>
-#include "network/packetType.hpp"
+#include "shared/network/packetType.hpp"
 #include "systems/AnimationSystem.hpp"
 #include "gameComponents/backgroundComponent.hpp"
 #include "systems/BackgroundSystem.hpp"
@@ -58,7 +58,7 @@ namespace rtype {
         std::vector<std::unique_ptr<ISystem> > systems;
         std::unique_ptr<network::NetworkClient> network;
         std::chrono::steady_clock::time_point lastUpdate = std::chrono::steady_clock::now();
-
+        void cleanupEntities();
         void initGame();
         void initGameTexts();
         void loadResources();

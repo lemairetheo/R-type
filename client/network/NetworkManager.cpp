@@ -5,6 +5,8 @@
 
 #include "NetworkManager.hpp"
 
+#include "network/packetType.hpp"
+
 namespace rtype::network {
 
     NetworkClient::NetworkClient(const std::string& serverIP, uint16_t serverPort):
@@ -104,5 +106,59 @@ namespace rtype::network {
                 startReceive();  // Try to continue receiving despite error
             }
         }
+    }
+
+    std::vector<uint8_t> NetworkClient::createConnectRequest(const std::string& username) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(ConnectRequestPacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* request = reinterpret_cast<ConnectRequestPacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::CONNECT_REQUEST);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        std::strncpy(request->username, username.c_str(), sizeof(request->username) - 1);
+        request->username[sizeof(request->username) - 1] = '\0';
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkClient::createDisconnectRequest() {
+        std::vector<uint8_t> packet(sizeof(PacketHeader));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::DISCONNECT);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkClient::createPlayerInputPacket(const InputComponent& input) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(PlayerInputPacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* inputPacket = reinterpret_cast<PlayerInputPacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::PLAYER_INPUT);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        inputPacket->up = input.up;
+        inputPacket->down = input.down;
+        inputPacket->left = input.left;
+        inputPacket->right = input.right;
+        inputPacket->space = input.space;
+        inputPacket->ultimate = input.Ultimate;
+
+        return packet;
     }
 }

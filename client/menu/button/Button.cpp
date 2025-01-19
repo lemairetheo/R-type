@@ -4,7 +4,7 @@ namespace rtype {
 
     Button::Button(const sf::Vector2f& position, const sf::Vector2f& size, const std::string& text,
                    const sf::Color& textColor, const sf::Color& normalColor, const sf::Color& hoverColor, const sf::Color& activeColor)
-        : normalColor(normalColor), hoverColor(hoverColor), activeColor(activeColor), _text(text),
+        : _text(text), normalColor(normalColor), hoverColor(hoverColor), activeColor(activeColor),
           isActive(false), isHovered(false), currentScale(1.0f), targetScale(1.0f), onClick(nullptr) {
         if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
             throw std::runtime_error("Failed to load font!");

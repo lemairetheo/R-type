@@ -51,7 +51,9 @@ namespace rtype::network {
         SCORE_UPDATE = 0x30,    ///< Mise à jour d'un score
         BEST_SCORE = 0x31,      ///< Meilleur score
         PLAYER_STATS = 0x32,    ///< Nouveau type pour les statistiques complètes
-        GAME_STATS = 0x33       ///< Nouveau type pour les statistiques de la partie
+        GAME_STATS = 0x33,       ///< Nouveau type pour les statistiques de la partie
+        LEADERBOARD_REQUEST = 0x40,
+        LEADERBOARD_RESPONSE = 0x41
     };
 
     struct EntityUpdatePacket {
@@ -106,6 +108,17 @@ namespace rtype::network {
         int32_t current_score;
         int32_t time_elapsed;
         int32_t life_remaining;
+    };
+    struct LeaderboardEntry {
+        char username[32];
+        int32_t score;
+        int32_t level_reached;
+        int32_t time;
+    };
+
+    struct LeaderboardPacket {
+        uint32_t nb_entries;
+        LeaderboardEntry entries[10]; // Top 10 des scores
     };
 
 #pragma pack(pop)
