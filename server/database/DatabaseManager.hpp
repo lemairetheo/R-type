@@ -10,6 +10,7 @@
 #include <sqlite3.h>
 #include <string>
 #include <functional>
+#include <stdexcept>
 
 namespace rtype::database {
     class DatabaseManager {

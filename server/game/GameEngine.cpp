@@ -11,9 +11,6 @@ namespace rtype::game {
             dbManager = std::make_unique<database::DatabaseManager>("rtype_scores.db");
             scoreRepository = std::make_unique<database::ScoreRepository>(*dbManager);
             userRepository = std::make_unique<database::UserRepository>(*dbManager);
-            EntityID playerEntity = entities.createEntity();
-            entities.addComponent(playerEntity, Position{400.0f, 300.0f});
-            entities.addComponent(playerEntity, Velocity{0.0f, 0.0f});
             systems.push_back(std::make_unique<MovementSystem>());
         } catch (const std::exception& e) {
             std::cerr << "Failed to initialize: " << e.what() << std::endl;
