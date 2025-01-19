@@ -49,16 +49,18 @@ target_include_directories(r-type_client PRIVATE
         ${CMAKE_SOURCE_DIR}
 )
 
-# Liaison des bibliothèques
+target_link_libraries(r-type_client PRIVATE
+        sfml-system
+        sfml-window
+        sfml-graphics
+        sfml-audio
+        r-type-shared
+        asio::asio
+)
+
 if(WIN32)
     target_link_libraries(r-type_client PRIVATE
-            sfml-system
-            sfml-window
-            sfml-graphics
-            sfml-audio
             sfml-main
-            r-type-shared
-            asio::asio
             opengl32
             winmm
             gdi32
@@ -66,22 +68,13 @@ if(WIN32)
             ws2_32
             wsock32
     )
-else()
+elseif(APPLE)
     target_link_libraries(r-type_client PRIVATE
-            sfml-system
-            sfml-window
-            sfml-graphics
-            sfml-audio
-            r-type-shared
-            asio::asio
-
             "-framework CoreAudio"
             "-framework AudioToolbox"
             "-framework CoreFoundation"
-            # "-framework CoreServices"   # Ajoutez au besoin
     )
 endif()
-
 
 # Options de compilation
 if(MSVC)
