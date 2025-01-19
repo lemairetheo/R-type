@@ -81,6 +81,8 @@ namespace rtype::network {
         int life;   ///< life of the entity
         int score;  ///< score of the entity
         int level; ///< current level of the entity
+        bool isMainPlayer;   // Add this field to identify the local player
+        uint32_t playerNumber; // Add this to distinguish between different players
     };
 
     /**
