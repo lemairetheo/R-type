@@ -1,3 +1,5 @@
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
+
 add_executable(r-type_server
         main.cpp
         network/NetworkManager.cpp
@@ -23,7 +25,7 @@ target_link_libraries(r-type_server
         PRIVATE
         r-type-shared
         asio::asio
-        sqlite3
+        unofficial::sqlite3::sqlite3
 )
 
 # Platform specific configurations

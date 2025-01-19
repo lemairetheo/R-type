@@ -10,7 +10,8 @@
       "features": ["graphics"]
     },
     {
-      "name": "sqlite3"
+      "name": "sqlite3",
+      "features": ["tool"]
     }
   ],
   "builtin-baseline": "4b3b6201414638abfcd8ef4629dfbd958985667e"
