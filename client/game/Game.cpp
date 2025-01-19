@@ -388,6 +388,7 @@ namespace rtype {
                     handleEvents();
                     update();
                     render();
+                    updateStatsDisplay();
                 }
                 currentState = playerIsDead ? GameState::GAME_OVER : GameState::VICTORY;
                 while (window.isOpen() && (currentState == GameState::VICTORY || currentState == GameState::GAME_OVER || currentState == GameState::LEADERBOARD)) {
