@@ -203,7 +203,7 @@ namespace rtype::game {
                 ++it;
             }
         }
-        if (enemySpawnQueue.size() == 0 && entities.getEntitiesWithComponents<Enemy>().empty()) {
+        if (enemySpawnQueue.size() == 0 && entities.getEntitiesWithComponents<Enemy>().empty() && currentLevel != 4) {
             auto packet = network.createLooseGamePacket();
             network.broadcast(packet);
         }

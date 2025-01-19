@@ -745,8 +745,6 @@ namespace rtype {
             }
         } else if (currentState == GameState::VICTORY) {
             window.draw(gameOverText);
-            sf::Text finalScoreText = UiHelpers::createText("Final score: " + std::to_string(playerScore), font, sf::Color::White, {400, 350}, 20, sf::Text::Bold);
-            window.draw(finalScoreText);
             window.draw(endGameText);
         } else if (currentState == GameState::LEADERBOARD) {
             renderLeaderboard();
