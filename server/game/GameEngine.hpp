@@ -114,6 +114,8 @@ namespace rtype::game {
               {3, 35}
           }; ///< Score thresholds for each level.
 
+            bool bossOfLevelIsDead = false; ///< For check if boos is dead in current level of the game
+
           /**
            * @brief Handles incoming network messages.
            * @param data The data of the message.
