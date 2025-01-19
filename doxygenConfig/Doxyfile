@@ -5,7 +5,7 @@ PROJECT_BRIEF         = "A networked implementation of the classic R-Type game"
 
 # Configuration des répertoires
 OUTPUT_DIRECTORY       = docs/
-INPUT                  = ./server/ ./client/ ./shared/
+INPUT                  = ./server/ ./client/ ./shared/ ./doxygenConfig/
 RECURSIVE              = YES
 
 # Configuration de la sortie

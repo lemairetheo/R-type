@@ -15,8 +15,5 @@ Welcome to the documentation for the R-Type project. This project is a networked
 - **`shared/`**: Common libraries shared between client and server.
 - **`utils/`**: Utility scripts and tools.
 
-## Getting Started
-To set up and run the project, follow the instructions in the `globalArchitecture.md`.
-
 ---
-_Generated with Doxygen._
+_Generated with Doxygen and made with love._

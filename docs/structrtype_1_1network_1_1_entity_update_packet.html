@@ -97,25 +97,28 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>player input packet  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="packet_type_8hpp_source.html">packetType.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for rtype::network::EntityUpdatePacket:</div>
 <div class="dyncontent">
 <div class="center"><img src="structrtype_1_1network_1_1_entity_update_packet__coll__graph.png" border="0" usemap="#artype_1_1network_1_1_entity_update_packet_coll__map" alt="Collaboration graph"/></div>
 <map name="artype_1_1network_1_1_entity_update_packet_coll__map" id="artype_1_1network_1_1_entity_update_packet_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,183,270"/>
+<area shape="rect" title="player input packet" alt="" coords="5,5,183,270"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a8cc8abc15aeab377ee34f5a8db3247c0" id="r_a8cc8abc15aeab377ee34f5a8db3247c0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8cc8abc15aeab377ee34f5a8db3247c0">entityId</a></td></tr>
-<tr class="memdesc:a8cc8abc15aeab377ee34f5a8db3247c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID de l'entité  <br /></td></tr>
+<tr class="memdesc:a8cc8abc15aeab377ee34f5a8db3247c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ID of the entity.  <br /></td></tr>
 <tr class="separator:a8cc8abc15aeab377ee34f5a8db3247c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af95a97de8015a987ab5690c113818748" id="r_af95a97de8015a987ab5690c113818748"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af95a97de8015a987ab5690c113818748">entityId2</a></td></tr>
 <tr class="separator:af95a97de8015a987ab5690c113818748"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a04000e986cf3cf5979312d9542482c20" id="r_a04000e986cf3cf5979312d9542482c20"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04000e986cf3cf5979312d9542482c20">type</a></td></tr>
-<tr class="memdesc:a04000e986cf3cf5979312d9542482c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">le nombre signifie le type de l'entité  <br /></td></tr>
+<tr class="memdesc:a04000e986cf3cf5979312d9542482c20"><td class="mdescLeft">&#160;</td><td class="mdescRight">the type of the entity  <br /></td></tr>
 <tr class="separator:a04000e986cf3cf5979312d9542482c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeeed3f21360010acc76d324ed769289" id="r_aeeeed3f21360010acc76d324ed769289"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeeeed3f21360010acc76d324ed769289">x</a></td></tr>
 <tr class="memdesc:aeeeed3f21360010acc76d324ed769289"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structrtype_1_1_position.html">Position</a> X.  <br /></td></tr>
@@ -124,22 +127,25 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:ae469f42639e6195e992b3ab3459fb95c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structrtype_1_1_position.html">Position</a> Y.  <br /></td></tr>
 <tr class="separator:ae469f42639e6195e992b3ab3459fb95c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a030feda22a2b7b88cc47c6f5d0d25906" id="r_a030feda22a2b7b88cc47c6f5d0d25906"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a030feda22a2b7b88cc47c6f5d0d25906">dx</a></td></tr>
-<tr class="memdesc:a030feda22a2b7b88cc47c6f5d0d25906"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vélocité X.  <br /></td></tr>
+<tr class="memdesc:a030feda22a2b7b88cc47c6f5d0d25906"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structrtype_1_1_velocity.html">Velocity</a> X.  <br /></td></tr>
 <tr class="separator:a030feda22a2b7b88cc47c6f5d0d25906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08f7ec5bfeb1c52ec0fe9e67e83a7799" id="r_a08f7ec5bfeb1c52ec0fe9e67e83a7799"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08f7ec5bfeb1c52ec0fe9e67e83a7799">dy</a></td></tr>
-<tr class="memdesc:a08f7ec5bfeb1c52ec0fe9e67e83a7799"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vélocité Y.  <br /></td></tr>
+<tr class="memdesc:a08f7ec5bfeb1c52ec0fe9e67e83a7799"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="structrtype_1_1_velocity.html">Velocity</a> Y.  <br /></td></tr>
 <tr class="separator:a08f7ec5bfeb1c52ec0fe9e67e83a7799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89f7ac50a6077c055e8659ea8fb83134" id="r_a89f7ac50a6077c055e8659ea8fb83134"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89f7ac50a6077c055e8659ea8fb83134">life</a></td></tr>
-<tr class="memdesc:a89f7ac50a6077c055e8659ea8fb83134"><td class="mdescLeft">&#160;</td><td class="mdescRight">vie du player  <br /></td></tr>
+<tr class="memdesc:a89f7ac50a6077c055e8659ea8fb83134"><td class="mdescLeft">&#160;</td><td class="mdescRight">life of the entity  <br /></td></tr>
 <tr class="separator:a89f7ac50a6077c055e8659ea8fb83134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05fffc995ffade797450016e1463e50f" id="r_a05fffc995ffade797450016e1463e50f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05fffc995ffade797450016e1463e50f">score</a></td></tr>
-<tr class="memdesc:a05fffc995ffade797450016e1463e50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">score de la partie  <br /></td></tr>
+<tr class="memdesc:a05fffc995ffade797450016e1463e50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">score of the entity  <br /></td></tr>
 <tr class="separator:a05fffc995ffade797450016e1463e50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec46ac67d0c4390d77069ca83eb45739" id="r_aec46ac67d0c4390d77069ca83eb45739"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec46ac67d0c4390d77069ca83eb45739">level</a></td></tr>
-<tr class="memdesc:aec46ac67d0c4390d77069ca83eb45739"><td class="mdescLeft">&#160;</td><td class="mdescRight">level actuel  <br /></td></tr>
+<tr class="memdesc:aec46ac67d0c4390d77069ca83eb45739"><td class="mdescLeft">&#160;</td><td class="mdescRight">current level of the entity  <br /></td></tr>
 <tr class="separator:aec46ac67d0c4390d77069ca83eb45739"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Data Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>player input packet </p>
+<p>This structure defines the player input packet in the R-Type protocol. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a030feda22a2b7b88cc47c6f5d0d25906" name="a030feda22a2b7b88cc47c6f5d0d25906"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a030feda22a2b7b88cc47c6f5d0d25906">&#9670;&#160;</a></span>dx</h2>
 
@@ -152,7 +158,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Vélocité X. </p>
+<p><a class="el" href="structrtype_1_1_velocity.html">Velocity</a> X. </p>
 
 </div>
 </div>
@@ -168,7 +174,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Vélocité Y. </p>
+<p><a class="el" href="structrtype_1_1_velocity.html">Velocity</a> Y. </p>
 
 </div>
 </div>
@@ -184,7 +190,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ID de l'entité </p>
+<p>ID of the entity. </p>
 
 </div>
 </div>
@@ -214,7 +220,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>level actuel </p>
+<p>current level of the entity </p>
 
 </div>
 </div>
@@ -230,7 +236,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>vie du player </p>
+<p>life of the entity </p>
 
 </div>
 </div>
@@ -246,7 +252,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>score de la partie </p>
+<p>score of the entity </p>
 
 </div>
 </div>
@@ -262,7 +268,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>le nombre signifie le type de l'entité </p>
+<p>the type of the entity </p>
 
 </div>
 </div>

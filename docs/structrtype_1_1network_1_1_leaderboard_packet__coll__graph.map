@@ -1,5 +1,5 @@
 <map id="rtype::network::LeaderboardPacket" name="rtype::network::LeaderboardPacket">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,211,178,292"/>
-<area shape="rect" id="Node000002" href="$structrtype_1_1network_1_1_leaderboard_entry.html" title=" " alt="" coords="5,5,178,148"/>
+<area shape="rect" id="Node000001" title="leaderboard request packet" alt="" coords="5,211,178,292"/>
+<area shape="rect" id="Node000002" href="$structrtype_1_1network_1_1_leaderboard_entry.html" title="leaderboard request packet" alt="" coords="5,5,178,148"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,147,94,194,89,194,89,147"/>
 </map>

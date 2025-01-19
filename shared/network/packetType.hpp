@@ -9,10 +9,19 @@
 #include <cstdint>
 
 namespace rtype::network {
-
+    /**
+     * @brief connect request packet
+     *
+     * This structure defines the connect request packet in the R-Type protocol.
+     */
     struct ConnectRequestPacket {
         char username[32];
     };
+    /**
+     * @brief connect response packet
+     *
+     * This structure defines the connect response packet in the R-Type protocol.
+     */
     struct ConnectResponsePacket {
         uint32_t playerId;    ///< ID unique du joueur
         bool success;         ///< Si la connexion est acceptée
@@ -32,44 +41,52 @@ namespace rtype::network {
         };
 
     /**
-     * @brief Types de paquets supportés
+     * @brief packet types enumeration
      *
-     * Énumération de tous les types de paquets possibles dans le protocole.
+     * This enumeration defines the different types of packets in the R-Type protocol.
      */
     enum class PacketType : uint8_t {
-        CONNECT_REQUEST = 0x01,    ///< Demande de connexion client
-        CONNECT_RESPONSE = 0x02,   ///< Réponse du serveur à une demande de connexion
-        DISCONNECT = 0x03,         ///< Notification de déconnexion
-        HEARTBEAT = 0x04,         ///< Paquet de maintien de connexion
-
-        PLAYER_INPUT = 0x10,      ///< Entrées du joueur
-        PLAYER_SHOOT = 0x12,      ///< Missile du joueur
-        GAME_STATE = 0x11,         ///< État du jeu
-        ENTITY_UPDATE = 0x20, ///< Mise a jour d'une entité
-        ENTITY_DEATH = 0x21, //< Information sur une entité morte
-        END_GAME_STATE = 0x22,
-        SCORE_UPDATE = 0x30,    ///< Mise à jour d'un score
-        BEST_SCORE = 0x31,      ///< Meilleur score
-        PLAYER_STATS = 0x32,    ///< Nouveau type pour les statistiques complètes
-        GAME_STATS = 0x33,       ///< Nouveau type pour les statistiques de la partie
-        LEADERBOARD_REQUEST = 0x40,
-        LEADERBOARD_RESPONSE = 0x41
+        CONNECT_REQUEST = 0x01,    ///< ask for a connection
+        CONNECT_RESPONSE = 0x02,   ///< response to a connection request
+        DISCONNECT = 0x03,         ///< ask for a disconnection
+        HEARTBEAT = 0x04,         ///< keep the connection alive
+        PLAYER_INPUT = 0x10,      ///< player input
+        PLAYER_SHOOT = 0x12,      ///< player shoot
+        GAME_STATE = 0x11,         ///< game state
+        ENTITY_UPDATE = 0x20, ///< Update of an entity
+        ENTITY_DEATH = 0x21, ///< Entity death
+        END_GAME_STATE = 0x22, ///< End of the game
+        SCORE_UPDATE = 0x30,    ///< score as been update
+        BEST_SCORE = 0x31,      ///< Best score of the player as been set
+        PLAYER_STATS = 0x32,    ///< Player statistics
+        GAME_STATS = 0x33,       ///< Game statistics
+        LEADERBOARD_REQUEST = 0x40, ///< Leaderboard request
+        LEADERBOARD_RESPONSE = 0x41 ///< Leaderboard response
     };
 
+    /**
+     * @brief player input packet
+     *
+     * This structure defines the player input packet in the R-Type protocol.
+     */
     struct EntityUpdatePacket {
-        uint32_t entityId;   ///< ID de l'entité
+        uint32_t entityId;   ///< ID of the entity
         uint32_t entityId2;
-        int type;            ///< le nombre signifie le type de l'entité
+        int type;            ///< the type of the entity
         float x;             ///< Position X
         float y;             ///< Position Y
-        float dx;            ///< Vélocité X
-        float dy;            ///< Vélocité Y
-        int life;   ///< vie du player
-        int score;  ///< score de la partie
-        int level; ///< level actuel
+        float dx;            ///< Velocity X
+        float dy;            ///< Velocity Y
+        int life;   ///< life of the entity
+        int score;  ///< score of the entity
+        int level; ///< current level of the entity
     };
 
-
+    /**
+     * @brief player input packet
+     *
+     * This structure defines the player input packet in the R-Type protocol.
+     */
     struct PlayerInputPacket {
         bool up;
         bool down;
@@ -78,22 +95,35 @@ namespace rtype::network {
         bool space;
         bool ultimate;
     };
-
+    /**
+     * @brief player shoot packet
+     *
+     * This structure defines the player shoot packet in the R-Type protocol.
+     */
     struct ScoreUpdatePacket {
         char username[32];
-        int32_t time;           // Temps total de la partie
-        int32_t score;          // Score final
-        int32_t level_reached;  // Niveau atteint
-        int32_t enemies_killed; // Nombre d'ennemis tués
+        int32_t time;
+        int32_t score;
+        int32_t level_reached;
+        int32_t enemies_killed;
     };
-
+    /**
+     * @brief player shoot packet
+     *
+     * This structure defines the player shoot packet in the R-Type protocol.
+     */
     struct BestScorePacket {
         char username[32];
-        int32_t best_time;      // Meilleur temps
-        int32_t games_won;      // Nombre de parties gagnées
-        int32_t total_playtime; // Temps de jeu total
-        float avg_score;        // Score moyen
+        int32_t best_time;
+        int32_t games_won;
+        int32_t total_playtime;
+        float avg_score;
     };
+    /**
+     * @brief player's statistics packet
+     *
+     * This structure defines the player's statistics packet in the R-Type protocol.
+     */
     struct PlayerStatsPacket {
         char username[32];
         int32_t total_games_played;
@@ -102,6 +132,11 @@ namespace rtype::network {
         int32_t total_enemies_killed;
         int32_t highest_score;
     };
+    /**
+     * @brief game's statistics packet
+     *
+     * This structure defines the game's statistics packet in the R-Type protocol.
+     */
     struct GameStatsPacket {
         int32_t current_level;
         int32_t enemies_killed;
@@ -109,16 +144,25 @@ namespace rtype::network {
         int32_t time_elapsed;
         int32_t life_remaining;
     };
+    /**
+     * @brief leaderboard request packet
+     *
+     * This structure defines the leaderboard request packet in the R-Type protocol.
+     */
     struct LeaderboardEntry {
         char username[32];
         int32_t score;
         int32_t level_reached;
         int32_t time;
     };
-
+    /**
+     * @brief leaderboard request packet
+     *
+     * This structure defines the leaderboard request packet in the R-Type protocol.
+     */
     struct LeaderboardPacket {
         uint32_t nb_entries;
-        LeaderboardEntry entries[10]; // Top 10 des scores
+        LeaderboardEntry entries[10];
     };
 
 #pragma pack(pop)
