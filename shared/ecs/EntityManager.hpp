@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.hpp"
 #include "SparseArray.hpp"
+#include "Component.hpp"
 #include "IComponent.hpp"
 #include <unordered_map>
 #include <typeindex>
