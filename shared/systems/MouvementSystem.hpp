@@ -33,7 +33,7 @@ namespace rtype {
                         for (EntityID wall : walls) {
                             const auto& wallPos = manager.getComponent<Position>(wall);
                             // Check collision for enemies
-                            if (manager.hasComponent<Enemy>(entity) && checkCollisionRect({pos.x + (vel.dx * dt), pos.y + (vel.dy * dt)}, 25.0f, wallPos, 80.0f, 80.0f)) { // Auto move enemies
+                            if (manager.hasComponent<Enemy>(entity) && checkCollisionRect({pos.x + (vel.dx * dt), pos.y + (vel.dy * dt)}, 25.0f, wallPos, 120.0f, 80.0f)) { // Auto move enemies
                                 pos.y += 5 * dt;
                             }
                             // General collision detection (enemies and players)

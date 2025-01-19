@@ -18,16 +18,6 @@ namespace rtype::game {
         }
     }
 
-    void GameEngine::initializeLevel() {
-        auto enemies = entities.getEntitiesWithComponents<Enemy>();
-        for (EntityID enemy : enemies) {
-            entities.destroyEntity(enemy);
-        }
-        enemySpawnQueue.clear();
-        currentLevel = 1;
-        spawnEnemiesForLevel(currentLevel);
-    }
-
     void GameEngine::broadcastWorldState() {
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
             if (!entities.hasComponent<Position>(entity) || !entities.hasComponent<Velocity>(entity))
@@ -213,6 +203,9 @@ namespace rtype::game {
                 ++it;
             }
         }
+        if (enemySpawnQueue.size() == 0) {
+            // TODO: Add end-of-game poster
+        }
     }
 
     void GameEngine::handleEnemyShoot() {
@@ -320,6 +313,10 @@ namespace rtype::game {
                 entities.destroyEntity(enemy);
                 entities.destroyEntity(missile);
             }
+            if (entities.getComponent<Enemy>(enemy).isBoss) {
+                bossOfLevelIsDead = true;
+                updatePlayerScore();
+            }
         } else if (!projectile.isUltimate) {
             auto packet = network.createEntityDeathPacket(missile, -1);
             network.broadcast(packet);
@@ -416,8 +413,17 @@ namespace rtype::game {
             auto threshold = SCORE_THRESHOLDS.find(currentLevel);
             if (threshold != SCORE_THRESHOLDS.end() && player.score >= threshold->second) {
                 if (currentLevel < 3) {
-                    currentLevel++;
-                    switchToNextLevel();
+                    if (!hasBossIsDisplay && !bossOfLevelIsDead) {
+                        enemySpawnQueue.clear();
+                        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(1) * 2.0f, static_cast<float>(820), 300, currentLevel, true});
+                        hasBossIsDisplay = true;
+                    } else if (hasBossIsDisplay && bossOfLevelIsDead) {
+                        currentLevel++;
+                        enemySpawnQueue.clear();
+                        switchToNextLevel();
+                        bossOfLevelIsDead = false;
+                        hasBossIsDisplay = false;
+                    }
                 } else {
                     broadcastEndGameState();
                 }
@@ -445,7 +451,6 @@ namespace rtype::game {
             auto y = static_cast<float>(rand() % 560);
             enemySpawnQueue.push_back(PendingSpawn{delay, x, y, level, false});
         }
-        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(nbEnemies) * 2.0f, static_cast<float>(820), static_cast<float>(rand() % 560), level, true});
     }
 
     void GameEngine::broadcastEndGameState() {
