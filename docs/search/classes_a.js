@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rendercomponent_0',['RenderComponent',['../struct_render_component.html',1,'']]],
-  ['rendersystem_1',['RenderSystem',['../classrtype_1_1_render_system.html',1,'rtype']]],
-  ['resourcemanager_2',['ResourceManager',['../classrtype_1_1_resource_manager.html',1,'rtype']]]
+  ['networkclient_0',['NetworkClient',['../classrtype_1_1network_1_1_network_client.html',1,'rtype::network']]],
+  ['networkcomponent_1',['NetworkComponent',['../structrtype_1_1_network_component.html',1,'rtype']]],
+  ['networkmanager_2',['NetworkManager',['../classrtype_1_1network_1_1_network_manager.html',1,'rtype::network']]]
 ];

@@ -1,0 +1,15 @@
+<map id="rtype::Game::cleanupEntities" name="rtype::Game::cleanupEntities">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,78,196,104"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="269,5,411,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,75,253,47,254,52,151,80"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="269,71,411,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="196,88,253,88,253,94,196,94"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="244,136,436,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="151,102,249,129,247,134,150,107"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="484,5,650,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="412,23,468,23,468,28,412,28"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="496,71,638,111"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="412,88,481,88,481,94,412,94"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="496,136,638,177"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="436,154,480,154,480,159,436,159"/>
+</map>

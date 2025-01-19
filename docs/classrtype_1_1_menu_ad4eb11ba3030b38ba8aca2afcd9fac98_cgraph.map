@@ -1,5 +1,5 @@
 <map id="rtype::Menu::Menu" name="rtype::Menu::Menu">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,136,31"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_text_input.html#a43f923241236134bd576323b57d688cf" title=" " alt="" coords="184,5,369,31"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_ui_helpers.html#afe75e86091934fc3b5efc723149b42fc" title=" " alt="" coords="184,5,369,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,16,168,16,168,21,136,21"/>
 </map>

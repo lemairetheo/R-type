@@ -1,9 +1,9 @@
 <map id="rtype::network::NetworkManager::handleReceive" name="rtype::network::NetworkManager::handleReceive">
-<area shape="rect" id="Node000001" title=" " alt="" coords="812,5,1023,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#affb2e357ab8985a1574cfea10ba89efe" title=" " alt="" coords="552,5,764,46"/>
+<area shape="rect" id="Node000001" title="Handles a received message." alt="" coords="812,5,1023,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#affb2e357ab8985a1574cfea10ba89efe" title="Starts receiving messages from clients." alt="" coords="552,5,764,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="796,37,764,37,764,32,796,32"/>
 <area shape="poly" id="edge2_Node000002_Node000001" title=" " alt="" coords="779,14,811,14,811,19,779,19"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#aaecce1a30e2ffc4eec81f20b6c53cfae" title=" " alt="" coords="293,5,504,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#aaecce1a30e2ffc4eec81f20b6c53cfae" title="Starts the network manager and begins handling connections." alt="" coords="293,5,504,46"/>
 <area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="537,28,505,28,505,23,537,23"/>
 <area shape="rect" id="Node000004" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title="Starts the server and begins handling connections." alt="" coords="103,13,245,38"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="278,28,246,28,246,23,278,23"/>

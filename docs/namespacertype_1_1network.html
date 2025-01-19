@@ -99,21 +99,34 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_best_score_packet.html">BestScorePacket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_connect_request_packet.html">ConnectRequestPacket</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_connect_response_packet.html">ConnectResponsePacket</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_entity_update_packet.html">EntityUpdatePacket</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_game_stats_packet.html">GameStatsPacket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_leaderboard_entry.html">LeaderboardEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_leaderboard_packet.html">LeaderboardPacket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1network_1_1_network_client.html">NetworkClient</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class that manages the network for the client side.  <a href="classrtype_1_1network_1_1_network_client.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1network_1_1_network_manager.html">NetworkManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages network communication for the server.  <a href="classrtype_1_1network_1_1_network_manager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_packet_header.html">PacketHeader</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">packet header This structure defines the header of a packet in the R-Type protocol.  <a href="structrtype_1_1network_1_1_packet_header.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_player_input_packet.html">PlayerInputPacket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_player_stats_packet.html">PlayerStatsPacket</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1network_1_1_score_update_packet.html">ScoreUpdatePacket</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -131,6 +144,13 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286a7ffe69b642fcafa7c6baf7cf5cf6d5de">ENTITY_DEATH</a> = 0x21
 , <a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286ae9cc55a455febcd102031c80fb5e491a">END_GAME_STATE</a> = 0x22
+, <a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286a59e07662af809faa15842c0dbbd2c1f6">SCORE_UPDATE</a> = 0x30
+, <a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286a2e0f63905ca2ec579b9f8046ffecb51f">BEST_SCORE</a> = 0x31
+, <br />
+&#160;&#160;<a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286a21e3d603ea6f957a866ef9cbe8b368a3">PLAYER_STATS</a> = 0x32
+, <a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286add1bb0a64e7e2cbcf608e8f603ee78f9">GAME_STATS</a> = 0x33
+, <a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286a1c631cc0b583f8e1864748a3cc6a432f">LEADERBOARD_REQUEST</a> = 0x40
+, <a class="el" href="#a8cd2c07aeaab9bd7b6d59984b1cd4286a9df939fd8836f552ffb1b8788ff438f6">LEADERBOARD_RESPONSE</a> = 0x41
 <br />
  }</td></tr>
 <tr class="memdesc:a8cd2c07aeaab9bd7b6d59984b1cd4286"><td class="mdescLeft">&#160;</td><td class="mdescRight">Types de paquets supportés.  <a href="#a8cd2c07aeaab9bd7b6d59984b1cd4286">More...</a><br /></td></tr>
@@ -178,6 +198,16 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286a7ffe69b642fcafa7c6baf7cf5cf6d5de" name="a8cd2c07aeaab9bd7b6d59984b1cd4286a7ffe69b642fcafa7c6baf7cf5cf6d5de"></a>ENTITY_DEATH&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286ae9cc55a455febcd102031c80fb5e491a" name="a8cd2c07aeaab9bd7b6d59984b1cd4286ae9cc55a455febcd102031c80fb5e491a"></a>END_GAME_STATE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286a59e07662af809faa15842c0dbbd2c1f6" name="a8cd2c07aeaab9bd7b6d59984b1cd4286a59e07662af809faa15842c0dbbd2c1f6"></a>SCORE_UPDATE&#160;</td><td class="fielddoc"><p>Mise à jour d'un score. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286a2e0f63905ca2ec579b9f8046ffecb51f" name="a8cd2c07aeaab9bd7b6d59984b1cd4286a2e0f63905ca2ec579b9f8046ffecb51f"></a>BEST_SCORE&#160;</td><td class="fielddoc"><p>Meilleur score. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286a21e3d603ea6f957a866ef9cbe8b368a3" name="a8cd2c07aeaab9bd7b6d59984b1cd4286a21e3d603ea6f957a866ef9cbe8b368a3"></a>PLAYER_STATS&#160;</td><td class="fielddoc"><p>Nouveau type pour les statistiques complètes. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286add1bb0a64e7e2cbcf608e8f603ee78f9" name="a8cd2c07aeaab9bd7b6d59984b1cd4286add1bb0a64e7e2cbcf608e8f603ee78f9"></a>GAME_STATS&#160;</td><td class="fielddoc"><p>Nouveau type pour les statistiques de la partie. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286a1c631cc0b583f8e1864748a3cc6a432f" name="a8cd2c07aeaab9bd7b6d59984b1cd4286a1c631cc0b583f8e1864748a3cc6a432f"></a>LEADERBOARD_REQUEST&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a8cd2c07aeaab9bd7b6d59984b1cd4286a9df939fd8836f552ffb1b8788ff438f6" name="a8cd2c07aeaab9bd7b6d59984b1cd4286a9df939fd8836f552ffb1b8788ff438f6"></a>LEADERBOARD_RESPONSE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>

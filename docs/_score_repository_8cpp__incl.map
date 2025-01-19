@@ -1,0 +1,21 @@
+<map id="server/database/ScoreRepository.cpp" name="server/database/ScoreRepository.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="271,5,509,31"/>
+<area shape="rect" id="Node000002" href="$_score_repository_8hpp.html" title=" " alt="" coords="188,79,330,105"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="369,34,296,74,293,69,366,29"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="354,79,426,105"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="392,31,392,63,387,63,387,31"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="449,79,517,105"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="407,29,457,67,454,72,404,34"/>
+<area shape="rect" id="Node000003" href="$_database_manager_8hpp.html" title=" " alt="" coords="50,153,202,178"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="238,108,163,147,161,143,235,103"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="226,153,292,178"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="262,105,262,137,256,137,256,105"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="316,153,373,178"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="275,103,320,141,317,145,272,107"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,226,76,252"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,181,68,218,65,214,110,177"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="99,226,152,252"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="128,179,128,211,123,211,123,179"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="176,226,254,252"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="143,177,190,214,187,219,139,181"/>
+</map>

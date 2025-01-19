@@ -1,9 +1,26 @@
 <map id="rtype::network::NetworkManager::update" name="rtype::network::NetworkManager::update">
-<area shape="rect" id="Node000001" title=" " alt="" coords="524,5,736,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1" title="The main loop for updating the game state." alt="" coords="293,13,476,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="509,28,477,28,477,23,509,23"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title="Starts the server and begins handling connections." alt="" coords="103,13,245,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="277,28,246,28,246,23,277,23"/>
-<area shape="rect" id="Node000004" href="$server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,55,38"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="87,28,55,28,55,23,87,23"/>
+<area shape="rect" id="Node000001" title="Updates the network manager." alt="" coords="929,173,1140,214"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#a75ccf8638e71447c921daf4c365ed39c" title=" " alt="" coords="669,87,881,127"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="956,170,837,130,839,125,958,165"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1network_1_1_network_manager.html#a1a78e406ea7cbb37f8856ee9dd57d25e" title=" " alt="" coords="669,173,881,214"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="913,196,881,196,881,191,913,191"/>
+<area shape="rect" id="Node000009" href="$classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1" title="The main loop for updating the game state." alt="" coords="683,238,867,264"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="925,220,837,240,836,235,924,215"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="448,5,621,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="697,84,596,49,598,44,699,79"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="227,75,400,115"/>
+<area shape="poly" id="edge7_Node000002_Node000004" title=" " alt="" coords="654,107,400,100,401,95,654,101"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="448,120,621,161"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="654,126,622,131,621,126,653,121"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="453,54,381,77,380,72,452,49"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="5,113,179,154"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="212,115,180,121,179,116,211,110"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="432,122,400,115,401,110,433,117"/>
+<area shape="rect" id="Node000008" href="$classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="227,151,400,191"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="654,190,400,178,401,173,654,185"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="211,156,179,151,180,146,212,151"/>
+<area shape="rect" id="Node000010" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title="Starts the server and begins handling connections." alt="" coords="464,238,606,264"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="668,254,606,254,606,248,668,248"/>
+<area shape="rect" id="Node000011" href="$server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="289,238,338,264"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="448,254,338,254,338,248,448,248"/>
 </map>

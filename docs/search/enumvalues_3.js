@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['game_5fover_0',['GAME_OVER',['../namespacertype.html#af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b',1,'rtype']]],
-  ['game_5fstate_1',['GAME_STATE',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286ac569edc677aa75f97ec7622f8ac86a43',1,'rtype::network']]]
+  ['end_5fgame_5fstate_0',['END_GAME_STATE',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286ae9cc55a455febcd102031c80fb5e491a',1,'rtype::network']]],
+  ['entity_5fdeath_1',['ENTITY_DEATH',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286a7ffe69b642fcafa7c6baf7cf5cf6d5de',1,'rtype::network']]],
+  ['entity_5fupdate_2',['ENTITY_UPDATE',['../namespacertype_1_1network.html#a8cd2c07aeaab9bd7b6d59984b1cd4286a4c2331132c063a843f644e8df6111cf0',1,'rtype::network']]]
 ];

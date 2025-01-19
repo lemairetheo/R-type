@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['x_0',['x',['../structrtype_1_1_position.html#a11129597a73c8ec3dce6ed08d8711fdb',1,'rtype::Position::x'],['../structrtype_1_1_pending_spawn.html#a06bc0dd1b9fd622b1e30bc557ea65167',1,'rtype::PendingSpawn::x'],['../structrtype_1_1network_1_1_entity_update_packet.html#aeeeed3f21360010acc76d324ed769289',1,'rtype::network::EntityUpdatePacket::x']]]
+  ['wall_0',['Wall',['../structrtype_1_1_wall.html',1,'rtype']]],
+  ['weaponsong_1',['weaponSong',['../classrtype_1_1_game.html#a2e3edab687632b0cd5514cfbf7f21294',1,'rtype::Game']]],
+  ['window_2',['window',['../classrtype_1_1_game.html#a027ee34d6234287a17352317ccb8b8d7',1,'rtype::Game::window'],['../classrtype_1_1_background_system.html#a5e53d7607b278135087b3b4874bf0019',1,'rtype::BackgroundSystem::window'],['../classrtype_1_1_render_system.html#a844c69607b268e72743989a117bb3499',1,'rtype::RenderSystem::window']]]
 ];

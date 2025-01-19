@@ -1,9 +1,7 @@
 <map id="rtype::Manager::Manager" name="rtype::Manager::Manager">
 <area shape="rect" id="Node000001" title="Constructs a new Manager object." alt="" coords="5,46,172,72"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_manager.html#aa2a6b8e2fa4290d74b9c7a09af8313d2" title="Handles a new connection from a client." alt="" coords="235,5,416,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,45,219,38,219,43,172,50"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1network_1_1_network_manager.html#ac8ffed10a3da53945bf3fb506ff53d7e" title=" " alt="" coords="220,71,431,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="172,68,205,72,204,77,171,73"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title=" " alt="" coords="479,5,690,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="416,23,464,23,464,28,416,28"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title="Sends a message to a specific client." alt="" coords="220,5,431,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,45,204,40,205,45,172,50"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#ac8ffed10a3da53945bf3fb506ff53d7e" title="Sets the message callback function." alt="" coords="220,71,431,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,68,205,72,204,77,171,73"/>
 </map>

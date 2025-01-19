@@ -1,0 +1,15 @@
+<map id="rtype::game::GameEngine::handleGameCompletion" name="rtype::game::GameEngine::handleGameCompletion">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,136,179,177"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#a84f602dd1b8771a339d962febbddc47e" title=" " alt="" coords="227,5,438,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,133,164,95,225,57,241,50,243,54,228,61,167,99,118,138"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#ad9cbd54e38db6cd604ce37df5aca2340" title=" " alt="" coords="227,71,438,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="168,133,240,113,241,119,170,138"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1network_1_1_network_manager.html#aecf1b990f70cca6c0beca2ef488e76db" title=" " alt="" coords="227,136,438,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,154,211,154,211,159,179,159"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="261,201,404,242"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="170,175,247,196,245,201,168,180"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title="Sends a message to a specific client." alt="" coords="227,267,438,307"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,175,167,213,228,251,243,258,241,263,225,256,164,218,115,179"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="486,201,628,242"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="404,219,471,219,471,224,404,224"/>
+</map>

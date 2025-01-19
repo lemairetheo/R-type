@@ -1,0 +1,16 @@
+<map id="rtype::Game::render" name="rtype::Game::render">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,143,56"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_ui_helpers.html#afe75e86091934fc3b5efc723149b42fc" title=" " alt="" coords="447,5,632,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="143,37,431,21,431,27,143,42"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a54ac353555dfb02d488d2a6022fe6983" title=" " alt="" coords="191,56,399,82"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="143,49,175,52,175,58,143,54"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="360,53,459,32,460,37,361,58"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_button.html#a797aaf4cbfb05d3f505794cdf0006cbd" title=" " alt="" coords="452,55,628,80"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="400,66,436,65,436,71,400,71"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_button.html#abe27946e689ae52159e05e4e43d672a1" title=" " alt="" coords="470,105,610,131"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="363,80,458,99,457,104,362,85"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_button.html#af4a0e5090a878518a46a1b0664dad71d" title=" " alt="" coords="680,52,862,78"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="628,64,664,63,665,69,628,69"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1_button.html#aa44cb205334262986516a35aae935aa2" title=" " alt="" coords="687,102,855,142"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="610,117,672,118,672,123,610,122"/>
+</map>

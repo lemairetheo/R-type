@@ -1,0 +1,12 @@
+<map id="rtype::Game::updateStatsDisplay" name="rtype::Game::updateStatsDisplay">
+<area shape="rect" id="Node000001" title=" " alt="" coords="702,23,874,64"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#abb5e95da28ed63c800e92d498e722d1b" title=" " alt="" coords="452,5,652,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="687,35,652,32,653,26,688,30"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_game.html#aa4aa43056c81ac506d0075cc03c3737f" title=" " alt="" coords="449,55,654,80"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="688,56,655,60,654,54,687,51"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#aa8e247df022c6c42c6927edac4417688" title=" " alt="" coords="190,31,401,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="436,32,402,36,401,30,436,27"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_game.html#a6027026389f41d188620b99bbeb0d34f" title=" " alt="" coords="5,31,142,56"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="174,46,142,46,142,41,174,41"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="433,59,401,56,402,51,434,54"/>
+</map>

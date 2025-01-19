@@ -1,0 +1,15 @@
+<map id="rtype::Game::updateExistingEntity" name="rtype::Game::updateExistingEntity">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,120,193,161"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="252,5,394,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,117,239,62,262,51,264,55,242,67,139,122"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="453,63,595,103"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="183,117,240,106,342,93,437,85,437,90,343,98,241,111,184,122"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="252,120,394,161"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,138,236,138,236,143,193,143"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="241,185,405,226"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="172,159,237,178,235,183,170,164"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="252,251,394,291"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="128,159,180,197,242,235,254,241,251,246,239,240,177,201,125,163"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="395,43,439,56,437,61,393,48"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="393,118,437,105,439,110,395,123"/>
+</map>

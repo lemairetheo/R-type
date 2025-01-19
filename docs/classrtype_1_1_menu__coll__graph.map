@@ -1,10 +1,10 @@
 <map id="rtype::Menu" name="rtype::Menu">
-<area shape="rect" id="Node000001" title=" " alt="" coords="90,965,230,1398"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="90,965,230,1418"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1_button.html" title=" " alt="" coords="5,223,151,797"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,797,67,870,76,941,88,992,82,993,71,942,62,870,58,797"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,797,67,870,76,941,88,994,83,995,71,942,62,870,58,797"/>
 <area shape="rect" id="Node000003" href="$classrtype_1_1_inputs.html" title=" " alt="" coords="106,5,210,173"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="142,189,136,224,130,223,137,188"/>
 <area shape="rect" id="Node000004" href="$classrtype_1_1_text_input.html" title=" " alt="" coords="179,294,309,726"/>
 <area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="181,188,202,294,197,295,176,189"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="241,726,234,834,221,942,220,949,215,948,216,941,228,833,236,726"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="241,726,233,834,221,942,220,949,215,948,216,941,228,833,236,726"/>
 </map>

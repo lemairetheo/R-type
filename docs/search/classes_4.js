@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['game_0',['Game',['../classrtype_1_1_game.html',1,'rtype']]],
-  ['gameengine_1',['GameEngine',['../classrtype_1_1game_1_1_game_engine.html',1,'rtype::game']]]
+  ['enemy_0',['Enemy',['../structrtype_1_1_enemy.html',1,'rtype']]],
+  ['entitymanager_1',['EntityManager',['../classrtype_1_1_entity_manager.html',1,'rtype']]],
+  ['entityupdatepacket_2',['EntityUpdatePacket',['../structrtype_1_1network_1_1_entity_update_packet.html',1,'rtype::network']]]
 ];

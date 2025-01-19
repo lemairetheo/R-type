@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['reference_5ftype_0',['reference_type',['../classrtype_1_1_sparse_array.html#a9b7c163c14c4ec498a97b3597d4587c6',1,'rtype::SparseArray']]]
+  ['packethandler_0',['PacketHandler',['../classrtype_1_1_game.html#a4083360f3fb037187ead9745c677ab38',1,'rtype::Game']]]
 ];

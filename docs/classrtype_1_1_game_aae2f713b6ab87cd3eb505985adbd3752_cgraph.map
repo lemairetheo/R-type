@@ -1,0 +1,9 @@
+<map id="rtype::Game::setupWallRenderComponent" name="rtype::Game::setupWallRenderComponent">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,39,206,79"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="265,5,407,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,42,249,36,249,41,206,47"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="254,71,418,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="206,70,239,75,238,80,206,76"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="466,5,608,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="407,23,450,23,450,28,407,28"/>
+</map>

@@ -97,6 +97,8 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacertype_1_1database.html">database</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacertype_1_1engine.html">engine</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacertype_1_1game.html">game</a></td></tr>
@@ -134,6 +136,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_i_system.html">ISystem</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_leaderboard_entry.html">LeaderboardEntry</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_manager.html">Manager</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages the server operations including network communication and game state.  <a href="classrtype_1_1_manager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,6 +150,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_pending_spawn.html">PendingSpawn</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_player.html">Player</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_player_stats.html">PlayerStats</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_position.html">Position</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -162,6 +168,8 @@ Classes</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_text_input.html">TextInput</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_ui_helpers.html">UiHelpers</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_velocity.html">Velocity</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrtype_1_1_wall.html">Wall</a></td></tr>
@@ -176,6 +184,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b">GAME_OVER</a>
 , <br />
 &#160;&#160;<a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9ae0651864a549515538cb104b7b32e75d">VICTORY</a>
+, <a class="el" href="#af4f6a51b206f4e1b610ebd2306080de9a36893cf13ef7097ce11667ea14e832a0">LEADERBOARD</a>
 <br />
  }</td></tr>
 <tr class="separator:af4f6a51b206f4e1b610ebd2306080de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +222,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9a50366a49630a416ab3ccaa004196027e" name="af4f6a51b206f4e1b610ebd2306080de9a50366a49630a416ab3ccaa004196027e"></a>PLAYING&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b" name="af4f6a51b206f4e1b610ebd2306080de9af8454a27e1df41397bf42444fe5aa45b"></a>GAME_OVER&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9ae0651864a549515538cb104b7b32e75d" name="af4f6a51b206f4e1b610ebd2306080de9ae0651864a549515538cb104b7b32e75d"></a>VICTORY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af4f6a51b206f4e1b610ebd2306080de9a36893cf13ef7097ce11667ea14e832a0" name="af4f6a51b206f4e1b610ebd2306080de9a36893cf13ef7097ce11667ea14e832a0"></a>LEADERBOARD&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>

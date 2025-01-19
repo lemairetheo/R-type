@@ -1,0 +1,12 @@
+<map id="rtype::Game::cleanupEntities" name="rtype::Game::cleanupEntities">
+<area shape="rect" id="Node000001" title=" " alt="" coords="681,31,871,56"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4" title=" " alt="" coords="492,31,633,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="665,46,633,46,633,41,665,41"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_game.html#a25f3e467b2f2e8cbf8f7598c682330f6" title=" " alt="" coords="270,5,444,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="476,36,445,32,445,26,477,30"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,31,222,56"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="477,46,222,46,222,41,477,41"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="255,34,223,38,222,33,254,29"/>
+<area shape="rect" id="Node000005" href="$client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,31,55,56"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="87,46,55,46,55,41,87,41"/>
+</map>

@@ -1,28 +1,38 @@
 <map id="rtype::game::GameEngine::updatePlayerScore" name="rtype::game::GameEngine::updatePlayerScore">
-<area shape="rect" id="Node000001" title="Updates the player&#39;s score." alt="" coords="5,168,179,209"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#aeb126ba10faa6f3f177151c904e14216" title="Broadcasts the end game state to all clients." alt="" coords="227,71,402,111"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,165,226,126,250,115,252,120,228,131,141,170"/>
-<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="243,140,386,181"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="179,175,227,169,228,174,179,180"/>
-<area shape="rect" id="Node000008" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="460,201,652,242"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="179,192,445,211,444,216,179,197"/>
-<area shape="rect" id="Node000010" href="$classrtype_1_1game_1_1_game_engine.html#aaccf9e24ba469e3a3b2c87e8e5a3c075" title="Switches to the next level." alt="" coords="228,261,401,302"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="144,207,251,252,249,257,142,212"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1" title=" " alt="" coords="450,5,661,46"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="391,68,462,48,464,53,393,73"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#a40f2f468b4759c5e82f052e26dc549fd" title="Creates a packet for the end game state." alt="" coords="469,71,642,111"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="403,88,453,88,453,94,403,94"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title=" " alt="" coords="709,5,921,46"/>
+<area shape="rect" id="Node000001" title="Updates the player&#39;s score." alt="" coords="5,296,179,337"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#aeb126ba10faa6f3f177151c904e14216" title="Broadcasts the end game state to all clients." alt="" coords="227,104,402,145"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,293,276,153,280,157,119,297"/>
+<area shape="rect" id="Node000010" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="744,267,886,307"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="179,310,728,288,729,293,179,316"/>
+<area shape="rect" id="Node000012" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="460,329,652,370"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="179,320,445,339,444,344,179,325"/>
+<area shape="rect" id="Node000014" href="$classrtype_1_1game_1_1_game_engine.html#aaccf9e24ba469e3a3b2c87e8e5a3c075" title="Switches to the next level." alt="" coords="228,385,401,426"/>
+<area shape="poly" id="edge15_Node000001_Node000014" title=" " alt="" coords="146,335,248,376,246,381,144,340"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1" title="Broadcasts a message to all connected clients." alt="" coords="450,5,661,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="354,101,449,57,469,49,471,54,451,61,356,106"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1network_1_1_network_manager.html#a137571498252dd593f99aa5fa88d5fe8" title=" " alt="" coords="450,71,661,111"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="402,110,434,105,435,110,403,115"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#ae43622455f31bf79d0e961d8ad501e26" title=" " alt="" coords="469,136,642,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="403,133,454,140,453,145,402,139"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title="Sends a message to a specific client." alt="" coords="709,5,921,46"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="662,23,694,23,694,28,662,28"/>
-<area shape="rect" id="Node000007" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="484,136,627,177"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="386,156,469,155,469,160,386,162"/>
-<area shape="rect" id="Node000009" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="744,201,886,242"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="652,219,728,219,728,224,652,224"/>
-<area shape="poly" id="edge12_Node000010_Node000008" title=" " alt="" coords="398,258,456,244,457,249,400,263"/>
-<area shape="rect" id="Node000011" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="484,267,627,307"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="402,281,469,282,469,288,401,286"/>
-<area shape="rect" id="Node000013" href="$classrtype_1_1game_1_1_game_engine.html#a08395fcf84b7edb5e7b6e78694e2a6d1" title="Spawns enemies for the given level." alt="" coords="469,332,642,373"/>
-<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="387,300,470,325,469,330,385,305"/>
-<area shape="rect" id="Node000012" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="732,267,898,307"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="627,284,716,284,716,290,627,290"/>
+<area shape="poly" id="edge11_Node000006_Node000004" title=" " alt="" coords="638,133,660,121,675,106,683,90,692,73,708,57,716,52,719,56,711,61,696,76,688,92,679,109,663,125,641,138"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1network_1_1_network_manager.html#a84f602dd1b8771a339d962febbddc47e" title=" " alt="" coords="709,71,921,111"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="639,133,716,113,717,118,640,138"/>
+<area shape="rect" id="Node000008" href="$classrtype_1_1network_1_1_network_manager.html#ad9cbd54e38db6cd604ce37df5aca2340" title=" " alt="" coords="709,136,921,177"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="643,154,694,154,694,159,643,159"/>
+<area shape="rect" id="Node000009" href="$classrtype_1_1network_1_1_network_manager.html#aecf1b990f70cca6c0beca2ef488e76db" title=" " alt="" coords="709,201,921,242"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="640,175,717,194,716,200,639,180"/>
+<area shape="poly" id="edge9_Node000006_Node000010" title=" " alt="" coords="586,175,642,213,711,251,730,260,728,265,708,256,640,218,583,180"/>
+<area shape="rect" id="Node000011" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="969,267,1111,307"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="887,284,953,284,953,290,887,290"/>
+<area shape="rect" id="Node000013" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="744,332,886,373"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="652,348,728,349,728,354,652,353"/>
+<area shape="poly" id="edge18_Node000014_Node000012" title=" " alt="" coords="401,383,449,372,451,377,402,388"/>
+<area shape="rect" id="Node000015" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="484,395,627,435"/>
+<area shape="poly" id="edge16_Node000014_Node000015" title=" " alt="" coords="402,406,469,409,469,414,401,412"/>
+<area shape="rect" id="Node000017" href="$classrtype_1_1game_1_1_game_engine.html#a08395fcf84b7edb5e7b6e78694e2a6d1" title="Spawns enemies for the given level." alt="" coords="469,460,642,501"/>
+<area shape="poly" id="edge19_Node000014_Node000017" title=" " alt="" coords="384,424,474,452,472,457,382,429"/>
+<area shape="rect" id="Node000016" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="732,397,898,438"/>
+<area shape="poly" id="edge17_Node000015_Node000016" title=" " alt="" coords="628,413,716,414,716,419,627,418"/>
 </map>

@@ -1,0 +1,11 @@
+<map id="rtype::Game::handleEntityDeath" name="rtype::Game::handleEntityDeath">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,71,179,111"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="227,5,369,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,68,216,49,217,54,159,73"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="227,71,369,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,88,211,88,211,94,179,94"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="227,136,369,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="159,109,217,128,216,133,157,114"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="417,5,583,46"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="370,23,401,23,401,28,370,28"/>
+</map>

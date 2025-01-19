@@ -1,5 +1,5 @@
 <map id="rtype::network::NetworkManager" name="rtype::network::NetworkManager">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,201,206,674"/>
+<area shape="rect" id="Node000001" title="Manages network communication for the server." alt="" coords="5,201,206,735"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1_a_network.html" title=" " alt="" coords="29,5,183,153"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="108,168,108,201,103,201,103,168"/>
 </map>

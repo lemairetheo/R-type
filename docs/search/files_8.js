@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['packettype_2ehpp_0',['packetType.hpp',['../packet_type_8hpp.html',1,'']]],
-  ['playerinfo_2ehpp_1',['PlayerInfo.hpp',['../_player_info_8hpp.html',1,'']]]
+  ['networkmanager_2ecpp_0',['NetworkManager.cpp',['../client_2network_2_network_manager_8cpp.html',1,'(Global Namespace)'],['../server_2network_2_network_manager_8cpp.html',1,'(Global Namespace)']]],
+  ['networkmanager_2ehpp_1',['NetworkManager.hpp',['../client_2network_2_network_manager_8hpp.html',1,'(Global Namespace)'],['../server_2network_2_network_manager_8hpp.html',1,'(Global Namespace)']]]
 ];

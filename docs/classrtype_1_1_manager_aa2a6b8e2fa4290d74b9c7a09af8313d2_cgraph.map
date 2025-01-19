@@ -1,5 +1,5 @@
 <map id="rtype::Manager::handleNewConnection" name="rtype::Manager::handleNewConnection">
 <area shape="rect" id="Node000001" title="Handles a new connection from a client." alt="" coords="5,5,187,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title=" " alt="" coords="235,5,446,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title="Sends a message to a specific client." alt="" coords="235,5,446,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,23,219,23,219,28,187,28"/>
 </map>

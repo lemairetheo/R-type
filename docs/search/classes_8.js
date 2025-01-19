@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['networkclient_0',['NetworkClient',['../classrtype_1_1network_1_1_network_client.html',1,'rtype::network']]],
-  ['networkcomponent_1',['NetworkComponent',['../structrtype_1_1_network_component.html',1,'rtype']]],
-  ['networkmanager_2',['NetworkManager',['../classrtype_1_1network_1_1_network_manager.html',1,'rtype::network']]]
+  ['leaderboardentry_0',['LeaderboardEntry',['../structrtype_1_1_leaderboard_entry.html',1,'rtype::LeaderboardEntry'],['../structrtype_1_1network_1_1_leaderboard_entry.html',1,'rtype::network::LeaderboardEntry']]],
+  ['leaderboardpacket_1',['LeaderboardPacket',['../structrtype_1_1network_1_1_leaderboard_packet.html',1,'rtype::network']]]
 ];

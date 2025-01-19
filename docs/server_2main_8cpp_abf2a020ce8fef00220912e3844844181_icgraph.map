@@ -1,0 +1,8 @@
+<map id="running" name="running">
+<area shape="rect" id="Node000001" title=" " alt="" coords="251,5,314,31"/>
+<area shape="rect" id="Node000002" href="$server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,5,55,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,21,55,21,55,16,236,16"/>
+<area shape="rect" id="Node000003" href="$server_2main_8cpp.html#a8ee3282bc313e547dbbb8d4f4010db61" title=" " alt="" coords="103,31,203,56"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,30,204,36,203,31,235,25"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="87,33,54,26,56,21,88,27"/>
+</map>

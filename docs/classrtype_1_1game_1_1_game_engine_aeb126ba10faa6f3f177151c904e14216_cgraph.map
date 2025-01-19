@@ -1,9 +1,22 @@
 <map id="rtype::game::GameEngine::broadcastEndGameState" name="rtype::game::GameEngine::broadcastEndGameState">
-<area shape="rect" id="Node000001" title="Broadcasts the end game state to all clients." alt="" coords="5,39,181,79"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1" title=" " alt="" coords="229,5,440,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,44,213,40,214,45,182,50"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html#a40f2f468b4759c5e82f052e26dc549fd" title="Creates a packet for the end game state." alt="" coords="248,71,421,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,68,233,75,232,80,181,73"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title=" " alt="" coords="488,5,699,46"/>
+<area shape="rect" id="Node000001" title="Broadcasts the end game state to all clients." alt="" coords="5,71,181,111"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1network_1_1_network_manager.html#aa06aeb870edc8cd4282d5c7b1a4902d1" title="Broadcasts a message to all connected clients." alt="" coords="229,5,440,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="170,68,241,48,242,53,171,73"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1network_1_1_network_manager.html#a137571498252dd593f99aa5fa88d5fe8" title=" " alt="" coords="229,71,440,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="181,88,213,88,213,94,181,94"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#ae43622455f31bf79d0e961d8ad501e26" title=" " alt="" coords="248,136,421,177"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="171,109,242,129,241,134,170,114"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e" title="Sends a message to a specific client." alt="" coords="488,5,699,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="440,23,472,23,472,28,440,28"/>
+<area shape="poly" id="edge10_Node000005_Node000003" title=" " alt="" coords="417,133,438,121,453,106,462,90,470,73,486,57,495,52,498,56,490,61,475,76,466,92,458,109,442,125,420,138"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1network_1_1_network_manager.html#a84f602dd1b8771a339d962febbddc47e" title=" " alt="" coords="488,71,699,111"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="417,133,495,113,496,118,419,138"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1network_1_1_network_manager.html#ad9cbd54e38db6cd604ce37df5aca2340" title=" " alt="" coords="488,136,699,177"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="421,154,472,154,472,159,421,159"/>
+<area shape="rect" id="Node000008" href="$classrtype_1_1network_1_1_network_manager.html#aecf1b990f70cca6c0beca2ef488e76db" title=" " alt="" coords="488,201,699,242"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="419,175,496,194,495,200,417,180"/>
+<area shape="rect" id="Node000009" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="522,267,665,307"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="365,175,421,213,489,251,509,260,507,265,487,256,418,218,362,180"/>
+<area shape="rect" id="Node000010" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="747,267,890,307"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="665,284,732,284,732,290,665,290"/>
 </map>

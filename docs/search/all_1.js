@@ -10,5 +10,6 @@ var searchData=
   ['animationsystem_2ecpp_7',['AnimationSystem.cpp',['../_animation_system_8cpp.html',1,'']]],
   ['animationsystem_2ehpp_8',['AnimationSystem.hpp',['../_animation_system_8hpp.html',1,'']]],
   ['animationtimer_9',['animationTimer',['../struct_render_component.html#ac94c6024cf600547342db11d78b7685b',1,'RenderComponent']]],
-  ['availableentities_10',['availableEntities',['../classrtype_1_1_entity_manager.html#a2679e8d948d60b4347b1dee76338dadf',1,'rtype::EntityManager']]]
+  ['availableentities_10',['availableEntities',['../classrtype_1_1_entity_manager.html#a2679e8d948d60b4347b1dee76338dadf',1,'rtype::EntityManager']]],
+  ['avg_5fscore_11',['avg_score',['../structrtype_1_1_player_stats.html#a4b31ae3308d17700125a5f7a1919c825',1,'rtype::PlayerStats::avg_score'],['../structrtype_1_1network_1_1_best_score_packet.html#af2477f4b459cb565c4a30e1c8dbc891d',1,'rtype::network::BestScorePacket::avg_score']]]
 ];

@@ -1,5 +1,5 @@
 <map id="rtype::network::NetworkManager::start" name="rtype::network::NetworkManager::start">
-<area shape="rect" id="Node000001" title=" " alt="" coords="293,5,504,46"/>
+<area shape="rect" id="Node000001" title="Starts the network manager and begins handling connections." alt="" coords="293,5,504,46"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407" title="Starts the server and begins handling connections." alt="" coords="103,13,245,38"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,28,246,28,246,23,278,23"/>
 <area shape="rect" id="Node000003" href="$server_2main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627" title=" " alt="" coords="5,13,55,38"/>

@@ -1,6 +1,6 @@
 <map id="rtype::game::GameEngine::handleEnemySpawns" name="rtype::game::GameEngine::handleEnemySpawns">
 <area shape="rect" id="Node000001" title="Handles the spawning of enemies." alt="" coords="5,71,179,111"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#ae1bef10df9d55ce674d50bcdef8b80ff" title="Spawns an enemy at the given position and level." alt="" coords="227,71,400,111"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#aa5dca188c216bb3ef12918def5ad5c39" title="Spawns an enemy at the given position and level." alt="" coords="227,71,400,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,88,211,88,211,94,179,94"/>
 <area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="464,5,606,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,68,448,48,449,54,385,73"/>

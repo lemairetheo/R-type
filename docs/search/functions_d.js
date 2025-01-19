@@ -1,22 +1,4 @@
 var searchData=
 [
-  ['sendto_0',['sendTo',['../classrtype_1_1network_1_1_network_manager.html#af65c56045914c0b4c9be4be1c8cd3f5e',1,'rtype::network::NetworkManager::sendTo()'],['../classrtype_1_1network_1_1_network_client.html#ab7237d5109d0b6e895a9e1012949a45f',1,'rtype::network::NetworkClient::sendTo()']]],
-  ['setcolors_1',['setColors',['../classrtype_1_1_button.html#a895d5fdf04b03d64c4e9d898b41516e1',1,'rtype::Button']]],
-  ['setmessagecallback_2',['setMessageCallback',['../classrtype_1_1network_1_1_network_manager.html#ac8ffed10a3da53945bf3fb506ff53d7e',1,'rtype::network::NetworkManager::setMessageCallback()'],['../classrtype_1_1network_1_1_network_client.html#aff6ef3a22c97cc1e96b80a60926120d9',1,'rtype::network::NetworkClient::setMessageCallback()'],['../classrtype_1_1_a_network.html#ac19c7fde1bb5152108e77bc005df7159',1,'rtype::ANetwork::setMessageCallback()']]],
-  ['setonclick_3',['setOnClick',['../classrtype_1_1_button.html#ac8c4a7b15e949e44da7733736cb3cbac',1,'rtype::Button']]],
-  ['setposition_4',['setPosition',['../classrtype_1_1_button.html#aed4d63d40a50c3186786a51002490941',1,'rtype::Button::setPosition()'],['../classrtype_1_1_inputs.html#aad7694eefffac9dfd21d31519fcd913d',1,'rtype::Inputs::setPosition()'],['../classrtype_1_1_text_input.html#a43f923241236134bd576323b57d688cf',1,'rtype::TextInput::setPosition()']]],
-  ['setrectangleshape_5',['setRectangleShape',['../classrtype_1_1_button.html#aa0a209bc3ff14dbfdbc66bfd42a9bfac',1,'rtype::Button']]],
-  ['setsize_6',['setSize',['../classrtype_1_1_button.html#a4b22facc615cc02309c86bc5dc8ff31e',1,'rtype::Button::setSize()'],['../classrtype_1_1_inputs.html#a3e5902a55835f5521536636dc8800ed8',1,'rtype::Inputs::setSize()'],['../classrtype_1_1_text_input.html#a83f5fe3193f604d868e4cf7bb0871986',1,'rtype::TextInput::setSize()']]],
-  ['settext_7',['setText',['../classrtype_1_1_button.html#a3cf333d8ca186da0c0a2b6d919329dd8',1,'rtype::Button']]],
-  ['settextcolor_8',['setTextColor',['../classrtype_1_1_button.html#ad61499db6d1c15d9403f7973c52b4564',1,'rtype::Button']]],
-  ['setupsystems_9',['setupSystems',['../classrtype_1_1_game.html#a43303148190e5ba8815875b4fbda0068',1,'rtype::Game']]],
-  ['setvalue_10',['setValue',['../classrtype_1_1_text_input.html#a0d7cfe96b104306e801f0bc46be89e4e',1,'rtype::TextInput']]],
-  ['shootsystem_11',['ShootSystem',['../classrtype_1_1_shoot_system.html#ac94dfc2688c93235ebc4bcd5d4bf121f',1,'rtype::ShootSystem']]],
-  ['spawnenemiesforlevel_12',['spawnEnemiesForLevel',['../classrtype_1_1game_1_1_game_engine.html#a08395fcf84b7edb5e7b6e78694e2a6d1',1,'rtype::game::GameEngine']]],
-  ['spawnenemy_13',['spawnEnemy',['../classrtype_1_1game_1_1_game_engine.html#ae1bef10df9d55ce674d50bcdef8b80ff',1,'rtype::game::GameEngine']]],
-  ['spawnwall_14',['spawnWall',['../classrtype_1_1game_1_1_game_engine.html#a275df6449e6a88d2a8b4516663b9aa4b',1,'rtype::game::GameEngine']]],
-  ['start_15',['start',['../classrtype_1_1_manager.html#a5da17e810da68c72d44d8ba31c48f407',1,'rtype::Manager::start()'],['../classrtype_1_1network_1_1_network_manager.html#aaecce1a30e2ffc4eec81f20b6c53cfae',1,'rtype::network::NetworkManager::start()'],['../classrtype_1_1network_1_1_network_client.html#a1e529ea82cb757527e3e110689635d76',1,'rtype::network::NetworkClient::start()'],['../classrtype_1_1_a_network.html#a4c5f9ed89dbc3c1e0d92490962080550',1,'rtype::ANetwork::start()']]],
-  ['startreceive_16',['startReceive',['../classrtype_1_1network_1_1_network_manager.html#affb2e357ab8985a1574cfea10ba89efe',1,'rtype::network::NetworkManager::startReceive()'],['../classrtype_1_1network_1_1_network_client.html#a8663f4dd01b1f82c63496d832935ec5b',1,'rtype::network::NetworkClient::startReceive()']]],
-  ['stop_17',['stop',['../classrtype_1_1_manager.html#a9d6f5fffda36298b662e0c7a9b377c66',1,'rtype::Manager::stop()'],['../classrtype_1_1network_1_1_network_manager.html#abc7450fad96ed2a82b7fd63550b09272',1,'rtype::network::NetworkManager::stop()'],['../classrtype_1_1network_1_1_network_client.html#abc517240ef1500b1e04651f054564e92',1,'rtype::network::NetworkClient::stop()'],['../classrtype_1_1_a_network.html#a012fed6443ef3faecbdb271087c16eb1',1,'rtype::ANetwork::stop()']]],
-  ['switchtonextlevel_18',['switchToNextLevel',['../classrtype_1_1game_1_1_game_engine.html#aaccf9e24ba469e3a3b2c87e8e5a3c075',1,'rtype::game::GameEngine']]]
+  ['query_0',['query',['../classrtype_1_1database_1_1_database_manager.html#a3cf0eccca73b85ffc93ff556a6dc8654',1,'rtype::database::DatabaseManager']]]
 ];

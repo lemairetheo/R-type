@@ -1,12 +1,19 @@
 var searchData=
 [
-  ['ultimate_0',['Ultimate',['../structrtype_1_1_input_component.html#a30557b498baad0d015f2308aa67a8617',1,'rtype::InputComponent']]],
-  ['ultimate_1',['ultimate',['../structrtype_1_1network_1_1_player_input_packet.html#a418e2f713d0bb8f9cdf7741bad31985b',1,'rtype::network::PlayerInputPacket']]],
-  ['up_2',['up',['../structrtype_1_1_input_component.html#ab97735cccd7d6c779589ae995ff09834',1,'rtype::InputComponent::up'],['../structrtype_1_1network_1_1_player_input_packet.html#ab003285df484b5871feda188ca2cc7ff',1,'rtype::network::PlayerInputPacket::up']]],
-  ['update_3',['update',['../classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f',1,'rtype::game::GameEngine::update()'],['../classrtype_1_1network_1_1_network_manager.html#a28da6ce1b4c8ea0ac8b4ba16d65986f5',1,'rtype::network::NetworkManager::update()'],['../classrtype_1_1_game.html#a50e6dd7c1cb4f316ef99cafc2b6651a4',1,'rtype::Game::update()'],['../classrtype_1_1_animation_system.html#acab14e30c094486383751facd6a89054',1,'rtype::AnimationSystem::update()'],['../classrtype_1_1_background_system.html#a7f5ae1b1a5f76f612b2be7bf699d8301',1,'rtype::BackgroundSystem::update()'],['../classrtype_1_1_render_system.html#a75bca3319d467e61dd994c9b30c8fc91',1,'rtype::RenderSystem::update()'],['../classrtype_1_1engine_1_1_a_engine.html#ae48856a6db863ea71d6bda8ce49a89c9',1,'rtype::engine::AEngine::update()'],['../classrtype_1_1_movement_system.html#adc06e298d259d7c04dbb0aad11ff786c',1,'rtype::MovementSystem::update()'],['../classrtype_1_1_shoot_system.html#a334ca10e166e6e15cd8b66216bc6d606',1,'rtype::ShootSystem::update()'],['../classrtype_1_1_i_system.html#ae1acf4a9697891852b209a2d3853e84e',1,'rtype::ISystem::update()']]],
-  ['updateclientactivity_4',['updateClientActivity',['../classrtype_1_1network_1_1_network_manager.html#a0f062b5fcc6f0b4ea23280b36fc45e2e',1,'rtype::network::NetworkManager']]],
-  ['updateloop_5',['updateLoop',['../classrtype_1_1_manager.html#a6b4ae2eaea1aa40f520ef392cb999bf1',1,'rtype::Manager']]],
-  ['updateplayerscore_6',['updatePlayerScore',['../classrtype_1_1game_1_1_game_engine.html#a13ee19466f4ac2361f431b9d29b91ea9',1,'rtype::game::GameEngine']]],
-  ['updatetextposition_7',['updateTextPosition',['../classrtype_1_1_button.html#aa44cb205334262986516a35aae935aa2',1,'rtype::Button']]],
-  ['updatethread_8',['updateThread',['../classrtype_1_1_manager.html#a25a7a176b1a475a376f5d20896c85149',1,'rtype::Manager']]]
+  ['targetscale_0',['targetScale',['../classrtype_1_1_button.html#abcc593cd56a843288596af87cef2a543',1,'rtype::Button']]],
+  ['text_1',['text',['../classrtype_1_1_text_input.html#a3c3148b50f592443d39c2e0abf8cfce5',1,'rtype::TextInput']]],
+  ['textcolor_2',['textColor',['../classrtype_1_1_text_input.html#a108defdb56765b682b472fb1d0d36d4f',1,'rtype::TextInput']]],
+  ['textinput_3',['TextInput',['../classrtype_1_1_text_input.html',1,'rtype::TextInput'],['../classrtype_1_1_text_input.html#a76be672797fd90e6a077ca64c4cd2bb1',1,'rtype::TextInput::TextInput()']]],
+  ['textinput_2ecpp_4',['TextInput.cpp',['../_text_input_8cpp.html',1,'']]],
+  ['textinput_2ehpp_5',['TextInput.hpp',['../_text_input_8hpp.html',1,'']]],
+  ['textures_6',['textures',['../classrtype_1_1_resource_manager.html#af894e24bfe3c9215395dd160ab9a457b',1,'rtype::ResourceManager']]],
+  ['time_7',['time',['../structrtype_1_1_leaderboard_entry.html#a825136e00cbe8a374d76f11847992eab',1,'rtype::LeaderboardEntry::time'],['../structrtype_1_1network_1_1_score_update_packet.html#a964a26ccb57e3086bd9322c71b8fc54e',1,'rtype::network::ScoreUpdatePacket::time'],['../structrtype_1_1network_1_1_leaderboard_entry.html#a7354fb6fc05444ee124d278b9587d5fb',1,'rtype::network::LeaderboardEntry::time']]],
+  ['time_5felapsed_8',['time_elapsed',['../structrtype_1_1network_1_1_game_stats_packet.html#a286e73f5b017c4742d526651e16c7560',1,'rtype::network::GameStatsPacket']]],
+  ['timetext_9',['timeText',['../classrtype_1_1_game.html#a1c03b067fa812762aea186ad6a1a0d11',1,'rtype::Game']]],
+  ['title_5ftext_10',['title_text',['../classrtype_1_1_menu.html#a36314c31e261bf372893a2db2f605bcf',1,'rtype::Menu']]],
+  ['total_5fenemies_5fkilled_11',['total_enemies_killed',['../structrtype_1_1network_1_1_player_stats_packet.html#aa6b97769b252841aae36673f725c3a3b',1,'rtype::network::PlayerStatsPacket']]],
+  ['total_5fgames_12',['total_games',['../structrtype_1_1_player_stats.html#aaff9b80ed4f25c70a6104ebbf8084968',1,'rtype::PlayerStats']]],
+  ['total_5fgames_5fplayed_13',['total_games_played',['../structrtype_1_1database_1_1_user.html#aa2ef0546d01e25223e8a8759242f1f2e',1,'rtype::database::User::total_games_played'],['../structrtype_1_1network_1_1_player_stats_packet.html#a120cee00fcbb417feff5bee2f71e8d63',1,'rtype::network::PlayerStatsPacket::total_games_played']]],
+  ['total_5fplaytime_14',['total_playtime',['../structrtype_1_1database_1_1_user.html#afa53bbb3f95f25f8d2f6441f4a630f92',1,'rtype::database::User::total_playtime'],['../structrtype_1_1_player_stats.html#a285dd6c6881c6f88a1364aa239d679d1',1,'rtype::PlayerStats::total_playtime'],['../structrtype_1_1network_1_1_best_score_packet.html#a94896c71eae32836f8dbd7a97011a6ce',1,'rtype::network::BestScorePacket::total_playtime'],['../structrtype_1_1network_1_1_player_stats_packet.html#ae558b8e8bb7b4719849dd8a311e87d73',1,'rtype::network::PlayerStatsPacket::total_playtime']]],
+  ['type_15',['type',['../structrtype_1_1network_1_1_packet_header.html#a0ce75191a4d1e92a583ae3033966262e',1,'rtype::network::PacketHeader::type'],['../structrtype_1_1network_1_1_entity_update_packet.html#a04000e986cf3cf5979312d9542482c20',1,'rtype::network::EntityUpdatePacket::type']]]
 ];

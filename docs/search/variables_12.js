@@ -4,6 +4,13 @@ var searchData=
   ['text_1',['text',['../classrtype_1_1_text_input.html#a3c3148b50f592443d39c2e0abf8cfce5',1,'rtype::TextInput']]],
   ['textcolor_2',['textColor',['../classrtype_1_1_text_input.html#a108defdb56765b682b472fb1d0d36d4f',1,'rtype::TextInput']]],
   ['textures_3',['textures',['../classrtype_1_1_resource_manager.html#af894e24bfe3c9215395dd160ab9a457b',1,'rtype::ResourceManager']]],
-  ['title_5ftext_4',['title_text',['../classrtype_1_1_menu.html#a36314c31e261bf372893a2db2f605bcf',1,'rtype::Menu']]],
-  ['type_5',['type',['../structrtype_1_1network_1_1_packet_header.html#a0ce75191a4d1e92a583ae3033966262e',1,'rtype::network::PacketHeader::type'],['../structrtype_1_1network_1_1_entity_update_packet.html#a04000e986cf3cf5979312d9542482c20',1,'rtype::network::EntityUpdatePacket::type']]]
+  ['time_4',['time',['../structrtype_1_1_leaderboard_entry.html#a825136e00cbe8a374d76f11847992eab',1,'rtype::LeaderboardEntry::time'],['../structrtype_1_1network_1_1_score_update_packet.html#a964a26ccb57e3086bd9322c71b8fc54e',1,'rtype::network::ScoreUpdatePacket::time'],['../structrtype_1_1network_1_1_leaderboard_entry.html#a7354fb6fc05444ee124d278b9587d5fb',1,'rtype::network::LeaderboardEntry::time']]],
+  ['time_5felapsed_5',['time_elapsed',['../structrtype_1_1network_1_1_game_stats_packet.html#a286e73f5b017c4742d526651e16c7560',1,'rtype::network::GameStatsPacket']]],
+  ['timetext_6',['timeText',['../classrtype_1_1_game.html#a1c03b067fa812762aea186ad6a1a0d11',1,'rtype::Game']]],
+  ['title_5ftext_7',['title_text',['../classrtype_1_1_menu.html#a36314c31e261bf372893a2db2f605bcf',1,'rtype::Menu']]],
+  ['total_5fenemies_5fkilled_8',['total_enemies_killed',['../structrtype_1_1network_1_1_player_stats_packet.html#aa6b97769b252841aae36673f725c3a3b',1,'rtype::network::PlayerStatsPacket']]],
+  ['total_5fgames_9',['total_games',['../structrtype_1_1_player_stats.html#aaff9b80ed4f25c70a6104ebbf8084968',1,'rtype::PlayerStats']]],
+  ['total_5fgames_5fplayed_10',['total_games_played',['../structrtype_1_1database_1_1_user.html#aa2ef0546d01e25223e8a8759242f1f2e',1,'rtype::database::User::total_games_played'],['../structrtype_1_1network_1_1_player_stats_packet.html#a120cee00fcbb417feff5bee2f71e8d63',1,'rtype::network::PlayerStatsPacket::total_games_played']]],
+  ['total_5fplaytime_11',['total_playtime',['../structrtype_1_1database_1_1_user.html#afa53bbb3f95f25f8d2f6441f4a630f92',1,'rtype::database::User::total_playtime'],['../structrtype_1_1_player_stats.html#a285dd6c6881c6f88a1364aa239d679d1',1,'rtype::PlayerStats::total_playtime'],['../structrtype_1_1network_1_1_best_score_packet.html#a94896c71eae32836f8dbd7a97011a6ce',1,'rtype::network::BestScorePacket::total_playtime'],['../structrtype_1_1network_1_1_player_stats_packet.html#ae558b8e8bb7b4719849dd8a311e87d73',1,'rtype::network::PlayerStatsPacket::total_playtime']]],
+  ['type_12',['type',['../structrtype_1_1network_1_1_packet_header.html#a0ce75191a4d1e92a583ae3033966262e',1,'rtype::network::PacketHeader::type'],['../structrtype_1_1network_1_1_entity_update_packet.html#a04000e986cf3cf5979312d9542482c20',1,'rtype::network::EntityUpdatePacket::type']]]
 ];

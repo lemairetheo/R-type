@@ -1,19 +1,5 @@
 <map id="rtype::game::GameEngine::handleEnemyShoot" name="rtype::game::GameEngine::handleEnemyShoot">
-<area shape="rect" id="Node000001" title="Handles enemy shooting." alt="" coords="893,60,1066,101"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="671,60,845,101"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="877,83,845,83,845,78,877,78"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="449,27,622,67"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="656,77,617,71,618,65,657,71"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1game_1_1_game_engine.html#a37334757ebf713284456eb9c5d1b7357" title="Creates a packet for entity death." alt="" coords="448,92,623,133"/>
-<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="656,98,624,102,623,97,656,92"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="638,51,677,57,676,62,637,56"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="227,5,400,46"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="465,88,447,81,366,49,368,44,449,77,467,84"/>
-<area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="5,92,179,133"/>
-<area shape="poly" id="edge10_Node000004_Node000006" title=" " alt="" coords="432,112,400,111,227,111,179,112,179,107,227,106,400,106,432,106"/>
-<area shape="rect" id="Node000007" href="$classrtype_1_1game_1_1_game_engine.html#a03e1ce18373d1d3503c9af6a39330f2d" title="Handles collision between a missile and a player." alt="" coords="227,120,400,161"/>
-<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="433,128,401,132,400,127,432,123"/>
-<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="246,55,147,94,145,89,244,50"/>
-<area shape="poly" id="edge7_Node000006_Node000002" title=" " alt="" coords="143,138,183,156,227,170,338,188,383,190,426,188,514,172,622,142,674,122,720,99,722,104,677,127,624,147,515,178,427,194,383,196,337,193,226,175,182,161,141,143"/>
-<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="211,130,179,126,180,121,212,125"/>
+<area shape="rect" id="Node000001" title="Handles enemy shooting." alt="" coords="227,5,400,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="5,5,179,46"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,28,179,28,179,23,211,23"/>
 </map>
