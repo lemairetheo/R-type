@@ -203,8 +203,9 @@ namespace rtype::game {
                 ++it;
             }
         }
-        if (enemySpawnQueue.size() == 0) {
-            // TODO: Add end-of-game poster
+        if (enemySpawnQueue.size() == 0 && entities.getEntitiesWithComponents<Enemy>().empty()) {
+            auto packet = network.createLooseGamePacket();
+            network.broadcast(packet);
         }
     }
 

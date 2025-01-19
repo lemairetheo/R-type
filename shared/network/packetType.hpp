@@ -56,6 +56,7 @@ namespace rtype::network {
         ENTITY_UPDATE = 0x20, ///< Update of an entity
         ENTITY_DEATH = 0x21, ///< Entity death
         END_GAME_STATE = 0x22, ///< End of the game
+        LOOSE_GAME_STATE = 0x23, ///< Game loose
         SCORE_UPDATE = 0x30,    ///< score as been update
         BEST_SCORE = 0x31,      ///< Best score of the player as been set
         PLAYER_STATS = 0x32,    ///< Player statistics

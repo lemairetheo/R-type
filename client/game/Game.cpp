@@ -270,6 +270,8 @@ namespace rtype {
 
         packetHandlers[network::PacketType::END_GAME_STATE] =
             [this](const auto& data, size_t offset) { handleEndGame(data, offset); };
+        packetHandlers[network::PacketType::LOOSE_GAME_STATE] =
+            [this](const auto& data, size_t offset) { handleLose(data, offset); };
     }
 
     void Game::updateStatsDisplay() {
@@ -282,6 +284,15 @@ namespace rtype {
         auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(currentTime - gameStartTime).count();
         timeText.setString("Time: " + std::to_string(elapsed) + "s");
     }
+
+    void Game::handleLose(const std::vector<uint8_t>& data, size_t offset) {
+        currentState = GameState::GAME_OVER;
+        gameOverText.setString("You Lost!");
+        gameOverText.setFillColor(sf::Color::Red);
+        displayFinalStats();
+        musicGame.stop();
+    }
+
 
     void Game::displayFinalStats() {
         std::string statsStr =
@@ -592,6 +603,10 @@ namespace rtype {
             window.draw(timeText);
         } else if (currentState == GameState::GAME_OVER) {
             window.draw(gameOverText);
+            if (playerIsDead) {
+                sf::Text finalScoreText = UiHelpers::createText("Better luck next time!", font, sf::Color::White, {400, 400}, 20, sf::Text::Bold);
+                window.draw(finalScoreText);
+            }
         } else if (currentState == GameState::VICTORY) {
             window.draw(gameOverText);
             sf::Text finalScoreText = UiHelpers::createText("Final score: " + std::to_string(playerScore), font, sf::Color::White, {400, 350}, 20, sf::Text::Bold);

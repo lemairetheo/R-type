@@ -100,6 +100,7 @@ namespace rtype {
         void handleBestScore(const std::vector<uint8_t>& data, size_t offset);
         void handleGameStats(const std::vector<uint8_t>& data, size_t offset);
         void handleEndGame(const std::vector<uint8_t>& data, size_t offset);
+        void handleLose(const std::vector<uint8_t>& data, size_t offset);
 
         void setupEnemyRenderComponent(EntityID entity, int type, RenderComponent &renderComp);
 

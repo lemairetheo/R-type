@@ -141,6 +141,20 @@ namespace rtype::network {
         return packet;
     }
 
+    std::vector<uint8_t> NetworkManager::createLooseGamePacket() {
+        std::vector<uint8_t> packet(sizeof(PacketHeader));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::LOOSE_GAME_STATE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        return packet;
+    }
+
     void NetworkManager::stop() {
         if (!running) return;
 

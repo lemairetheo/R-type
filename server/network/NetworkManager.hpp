@@ -59,6 +59,7 @@ namespace rtype::network {
         std::vector<uint8_t> createBestScorePacket(const std::string& username, int32_t bestTime, int32_t gamesWon);
         std::vector<uint8_t> createEntityDeathPacket(EntityID missile, EntityID enemy);
         std::vector<uint8_t> createEndGamePacket();
+        std::vector<uint8_t> createLooseGamePacket();
         std::vector<uint8_t> createScoreUpdatePacket(const std::string& username, int time, int score, int levelReached, int enemiesKilled);
         std::vector<uint8_t> createBestScorePacket(const std::string& username, int bestTime, int gamesWon, int totalPlaytime, float avgScore);
         std::vector<uint8_t> createPlayerStatsPacket(const database::User& user);
