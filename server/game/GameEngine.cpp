@@ -315,6 +315,7 @@ namespace rtype::game {
             }
             if (entities.getComponent<Enemy>(enemy).isBoss) {
                 bossOfLevelIsDead = true;
+                std::cout << "Boss is dead" << std::endl;
                 updatePlayerScore();
             }
         } else if (!projectile.isUltimate) {
@@ -412,20 +413,19 @@ namespace rtype::game {
             player.score++;
             auto threshold = SCORE_THRESHOLDS.find(currentLevel);
             if (threshold != SCORE_THRESHOLDS.end() && player.score >= threshold->second) {
-                if (currentLevel < 3) {
-                    if (!hasBossIsDisplay && !bossOfLevelIsDead) {
-                        enemySpawnQueue.clear();
-                        enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(1) * 2.0f, static_cast<float>(820), 300, currentLevel, true});
-                        hasBossIsDisplay = true;
-                    } else if (hasBossIsDisplay && bossOfLevelIsDead) {
-                        currentLevel++;
-                        enemySpawnQueue.clear();
-                        switchToNextLevel();
-                        bossOfLevelIsDead = false;
-                        hasBossIsDisplay = false;
-                    }
-                } else {
-                    broadcastEndGameState();
+                if (!hasBossIsDisplay && !bossOfLevelIsDead) {
+                    enemySpawnQueue.clear();
+                    enemySpawnQueue.push_back(PendingSpawn{static_cast<float>(1) * 2.0f, static_cast<float>(820), 300, currentLevel, true});
+                    hasBossIsDisplay = true;
+                    bossOfLevelIsDead = false;
+                } else if (hasBossIsDisplay && bossOfLevelIsDead) {
+                    if (currentLevel == 3)
+                        broadcastEndGameState();
+                    currentLevel++;
+                    enemySpawnQueue.clear();
+                    switchToNextLevel();
+                    bossOfLevelIsDead = false;
+                    hasBossIsDisplay = false;
                 }
             }
         }
