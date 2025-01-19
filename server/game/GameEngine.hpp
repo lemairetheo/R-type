@@ -109,9 +109,9 @@ namespace rtype::game {
           void handleHealthPackSpawns();
 
           const std::map<int, int> SCORE_THRESHOLDS = {
-              {1, 5}, // 10
-              {2, 10}, // 20
-              {3, 15} // 35
+              {1, 10}, // Basic: 10
+              {2, 20}, // Basic: 20
+              {3, 35} // Basic: 35
           }; ///< Score thresholds for each level.
 
             bool bossOfLevelIsDead = false; ///< For check if boss is dead in current level of the game

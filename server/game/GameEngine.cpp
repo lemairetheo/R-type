@@ -315,7 +315,6 @@ namespace rtype::game {
             }
             if (entities.getComponent<Enemy>(enemy).isBoss) {
                 bossOfLevelIsDead = true;
-                std::cout << "Boss is dead" << std::endl;
                 updatePlayerScore();
             }
         } else if (!projectile.isUltimate) {
