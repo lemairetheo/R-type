@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <typeindex>
 #include <iostream>
-
+#include <memory>
 /**
  * @brief EntityManager class
  * @details This class is used to manage the entities and their components
