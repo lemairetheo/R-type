@@ -99,45 +99,37 @@ $(function(){ initResizable(false); });
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="_entity_8hpp_source.html">Entity.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_sparse_array_8hpp_source.html">SparseArray.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="_component_8hpp_source.html">Component.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="_i_component_8hpp_source.html">IComponent.hpp</a>&quot;</code><br />
 <code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &lt;typeindex&gt;</code><br />
 <code>#include &lt;iostream&gt;</code><br />
-<code>#include &lt;memory&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for EntityManager.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="_entity_manager_8hpp__incl.png" border="0" usemap="#ashared_2ecs_2_entity_manager_8hpp" alt=""/></div>
 <map name="ashared_2ecs_2_entity_manager_8hpp" id="ashared_2ecs_2_entity_manager_8hpp">
-<area shape="rect" title=" " alt="" coords="476,5,674,31"/>
+<area shape="rect" title=" " alt="" coords="299,5,496,31"/>
 <area shape="rect" href="_entity_8hpp.html" title=" " alt="" coords="72,79,150,105"/>
-<area shape="poly" title=" " alt="" coords="496,34,166,85,165,80,495,29"/>
-<area shape="rect" href="_sparse_array_8hpp.html" title=" " alt="" coords="246,79,362,105"/>
-<area shape="poly" title=" " alt="" coords="530,34,366,77,364,72,528,29"/>
+<area shape="poly" title=" " alt="" coords="350,34,166,80,165,74,348,29"/>
+<area shape="rect" href="_sparse_array_8hpp.html" title=" " alt="" coords="198,79,314,105"/>
+<area shape="poly" title=" " alt="" coords="375,34,295,74,293,69,372,29"/>
 <area shape="rect" href="_i_component_8hpp.html" title=" " alt="" coords="367,153,484,178"/>
-<area shape="poly" title=" " alt="" coords="516,34,475,52,457,65,441,80,429,108,426,138,421,137,424,107,437,78,453,61,473,47,514,29"/>
-<area shape="rect" href="_component_8hpp.html" title=" " alt="" coords="450,79,564,105"/>
-<area shape="poly" title=" " alt="" coords="566,33,531,70,527,66,562,29"/>
-<area shape="rect" title=" " alt="" coords="588,79,698,105"/>
-<area shape="poly" title=" " alt="" coords="588,29,623,66,619,70,584,33"/>
-<area shape="rect" title=" " alt="" coords="722,79,799,105"/>
-<area shape="poly" title=" " alt="" coords="607,29,715,71,714,75,605,34"/>
-<area shape="rect" title=" " alt="" coords="823,79,894,105"/>
-<area shape="poly" title=" " alt="" coords="624,29,809,75,807,80,622,34"/>
-<area shape="rect" title=" " alt="" coords="918,79,986,105"/>
-<area shape="poly" title=" " alt="" coords="651,29,903,76,902,81,650,34"/>
+<area shape="poly" title=" " alt="" coords="393,32,380,65,377,85,380,104,390,123,403,140,399,143,385,126,375,105,372,85,375,64,388,30"/>
+<area shape="rect" title=" " alt="" coords="389,79,499,105"/>
+<area shape="poly" title=" " alt="" coords="407,30,430,64,426,67,403,33"/>
+<area shape="rect" title=" " alt="" coords="523,79,600,105"/>
+<area shape="poly" title=" " alt="" coords="426,29,521,70,519,75,424,34"/>
+<area shape="rect" title=" " alt="" coords="624,79,696,105"/>
+<area shape="poly" title=" " alt="" coords="443,29,610,74,609,79,441,34"/>
 <area shape="rect" title=" " alt="" coords="5,153,70,178"/>
 <area shape="poly" title=" " alt="" coords="101,107,62,144,59,140,97,103"/>
 <area shape="rect" title=" " alt="" coords="94,153,152,178"/>
-<area shape="poly" title=" " alt="" coords="274,108,167,150,165,145,272,103"/>
+<area shape="poly" title=" " alt="" coords="235,108,160,147,158,143,232,103"/>
 <area shape="rect" title=" " alt="" coords="175,153,241,178"/>
-<area shape="poly" title=" " alt="" coords="289,107,238,146,235,141,286,103"/>
+<area shape="poly" title=" " alt="" coords="250,106,227,141,223,138,246,103"/>
 <area shape="rect" title=" " alt="" coords="266,153,343,178"/>
-<area shape="poly" title=" " alt="" coords="307,105,307,137,302,137,302,105"/>
-<area shape="poly" title=" " alt="" coords="326,103,393,142,390,147,323,108"/>
-<area shape="rect" title=" " alt="" coords="509,153,569,178"/>
-<area shape="poly" title=" " alt="" coords="515,104,530,137,525,139,510,106"/>
+<area shape="poly" title=" " alt="" coords="266,103,290,138,285,141,262,106"/>
+<area shape="poly" title=" " alt="" coords="286,103,384,144,381,149,284,108"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -189,18 +181,22 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrtype_1_1_entity_manager.html">rtype::EntityManager</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manages entities and their components in an Entity Component System (ECS)  <a href="classrtype_1_1_entity_manager.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacertype.html">rtype</a></td></tr>
+<tr class="memdesc:namespacertype"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for the ECS components. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a9e9b8157af6ff13d1108f57516924d26" id="r_a9e9b8157af6ff13d1108f57516924d26"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacertype.html#a9e9b8157af6ff13d1108f57516924d26">rtype::MAX_ENTITIES</a> = 1000</td></tr>
+<tr class="memdesc:a9e9b8157af6ff13d1108f57516924d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of entities that can exist simultaneously.  <br /></td></tr>
 <tr class="separator:a9e9b8157af6ff13d1108f57516924d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a888d32f7b15a010cdff3d347c91149ec" id="r_a888d32f7b15a010cdff3d347c91149ec"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacertype.html#a888d32f7b15a010cdff3d347c91149ec">rtype::NB_ENEMIES</a> = 50</td></tr>
+<tr class="memdesc:a888d32f7b15a010cdff3d347c91149ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum number of enemies that can exist simultaneously.  <br /></td></tr>
 <tr class="separator:a888d32f7b15a010cdff3d347c91149ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->

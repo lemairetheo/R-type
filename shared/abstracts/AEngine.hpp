@@ -6,6 +6,10 @@
 #include <iostream>
 
 namespace rtype::engine {
+    /**
+     * @brief Abstract class for the engine
+     *
+     */
     class AEngine {
     public:
         virtual ~AEngine() = default;

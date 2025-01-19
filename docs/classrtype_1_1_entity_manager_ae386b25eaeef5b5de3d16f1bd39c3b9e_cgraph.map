@@ -1,5 +1,5 @@
 <map id="rtype::EntityManager::getComponent" name="rtype::EntityManager::getComponent">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,148,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="196,5,338,46"/>
+<area shape="rect" id="Node000001" title="Gets a component from an entity." alt="" coords="5,5,148,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="196,5,338,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,23,180,23,180,28,148,28"/>
 </map>

@@ -1,3 +1,3 @@
 <map id="rtype::Projectile" name="rtype::Projectile">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,107,133"/>
+<area shape="rect" id="Node000001" title="Projectile component for the ECS." alt="" coords="5,5,107,133"/>
 </map>

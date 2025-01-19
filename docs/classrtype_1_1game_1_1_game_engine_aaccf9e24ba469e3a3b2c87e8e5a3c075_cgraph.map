@@ -1,13 +1,13 @@
 <map id="rtype::game::GameEngine::switchToNextLevel" name="rtype::game::GameEngine::switchToNextLevel">
 <area shape="rect" id="Node000001" title="Switches to the next level." alt="" coords="5,71,179,111"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="252,5,394,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title="Destroys an entity and removes all its components." alt="" coords="252,5,394,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,68,236,47,238,52,167,73"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="227,71,419,111"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title="Gets all entities that have the specified components." alt="" coords="227,71,419,111"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="179,88,211,88,211,94,179,94"/>
 <area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a08395fcf84b7edb5e7b6e78694e2a6d1" title="Spawns enemies for the given level." alt="" coords="236,136,410,177"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="167,109,234,129,233,134,165,114"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="467,5,633,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title="Removes all components from an entity." alt="" coords="467,5,633,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="395,23,451,23,451,28,395,28"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="479,71,621,111"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title="Checks if an entity has a specific component." alt="" coords="479,71,621,111"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="419,88,463,88,463,94,419,94"/>
 </map>

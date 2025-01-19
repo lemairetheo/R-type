@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Class representing the game itself in the client side of the projet." alt="" coords="242,1481,388,1995"/>
 <area shape="rect" id="Node000002" href="$structrtype_1_1_player_stats.html" title=" " alt="" coords="5,1108,121,1276"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,1274,109,1345,136,1417,184,1514,236,1606,231,1609,179,1517,131,1419,104,1346,82,1276"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html" title=" " alt="" coords="146,1016,341,1367"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html" title="Manages entities and their components in an Entity Component System (ECS)" alt="" coords="146,1016,341,1367"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,1366,282,1464,276,1465,264,1367"/>
 <area shape="rect" id="Node000004" href="$classrtype_1_1_menu.html" title=" " alt="" coords="533,965,673,1418"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="536,1378,516,1419,459,1522,400,1617,395,1615,455,1519,511,1417,531,1376"/>

@@ -1,5 +1,5 @@
 <map id="rtype::EntityManager::getEntitiesWithComponents" name="rtype::EntityManager::getEntitiesWithComponents">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,198,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="246,5,388,46"/>
+<area shape="rect" id="Node000001" title="Gets all entities that have the specified components." alt="" coords="5,5,198,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title="Checks if an entity has a specific component." alt="" coords="246,5,388,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,23,230,23,230,28,198,28"/>
 </map>

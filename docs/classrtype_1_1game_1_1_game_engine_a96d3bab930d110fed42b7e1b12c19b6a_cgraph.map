@@ -2,10 +2,10 @@
 <area shape="rect" id="Node000001" title="Handles the spawning of walls." alt="" coords="5,39,179,79"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#a275df6449e6a88d2a8b4516663b9aa4b" title="Spawns a wall at the given position." alt="" coords="227,39,400,79"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,56,211,56,211,62,179,62"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="448,5,590,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title="Adds a component to an entity." alt="" coords="448,5,590,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="400,42,432,37,433,42,401,48"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="448,71,590,111"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title="Creates a new entity." alt="" coords="448,71,590,111"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="401,70,433,75,432,80,400,75"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="638,5,781,46"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="638,5,781,46"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="591,23,623,23,623,28,591,28"/>
 </map>

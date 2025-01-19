@@ -2,12 +2,12 @@
 <area shape="rect" id="Node000001" title="Handles the spawning of enemies." alt="" coords="5,71,179,111"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1game_1_1_game_engine.html#aa5dca188c216bb3ef12918def5ad5c39" title="Spawns an enemy at the given position and level." alt="" coords="227,71,400,111"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,88,211,88,211,94,179,94"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="464,5,606,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title="Adds a component to an entity." alt="" coords="464,5,606,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,68,448,48,449,54,385,73"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="464,71,606,111"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title="Creates a new entity." alt="" coords="464,71,606,111"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="400,88,448,88,448,94,400,94"/>
 <area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#a47f13fad43470cdfb4aef5ab68514ca6" title="Gets the attributes of an enemy based on its level." alt="" coords="448,136,621,177"/>
 <area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="385,109,449,128,448,134,384,114"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="669,5,812,46"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="669,5,812,46"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="606,23,654,23,654,28,606,28"/>
 </map>

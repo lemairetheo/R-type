@@ -1,5 +1,5 @@
 <map id="rtype::EntityManager::createEntity" name="rtype::EntityManager::createEntity">
-<area shape="rect" id="Node000001" title=" " alt="" coords="979,214,1121,254"/>
+<area shape="rect" id="Node000001" title="Creates a new entity." alt="" coords="979,214,1121,254"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="724,42,931,82"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1024,203,983,152,957,126,929,103,896,85,899,81,932,99,961,122,987,148,1028,199"/>
 <area shape="rect" id="Node000006" href="$classrtype_1_1game_1_1_game_engine.html#af03aa744bf91fce869fdbf149a2909a1" title="Creates a new player entity." alt="" coords="741,156,914,197"/>

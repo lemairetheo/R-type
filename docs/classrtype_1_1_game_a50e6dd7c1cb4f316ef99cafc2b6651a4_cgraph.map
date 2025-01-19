@@ -4,17 +4,17 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,194,247,141,249,146,112,199"/>
 <area shape="rect" id="Node000009" href="$classrtype_1_1_game.html#a54ac353555dfb02d488d2a6022fe6983" title=" " alt="" coords="194,225,402,250"/>
 <area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="146,216,178,220,178,225,145,221"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="475,5,617,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title="Destroys an entity and removes all its components." alt="" coords="475,5,617,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="327,108,449,57,468,49,470,54,451,61,329,113"/>
-<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="475,71,617,111"/>
+<area shape="rect" id="Node000005" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title="Gets a component from an entity." alt="" coords="475,71,617,111"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="393,109,459,100,460,105,394,114"/>
-<area shape="rect" id="Node000007" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="450,136,642,177"/>
+<area shape="rect" id="Node000007" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title="Gets all entities that have the specified components." alt="" coords="450,136,642,177"/>
 <area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="394,134,435,139,434,145,393,139"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="698,5,864,46"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title="Removes all components from an entity." alt="" coords="698,5,864,46"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="618,23,683,23,683,28,618,28"/>
-<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="710,71,852,111"/>
+<area shape="rect" id="Node000006" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="710,71,852,111"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="618,88,694,88,694,94,618,94"/>
-<area shape="rect" id="Node000008" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="710,136,852,177"/>
+<area shape="rect" id="Node000008" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title="Checks if an entity has a specific component." alt="" coords="710,136,852,177"/>
 <area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="643,154,694,154,694,159,643,159"/>
 <area shape="rect" id="Node000010" href="$classrtype_1_1_ui_helpers.html#afe75e86091934fc3b5efc723149b42fc" title=" " alt="" coords="454,201,639,226"/>
 <area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="402,225,438,221,438,227,403,230"/>

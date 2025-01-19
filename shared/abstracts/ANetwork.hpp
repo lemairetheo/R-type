@@ -7,6 +7,10 @@
 #include <iostream>
 
 namespace rtype {
+    /**
+     * @brief Abstract class for the network
+     *
+     */
     class ANetwork {
     public:
         ANetwork(uint16_t port) : port(port) {}

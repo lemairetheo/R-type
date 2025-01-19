@@ -1,3 +1,3 @@
 <map id="rtype::Player" name="rtype::Player">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,90,112"/>
+<area shape="rect" id="Node000001" title="Player component for the ECS." alt="" coords="5,5,90,112"/>
 </map>

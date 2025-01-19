@@ -98,13 +98,16 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
+<p>Manages entities and their components in an Entity Component System (ECS)  
+ <a href="#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_entity_manager_8hpp_source.html">EntityManager.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for rtype::EntityManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager__coll__graph.png" border="0" usemap="#artype_1_1_entity_manager_coll__map" alt="Collaboration graph"/></div>
 <map name="artype_1_1_entity_manager_coll__map" id="artype_1_1_entity_manager_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,200,356"/>
+<area shape="rect" title="Manages entities and their components in an Entity Component System (ECS)" alt="" coords="5,5,200,356"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -115,35 +118,46 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5489d61f06f3c66bd038144607d02ec3" id="r_a5489d61f06f3c66bd038144607d02ec3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5489d61f06f3c66bd038144607d02ec3">~EntityManager</a> ()=default</td></tr>
 <tr class="separator:a5489d61f06f3c66bd038144607d02ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a506e30237b9450046ce30a24b111c37b" id="r_a506e30237b9450046ce30a24b111c37b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a506e30237b9450046ce30a24b111c37b">createEntity</a> ()</td></tr>
+<tr class="memdesc:a506e30237b9450046ce30a24b111c37b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new entity.  <br /></td></tr>
 <tr class="separator:a506e30237b9450046ce30a24b111c37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47427faf7781047d4efc42ee398935e2" id="r_a47427faf7781047d4efc42ee398935e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47427faf7781047d4efc42ee398935e2">reset</a> ()</td></tr>
+<tr class="memdesc:a47427faf7781047d4efc42ee398935e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the entire entity manager.  <br /></td></tr>
 <tr class="separator:a47427faf7781047d4efc42ee398935e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e29fa2309d45974a36baa31efc2e330" id="r_a3e29fa2309d45974a36baa31efc2e330"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e29fa2309d45974a36baa31efc2e330">destroyEntity</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity)</td></tr>
+<tr class="memdesc:a3e29fa2309d45974a36baa31efc2e330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys an entity and removes all its components.  <br /></td></tr>
 <tr class="separator:a3e29fa2309d45974a36baa31efc2e330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ba9aeabbf0a3bf5b7f3e41a913df66c" id="r_a7ba9aeabbf0a3bf5b7f3e41a913df66c"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:a7ba9aeabbf0a3bf5b7f3e41a913df66c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classrtype_1_1_sparse_array.html">SparseArray</a>&lt; Component &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7ba9aeabbf0a3bf5b7f3e41a913df66c">getComponents</a> ()</td></tr>
+<tr class="memdesc:a7ba9aeabbf0a3bf5b7f3e41a913df66c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the sparse array of components of a specific type.  <br /></td></tr>
 <tr class="separator:a7ba9aeabbf0a3bf5b7f3e41a913df66c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad044ba69789e444e9a9bbc76d1f25e88" id="r_ad044ba69789e444e9a9bbc76d1f25e88"><td class="memTemplParams" colspan="2">template&lt;typename... Components&gt; </td></tr>
 <tr class="memitem:ad044ba69789e444e9a9bbc76d1f25e88"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad044ba69789e444e9a9bbc76d1f25e88">getEntitiesWithComponents</a> () const</td></tr>
+<tr class="memdesc:ad044ba69789e444e9a9bbc76d1f25e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all entities that have the specified components.  <br /></td></tr>
 <tr class="separator:ad044ba69789e444e9a9bbc76d1f25e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2f49df226842d6c8f9fe3f388d6c6a9" id="r_ab2f49df226842d6c8f9fe3f388d6c6a9"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:ab2f49df226842d6c8f9fe3f388d6c6a9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ab2f49df226842d6c8f9fe3f388d6c6a9">addComponent</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity, Component component)</td></tr>
+<tr class="memdesc:ab2f49df226842d6c8f9fe3f388d6c6a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a component to an entity.  <br /></td></tr>
 <tr class="separator:ab2f49df226842d6c8f9fe3f388d6c6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae386b25eaeef5b5de3d16f1bd39c3b9e" id="r_ae386b25eaeef5b5de3d16f1bd39c3b9e"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:ae386b25eaeef5b5de3d16f1bd39c3b9e"><td class="memTemplItemLeft" align="right" valign="top">Component &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae386b25eaeef5b5de3d16f1bd39c3b9e">getComponent</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity)</td></tr>
+<tr class="memdesc:ae386b25eaeef5b5de3d16f1bd39c3b9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a component from an entity.  <br /></td></tr>
 <tr class="separator:ae386b25eaeef5b5de3d16f1bd39c3b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81c18adee6d54c7676ab0175f92cd3aa" id="r_a81c18adee6d54c7676ab0175f92cd3aa"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:a81c18adee6d54c7676ab0175f92cd3aa"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a81c18adee6d54c7676ab0175f92cd3aa">hasComponent</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity) const</td></tr>
+<tr class="memdesc:a81c18adee6d54c7676ab0175f92cd3aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if an entity has a specific component.  <br /></td></tr>
 <tr class="separator:a81c18adee6d54c7676ab0175f92cd3aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad72a1c7d4c9776a265b7e5c60d4cb5ae" id="r_ad72a1c7d4c9776a265b7e5c60d4cb5ae"><td class="memTemplParams" colspan="2">template&lt;typename Component &gt; </td></tr>
 <tr class="memitem:ad72a1c7d4c9776a265b7e5c60d4cb5ae"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad72a1c7d4c9776a265b7e5c60d4cb5ae">hasTypeEnemy</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity) const</td></tr>
+<tr class="memdesc:ad72a1c7d4c9776a265b7e5c60d4cb5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks the enemy type of an entity.  <br /></td></tr>
 <tr class="separator:ad72a1c7d4c9776a265b7e5c60d4cb5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfe1e41d8f3d7f1e50a4842ba8493c85" id="r_adfe1e41d8f3d7f1e50a4842ba8493c85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adfe1e41d8f3d7f1e50a4842ba8493c85">resetEntityComponents</a> (<a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> entity)</td></tr>
+<tr class="memdesc:adfe1e41d8f3d7f1e50a4842ba8493c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes all components from an entity.  <br /></td></tr>
 <tr class="separator:adfe1e41d8f3d7f1e50a4842ba8493c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a7dd57ba2df12246d17e1ca1187688f1c" id="r_a7dd57ba2df12246d17e1ca1187688f1c"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::type_index, std::unique_ptr&lt; <a class="el" href="classrtype_1_1_i_component.html">IComponent</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dd57ba2df12246d17e1ca1187688f1c">_components</a></td></tr>
+<tr class="memdesc:a7dd57ba2df12246d17e1ca1187688f1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map storing component arrays indexed by their type.  <br /></td></tr>
 <tr class="separator:a7dd57ba2df12246d17e1ca1187688f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2679e8d948d60b4347b1dee76338dadf" id="r_a2679e8d948d60b4347b1dee76338dadf"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="_entity_8hpp.html#a43fc3ccc921bb5ca853ca42feee7afa1">EntityID</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2679e8d948d60b4347b1dee76338dadf">availableEntities</a></td></tr>
 <tr class="separator:a2679e8d948d60b4347b1dee76338dadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +166,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ab3827c1faaa191483fad9cab11e9f942" id="r_ab3827c1faaa191483fad9cab11e9f942"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3827c1faaa191483fad9cab11e9f942">NbEntities</a> = 1</td></tr>
 <tr class="separator:ab3827c1faaa191483fad9cab11e9f942"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Manages entities and their components in an Entity Component System (ECS) </p>
+<p>The <a class="el" href="classrtype_1_1_entity_manager.html" title="Manages entities and their components in an Entity Component System (ECS)">EntityManager</a> is responsible for creating and destroying entities, managing their components, and providing access to components through a sparse array system. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aac55f17a20fac54218d7c55c979bf735" name="aac55f17a20fac54218d7c55c979bf735"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aac55f17a20fac54218d7c55c979bf735">&#9670;&#160;</a></span>EntityManager()</h2>
 
@@ -224,13 +241,28 @@ template&lt;typename Component &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Adds a component to an entity. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Component</td><td>The type of component to add </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity ID to add the component to </td></tr>
+    <tr><td class="paramname">component</td><td>The component instance to add </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_cgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_cgraph" id="aclassrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,148,46"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="196,5,338,46"/>
+<area shape="rect" title="Adds a component to an entity." alt="" coords="5,5,148,46"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="196,5,338,46"/>
 <area shape="poly" title=" " alt="" coords="148,23,180,23,180,28,148,28"/>
 </map>
 </div>
@@ -239,7 +271,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_icgraph" id="aclassrtype_1_1_entity_manager_ab2f49df226842d6c8f9fe3f388d6c6a9_icgraph">
-<area shape="rect" title=" " alt="" coords="1018,317,1160,358"/>
+<area shape="rect" title="Adds a component to an entity." alt="" coords="1018,317,1160,358"/>
 <area shape="rect" href="classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="758,129,965,170"/>
 <area shape="poly" title=" " alt="" coords="1068,305,1027,243,1000,212,968,185,946,173,949,168,971,180,1003,208,1031,240,1072,302"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#af03aa744bf91fce869fdbf149a2909a1" title="Creates a new player entity." alt="" coords="775,64,948,104"/>
@@ -313,12 +345,21 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Creates a new entity. </p>
+<dl class="section return"><dt>Returns</dt><dd>EntityID The ID of the newly created entity </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">std::runtime_error</td><td>if maximum number of entities is reached </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_a506e30237b9450046ce30a24b111c37b_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_a506e30237b9450046ce30a24b111c37b_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_a506e30237b9450046ce30a24b111c37b_icgraph" id="aclassrtype_1_1_entity_manager_a506e30237b9450046ce30a24b111c37b_icgraph">
-<area shape="rect" title=" " alt="" coords="979,214,1121,254"/>
+<area shape="rect" title="Creates a new entity." alt="" coords="979,214,1121,254"/>
 <area shape="rect" href="classrtype_1_1_game.html#ae2aa06ae350235f608db9acdf7737e40" title=" " alt="" coords="724,42,931,82"/>
 <area shape="poly" title=" " alt="" coords="1024,203,983,152,957,126,929,103,896,85,899,81,932,99,961,122,987,148,1028,199"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#af03aa744bf91fce869fdbf149a2909a1" title="Creates a new player entity." alt="" coords="741,156,914,197"/>
@@ -377,13 +418,21 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Destroys an entity and removes all its components. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The ID of the entity to destroy </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_cgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_cgraph" id="aclassrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,148,46"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="196,5,362,46"/>
+<area shape="rect" title="Destroys an entity and removes all its components." alt="" coords="5,5,148,46"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title="Removes all components from an entity." alt="" coords="196,5,362,46"/>
 <area shape="poly" title=" " alt="" coords="148,23,180,23,180,28,148,28"/>
 </map>
 </div>
@@ -392,7 +441,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_icgraph" id="aclassrtype_1_1_entity_manager_a3e29fa2309d45974a36baa31efc2e330_icgraph">
-<area shape="rect" title=" " alt="" coords="1168,243,1310,284"/>
+<area shape="rect" title="Destroys an entity and removes all its components." alt="" coords="1168,243,1310,284"/>
 <area shape="rect" href="classrtype_1_1_game.html#a7d60765320a258d74f67f75663c4e9db" title=" " alt="" coords="930,56,1120,82"/>
 <area shape="poly" title=" " alt="" coords="1219,231,1179,166,1151,132,1118,103,1082,85,1085,80,1122,99,1155,128,1183,163,1224,228"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a667117f47eb7400104e76a791d63e3fd" title="Handles collision between a missile and an enemy." alt="" coords="448,214,622,254"/>
@@ -458,13 +507,28 @@ template&lt;typename Component &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets a component from an entity. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Component</td><td>The type of component to get </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity ID to get the component from </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Component&amp; Reference to the requested component </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_cgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_cgraph" id="aclassrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,148,46"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="196,5,338,46"/>
+<area shape="rect" title="Gets a component from an entity." alt="" coords="5,5,148,46"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="196,5,338,46"/>
 <area shape="poly" title=" " alt="" coords="148,23,180,23,180,28,148,28"/>
 </map>
 </div>
@@ -473,7 +537,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_icgraph" id="aclassrtype_1_1_entity_manager_ae386b25eaeef5b5de3d16f1bd39c3b9e_icgraph">
-<area shape="rect" title=" " alt="" coords="1399,447,1542,487"/>
+<area shape="rect" title="Gets a component from an entity." alt="" coords="1399,447,1542,487"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="231,199,404,239"/>
 <area shape="poly" title=" " alt="" coords="1461,432,1449,381,1428,321,1396,261,1375,235,1350,212,1309,185,1271,168,1235,158,1200,155,1123,158,1027,163,783,163,681,167,579,177,405,204,405,199,579,172,681,162,783,158,1027,158,1122,153,1200,150,1236,153,1273,162,1311,180,1353,208,1379,231,1400,258,1433,319,1455,380,1466,431"/>
 <area shape="rect" href="classrtype_1_1_game.html#a7d60765320a258d74f67f75663c4e9db" title=" " alt="" coords="1161,97,1351,123"/>
@@ -567,19 +631,28 @@ template&lt;typename Component &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets the sparse array of components of a specific type. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Component</td><td>The type of component to get </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>SparseArray&lt;Component&gt;&amp; Reference to the sparse array of components </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_a7ba9aeabbf0a3bf5b7f3e41a913df66c_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_a7ba9aeabbf0a3bf5b7f3e41a913df66c_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_a7ba9aeabbf0a3bf5b7f3e41a913df66c_icgraph" id="aclassrtype_1_1_entity_manager_a7ba9aeabbf0a3bf5b7f3e41a913df66c_icgraph">
-<area shape="rect" title=" " alt="" coords="1677,344,1819,384"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="1471,344,1613,384"/>
+<area shape="rect" title="Gets the sparse array of components of a specific type." alt="" coords="1677,344,1819,384"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title="Adds a component to an entity." alt="" coords="1471,344,1613,384"/>
 <area shape="poly" title=" " alt="" coords="1661,367,1614,367,1614,361,1661,361"/>
 <area shape="rect" href="classrtype_1_1_game.html#abb6262555c427402400d711680f8e28d" title=" " alt="" coords="1206,170,1393,211"/>
 <area shape="poly" title=" " alt="" coords="1685,340,1558,285,1406,226,1370,214,1372,209,1408,221,1560,280,1687,335"/>
 <area shape="rect" href="classrtype_1_1_game.html#a25f3e467b2f2e8cbf8f7598c682330f6" title=" " alt="" coords="692,494,866,519"/>
 <area shape="poly" title=" " alt="" coords="1697,394,1640,423,1569,455,1490,485,1408,507,1335,519,1260,526,1111,532,976,528,866,519,867,514,976,522,1111,526,1260,521,1334,513,1407,501,1488,480,1567,450,1638,419,1695,390"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="1471,957,1613,998"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title="Gets a component from an entity." alt="" coords="1471,957,1613,998"/>
 <area shape="poly" title=" " alt="" coords="1737,400,1553,958,1548,956,1732,398"/>
 <area shape="rect" href="classrtype_1_1_game.html#a4655a98c6fc633c73414ad5b15920159" title=" " alt="" coords="1455,77,1629,118"/>
 <area shape="poly" title=" " alt="" coords="1719,333,1557,120,1561,116,1724,329"/>
@@ -706,13 +779,22 @@ template&lt;typename... Components&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Gets all entities that have the specified components. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Components</td><td>Parameter pack of component types to check for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;EntityID&gt; Vector of entity IDs that have all specified components </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_cgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_cgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_cgraph" id="aclassrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,198,46"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="246,5,388,46"/>
+<area shape="rect" title="Gets all entities that have the specified components." alt="" coords="5,5,198,46"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title="Checks if an entity has a specific component." alt="" coords="246,5,388,46"/>
 <area shape="poly" title=" " alt="" coords="198,23,230,23,230,28,198,28"/>
 </map>
 </div>
@@ -721,7 +803,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_icgraph" id="aclassrtype_1_1_entity_manager_ad044ba69789e444e9a9bbc76d1f25e88_icgraph">
-<area shape="rect" title=" " alt="" coords="1138,220,1330,261"/>
+<area shape="rect" title="Gets all entities that have the specified components." alt="" coords="1138,220,1330,261"/>
 <area shape="rect" href="classrtype_1_1_game.html#a7d60765320a258d74f67f75663c4e9db" title=" " alt="" coords="900,59,1090,84"/>
 <area shape="poly" title=" " alt="" coords="1203,211,1153,160,1122,133,1089,110,1040,87,1042,82,1091,105,1125,129,1156,156,1207,207"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="227,220,400,261"/>
@@ -782,15 +864,30 @@ template&lt;typename Component &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Checks if an entity has a specific component. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Component</td><td>The type of component to check for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity ID to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool True if the entity has the component, false otherwise </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_a81c18adee6d54c7676ab0175f92cd3aa_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_a81c18adee6d54c7676ab0175f92cd3aa_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_a81c18adee6d54c7676ab0175f92cd3aa_icgraph" id="aclassrtype_1_1_entity_manager_a81c18adee6d54c7676ab0175f92cd3aa_icgraph">
-<area shape="rect" title=" " alt="" coords="1417,647,1560,688"/>
+<area shape="rect" title="Checks if an entity has a specific component." alt="" coords="1417,647,1560,688"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="231,132,404,173"/>
 <area shape="poly" title=" " alt="" coords="1483,632,1474,559,1455,464,1441,412,1421,361,1397,312,1367,266,1331,221,1296,184,1261,155,1225,132,1187,116,1143,105,1093,99,1035,97,784,97,682,101,579,111,405,138,404,133,579,106,681,96,784,92,1035,92,1093,93,1144,100,1188,111,1228,128,1264,151,1300,180,1335,218,1371,263,1402,309,1426,359,1446,410,1461,462,1480,558,1488,632"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="1177,366,1369,406"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title="Gets all entities that have the specified components." alt="" coords="1177,366,1369,406"/>
 <area shape="poly" title=" " alt="" coords="1462,636,1367,506,1290,409,1294,405,1371,503,1466,633"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="231,300,404,341"/>
 <area shape="poly" title=" " alt="" coords="1480,632,1469,574,1448,501,1415,424,1393,388,1367,356,1292,280,1257,253,1221,232,1183,216,1141,206,1092,200,1035,198,784,198,724,201,663,209,546,237,444,271,366,302,364,297,442,266,545,232,663,204,723,196,784,193,1035,193,1092,195,1142,201,1185,211,1223,227,1260,249,1295,276,1371,352,1397,385,1420,422,1453,499,1474,573,1485,631"/>
@@ -883,12 +980,27 @@ template&lt;typename Component &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Checks the enemy type of an entity. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Component</td><td>The type of component to check (usually <a class="el" href="structrtype_1_1_enemy.html" title="Enemy component for the ECS.">Enemy</a>) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity ID to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>int <a class="el" href="structrtype_1_1_enemy.html" title="Enemy component for the ECS.">Enemy</a> type (2 for level 1, 3 for level 2, 4 for level 3, 0 if not an enemy) </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_ad72a1c7d4c9776a265b7e5c60d4cb5ae_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_ad72a1c7d4c9776a265b7e5c60d4cb5ae_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_ad72a1c7d4c9776a265b7e5c60d4cb5ae_icgraph" id="aclassrtype_1_1_entity_manager_ad72a1c7d4c9776a265b7e5c60d4cb5ae_icgraph">
-<area shape="rect" title=" " alt="" coords="448,5,590,46"/>
+<area shape="rect" title="Checks the enemy type of an entity." alt="" coords="448,5,590,46"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a044fc92323953e0f71c195086e8bfff5" title="Broadcasts the current world state to all clients." alt="" coords="227,5,400,46"/>
 <area shape="poly" title=" " alt="" coords="432,28,400,28,400,23,432,23"/>
 <area shape="rect" href="classrtype_1_1game_1_1_game_engine.html#a12f960fd383d0dae65447c1e565a7e0f" title="Updates the game state." alt="" coords="5,5,179,46"/>
@@ -912,12 +1024,15 @@ Here is the caller graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Resets the entire entity manager. </p>
+<p>Clears all components and resets entity counter to initial state </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_a47427faf7781047d4efc42ee398935e2_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_a47427faf7781047d4efc42ee398935e2_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_a47427faf7781047d4efc42ee398935e2_icgraph" id="aclassrtype_1_1_entity_manager_a47427faf7781047d4efc42ee398935e2_icgraph">
-<area shape="rect" title=" " alt="" coords="270,5,412,46"/>
+<area shape="rect" title="Resets the entire entity manager." alt="" coords="270,5,412,46"/>
 <area shape="rect" href="classrtype_1_1_game.html#a126327dd15f70e456c37228ef964400f" title=" " alt="" coords="103,13,222,38"/>
 <area shape="poly" title=" " alt="" coords="254,28,222,28,222,23,254,23"/>
 <area shape="rect" href="client_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,55,38"/>
@@ -949,13 +1064,21 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Removes all components from an entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity ID to reset </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classrtype_1_1_entity_manager_adfe1e41d8f3d7f1e50a4842ba8493c85_icgraph.png" border="0" usemap="#aclassrtype_1_1_entity_manager_adfe1e41d8f3d7f1e50a4842ba8493c85_icgraph" alt=""/></div>
 <map name="aclassrtype_1_1_entity_manager_adfe1e41d8f3d7f1e50a4842ba8493c85_icgraph" id="aclassrtype_1_1_entity_manager_adfe1e41d8f3d7f1e50a4842ba8493c85_icgraph">
-<area shape="rect" title=" " alt="" coords="1389,351,1556,391"/>
-<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="1184,228,1326,269"/>
+<area shape="rect" title="Removes all components from an entity." alt="" coords="1389,351,1556,391"/>
+<area shape="rect" href="classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title="Destroys an entity and removes all its components." alt="" coords="1184,228,1326,269"/>
 <area shape="poly" title=" " alt="" coords="1420,345,1291,272,1294,267,1423,340"/>
 <area shape="rect" href="classrtype_1_1_game.html#acf91280db01f744ace83a3de503efd41" title=" " alt="" coords="1168,383,1341,423"/>
 <area shape="poly" title=" " alt="" coords="1374,388,1342,393,1341,388,1374,383"/>
@@ -1021,6 +1144,8 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Map storing component arrays indexed by their type. </p>
 
 </div>
 </div>

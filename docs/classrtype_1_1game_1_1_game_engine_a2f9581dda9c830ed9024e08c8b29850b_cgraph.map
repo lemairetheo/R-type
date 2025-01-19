@@ -1,7 +1,7 @@
 <map id="rtype::game::GameEngine::handlePlayerDisconnection" name="rtype::game::GameEngine::handlePlayerDisconnection">
 <area shape="rect" id="Node000001" title="Handles player disconnection." alt="" coords="5,5,193,46"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="241,5,383,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title="Destroys an entity and removes all its components." alt="" coords="241,5,383,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="193,23,225,23,225,28,193,28"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="431,5,597,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title="Removes all components from an entity." alt="" coords="431,5,597,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,23,415,23,415,28,384,28"/>
 </map>

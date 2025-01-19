@@ -15,8 +15,8 @@
 <area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="421,154,472,154,472,159,421,159"/>
 <area shape="rect" id="Node000008" href="$classrtype_1_1network_1_1_network_manager.html#aecf1b990f70cca6c0beca2ef488e76db" title=" " alt="" coords="488,201,699,242"/>
 <area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="419,175,496,194,495,200,417,180"/>
-<area shape="rect" id="Node000009" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="522,267,665,307"/>
+<area shape="rect" id="Node000009" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title="Gets a component from an entity." alt="" coords="522,267,665,307"/>
 <area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="365,175,421,213,489,251,509,260,507,265,487,256,418,218,362,180"/>
-<area shape="rect" id="Node000010" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="747,267,890,307"/>
+<area shape="rect" id="Node000010" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="747,267,890,307"/>
 <area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="665,284,732,284,732,290,665,290"/>
 </map>

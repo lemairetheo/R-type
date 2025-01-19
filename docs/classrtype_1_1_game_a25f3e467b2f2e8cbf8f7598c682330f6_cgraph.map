@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,204,180,230"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb" title=" " alt="" coords="228,5,434,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,202,145,129,182,86,226,48,251,35,254,39,229,52,186,89,150,132,103,205"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="998,78,1140,118"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="998,78,1140,118"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,201,171,181,227,164,421,119,501,105,575,97,731,90,931,92,983,93,983,98,931,97,731,95,576,102,501,111,422,124,228,169,173,187,125,206"/>
 <area shape="rect" id="Node000004" href="$classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="249,279,413,320"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="133,228,257,271,255,276,131,233"/>
@@ -32,16 +32,16 @@
 <area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="402,189,475,189,475,194,402,194"/>
 <area shape="rect" id="Node000022" href="$classrtype_1_1_game.html#a54ac353555dfb02d488d2a6022fe6983" title=" " alt="" coords="482,327,690,352"/>
 <area shape="poly" id="edge22_Node000015_Node000022" title=" " alt="" coords="388,202,435,221,506,267,562,314,558,318,503,272,433,226,386,207"/>
-<area shape="rect" id="Node000017" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title=" " alt="" coords="763,171,906,212"/>
+<area shape="rect" id="Node000017" href="$classrtype_1_1_entity_manager.html#a3e29fa2309d45974a36baa31efc2e330" title="Destroys an entity and removes all its components." alt="" coords="763,171,906,212"/>
 <area shape="poly" id="edge16_Node000016_Node000017" title=" " alt="" coords="682,189,748,189,748,194,682,194"/>
-<area shape="rect" id="Node000019" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title=" " alt="" coords="763,106,906,146"/>
+<area shape="rect" id="Node000019" href="$classrtype_1_1_entity_manager.html#ae386b25eaeef5b5de3d16f1bd39c3b9e" title="Gets a component from an entity." alt="" coords="763,106,906,146"/>
 <area shape="poly" id="edge18_Node000016_Node000019" title=" " alt="" coords="637,176,748,146,749,151,638,181"/>
-<area shape="rect" id="Node000020" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title=" " alt="" coords="738,236,931,277"/>
+<area shape="rect" id="Node000020" href="$classrtype_1_1_entity_manager.html#ad044ba69789e444e9a9bbc76d1f25e88" title="Gets all entities that have the specified components." alt="" coords="738,236,931,277"/>
 <area shape="poly" id="edge20_Node000016_Node000020" title=" " alt="" coords="638,202,740,229,739,235,637,207"/>
-<area shape="rect" id="Node000018" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title=" " alt="" coords="986,171,1152,212"/>
+<area shape="rect" id="Node000018" href="$classrtype_1_1_entity_manager.html#adfe1e41d8f3d7f1e50a4842ba8493c85" title="Removes all components from an entity." alt="" coords="986,171,1152,212"/>
 <area shape="poly" id="edge17_Node000017_Node000018" title=" " alt="" coords="906,189,971,189,971,194,906,194"/>
 <area shape="poly" id="edge19_Node000019_Node000003" title=" " alt="" coords="906,115,982,106,983,111,906,120"/>
-<area shape="rect" id="Node000021" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title=" " alt="" coords="998,236,1140,277"/>
+<area shape="rect" id="Node000021" href="$classrtype_1_1_entity_manager.html#a81c18adee6d54c7676ab0175f92cd3aa" title="Checks if an entity has a specific component." alt="" coords="998,236,1140,277"/>
 <area shape="poly" id="edge21_Node000020_Node000021" title=" " alt="" coords="931,254,983,254,983,260,931,260"/>
 <area shape="poly" id="edge24_Node000022_Node000008" title=" " alt="" coords="627,350,739,386,763,393,762,398,738,391,625,355"/>
 <area shape="poly" id="edge25_Node000022_Node000011" title=" " alt="" coords="691,347,749,353,748,358,691,352"/>

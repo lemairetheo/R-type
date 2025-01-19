@@ -1,5 +1,5 @@
 <map id="rtype::EntityManager::getEntitiesWithComponents" name="rtype::EntityManager::getEntitiesWithComponents">
-<area shape="rect" id="Node000001" title=" " alt="" coords="1138,220,1330,261"/>
+<area shape="rect" id="Node000001" title="Gets all entities that have the specified components." alt="" coords="1138,220,1330,261"/>
 <area shape="rect" id="Node000002" href="$classrtype_1_1_game.html#a7d60765320a258d74f67f75663c4e9db" title=" " alt="" coords="900,59,1090,84"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1203,211,1153,160,1122,133,1089,110,1040,87,1042,82,1091,105,1125,129,1156,156,1207,207"/>
 <area shape="rect" id="Node000007" href="$classrtype_1_1game_1_1_game_engine.html#a09545ca589d925b508f047f6eb65ede0" title="Handles collisions between entities." alt="" coords="227,220,400,261"/>

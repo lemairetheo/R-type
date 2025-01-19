@@ -1,13 +1,13 @@
 <map id="rtype::Game::createBackgroundEntities" name="rtype::Game::createBackgroundEntities">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,100,212,141"/>
-<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title=" " alt="" coords="292,5,434,46"/>
+<area shape="rect" id="Node000002" href="$classrtype_1_1_entity_manager.html#ab2f49df226842d6c8f9fe3f388d6c6a9" title="Adds a component to an entity." alt="" coords="292,5,434,46"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,97,259,57,280,49,282,54,261,61,159,102"/>
-<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title=" " alt="" coords="292,71,434,111"/>
+<area shape="rect" id="Node000004" href="$classrtype_1_1_entity_manager.html#a506e30237b9450046ce30a24b111c37b" title="Creates a new entity." alt="" coords="292,71,434,111"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="212,106,276,98,277,104,213,111"/>
 <area shape="rect" id="Node000005" href="$classrtype_1_1_menu.html#aa405db5e8fa922a32e5f16cc943bc2bb" title=" " alt="" coords="260,136,466,161"/>
 <area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="212,129,244,133,244,138,212,134"/>
 <area shape="rect" id="Node000006" href="$classrtype_1_1_resource_manager.html#adcfd48ecb2cdf8a84f551f4a29adea44" title=" " alt="" coords="281,185,445,226"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="168,139,261,171,280,178,278,183,259,176,166,144"/>
-<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title=" " alt="" coords="514,5,656,46"/>
+<area shape="rect" id="Node000003" href="$classrtype_1_1_entity_manager.html#a7ba9aeabbf0a3bf5b7f3e41a913df66c" title="Gets the sparse array of components of a specific type." alt="" coords="514,5,656,46"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="434,23,498,23,498,28,434,28"/>
 </map>
