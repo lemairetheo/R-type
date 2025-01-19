@@ -114,7 +114,8 @@ namespace rtype::game {
               {3, 35}
           }; ///< Score thresholds for each level.
 
-            bool bossOfLevelIsDead = false; ///< For check if boos is dead in current level of the game
+            bool bossOfLevelIsDead = false; ///< For check if boss is dead in current level of the game
+            bool hasBossIsDisplay = false; ///< For check if boss is display in current level of the game
 
           /**
            * @brief Handles incoming network messages.
