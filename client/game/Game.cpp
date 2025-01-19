@@ -4,9 +4,6 @@
 
 #include "Game.hpp"
 
-namespace rtype
-{
-
 namespace rtype {
     /**
          * @brief Constructs a Game object with a predefined window size, sets up menu and resources.
@@ -50,8 +47,6 @@ namespace rtype {
         }
     }
 
-    void Game::handleEntityUpdate(const std::vector<uint8_t>& data, size_t offset)
-    {
     /**
     * @brief Handles server updates for an entity (position, velocity, etc.).
     *
@@ -204,8 +199,6 @@ namespace rtype {
      * @param offset The offset where the BestScorePacket begins.
      */
     void Game::handleBestScore(const std::vector<uint8_t>& data, size_t offset) {
-    void Game::handleBestScore(const std::vector<uint8_t>& data, size_t offset)
-    {
         const auto* bestScore = reinterpret_cast<const network::BestScorePacket*>(data.data() + offset);
         playerStats.best_time = bestScore->best_time;
         playerStats.total_games = bestScore->games_won;
@@ -214,8 +207,6 @@ namespace rtype {
         updateStatsDisplay();
     }
 
-    void Game::handleGameStats(const std::vector<uint8_t>& data, size_t offset)
-    {
     /**
      * @brief Handles updated game stats such as current level, enemies killed, etc.
      *
@@ -232,16 +223,14 @@ namespace rtype {
         updateStatsDisplay();
     }
 
-    void Game::handleEndGame(const std::vector<uint8_t>& data, size_t offset)
-    {
     /**
- * @brief Handles an end-game state (Victory) sent by the server.
- *
- * Updates the current game state and stops the background music.
- *
- * @param data   The raw packet data.
- * @param offset Unused parameter, since no extra data is needed.
- */
+     * @brief Handles an end-game state (Victory) sent by the server.
+     *
+     * Updates the current game state and stops the background music.
+     *
+     * @param data   The raw packet data.
+     * @param offset Unused parameter, since no extra data is needed.
+     */
     void Game::handleEndGame(const std::vector<uint8_t>& data, size_t offset) {
         currentState = GameState::VICTORY;
         gameOverText.setString("Victory!");
@@ -250,17 +239,15 @@ namespace rtype {
         musicGame.stop();
     }
 
-    void Game::setupEnemyRenderComponent(EntityID entity, int type, RenderComponent& renderComp)
-    {
     /**
-  * @brief Sets up rendering components for different types of enemies.
-  *
-  * Adds an Enemy component and chooses the correct texture and animation frame data.
-  *
-  * @param entity     The enemy entity ID.
-  * @param type       The enemy type (2, 3, or 4).
-  * @param renderComp Reference to the RenderComponent to configure.
-  */
+      * @brief Sets up rendering components for different types of enemies.
+      *
+      * Adds an Enemy component and chooses the correct texture and animation frame data.
+      *
+      * @param entity     The enemy entity ID.
+      * @param type       The enemy type (2, 3, or 4).
+      * @param renderComp Reference to the RenderComponent to configure.
+    */
     void Game::setupEnemyRenderComponent(EntityID entity, int type, RenderComponent& renderComp) {
         static std::unordered_map<int, std::string> textureMap;
         if (menu.getColorblindMode())
@@ -288,10 +275,7 @@ namespace rtype {
         }
     }
 
-    void Game::setupEnemyAnimation(int type, RenderComponent& renderComp)
-    {
-        if (type == 2)
-        {
+
     /**
     * @brief Configures the sprite sheet for different enemy animations.
     *
@@ -333,7 +317,6 @@ namespace rtype {
   * @param entity     The wall entity ID.
   * @param renderComp Reference to the RenderComponent to update.
   */
-    void Game::setupWallRenderComponent(EntityID entity, RenderComponent& renderComp) {
     void Game::setupWallRenderComponent(EntityID entity, RenderComponent& renderComp)
     {
         entities.addComponent(entity, Wall{3});
@@ -345,11 +328,6 @@ namespace rtype {
         renderComp.frameCount = 1;
         renderComp.sprite.setScale(0.1f, 0.1f);
     }
-
-    void Game::updateExistingEntity(EntityID entity, const network::EntityUpdatePacket* entityUpdate)
-    {
-        if (entityUpdate->type == 1 && entities.hasComponent<Enemy>(entity))
-        {
 
     /**
      * @brief Updates an existing entity (e.g., convert Enemy to Projectile).
@@ -377,8 +355,6 @@ namespace rtype {
         vel.dy = entityUpdate->dy;
     }
 
-    void Game::handleConnectResponse(const std::vector<uint8_t>& data, size_t offset)
-    {
     /**
     * @brief Handles server response after a connection attempt.
     *
@@ -391,8 +367,7 @@ namespace rtype {
             myPlayerId = response->playerId;
     }
 
-    void Game::handleEntityDeath(const std::vector<uint8_t>& data, size_t offset)
-    {
+
     /**
      * @brief Handles an entity death event from the server.
      *
@@ -427,8 +402,6 @@ namespace rtype {
         }
     }
 
-    void Game::initPacketHandlers()
-    {
     /**
      * @brief Initializes all packet handlers used for incoming server messages.
      */
@@ -454,8 +427,6 @@ namespace rtype {
             [this](const auto& data, size_t offset) { handleLose(data, offset); };
     }
 
-    void Game::updateStatsDisplay()
-    {
     /**
      * @brief Updates the on-screen text elements to match the current game state.
      *
@@ -472,8 +443,6 @@ namespace rtype {
         timeText.setString("Time: " + std::to_string(elapsed) + "s");
     }
 
-    void Game::handleLose(const std::vector<uint8_t>& data, size_t offset)
-    {
     /**
    * @brief Handles losing the game (server indicates the player is defeated).
    *
@@ -489,8 +458,6 @@ namespace rtype {
     }
 
 
-    void Game::displayFinalStats()
-    {
     /**
      * @brief Displays final stats such as final score, level reached, and best time when the game ends.
      */
@@ -515,14 +482,6 @@ namespace rtype {
         endGameText = statsText;
     }
 
-    void Game::displayMenu()
-    {
-        while (!menu.getIsPlaying())
-        {
-            while (window.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed)
-                {
     /**
      * @brief Displays the main menu (blocking) until the user decides to start the game or exit.
      *
@@ -574,8 +533,6 @@ namespace rtype {
         }
     }
 
-    void Game::run()
-    {
     /**
      * @brief Main function called by run() to manage overall game flow.
      *
@@ -754,8 +711,6 @@ namespace rtype {
     * @brief Handles user input (keyboard) and window events (close, etc.).
     */
     void Game::handleEvents() {
-    void Game::handleEvents()
-    {
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -813,8 +768,6 @@ namespace rtype {
         }
     }
 
-    void Game::update()
-    {
     /**
      * @brief Updates the game logic based on current state (PLAYING, MENU, etc.).
      *
@@ -880,8 +833,6 @@ namespace rtype {
      * Clears the window, calls RenderSystem, and draws UI.
      */
     void Game::render() {
-    void Game::render()
-    {
         window.clear();
         if (currentState == GameState::PLAYING || currentState == GameState::MENU ||
             currentState == GameState::VICTORY || currentState == GameState::GAME_OVER)
@@ -936,8 +887,6 @@ namespace rtype {
      * @brief Initializes the core game (network, texts, resources, systems, audio).
      */
     void Game::initGame() {
-    void Game::initGame()
-    {
         std::string serverIP = menu.getServerIP();
         uint16_t serverPort = menu.getServerPort();
         network = std::make_unique<network::NetworkClient>(serverIP, serverPort);
@@ -952,8 +901,6 @@ namespace rtype {
         createBackgroundEntities();
     }
 
-    void Game::initGameTexts()
-    {
     /**
      * @brief Creates initial UI elements (life text, score text, etc.).
      */
@@ -972,8 +919,6 @@ namespace rtype {
         gameStartTime = std::chrono::steady_clock::now();
     }
 
-    void Game::loadResources()
-    {
     /**
      * @brief Loads game assets such as textures and fonts via the ResourceManager.
      */
@@ -998,8 +943,6 @@ namespace rtype {
         resources.loadTexture("ultimate-colorblind", "assets/sprites/r-typesheet2-2.png");
     }
 
-    void Game::setupSystems()
-    {
     /**
      * @brief Sets up the ECS systems such as BackgroundSystem, MovementSystem, etc.
      */
@@ -1010,10 +953,6 @@ namespace rtype {
         systems.push_back(std::make_unique<RenderSystem>(window));
     }
 
-    void Game::initAudio()
-    {
-        if (!musicGame.openFromFile("assets/audio/415384_Nyan.mp3"))
-        {
     /**
      * @brief Initializes music and sound effects for the game.
      */
@@ -1039,8 +978,6 @@ namespace rtype {
         }
     }
 
-    void Game::initMenuBackground()
-    {
     /**
      * @brief Sets up the menu background layers (parallax effect, etc.).
      */
@@ -1075,8 +1012,6 @@ namespace rtype {
         systems.push_back(std::make_unique<RenderSystem>(window));
     }
 
-    void Game::createBackgroundEntities()
-    {
     /**
      * @brief Creates entities for the main background (two-layer parallax).
      */
@@ -1127,8 +1062,6 @@ namespace rtype {
         }
     }
 
-    void Game::cleanupEntities()
-    {
     /**
      * @brief Periodically removes entities that have gone out of bounds.
      *
@@ -1163,8 +1096,6 @@ namespace rtype {
      * @param offset Offset where the LeaderboardPacket begins.
      */
     void Game::handleLeaderboard(const std::vector<uint8_t>& data, size_t offset) {
-    void Game::handleLeaderboard(const std::vector<uint8_t>& data, size_t offset)
-    {
         const auto* leaderboard = reinterpret_cast<const network::LeaderboardPacket*>(data.data() + offset);
         leaderboardEntries.clear();
 
@@ -1181,8 +1112,6 @@ namespace rtype {
         currentState = GameState::LEADERBOARD;
     }
 
-    void Game::renderLeaderboard()
-    {
     /**
      * @brief Renders the leaderboard to the window when in LEADERBOARD state.
      */
