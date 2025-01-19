@@ -204,7 +204,6 @@ namespace rtype::game {
             }
         }
         if (enemySpawnQueue.size() == 0 && entities.getEntitiesWithComponents<Enemy>().empty() && currentLevel != 4) {
-            std::cout << currentLevel << std::endl;
             auto packet = network.createLooseGamePacket();
             network.broadcast(packet);
         }
