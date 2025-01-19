@@ -5,7 +5,8 @@
 #include "Game.hpp"
 
 namespace rtype {
-    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(nullptr), menu(800, 600) {
+    Game::Game() : window(sf::VideoMode(800, 600), "R-Type"), network(nullptr), menu(800, 600),
+                   backToMenuButton(sf::Vector2f(400, 500), sf::Vector2f(200, 50), "Back to menu") {
         if (!font.loadFromFile("assets/fonts/Roboto-Medium.ttf")) {
             std::cerr << "Error loading font" << std::endl;
             throw std::runtime_error("Failed to load font");
@@ -14,7 +15,7 @@ namespace rtype {
     }
 
     void Game::handleNetworkMessage(const std::vector<uint8_t>& data,
-        [[maybe_unused]] const asio::ip::udp::endpoint& sender)
+                                    [[maybe_unused]] const asio::ip::udp::endpoint& sender)
     {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
@@ -161,7 +162,7 @@ namespace rtype {
                 {4, "enemy_lvl_3"}
             };
         }
-        entities.addComponent(entity, Enemy{1, true, false, false});
+        entities.addComponent(entity, Enemy{1, true, false, false, false}); // dernier false pour isBoss
         auto it = textureMap.find(type);
         if (it != textureMap.end()) {
             renderComp.sprite.setTexture(*ResourceManager::getInstance().getTexture(it->second));
@@ -389,20 +390,55 @@ namespace rtype {
                     render();
                 }
                 currentState = playerIsDead ? GameState::GAME_OVER : GameState::VICTORY;
-                if (network) {
-                    std::vector<uint8_t> disconnectPacket(sizeof(network::PacketHeader));
-                    header = reinterpret_cast<network::PacketHeader*>(disconnectPacket.data());
-                    header->magic[0] = 'R';
-                    header->magic[1] = 'T';
-                    header->version = 1;
-                    header->type = static_cast<uint8_t>(network::PacketType::DISCONNECT);
-                    header->length = disconnectPacket.size();
-                    header->sequence = 0;
+                while (window.isOpen() && (currentState == GameState::VICTORY || currentState == GameState::GAME_OVER || currentState == GameState::LEADERBOARD)) {
+                    sf::Event evt;
+                    while (window.pollEvent(evt)) {
+                        if (evt.type == sf::Event::Closed) {
+                            // Gérer la déconnexion proprement avant de fermer
+                            if (network) {
+                                std::vector<uint8_t> disconnectPacket(sizeof(network::PacketHeader));
+                                auto* header = reinterpret_cast<network::PacketHeader*>(disconnectPacket.data());
+                                header->magic[0] = 'R';
+                                header->magic[1] = 'T';
+                                header->version = 1;
+                                header->type = static_cast<uint8_t>(network::PacketType::DISCONNECT);
+                                header->length = disconnectPacket.size();
+                                header->sequence = 0;
 
-                    network->sendTo(disconnectPacket);
-                    network->stop();
+                                network->sendTo(disconnectPacket);
+                                network->stop();
+                                network = nullptr;
+                            }
+                            window.close();
+                        } else if (evt.type == sf::Event::KeyPressed) {
+                            if (evt.key.code == sf::Keyboard::Space) {
+                                // Demander le leaderboard et passer à l'état leaderboard
+                                currentState = GameState::LEADERBOARD;
+                            } else if (evt.key.code == sf::Keyboard::Escape) {
+                                // Gérer la déconnexion proprement avant de quitter
+                                if (network) {
+                                    std::vector<uint8_t> disconnectPacket(sizeof(network::PacketHeader));
+                                    auto* header = reinterpret_cast<network::PacketHeader*>(disconnectPacket.data());
+                                    header->magic[0] = 'R';
+                                    header->magic[1] = 'T';
+                                    header->version = 1;
+                                    header->type = static_cast<uint8_t>(network::PacketType::DISCONNECT);
+                                    header->length = disconnectPacket.size();
+                                    header->sequence = 0;
+
+                                    network->sendTo(disconnectPacket);
+                                    network->stop();
+                                    network = nullptr;
+                                }
+                                window.close();
+                            }
+                        }
+                    }
+
+                    // Mettre à jour l'affichage
+                    update();
+                    render();
                 }
-
             } catch (const std::exception& e) {
                 std::cerr << "Error: " << e.what() << std::endl;
 
@@ -529,6 +565,8 @@ namespace rtype {
                     if (auto renderSystem = dynamic_cast<RenderSystem*>(systems.back().get())) {
                         renderSystem->update(entities, dt);
                     }
+            case GameState::LEADERBOARD:
+                renderLeaderboard();
             break;
         }
     }
@@ -559,6 +597,8 @@ namespace rtype {
             sf::Text finalScoreText = UiHelpers::createText("Final score: " + std::to_string(playerScore), font, sf::Color::White, {400, 350}, 20, sf::Text::Bold);
             window.draw(finalScoreText);
             window.draw(endGameText);
+        } else if (currentState == GameState::LEADERBOARD) {
+            renderLeaderboard();
         }
         window.display();
     }
@@ -726,5 +766,59 @@ namespace rtype {
                 }
             }
         }
+    }
+
+    void Game::handleLeaderboard(const std::vector<uint8_t>& data, size_t offset) {
+        const auto* leaderboard = reinterpret_cast<const network::LeaderboardPacket*>(data.data() + offset);
+        leaderboardEntries.clear();
+
+        for (size_t i = 0; i < leaderboard->nb_entries; ++i) {
+            const auto& entry = leaderboard->entries[i];
+            leaderboardEntries.push_back({
+                std::string(entry.username),
+                entry.score,
+                entry.level_reached,
+                entry.time
+            });
+        }
+        currentState = GameState::LEADERBOARD;
+    }
+
+    void Game::renderLeaderboard() {
+        sf::Text titleText = UiHelpers::createText(
+            "LEADERBOARD",
+            font,
+            sf::Color::White,
+            {window.getSize().x / 2.0f, 50},
+            30,
+            sf::Text::Bold
+        );
+        titleText.setOrigin(titleText.getLocalBounds().width / 2.0f, 0);
+
+        float yPos = 120;
+        window.draw(titleText);
+
+        for (size_t i = 0; i < leaderboardEntries.size(); ++i) {
+            const auto& entry = leaderboardEntries[i];
+            std::string text = std::to_string(i + 1) + ". " + entry.username +
+                " - Score: " + std::to_string(entry.score) +
+                " - Level: " + std::to_string(entry.level_reached) +
+                " - Time: " + std::to_string(entry.time) + "s";
+
+            sf::Text entryText = UiHelpers::createText(
+                text,
+                font,
+                sf::Color::White,
+                {100, yPos},
+                20,
+                sf::Text::Regular
+            );
+            window.draw(entryText);
+            yPos += 40;
+        }
+        if (backToMenuButton.handleEvent(event, window)) {
+            currentState = GameState::MENU;
+        }
+        backToMenuButton.render(window, "normal");
     }
 }

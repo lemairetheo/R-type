@@ -78,4 +78,81 @@ namespace rtype::database {
         sqlite3_finalize(stmt);
         return result;
     }
+
+    std::vector<database::PlayerScore> ScoreRepository::getTopScores(int limit) {
+    std::vector<database::PlayerScore> scores;
+    std::string sql = R"(
+        SELECT id, username, score_time, level_reached, enemies_killed, game_date
+        FROM player_scores
+        ORDER BY enemies_killed DESC, level_reached DESC, score_time ASC
+        LIMIT ?
+    )";
+
+    try {
+        sqlite3_stmt* stmt;
+        int rc = sqlite3_prepare_v2(db.getHandle(), sql.c_str(), -1, &stmt, nullptr);
+        if (rc != SQLITE_OK) {
+            throw std::runtime_error("Failed to prepare statement");
+        }
+
+        sqlite3_bind_int(stmt, 1, limit);
+
+        while (sqlite3_step(stmt) == SQLITE_ROW) {
+            PlayerScore score{
+                sqlite3_column_int(stmt, 0),
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)),
+                sqlite3_column_int(stmt, 2),
+                sqlite3_column_int(stmt, 3),
+                sqlite3_column_int(stmt, 4),
+                reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5))
+            };
+            scores.push_back(score);
+        }
+
+        sqlite3_finalize(stmt);
+    } catch (const std::exception& e) {
+        std::cerr << "Error getting top scores: " << e.what() << std::endl;
+    }
+    return scores;
+}
+
+    std::vector<database::PlayerScore> ScoreRepository::getUserScores(int userId, int limit) {
+        std::vector<database::PlayerScore> scores;
+        std::string sql = R"(
+            SELECT p.id, u.username, p.score_time, p.level_reached, p.enemies_killed, p.game_date
+            FROM player_scores p
+            JOIN users u ON p.username = u.username
+            WHERE u.id = ?
+            ORDER BY p.enemies_killed DESC, p.level_reached DESC, p.score_time ASC
+            LIMIT ?
+        )";
+
+        try {
+            sqlite3_stmt* stmt;
+            int rc = sqlite3_prepare_v2(db.getHandle(), sql.c_str(), -1, &stmt, nullptr);
+            if (rc != SQLITE_OK) {
+                throw std::runtime_error("Failed to prepare statement");
+            }
+
+            sqlite3_bind_int(stmt, 1, userId);
+            sqlite3_bind_int(stmt, 2, limit);
+
+            while (sqlite3_step(stmt) == SQLITE_ROW) {
+                PlayerScore score{
+                    sqlite3_column_int(stmt, 0),
+                    reinterpret_cast<const char*>(sqlite3_column_text(stmt, 1)),
+                    sqlite3_column_int(stmt, 2),
+                    sqlite3_column_int(stmt, 3),
+                    sqlite3_column_int(stmt, 4),
+                    reinterpret_cast<const char*>(sqlite3_column_text(stmt, 5))
+                };
+                scores.push_back(score);
+            }
+
+            sqlite3_finalize(stmt);
+        } catch (const std::exception& e) {
+            std::cerr << "Error getting user scores: " << e.what() << std::endl;
+        }
+        return scores;
+    }
 }

@@ -1,5 +1,7 @@
 #include "NetworkManager.hpp"
 
+#include "database/ScoreRepository.hpp"
+
 namespace rtype::network {
 
     NetworkManager::NetworkManager(uint16_t port)
@@ -256,6 +258,30 @@ namespace rtype::network {
         scoreUpdate->score = score;
         scoreUpdate->level_reached = levelReached;
         scoreUpdate->enemies_killed = enemiesKilled;
+
+        return packet;
+    }
+
+    std::vector<uint8_t> NetworkManager::createLeaderboardPacket(const std::vector<database::PlayerScore>& scores) {
+        std::vector<uint8_t> packet(sizeof(PacketHeader) + sizeof(LeaderboardPacket));
+        auto* header = reinterpret_cast<PacketHeader*>(packet.data());
+        auto* leaderboard = reinterpret_cast<LeaderboardPacket*>(packet.data() + sizeof(PacketHeader));
+
+        header->magic[0] = 'R';
+        header->magic[1] = 'T';
+        header->version = 1;
+        header->type = static_cast<uint8_t>(PacketType::LEADERBOARD_RESPONSE);
+        header->length = packet.size();
+        header->sequence = 0;
+
+        leaderboard->nb_entries = std::min(scores.size(), size_t(10));
+        for (size_t i = 0; i < leaderboard->nb_entries; ++i) {
+            std::strncpy(leaderboard->entries[i].username, scores[i].username.c_str(), 31);
+            leaderboard->entries[i].username[31] = '\0';
+            leaderboard->entries[i].score = scores[i].enemies_killed;  // Utiliser enemies_killed comme score
+            leaderboard->entries[i].level_reached = scores[i].level_reached;
+            leaderboard->entries[i].time = scores[i].score_time;
+        }
 
         return packet;
     }

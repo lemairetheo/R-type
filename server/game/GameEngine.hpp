@@ -85,6 +85,7 @@ namespace rtype::game {
           void handleGameCompletion(const std::string& clientId);
           std::unique_ptr<database::UserRepository> userRepository;
           std::unordered_map<std::string, database::User> connectedUsers;
+            void sendLeaderboard(const std::string& clientId);
           static inline const std::unordered_map<int, std::tuple<float, int, float>> enemyAttributes = {
               {1, {1, 5, 100.0f}},
               {2, {3, 5, 300.0f}},
@@ -111,7 +112,7 @@ namespace rtype::game {
           const std::map<int, int> SCORE_THRESHOLDS = {
               {1, 10},
               {2, 20},
-              {3, 30}
+              {3, 35}
           }; ///< Score thresholds for each level.
 
           /**

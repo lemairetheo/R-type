@@ -10,6 +10,7 @@
 #include "../shared/ecs/Entity.hpp"
 #include "../database/DatabaseManager.hpp"
 #include "../database/UserRepository.hpp"
+#include "database/ScoreRepository.hpp"
 
 namespace rtype::network {
     /**
@@ -63,6 +64,7 @@ namespace rtype::network {
         std::vector<uint8_t> createPlayerStatsPacket(const database::User& user);
         std::vector<uint8_t> createGameStatsPacket(int level, int enemiesKilled, int score,
             int timeElapsed, int lifeRemaining);
+        std::vector<uint8_t> createLeaderboardPacket(const std::vector<database::PlayerScore>& scores);
         std::vector<uint8_t> createEntityUpdatePacket(EntityID entityId, int type, const Position& pos, const Velocity& vel,int life, int score, int level);
         const asio::ip::udp::endpoint& getClientEndpoint(const std::string& clientId) const;
     private:

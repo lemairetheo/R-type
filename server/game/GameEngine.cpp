@@ -459,7 +459,6 @@ namespace rtype::game {
         network.broadcast(packet);
     }
 
-
     void GameEngine::handleNetworkMessage(const std::vector<uint8_t>& data, [[maybe_unused]] const sockaddr_in& sender, const std::string& clientId) {
         if (data.size() < sizeof(network::PacketHeader)) return;
 
@@ -490,7 +489,6 @@ namespace rtype::game {
                     shoot_system_.update(entities, playerEntity, true, 0);
                     input.Ultimate = false;
                 }
-
                 vel.dx = 0.0f;
                 vel.dy = 0.0f;
                 if (inputPacket->left) vel.dx = -speed;
@@ -556,6 +554,16 @@ namespace rtype::game {
             entities.destroyEntity(entityId);
             playerEntities.erase(it);
             std::cout << "Player " << clientId << " disconnected" << std::endl;
+        }
+    }
+
+    void GameEngine::sendLeaderboard(const std::string& clientId) {
+        try {
+            auto topScores = scoreRepository->getTopScores(10);
+            auto packet = network.createLeaderboardPacket(topScores);
+            network.sendTo(packet, network.getClientEndpoint(clientId));
+        } catch (const std::exception& e) {
+            std::cerr << "Failed to send leaderboard: " << e.what() << std::endl;
         }
     }
 } // namespace rtype::game

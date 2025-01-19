@@ -13,6 +13,7 @@ namespace rtype {
         CONNECTING,     // Tentative de connexion au serveur
         PLAYING,        // Jeu en cours
         GAME_OVER,     // Partie terminée (mort)
-        VICTORY        // Partie gagnée
+        VICTORY,        // Partie gagnée
+        LEADERBOARD
     };
 }
