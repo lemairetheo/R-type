@@ -4,6 +4,8 @@ set(BUILD_SHARED_LIBS FALSE)
 
 # Recherche de SFML avec configuration spécifique
 find_package(SFML COMPONENTS system window graphics audio CONFIG REQUIRED)
+find_package(OpenAL CONFIG REQUIRED)
+
 
 # Sources du client
 set(CLIENT_SOURCES
@@ -54,19 +56,32 @@ target_link_libraries(r-type_client PRIVATE
         sfml-window
         sfml-graphics
         sfml-audio
+        sfml-main
         r-type-shared
         asio::asio
 )
 
 if(WIN32)
     target_link_libraries(r-type_client PRIVATE
+            sfml-system
+            sfml-window
+            sfml-graphics
+            sfml-audio
             sfml-main
+            r-type-shared
+            asio::asio
+            OpenAL::OpenAL
             opengl32
             winmm
             gdi32
             freetype
             ws2_32
             wsock32
+            avrt
+            # Add these Windows-specific multimedia libraries
+            "Avrt.lib"
+            "Ole32.lib"
+            "OleAut32.lib"
     )
 elseif(APPLE)
     target_link_libraries(r-type_client PRIVATE

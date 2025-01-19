@@ -1,6 +1,5 @@
 #include "Menu.hpp"
 
-#include <sys/syscall.h>
 
 namespace rtype {
     Menu::Menu(unsigned int width, unsigned int height) : play_button(nullptr), _width(width), _height(height) {
