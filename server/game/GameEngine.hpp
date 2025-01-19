@@ -92,7 +92,6 @@ namespace rtype::game {
               {3, {5, 5, 600.0f}}
           }; ///< Attributes of enemies based on their level.
           int currentLevel = 1; ///< Current level of the game.
-          void initializeLevel();
           /**
            * @brief Switches to the next level.
            */

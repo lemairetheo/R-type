@@ -18,16 +18,6 @@ namespace rtype::game {
         }
     }
 
-    void GameEngine::initializeLevel() {
-        auto enemies = entities.getEntitiesWithComponents<Enemy>();
-        for (EntityID enemy : enemies) {
-            entities.destroyEntity(enemy);
-        }
-        enemySpawnQueue.clear();
-        currentLevel = 1;
-        spawnEnemiesForLevel(currentLevel);
-    }
-
     void GameEngine::broadcastWorldState() {
         for (EntityID entity = 0; entity < MAX_ENTITIES; ++entity) {
             if (!entities.hasComponent<Position>(entity) || !entities.hasComponent<Velocity>(entity))
